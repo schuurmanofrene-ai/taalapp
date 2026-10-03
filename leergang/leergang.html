@@ -1,0 +1,777 @@
+<title>Levende Leergang</title>
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+<link rel="stylesheet" href="https://fonts.googleapis.com/css2?family=Instrument+Serif:ital@0;1&family=Newsreader:ital,opsz,wght@0,6..72,400;0,6..72,600;1,6..72,400&family=IBM+Plex+Mono:wght@400;500&display=swap">
+<style>
+/* Layout: een sterrenkaart als astrolabium. Midden = jij, vier ringen = MBO+ tot Master,
+   vijf sectoren = domeinen. Daaronder het leesbare deel: volgende les, profiel, groeilog. */
+:root {
+  --bg: #eceee9;
+  --surface: #f7f8f4;
+  --ink: #1c2230;
+  --muted: #5b6170;
+  --line: #c6cbc2;
+  --brass: #94661c;
+  --good: #2f7d4a;
+  --bad: #b0412e;
+  --d-filosofie: #4655c9;
+  --d-mentaliseren: #17837a;
+  --d-lichaamstaal: #bf4f37;
+  --d-cgt: #637f25;
+  --d-geloof: #864a9c;
+  --f-display: "Instrument Serif", "Iowan Old Style", Georgia, serif;
+  --f-body: "Newsreader", "Iowan Old Style", Georgia, serif;
+  --f-mono: "IBM Plex Mono", ui-monospace, "SF Mono", Menlo, monospace;
+}
+@media (prefers-color-scheme: dark) {
+  :root:not([data-theme="light"]) {
+    --bg: #0c1120; --surface: #141b2c; --ink: #e8e4d9; --muted: #9ba1ae; --line: #29324a;
+    --brass: #d8a94f; --good: #6cc48a; --bad: #ee8a74;
+    --d-filosofie: #8e9aff; --d-mentaliseren: #5ccfc1; --d-lichaamstaal: #f08b70;
+    --d-cgt: #abc962; --d-geloof: #cb98dd;
+    color-scheme: dark;
+  }
+}
+:root[data-theme="dark"] {
+  --bg: #0c1120; --surface: #141b2c; --ink: #e8e4d9; --muted: #9ba1ae; --line: #29324a;
+  --brass: #d8a94f; --good: #6cc48a; --bad: #ee8a74;
+  --d-filosofie: #8e9aff; --d-mentaliseren: #5ccfc1; --d-lichaamstaal: #f08b70;
+  --d-cgt: #abc962; --d-geloof: #cb98dd;
+  color-scheme: dark;
+}
+
+* { box-sizing: border-box; }
+body {
+  background: var(--bg); color: var(--ink);
+  font-family: var(--f-body); font-size: 1.0625rem; line-height: 1.6;
+  padding-inline: 16px; padding-block: 0 64px;
+}
+.wrap { max-width: 1120px; margin-inline: auto; }
+h1, h2, h3 { font-family: var(--f-display); font-weight: 400; text-wrap: balance; line-height: 1.1; margin: 0; }
+h1 { font-size: clamp(2.4rem, 7vw, 4rem); letter-spacing: -0.01em; }
+h2 { font-size: clamp(1.7rem, 4vw, 2.2rem); }
+h3 { font-size: 1.45rem; }
+p { margin: 0; }
+.label {
+  font-family: var(--f-mono); font-size: 0.72rem; letter-spacing: 0.12em;
+  text-transform: uppercase; color: var(--muted);
+}
+button { font: inherit; color: inherit; cursor: pointer; }
+:focus-visible { outline: 2px solid var(--brass); outline-offset: 3px; border-radius: 4px; }
+
+/* ---------- kop ---------- */
+.kop { display: flex; flex-wrap: wrap; align-items: end; justify-content: space-between; gap: 12px 24px; padding-block: 28px 8px; }
+.kop .sub { color: var(--muted); max-width: 46ch; }
+.gen {
+  display: inline-flex; align-items: baseline; gap: 10px; font-family: var(--f-mono);
+  border: 1px solid var(--line); border-radius: 999px; padding: 6px 14px; font-size: 0.85rem;
+}
+.gen b { color: var(--brass); font-weight: 500; font-variant-numeric: tabular-nums; }
+
+/* ---------- kaart ---------- */
+.kaartvak { display: grid; grid-template-columns: minmax(0, 1.35fr) minmax(0, 1fr); gap: 28px; align-items: start; padding-block: 8px 40px; }
+@media (max-width: 860px) { .kaartvak { grid-template-columns: minmax(0, 1fr); } }
+.kaart { position: relative; width: 100%; max-width: 640px; aspect-ratio: 1; margin-inline: auto; }
+.kaart canvas { width: 100%; height: 100%; display: block; touch-action: manipulation; }
+.tip {
+  position: absolute; pointer-events: none; background: var(--surface); border: 1px solid var(--line);
+  padding: 6px 10px; border-radius: 6px; font-size: 0.9rem; max-width: 220px; line-height: 1.3;
+  transform: translate(-50%, calc(-100% - 14px));
+}
+.kaartstatus { position: absolute; inset: auto 0 6% 0; text-align: center; color: var(--muted); font-style: italic; }
+
+.zij { display: grid; gap: 22px; min-width: 0; }
+.volgende {
+  background: var(--surface); border: 1px solid var(--line); border-radius: 14px; padding: 22px;
+  display: grid; gap: 10px;
+}
+.volgende h3 { font-size: 1.75rem; }
+.volgende .kern { color: var(--muted); }
+.knop {
+  justify-self: start; display: inline-flex; align-items: center; gap: 10px; border: 0; border-radius: 999px;
+  background: var(--ink); color: var(--bg); padding: 10px 20px; font-family: var(--f-mono); font-size: 0.85rem; letter-spacing: 0.04em;
+}
+.knop:hover { background: var(--brass); }
+.knop[disabled] { opacity: 0.45; cursor: default; background: var(--ink); }
+.sluit { white-space: nowrap; }
+.knop.licht { background: transparent; color: var(--ink); border: 1px solid var(--line); }
+.knop.licht:hover { border-color: var(--brass); color: var(--brass); background: transparent; }
+
+.domeinen { display: grid; gap: 10px; list-style: none; margin: 0; padding: 0; }
+.domeinen li { display: grid; grid-template-columns: 12px minmax(0, 1fr) auto; gap: 12px; align-items: center; }
+.stip { width: 12px; height: 12px; border-radius: 50%; background: var(--c); }
+.balk { grid-column: 2 / 4; height: 3px; background: var(--line); border-radius: 2px; overflow: hidden; margin-top: -4px; }
+.balk i { display: block; height: 100%; background: var(--c); }
+.telling { font-family: var(--f-mono); font-size: 0.8rem; color: var(--muted); font-variant-numeric: tabular-nums; }
+.ringen { display: flex; flex-wrap: wrap; gap: 6px 16px; }
+
+/* ---------- secties eronder ---------- */
+.blok { border-top: 1px solid var(--line); padding-block: 36px; display: grid; gap: 20px; }
+.twee { display: grid; grid-template-columns: minmax(0, 1fr) minmax(0, 1fr); gap: 28px; }
+@media (max-width: 760px) { .twee { grid-template-columns: minmax(0, 1fr); } }
+.lijst { list-style: none; margin: 0; padding: 0; display: grid; gap: 8px; }
+.lijst li { padding-left: 18px; position: relative; }
+.lijst li::before { content: ""; position: absolute; left: 0; top: 0.7em; width: 7px; height: 7px; border: 1px solid var(--brass); border-radius: 50%; }
+.notitie { font-style: italic; color: var(--muted); max-width: 65ch; }
+
+.overzicht { display: grid; grid-template-columns: repeat(auto-fill, minmax(min(100%, 300px), 1fr)); gap: 24px; }
+.dgroep h3 { font-size: 1.3rem; color: var(--c); margin-bottom: 6px; }
+.lesrij {
+  width: 100%; display: grid; grid-template-columns: auto minmax(0, 1fr) auto; gap: 10px; align-items: baseline;
+  text-align: left; background: none; border: 0; border-bottom: 1px solid var(--line); padding: 8px 0;
+}
+.lesrij:hover .lt { color: var(--brass); }
+.lesrij .nv { font-family: var(--f-mono); font-size: 0.72rem; color: var(--muted); width: 4.2em; }
+.lesrij .st { font-family: var(--f-mono); font-size: 0.75rem; color: var(--muted); font-variant-numeric: tabular-nums; }
+.lesrij .st.klaar { color: var(--good); }
+
+.tijdlijn { list-style: none; margin: 0; padding: 0; display: grid; gap: 28px; }
+.tijdlijn > li { display: grid; grid-template-columns: 74px minmax(0, 1fr); gap: 18px; }
+.tijdlijn .g { font-family: var(--f-display); font-size: 2.6rem; color: var(--brass); line-height: 1; }
+.tijdlijn h3 { margin-bottom: 8px; }
+.tijdlijn .hyp { margin-top: 10px; padding: 10px 14px; border: 1px dashed var(--line); border-radius: 10px; }
+
+textarea {
+  width: 100%; min-height: 96px; resize: vertical; font: inherit; color: var(--ink);
+  background: var(--surface); border: 1px solid var(--line); border-radius: 10px; padding: 12px;
+}
+textarea:focus { border-color: var(--brass); outline: none; }
+.wensen li { color: var(--muted); }
+.wensen li b { color: var(--ink); font-weight: 400; }
+
+/* ---------- lezer ---------- */
+.lezer {
+  position: fixed; inset: 0; z-index: 10; background: var(--bg); overflow-y: auto;
+  padding-inline: 16px; padding-block: calc(env(safe-area-inset-top, 0px) + 12px) calc(env(safe-area-inset-bottom, 0px) + 48px);
+  animation: open 0.35s ease-out;
+}
+@keyframes open { from { opacity: 0.4; transform: translateY(14px); } to { opacity: 1; transform: none; } }
+.lezer .kolom { max-width: 68ch; margin-inline: auto; display: grid; gap: 28px; }
+.lezerbalk { position: sticky; top: 0; display: flex; justify-content: space-between; align-items: center; gap: 12px; background: var(--bg); padding-block: 8px; border-bottom: 1px solid var(--line); z-index: 1; }
+.lezer header { display: grid; gap: 12px; }
+.lezer h1 { font-size: clamp(2.2rem, 6vw, 3.3rem); }
+.lezer .kern { font-size: 1.25rem; font-style: italic; color: var(--muted); }
+.lezer section { display: grid; gap: 10px; }
+.lezer section h2 { font-size: 1.6rem; }
+.chips { display: flex; flex-wrap: wrap; gap: 8px; }
+.chip { border: 1px solid var(--line); border-radius: 999px; padding: 2px 12px; font-size: 0.9rem; }
+.dchip { color: var(--c); border-color: var(--c); font-family: var(--f-mono); font-size: 0.72rem; letter-spacing: 0.1em; text-transform: uppercase; }
+
+.vraag { display: grid; gap: 10px; padding: 18px; border: 1px solid var(--line); border-radius: 12px; background: var(--surface); }
+.vraag .q { font-weight: 600; }
+.opties { display: grid; gap: 8px; }
+.optie { text-align: left; background: var(--bg); border: 1px solid var(--line); border-radius: 8px; padding: 10px 14px; }
+.optie:hover:not([disabled]) { border-color: var(--brass); }
+.optie[disabled] { cursor: default; }
+.optie.goed { border-color: var(--good); color: var(--good); }
+.optie.fout { border-color: var(--bad); color: var(--bad); text-decoration: line-through; }
+.uitleg { color: var(--muted); font-size: 0.98rem; }
+.claude { border-left: 2px solid var(--brass); padding-left: 14px; white-space: pre-wrap; }
+.rij { display: flex; flex-wrap: wrap; gap: 10px; align-items: center; }
+
+.vandaag { border: 1px solid var(--brass); border-radius: 14px; padding: 22px; display: grid; gap: 14px; }
+.vandaag .zin { font-family: var(--f-display); font-size: 1.7rem; line-height: 1.2; }
+.vandaag dl { margin: 0; display: grid; gap: 10px; }
+.vandaag dt { font-family: var(--f-mono); font-size: 0.72rem; letter-spacing: 0.12em; text-transform: uppercase; color: var(--brass); }
+.vandaag dd { margin: 0; }
+
+.schaal { display: grid; gap: 6px; }
+.schaal .seg { display: grid; grid-template-columns: repeat(5, minmax(0, 1fr)); gap: 6px; }
+.schaal .seg button { border: 1px solid var(--line); background: var(--surface); border-radius: 8px; padding: 6px 0; font-family: var(--f-mono); font-size: 0.85rem; }
+.schaal .seg button[aria-pressed="true"] { background: var(--ink); color: var(--bg); border-color: var(--ink); }
+.schaal .uiteinden { display: flex; justify-content: space-between; font-size: 0.85rem; color: var(--muted); }
+
+.melding { font-family: var(--f-mono); font-size: 0.85rem; color: var(--good); }
+.melding.fout { color: var(--bad); }
+
+@media (prefers-reduced-motion: reduce) { .lezer { animation: none; } }
+</style>
+
+<div class="wrap">
+  <header class="kop">
+    <div>
+      <p class="label">Filosofie · Mentaliseren · Lichaamstaal · Cognitief gedrag · Geloof</p>
+      <h1>Levende Leergang</h1>
+      <p class="sub">Een leerweg die na elke ronde van jou leert. Claude leest je antwoorden en beoordelingen, schrijft de volgende lessen en scherpt zijn eigen werkwijze aan.</p>
+    </div>
+    <div class="gen" id="gen"><span class="label">Generatie</span><b id="gen-nr">–</b><span id="gen-datum"></span></div>
+  </header>
+
+  <section class="kaartvak" aria-label="Sterrenkaart van je leerweg">
+    <div class="kaart" id="kaart">
+      <canvas id="canvas" aria-label="Bewegende kaart met je lessen als sterren. Tik op een ster om de les te openen."></canvas>
+      <div class="tip" id="tip" hidden></div>
+      <p class="kaartstatus" id="kaartstatus">Je lessen worden geladen…</p>
+    </div>
+    <div class="zij">
+      <article class="volgende" id="volgende">
+        <p class="label">Volgende les</p>
+        <h3 id="v-titel">Even geduld</h3>
+        <p class="kern" id="v-kern">Claude haalt je leerweg op.</p>
+        <button class="knop" id="v-knop" disabled>Open de les</button>
+      </article>
+      <div>
+        <p class="label" style="margin-bottom:10px">Domeinen · afgerond van geschreven</p>
+        <ul class="domeinen" id="domeinen"></ul>
+      </div>
+      <div>
+        <p class="label" style="margin-bottom:6px">Ringen, van binnen naar buiten</p>
+        <div class="ringen"><span>MBO+</span><span>HBO</span><span>WO</span><span>Master</span><span class="notitie">en daarna de horizon, die steeds verder schuift</span></div>
+      </div>
+    </div>
+  </section>
+
+  <section class="blok" aria-labelledby="h-profiel">
+    <div>
+      <p class="label">Leerprofiel</p>
+      <h2 id="h-profiel">Wat Claude over jouw leren weet</h2>
+    </div>
+    <p class="notitie" id="p-notitie">Het profiel verschijnt zodra de leergang geladen is.</p>
+    <div class="twee">
+      <div><p class="label" style="margin-bottom:8px">Sterk</p><ul class="lijst" id="p-sterk"></ul></div>
+      <div><p class="label" style="margin-bottom:8px">Aandacht</p><ul class="lijst" id="p-aandacht"></ul></div>
+    </div>
+  </section>
+
+  <section class="blok" aria-labelledby="h-lessen">
+    <div>
+      <p class="label">Alle lessen</p>
+      <h2 id="h-lessen">De sterren op een rij</h2>
+    </div>
+    <div class="overzicht" id="overzicht"></div>
+  </section>
+
+  <section class="blok" aria-labelledby="h-groei">
+    <div>
+      <p class="label">Groeilog</p>
+      <h2 id="h-groei">Hoe de leergang zichzelf verbetert</h2>
+    </div>
+    <ol class="tijdlijn" id="tijdlijn" reversed></ol>
+  </section>
+
+  <section class="blok" aria-labelledby="h-wens">
+    <div>
+      <p class="label">Voor de volgende ronde</p>
+      <h2 id="h-wens">Vraag of wens voor Claude</h2>
+    </div>
+    <div class="twee">
+      <form id="wensform" style="display:grid;gap:10px">
+        <label for="wens" class="notitie">Iets wat je dieper wilt begrijpen, een vraag uit je werk, of iets wat beter kan aan de lessen. Claude leest dit bij de volgende groeironde.</label>
+        <textarea id="wens" placeholder="Bijvoorbeeld: ik wil meer weten over hoe Kierkegaard over twijfel dacht."></textarea>
+        <div class="rij"><button class="knop" type="submit" id="wensknop">Bewaar voor Claude</button><span class="melding" id="wensmelding" role="status"></span></div>
+      </form>
+      <div>
+        <p class="label" style="margin-bottom:8px">Nog open</p>
+        <ul class="lijst wensen" id="wensen"><li>Nog geen wensen.</li></ul>
+      </div>
+    </div>
+  </section>
+</div>
+
+<div class="lezer" id="lezer" role="dialog" aria-modal="true" aria-labelledby="l-titel" hidden></div>
+
+<script>
+(() => {
+  "use strict";
+
+  const DOMEINEN = [
+    { id: "filosofie", naam: "Filosofie" },
+    { id: "mentaliseren", naam: "Intelligentie & mentaliseren" },
+    { id: "lichaamstaal", naam: "Lichaamstaal" },
+    { id: "cgt", naam: "Cognitief gedrag" },
+    { id: "geloof", naam: "Geloof in God" },
+  ];
+  const NIVEAUS = ["", "MBO+", "HBO", "WO", "Master"];
+  const domNaam = (id) => (DOMEINEN.find((d) => d.id === id) || { naam: id }).naam;
+  const kleurVar = (id) => `var(--d-${id})`;
+
+  const state = { lessen: new Map(), voortgang: new Map(), profiel: null, log: null, wensen: [], geladen: false };
+  let db = null, sample = null;
+
+  // ---------- kleine hulpjes ----------
+  const $ = (id) => document.getElementById(id);
+  function el(tag, attrs, ...kids) {
+    const n = document.createElement(tag);
+    for (const [k, v] of Object.entries(attrs || {})) {
+      if (v == null || v === false) continue;
+      if (k === "class") n.className = v;
+      else if (k === "style") n.style.cssText = v;
+      else if (k.startsWith("on")) n.addEventListener(k.slice(2), v);
+      else n.setAttribute(k, v === true ? "" : v);
+    }
+    for (const k of kids.flat()) if (k != null && k !== false) n.append(k.nodeType ? k : String(k));
+    return n;
+  }
+  const store = {
+    get(k) { try { return JSON.parse(localStorage.getItem(k)); } catch { return null; } },
+    set(k, v) { try { localStorage.setItem(k, JSON.stringify(v)); } catch {} },
+    del(k) { try { localStorage.removeItem(k); } catch {} },
+  };
+  const gesorteerd = () => [...state.lessen.values()].sort((a, b) =>
+    a.niveau - b.niveau || DOMEINEN.findIndex((d) => d.id === a.domein) - DOMEINEN.findIndex((d) => d.id === b.domein) || a.id.localeCompare(b.id));
+  const klaar = (id) => state.voortgang.get(id)?.afgerond === true;
+
+  function volgendeLes() {
+    const p = state.profiel?.volgendeLes;
+    if (p && state.lessen.has(p) && !klaar(p)) return state.lessen.get(p);
+    return gesorteerd().find((l) => !klaar(l.id)) || null;
+  }
+
+  // ---------- render van het leesbare deel ----------
+  function renderAlles() {
+    renderKop(); renderVolgende(); renderDomeinen(); renderProfiel(); renderOverzicht(); renderLog(); renderWensen();
+    $("kaartstatus").hidden = state.lessen.size > 0;
+  }
+
+  function renderKop() {
+    const g = state.profiel?.generatie ?? state.log?.generaties?.at(-1)?.generatie;
+    $("gen-nr").textContent = g ?? "–";
+    $("gen-datum").textContent = state.profiel?.bijgewerkt ? "· " + state.profiel.bijgewerkt : "";
+  }
+
+  function renderVolgende() {
+    const les = volgendeLes();
+    const knop = $("v-knop");
+    if (!state.lessen.size) return;
+    if (!les) {
+      $("v-titel").textContent = "Alles gelezen";
+      $("v-kern").textContent = "Mooi werk. Vraag Claude om een nieuwe groeironde, dan verschijnen de volgende sterren.";
+      knop.disabled = true; return;
+    }
+    $("v-titel").textContent = les.titel;
+    $("v-kern").textContent = les.kern;
+    knop.disabled = false;
+    knop.textContent = `Open · ${domNaam(les.domein)} · ${NIVEAUS[les.niveau]}`;
+    knop.onclick = () => openLes(les.id);
+  }
+
+  function renderDomeinen() {
+    const ul = $("domeinen"); ul.replaceChildren();
+    for (const d of DOMEINEN) {
+      const alle = [...state.lessen.values()].filter((l) => l.domein === d.id);
+      const af = alle.filter((l) => klaar(l.id)).length;
+      const niv = state.profiel?.niveauPerDomein?.[d.id] || 1;
+      const pct = alle.length ? Math.round((af / alle.length) * 100) : 0;
+      ul.append(el("li", { style: `--c:${kleurVar(d.id)}` },
+        el("span", { class: "stip" }), el("span", {}, d.naam),
+        el("span", { class: "telling" }, `${NIVEAUS[niv]} · ${af}/${alle.length}`),
+        el("span", { class: "balk" }, el("i", { style: `width:${pct}%` }))));
+    }
+  }
+
+  function renderProfiel() {
+    const p = state.profiel; if (!p) return;
+    $("p-notitie").textContent = p.notitieVanClaude || p.samenvatting || "";
+    const vul = (id, items) => $(id).replaceChildren(...(items?.length ? items : ["Nog niets vastgesteld."]).map((t) => el("li", {}, t)));
+    vul("p-sterk", p.sterktes); vul("p-aandacht", p.aandachtspunten);
+  }
+
+  function renderOverzicht() {
+    const box = $("overzicht"); box.replaceChildren();
+    for (const d of DOMEINEN) {
+      const lessen = gesorteerd().filter((l) => l.domein === d.id);
+      const g = el("div", { class: "dgroep", style: `--c:${kleurVar(d.id)}` }, el("h3", {}, d.naam));
+      if (!lessen.length) g.append(el("p", { class: "notitie" }, "Nog geen lessen geschreven."));
+      for (const l of lessen) {
+        const v = state.voortgang.get(l.id);
+        const st = v?.afgerond ? (v.score ? `${v.score.goed}/${v.score.totaal}` : "klaar") : "open";
+        g.append(el("button", { class: "lesrij", onclick: () => openLes(l.id) },
+          el("span", { class: "nv" }, NIVEAUS[l.niveau]), el("span", { class: "lt" }, l.titel),
+          el("span", { class: "st" + (v?.afgerond ? " klaar" : "") }, st)));
+      }
+      box.append(g);
+    }
+  }
+
+  function renderLog() {
+    const ol = $("tijdlijn"); ol.replaceChildren();
+    const gens = [...(state.log?.generaties || [])].reverse();
+    if (!gens.length) { ol.append(el("li", {}, el("span"), el("p", { class: "notitie" }, "Het groeilog verschijnt na de eerste ronde."))); return; }
+    for (const g of gens) {
+      ol.append(el("li", {},
+        el("span", { class: "g", "aria-label": `Generatie ${g.generatie}` }, g.generatie),
+        el("div", {},
+          el("p", { class: "label" }, g.datum || ""),
+          el("h3", {}, g.titel || `Generatie ${g.generatie}`),
+          g.observaties?.length ? el("p", { class: "label", style: "margin-top:6px" }, "Gezien") : null,
+          g.observaties?.length ? el("ul", { class: "lijst" }, g.observaties.map((t) => el("li", {}, t))) : null,
+          g.veranderingen?.length ? el("p", { class: "label", style: "margin-top:12px" }, "Veranderd") : null,
+          g.veranderingen?.length ? el("ul", { class: "lijst" }, g.veranderingen.map((t) => el("li", {}, t))) : null,
+          g.hypothese ? el("p", { class: "hyp" }, el("span", { class: "label" }, "Te toetsen · "), g.hypothese) : null)));
+    }
+  }
+
+  function renderWensen() {
+    const open = state.wensen.filter((w) => w.status !== "verwerkt");
+    $("wensen").replaceChildren(...(open.length ? open.map((w) => el("li", {}, el("b", {}, w.tekst), " · ", w.datum?.slice(0, 10) || "")) : [el("li", {}, "Nog geen wensen.")]));
+  }
+
+  $("wensform").addEventListener("submit", async (e) => {
+    e.preventDefault();
+    const tekst = $("wens").value.trim(); const m = $("wensmelding");
+    if (!tekst) { m.className = "melding fout"; m.textContent = "Schrijf eerst je vraag of wens."; return; }
+    if (!db) { m.className = "melding fout"; m.textContent = "Bewaren lukt alleen als je de pagina in Claude opent."; return; }
+    $("wensknop").disabled = true;
+    try {
+      await db.collection("verzoeken").add({ tekst, datum: new Date().toISOString(), status: "open" });
+      $("wens").value = ""; m.className = "melding"; m.textContent = "Bewaard. Claude leest het bij de volgende ronde.";
+    } catch (err) {
+      m.className = "melding fout"; m.textContent = err?.code === "quota_exceeded" ? "De opslag is vol. Vraag Claude oude wensen op te ruimen." : "Bewaren mislukte. Probeer het zo nog eens.";
+    } finally { $("wensknop").disabled = false; }
+  });
+
+  // ---------- de lezer ----------
+  let openId = null;
+  function openLes(id) {
+    const les = state.lessen.get(id); if (!les) return;
+    openId = id;
+    const lezer = $("lezer");
+    lezer.replaceChildren(bouwLes(les));
+    lezer.hidden = false; lezer.scrollTop = 0;
+    document.body.style.overflow = "hidden";
+    lezer.querySelector(".sluit")?.focus();
+  }
+  function sluitLes() {
+    $("lezer").hidden = true; openId = null; document.body.style.overflow = "";
+  }
+  document.addEventListener("keydown", (e) => { if (e.key === "Escape" && openId) sluitLes(); });
+
+  function concept(id) { return store.get("concept:" + id) || { keuzes: {}, open: {}, claude: {}, beoordeling: {}, opmerking: "" }; }
+
+  function bouwLes(les) {
+    const eerder = state.voortgang.get(les.id);
+    const c = eerder ? { keuzes: eerder.keuzes || {}, open: eerder.open || {}, claude: eerder.claude || {}, beoordeling: eerder.beoordeling || {}, opmerking: eerder.opmerking || "", ...concept(les.id) } : concept(les.id);
+    const bewaarConcept = () => store.set("concept:" + les.id, c);
+
+    const kolom = el("div", { class: "kolom", style: `--c:${kleurVar(les.domein)}` });
+    const voeg = kolom.append.bind(kolom);
+    kolom.append = (...k) => voeg(...k.filter((x) => x != null));
+    kolom.append(el("div", { class: "lezerbalk" },
+      el("span", { class: "label" }, `${NIVEAUS[les.niveau]} · ${les.leestijd || 8} min lezen`),
+      el("button", { class: "knop licht sluit", onclick: sluitLes }, "Naar de kaart")));
+
+    kolom.append(el("header", {},
+      el("div", { class: "chips" }, el("span", { class: "chip dchip" }, domNaam(les.domein)), les.versie > 1 ? el("span", { class: "chip" }, `herschreven, versie ${les.versie}`) : null),
+      el("h1", { id: "l-titel" }, les.titel), el("p", { class: "kern" }, les.kern)));
+
+    const vragenblok = (vragen, kop, sleutel) => {
+      if (!vragen?.length) return null;
+      const s = el("section", {}, el("h2", {}, kop));
+      vragen.forEach((v, i) => s.append(bouwVraag(les, v, `${sleutel}${i}`, c, bewaarConcept)));
+      return s;
+    };
+
+    kolom.append(vragenblok(les.herhaling, "Eerst even ophalen", "h"));
+    for (const s of les.secties || []) kolom.append(el("section", {}, el("h2", {}, s.kop), ...String(s.tekst).split(/\n\n+/).map((t) => el("p", {}, t))));
+    if (les.denkers?.length) kolom.append(el("section", {}, el("p", { class: "label" }, "Denkers in deze les"), el("div", { class: "chips" }, les.denkers.map((d) => el("span", { class: "chip" }, d)))));
+    kolom.append(vragenblok(les.vragen, "Toets je begrip", "v"));
+
+    const vv = les.voorVandaag;
+    if (vv) kolom.append(el("aside", { class: "vandaag" }, el("p", { class: "label" }, "Voor vandaag"), el("p", { class: "zin" }, vv.zin),
+      el("dl", {}, el("dt", {}, "Kijkpunt"), el("dd", {}, vv.kijkpunt), el("dt", {}, "Werkbrug"), el("dd", {}, vv.werkbrug))));
+
+    if (les.verbanden?.length) {
+      kolom.append(el("section", {}, el("p", { class: "label" }, "Verbonden sterren"),
+        el("div", { class: "chips" }, les.verbanden.filter((v) => state.lessen.has(v)).map((v) =>
+          el("button", { class: "chip", style: `color:${kleurVar(state.lessen.get(v).domein)}`, onclick: () => openLes(v) }, state.lessen.get(v).titel)))));
+    }
+
+    // beoordeling: dit is de brandstof voor de volgende groeironde
+    const schaal = (sleutel, vraag, links, rechts) => {
+      const seg = el("div", { class: "seg", role: "group", "aria-label": vraag });
+      for (let n = 1; n <= 5; n++) {
+        seg.append(el("button", { type: "button", "aria-pressed": String(c.beoordeling[sleutel] === n), onclick: (e) => {
+          c.beoordeling[sleutel] = n; bewaarConcept();
+          seg.querySelectorAll("button").forEach((b, j) => b.setAttribute("aria-pressed", String(j + 1 === n)));
+        } }, n));
+      }
+      return el("div", { class: "schaal" }, el("p", {}, vraag), seg, el("div", { class: "uiteinden" }, el("span", {}, links), el("span", {}, rechts)));
+    };
+    const opm = el("textarea", { id: `opm-${les.id}`, placeholder: "Wat bleef hangen, wat schuurde, wat wil je dieper?" });
+    opm.value = c.opmerking || "";
+    opm.addEventListener("input", () => { c.opmerking = opm.value; bewaarConcept(); });
+    const melding = el("span", { class: "melding", role: "status" });
+    const afrond = el("button", { class: "knop", onclick: () => rondAf(les, c, afrond, melding) }, eerder?.afgerond ? "Bijwerken" : "Les afronden");
+    kolom.append(el("section", {},
+      el("h2", {}, "Hoe was deze les?"),
+      el("p", { class: "notitie" }, "Claude gebruikt dit om de volgende lessen beter op jou af te stemmen."),
+      schaal("helder", "Hoe helder was de uitleg?", "onduidelijk", "glashelder"),
+      schaal("moeilijk", "Hoe zwaar voelde het?", "te makkelijk", "te moeilijk"),
+      schaal("boeiend", "Hoe boeiend was het voor jou?", "vlak", "raakte me"),
+      el("label", { for: `opm-${les.id}`, class: "label" }, "Opmerking voor Claude"), opm,
+      el("div", { class: "rij" }, afrond, melding)));
+    return kolom;
+  }
+
+  function bouwVraag(les, v, sleutel, c, bewaar) {
+    const box = el("div", { class: "vraag" }, el("p", { class: "q" }, v.vraag));
+    if (v.soort === "keuze") {
+      const opties = el("div", { class: "opties" });
+      const uitleg = el("p", { class: "uitleg" });
+      const toon = (gekozen) => {
+        opties.querySelectorAll("button").forEach((b, j) => {
+          b.disabled = true;
+          if (j === v.juist) b.classList.add("goed"); else if (j === gekozen) b.classList.add("fout");
+        });
+        uitleg.textContent = (gekozen === v.juist ? "Juist. " : "Niet helemaal. ") + (v.uitleg || "");
+      };
+      v.opties.forEach((o, j) => opties.append(el("button", { class: "optie", type: "button", onclick: () => { c.keuzes[sleutel] = j; bewaar(); toon(j); } }, o)));
+      box.append(opties, uitleg);
+      if (c.keuzes[sleutel] != null) toon(c.keuzes[sleutel]);
+    } else {
+      const ta = el("textarea", { id: `open-${les.id}-${sleutel}`, "aria-label": v.vraag, placeholder: "Schrijf je antwoord. Er is geen fout antwoord, wel een dieper antwoord." });
+      ta.value = c.open[sleutel] || "";
+      ta.addEventListener("input", () => { c.open[sleutel] = ta.value; bewaar(); });
+      const uit = el("p", { class: "claude" }); uit.hidden = !c.claude[sleutel]; uit.textContent = c.claude[sleutel] || "";
+      box.append(ta);
+      if (sample) {
+        const k = el("button", { class: "knop licht", type: "button" }, "Laat Claude meekijken");
+        k.onclick = () => kijkMee(les, v, ta, uit, k, sleutel, c, bewaar);
+        box.append(el("div", { class: "rij" }, k));
+      }
+      box.append(uit);
+    }
+    return box;
+  }
+
+  async function kijkMee(les, v, ta, uit, knop, sleutel, c, bewaar) {
+    const antwoord = ta.value.trim();
+    uit.hidden = false;
+    if (antwoord.length < 15) { uit.textContent = "Schrijf eerst een paar zinnen, dan kan Claude er iets zinnigs over zeggen."; return; }
+    knop.disabled = true; uit.textContent = "Claude denkt na…";
+    const lesstof = (les.secties || []).map((s) => `${s.kop}: ${s.tekst}`).join("\n").slice(0, 6000);
+    const prompt = `Je bent een warme maar scherpe docent in een levenslange leergang. De leerling is René, consultant in contractmanagement, coach en CGT-professional met lichaamstaal als specialisatie.
+Les: "${les.titel}" (domein ${domNaam(les.domein)}, niveau ${NIVEAUS[les.niveau]}).
+Lesstof:
+${lesstof}
+
+Vraag: ${v.vraag}
+Antwoord van René:
+${antwoord.slice(0, 4000)}
+
+Geef feedback in het Nederlands, hoogstens 150 woorden, in drie korte alinea's die beginnen met "Sterk:", "Dieper:" en "Doorvraag:". Benoem bij Sterk concreet wat goed is. Laat bij Dieper zien hoe het antwoord één niveau hoger kan, met verwijzing naar de lesstof. Eindig met één prikkelende doorvraag. Geen opsommingstekens, geen markdown.`;
+    try {
+      const { text } = await sample(prompt, { onText: ({ text }) => { uit.textContent = text; } });
+      c.claude[sleutel] = text; bewaar();
+    } catch (e) {
+      if (e?.code === "not_granted" || e?.code === "sampling_disabled" || e?.code === "capability_disabled") { uit.textContent = "Meekijken staat uit voor deze pagina."; knop.hidden = true; }
+      else if (e?.code === "rate_limited") uit.textContent = e.text || "Even te veel vragen tegelijk. Probeer het over een paar minuten opnieuw.";
+      else if (e?.code !== "cancelled") uit.textContent = (e?.text ? e.text + "\n\n" : "") + "Het antwoord kwam niet door. Probeer het nog eens.";
+    } finally { knop.disabled = false; }
+  }
+
+  async function rondAf(les, c, knop, melding) {
+    if (!db) { melding.className = "melding fout"; melding.textContent = "Afronden lukt alleen als je de pagina in Claude opent."; return; }
+    const keuzeVragen = [...(les.herhaling || []).map((v, i) => ["h" + i, v]), ...(les.vragen || []).map((v, i) => ["v" + i, v])].filter(([, v]) => v.soort === "keuze");
+    const goed = keuzeVragen.filter(([k, v]) => c.keuzes[k] === v.juist).length;
+    const onbeantwoord = keuzeVragen.filter(([k]) => c.keuzes[k] == null).length;
+    if (onbeantwoord) { melding.className = "melding fout"; melding.textContent = `Beantwoord eerst nog ${onbeantwoord} keuzevraag${onbeantwoord > 1 ? "en" : ""}.`; return; }
+    knop.disabled = true;
+    const doc = {
+      lesId: les.id, domein: les.domein, niveau: les.niveau, versie: les.versie || 1, afgerond: true,
+      datum: new Date().toISOString(), score: { goed, totaal: keuzeVragen.length },
+      keuzes: c.keuzes, open: c.open, claude: c.claude, beoordeling: c.beoordeling, opmerking: c.opmerking || "",
+    };
+    try {
+      await db.collection("voortgang").doc(les.id).set(doc);
+      store.del("concept:" + les.id);
+      melding.className = "melding"; melding.textContent = `Bewaard: ${goed} van ${keuzeVragen.length} goed. Je ster licht nu op.`;
+      knop.textContent = "Bijwerken";
+    } catch (e) {
+      melding.className = "melding fout"; melding.textContent = "Bewaren mislukte. Je antwoorden staan nog in dit scherm; probeer het zo opnieuw.";
+    } finally { knop.disabled = false; }
+  }
+
+  // ---------- de bewegende kaart ----------
+  const canvas = $("canvas"), ctx = canvas.getContext("2d"), tip = $("tip");
+  const stil = matchMedia("(prefers-reduced-motion: reduce)");
+  let W = 0, H = 0, dpr = 1, kleuren = {}, nodes = [], hover = null;
+  const sterren = Array.from({ length: 110 }, () => ({ x: Math.random(), y: Math.random(), r: Math.random() * 1.1 + 0.3, f: Math.random() * 6.28 }));
+
+  function leesKleuren() {
+    const cs = getComputedStyle(document.documentElement);
+    const g = (n) => cs.getPropertyValue(n).trim();
+    kleuren = { ink: g("--ink"), muted: g("--muted"), line: g("--line"), brass: g("--brass"), bg: g("--bg") };
+    for (const d of DOMEINEN) kleuren[d.id] = g(`--d-${d.id}`);
+  }
+  leesKleuren();
+  matchMedia("(prefers-color-scheme: dark)").addEventListener("change", leesKleuren);
+  new MutationObserver(leesKleuren).observe(document.documentElement, { attributes: true, attributeFilter: ["data-theme"] });
+
+  function maat() {
+    const r = canvas.getBoundingClientRect();
+    dpr = Math.min(window.devicePixelRatio || 1, 2); W = r.width; H = r.height;
+    canvas.width = Math.round(W * dpr); canvas.height = Math.round(H * dpr);
+  }
+  new ResizeObserver(maat).observe(canvas); maat();
+
+  const RING = [0, 0.25, 0.44, 0.63, 0.82];
+  const basisHoek = (d) => -Math.PI / 2 + d * (2 * Math.PI / DOMEINEN.length);
+
+  function alpha(hex, a) {
+    if (!hex.startsWith("#")) return hex;
+    const n = parseInt(hex.slice(1), 16);
+    return `rgba(${(n >> 16) & 255},${(n >> 8) & 255},${n & 255},${a})`;
+  }
+
+  function plaatsNodes(rot) {
+    const cx = W / 2, cy = H / 2, R = Math.min(W, H) / 2;
+    const uit = [];
+    DOMEINEN.forEach((d, di) => {
+      for (let k = 1; k <= 4; k++) {
+        const lessen = gesorteerd().filter((l) => l.domein === d.id && l.niveau === k);
+        const slots = Math.max(3, lessen.length + 1);
+        const breedte = Math.min(0.95, 0.42 + k * 0.12);
+        for (let j = 0; j < slots; j++) {
+          const a = basisHoek(di) + rot + (slots === 1 ? 0 : (j / (slots - 1) - 0.5) * breedte);
+          const r = RING[k] * R;
+          uit.push({ x: cx + Math.cos(a) * r, y: cy + Math.sin(a) * r, les: lessen[j] || null, domein: d.id, niveau: k, leeg: !lessen[j] });
+        }
+      }
+    });
+    return uit;
+  }
+
+  function teken(t) {
+    if (!W) return;
+    const beweeg = !stil.matches;
+    const rot = beweeg ? t * 0.000017 : 0;
+    const cx = W / 2, cy = H / 2, R = Math.min(W, H) / 2;
+    ctx.setTransform(dpr, 0, 0, dpr, 0, 0);
+    ctx.clearRect(0, 0, W, H);
+
+    // achtergrondsterren
+    for (const s of sterren) {
+      const tw = beweeg ? 0.35 + 0.35 * Math.sin(t * 0.0012 + s.f) : 0.5;
+      ctx.fillStyle = alpha(kleuren.muted, tw * 0.6);
+      ctx.beginPath(); ctx.arc(s.x * W, s.y * H, s.r, 0, 6.283); ctx.fill();
+    }
+
+    // ringen en horizon
+    ctx.lineWidth = 1;
+    for (let k = 1; k <= 4; k++) {
+      ctx.strokeStyle = alpha(kleuren.muted, 0.28); ctx.setLineDash([]);
+      ctx.beginPath(); ctx.arc(cx, cy, RING[k] * R, 0, 6.283); ctx.stroke();
+      ctx.fillStyle = alpha(kleuren.muted, 0.85); ctx.font = `500 ${Math.max(9, R * 0.03)}px "IBM Plex Mono", monospace`;
+      ctx.textAlign = "center";
+      const la = basisHoek(0.5) + rot;
+      ctx.fillText(NIVEAUS[k], cx + Math.cos(la) * RING[k] * R, cy + Math.sin(la) * RING[k] * R + 3);
+    }
+    ctx.strokeStyle = alpha(kleuren.brass, 0.45); ctx.setLineDash([2, 7]);
+    ctx.lineDashOffset = beweeg ? -t * 0.01 : 0;
+    ctx.beginPath(); ctx.arc(cx, cy, 0.96 * R, 0, 6.283); ctx.stroke(); ctx.setLineDash([]);
+
+    // domeinnamen langs de horizon
+    ctx.font = `italic ${Math.max(12, R * 0.05)}px "Instrument Serif", Georgia, serif`;
+    DOMEINEN.forEach((d, di) => {
+      const a = basisHoek(di) + rot, r = 0.905 * R;
+      ctx.fillStyle = kleuren[d.id];
+      ctx.textAlign = "center"; ctx.textBaseline = "middle";
+      ctx.fillText(d.naam.split(" & ")[0], cx + Math.cos(a) * r, cy + Math.sin(a) * r);
+    });
+    ctx.textBaseline = "alphabetic";
+
+    nodes = plaatsNodes(rot);
+    const pos = new Map(nodes.filter((n) => n.les).map((n) => [n.les.id, n]));
+
+    // verbanden tussen lessen, met lichtdeeltjes die erover reizen
+    const gedaan = new Set();
+    for (const n of nodes) {
+      if (!n.les) continue;
+      for (const v of n.les.verbanden || []) {
+        const m = pos.get(v); if (!m) continue;
+        const key = [n.les.id, v].sort().join("|"); if (gedaan.has(key)) continue; gedaan.add(key);
+        const qx = (n.x + m.x) / 2 * 0.62 + cx * 0.38, qy = (n.y + m.y) / 2 * 0.62 + cy * 0.38;
+        ctx.strokeStyle = alpha(kleuren.muted, 0.32); ctx.lineWidth = 1;
+        ctx.beginPath(); ctx.moveTo(n.x, n.y); ctx.quadraticCurveTo(qx, qy, m.x, m.y); ctx.stroke();
+        if (beweeg) {
+          const p = ((t * 0.00011) + (key.length * 0.137)) % 1, q = 1 - p;
+          const px = q * q * n.x + 2 * q * p * qx + p * p * m.x, py = q * q * n.y + 2 * q * p * qy + p * p * m.y;
+          ctx.fillStyle = alpha(kleuren.brass, 0.9); ctx.beginPath(); ctx.arc(px, py, 1.8, 0, 6.283); ctx.fill();
+        }
+      }
+    }
+
+    // jouw spoor: afgeronde lessen in de volgorde waarin je ze deed
+    const spoor = [...state.voortgang.values()].filter((v) => v.afgerond && pos.has(v.lesId)).sort((a, b) => String(a.datum).localeCompare(String(b.datum)));
+    if (spoor.length) {
+      ctx.strokeStyle = alpha(kleuren.brass, 0.75); ctx.lineWidth = 1.5;
+      ctx.beginPath(); ctx.moveTo(cx, cy);
+      for (const v of spoor) { const n = pos.get(v.lesId); ctx.lineTo(n.x, n.y); }
+      ctx.stroke();
+    }
+
+    // het midden: jij
+    const puls = beweeg ? 1 + 0.12 * Math.sin(t * 0.002) : 1;
+    ctx.fillStyle = alpha(kleuren.brass, 0.14); ctx.beginPath(); ctx.arc(cx, cy, R * 0.085 * puls, 0, 6.283); ctx.fill();
+    ctx.fillStyle = kleuren.brass; ctx.beginPath(); ctx.arc(cx, cy, R * 0.022, 0, 6.283); ctx.fill();
+    ctx.fillStyle = kleuren.ink; ctx.font = `italic ${Math.max(13, R * 0.055)}px "Instrument Serif", Georgia, serif`; ctx.textAlign = "center";
+    ctx.fillText("jij", cx, cy + R * 0.085 + Math.max(13, R * 0.05));
+
+    // de sterren zelf
+    const volgende = volgendeLes();
+    const sz = Math.max(4.5, R * 0.022);
+    for (const n of nodes) {
+      const kleur = kleuren[n.domein];
+      if (n.leeg) {
+        ctx.strokeStyle = alpha(kleur, 0.35); ctx.setLineDash([1.5, 3]);
+        ctx.beginPath(); ctx.arc(n.x, n.y, sz * 0.75, 0, 6.283); ctx.stroke(); ctx.setLineDash([]);
+        continue;
+      }
+      const af = klaar(n.les.id), isHover = hover === n.les.id;
+      if (af) {
+        const g = ctx.createRadialGradient(n.x, n.y, 0, n.x, n.y, sz * 3.4);
+        g.addColorStop(0, alpha(kleur, 0.45)); g.addColorStop(1, alpha(kleur, 0));
+        ctx.fillStyle = g; ctx.beginPath(); ctx.arc(n.x, n.y, sz * 3.4, 0, 6.283); ctx.fill();
+      }
+      if (volgende && volgende.id === n.les.id) {
+        const golf = beweeg ? (t * 0.0007) % 1 : 0.4;
+        ctx.strokeStyle = alpha(kleur, 1 - golf); ctx.lineWidth = 1.5;
+        ctx.beginPath(); ctx.arc(n.x, n.y, sz * (1.3 + golf * 2.4), 0, 6.283); ctx.stroke();
+      }
+      ctx.lineWidth = 2; ctx.strokeStyle = kleur; ctx.fillStyle = af ? kleur : kleuren.bg;
+      ctx.beginPath(); ctx.arc(n.x, n.y, sz * (isHover ? 1.35 : 1), 0, 6.283); ctx.fill(); ctx.stroke();
+    }
+  }
+
+  function lus(t) { teken(t); requestAnimationFrame(lus); }
+  requestAnimationFrame(lus);
+
+  function raak(ev) {
+    const r = canvas.getBoundingClientRect(); const x = ev.clientX - r.left, y = ev.clientY - r.top;
+    let best = null, bd = 22 * 22;
+    for (const n of nodes) { if (!n.les) continue; const d = (n.x - x) ** 2 + (n.y - y) ** 2; if (d < bd) { bd = d; best = n; } }
+    return { best, x, y };
+  }
+  canvas.addEventListener("pointermove", (ev) => {
+    const { best } = raak(ev);
+    hover = best?.les.id || null; canvas.style.cursor = best ? "pointer" : "default";
+    if (best) { tip.hidden = false; tip.style.left = best.x + "px"; tip.style.top = best.y + "px"; tip.textContent = `${best.les.titel} · ${NIVEAUS[best.niveau]}${klaar(best.les.id) ? " · afgerond" : ""}`; }
+    else tip.hidden = true;
+  });
+  canvas.addEventListener("pointerleave", () => { hover = null; tip.hidden = true; });
+  canvas.addEventListener("click", (ev) => { const { best } = raak(ev); if (best) openLes(best.les.id); });
+
+  // ---------- verbinding met de database ----------
+  renderAlles();
+  (async () => {
+    const c = window.claude;
+    if (!c?.use) { $("kaartstatus").textContent = "Open deze pagina in Claude om je lessen te zien."; return; }
+    c.use("sample").then((s) => { sample = s; if (openId) openLes(openId); }).catch(() => {});
+    db = await c.use("db").catch(() => null);
+    if (!db) { $("kaartstatus").textContent = "Je lessen zijn hier niet bereikbaar. Open de pagina ingelogd in Claude."; return; }
+    const fout = () => { $("kaartstatus").hidden = false; $("kaartstatus").textContent = "De verbinding viel weg. Herlaad de pagina."; };
+    db.collection("lessen").onSnapshot((snap) => {
+      state.lessen = new Map(snap.docs.map((d) => [d.id, { id: d.id, ...d.data() }]));
+      if (!snap.size && !snap.metadata.fromCache) { $("kaartstatus").textContent = "Nog geen lessen. Vraag Claude om de eerste groeironde."; }
+      renderAlles();
+    }, fout);
+    db.collection("voortgang").onSnapshot((snap) => { state.voortgang = new Map(snap.docs.map((d) => [d.id, d.data()])); renderAlles(); }, fout);
+    db.collection("meta").onSnapshot((snap) => {
+      for (const d of snap.docs) { if (d.id === "profiel") state.profiel = d.data(); if (d.id === "verbeterlog") state.log = d.data(); }
+      renderAlles();
+    }, fout);
+    db.collection("verzoeken").onSnapshot((snap) => { state.wensen = snap.docs.map((d) => d.data()).sort((a, b) => String(b.datum).localeCompare(String(a.datum))); renderWensen(); }, fout);
+  })();
+})();
+</script>

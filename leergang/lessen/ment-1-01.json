@@ -1,0 +1,66 @@
+{
+  "id": "ment-1-01",
+  "domein": "mentaliseren",
+  "niveau": 1,
+  "titel": "Mentaliseren: achter het gedrag kijken",
+  "kern": "Mentaliseren is gedrag van jezelf en anderen begrijpen vanuit wat er van binnen speelt: gedachten, gevoelens, bedoelingen en behoeften.",
+  "generatie": 1,
+  "versie": 1,
+  "leestijd": 9,
+  "secties": [
+    {
+      "kop": "Wat het woord betekent",
+      "tekst": "Mentaliseren komt van het Latijnse mens, geest. Je mentaliseert als je denkt: hij reageert zo kortaf omdat hij waarschijnlijk onder druk staat. Je kijkt dan niet alleen naar het gedrag maar ook naar de binnenwereld erachter. Psychologen Peter Fonagy en Anthony Bateman hebben dit begrip in de jaren negentig uitgewerkt. Volgens hen is mentaliseren een van de belangrijkste vaardigheden die mensen hebben. Het maakt samenwerken, liefhebben en conflicten oplossen mogelijk. Je doet het meestal vanzelf, zonder het te merken."
+    },
+    {
+      "kop": "Twee richtingen",
+      "tekst": "Je kunt naar buiten mentaliseren: wat gaat er in de ander om? En naar binnen: wat gaat er in mij om? Die tweede richting wordt vaak vergeten. Iemand die erg goed is in anderen lezen, kan zijn eigen irritatie of angst over het hoofd zien. Dan stuurt die verborgen emotie zijn waarneming. Een tweede onderscheid is automatisch tegenover gecontroleerd mentaliseren. Automatisch gaat snel en intuïtief, en klopt vaak, maar niet altijd. Gecontroleerd is traag: je stopt en vraagt je bewust af wat er speelt."
+    },
+    {
+      "kop": "Als mentaliseren uitvalt",
+      "tekst": "Onder stress valt mentaliseren weg. Iedereen heeft dat. Fonagy beschrijft drie manieren waarop het dan misgaat. Bij psychische equivalentie voelt je gedachte als feit: ik voel me genegeerd, dus hij negeert mij. Bij de teleologische modus telt alleen wat je ziet: als je echt om me gaf, had je gebeld. Bij de doen-alsof-modus praat iemand eindeloos over gevoelens, maar het raakt hem niet echt. Herkennen dat je zelf in zo'n modus zit, is al een eerste stap terug naar mentaliseren."
+    },
+    {
+      "kop": "De houding van niet-weten",
+      "tekst": "De kern van goed mentaliseren is een nieuwsgierige, bescheiden houding. Je weet nooit zeker wat er in een ander omgaat. Je kunt alleen goede hypotheses vormen en die toetsen. Wie denkt dat hij een ander volledig doorziet, mentaliseert juist slecht. Fonagy noemt dat hypermentaliseren: overdreven veel en te zeker interpreteren. Voor jou als lichaamstaalspecialist is dit cruciaal. Een signaal zegt nooit wát iemand denkt. Het nodigt je alleen uit om een betere vraag te stellen."
+    }
+  ],
+  "denkers": ["Peter Fonagy", "Anthony Bateman", "Daniel Dennett"],
+  "vragen": [
+    {
+      "soort": "keuze",
+      "vraag": "Een collega zegt: ik voel dat de klant ons wil lozen, dus dat is zo. Welke modus is dit?",
+      "opties": [
+        "Teleologische modus",
+        "Psychische equivalentie",
+        "Doen-alsof-modus",
+        "Gecontroleerd mentaliseren"
+      ],
+      "juist": 1,
+      "uitleg": "Bij psychische equivalentie valt het verschil tussen gevoel en werkelijkheid weg. Het gevoel wordt als feit behandeld."
+    },
+    {
+      "soort": "keuze",
+      "vraag": "Wat is hypermentaliseren?",
+      "opties": [
+        "Heel goed kunnen inleven",
+        "Overdreven veel en te zeker invullen wat er in een ander omgaat",
+        "Mentaliseren zonder stress",
+        "Naar binnen mentaliseren"
+      ],
+      "juist": 1,
+      "uitleg": "Hypermentaliseren voelt als scherp inzicht, maar het zijn te stellige conclusies op te weinig basis."
+    },
+    {
+      "soort": "open",
+      "vraag": "Beschrijf een moment waarop jouw eigen mentaliseren uitviel onder druk. In welke van de drie modi zat je, en wat bracht je terug?"
+    }
+  ],
+  "voorVandaag": {
+    "zin": "Ik zie gedrag. De bedoeling erachter is een vermoeden, geen feit.",
+    "kijkpunt": "Vang vandaag één eigen conclusie over iemand en vraag je af: welke andere verklaring past ook?",
+    "werkbrug": "Formuleer bij een lastige leverancier twee mogelijke binnenwerelden achter zijn gedrag voordat je reageert."
+  },
+  "verbanden": ["fil-1-01", "lich-1-01"],
+  "bronnen": ["Bateman & Fonagy (2016), Mentalization-Based Treatment for Personality Disorders", "Allen, Fonagy & Bateman (2008), Mentalizing in Clinical Practice"]
+}

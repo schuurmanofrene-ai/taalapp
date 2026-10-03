@@ -1,0 +1,66 @@
+{
+  "id": "fil-1-01",
+  "domein": "filosofie",
+  "niveau": 1,
+  "titel": "Socrates en de kunst van het niet-weten",
+  "kern": "Wijsheid begint bij het eerlijk erkennen van wat je nog niet weet, en goede vragen brengen je verder dan snelle antwoorden.",
+  "generatie": 1,
+  "versie": 1,
+  "leestijd": 8,
+  "secties": [
+    {
+      "kop": "Een man die zei dat hij niets wist",
+      "tekst": "Socrates leefde rond 400 voor Christus in Athene. Hij schreef zelf niets op; wat we van hem weten komt vooral van zijn leerling Plato. Het orakel van Delphi zou hebben gezegd dat niemand wijzer was dan Socrates. Socrates vond dat vreemd, want hij voelde zich helemaal niet wijs. Dus ging hij in gesprek met mensen die als wijs bekendstonden: politici, dichters, ambachtslieden. Steeds ontdekte hij hetzelfde. Ze wisten veel over hun eigen vak, maar dachten daardoor dat ze ook over grote vragen als rechtvaardigheid of moed alles wisten. Socrates concludeerde: misschien ben ik alleen wijzer omdat ik weet dat ik het niet weet."
+    },
+    {
+      "kop": "De socratische methode",
+      "tekst": "Socrates gaf geen lezingen. Hij stelde vragen. Iemand beweerde bijvoorbeeld: moed is standhouden in de strijd. Socrates vroeg dan: is het ook moedig om slim terug te trekken om later te winnen? De ander moest zijn definitie bijstellen. Zo ging het gesprek verder, vraag na vraag, tot er een tegenspraak bovenkwam. Dat moment van verwarring heet aporie: je loopt vast. Voor Socrates was dat geen mislukking maar winst. Wie ziet dat zijn eerste antwoord niet klopt, gaat pas echt denken. Hij noemde zichzelf een vroedvrouw: hij bracht geen kennis, hij hielp anderen hun eigen inzichten ter wereld te brengen."
+    },
+    {
+      "kop": "Waarom dit nu nog werkt",
+      "tekst": "In de cognitieve gedragstherapie heet een kernvaardigheid letterlijk socratisch vragen. De therapeut zegt niet: die gedachte klopt niet. Hij vraagt: welk bewijs heb je ervoor? Wat zou je tegen een vriend zeggen die dit dacht? Zo ontdekt de cliënt zelf dat een gedachte wankelt. Een inzicht dat je zelf vindt, beklijft beter dan een inzicht dat je wordt verteld. In de psychologie heet dat het generatie-effect. In coaching werkt het net zo. Een goede coach is nieuwsgierig en houdt zijn eigen oordeel even vast."
+    },
+    {
+      "kop": "De valkuil",
+      "tekst": "Socratisch vragen kan ook ontaarden in een spelletje waarin de vragensteller al weet waar hij naartoe wil en de ander in een hoek drijft. Dan voelt het als een verhoor. Het verschil zit in de houding: werkelijk niet-weten tegenover gespeeld niet-weten. Mensen voelen dat feilloos aan, vaak eerder via je toon en lichaamshouding dan via je woorden. Echte nieuwsgierigheid is daarom geen techniek maar een innerlijke stand van zaken."
+    }
+  ],
+  "denkers": ["Socrates", "Plato", "Aaron Beck", "Christine Padesky"],
+  "vragen": [
+    {
+      "soort": "keuze",
+      "vraag": "Wat bedoelde Socrates met aporie?",
+      "opties": [
+        "Het moment dat je het juiste antwoord vindt",
+        "Het moment dat je vastloopt en ziet dat je eerdere antwoord niet klopt",
+        "Een wiskundig bewijs uit het oude Griekenland",
+        "De uitspraak van het orakel van Delphi"
+      ],
+      "juist": 1,
+      "uitleg": "Aporie betekent letterlijk geen doorgang. Je loopt vast, en volgens Socrates begint daar het echte denken."
+    },
+    {
+      "soort": "keuze",
+      "vraag": "Waarom gebruikt een CGT-therapeut socratische vragen in plaats van de cliënt gewoon te vertellen dat een gedachte niet klopt?",
+      "opties": [
+        "Omdat therapeuten geen mening mogen hebben",
+        "Omdat vragen sneller gaat",
+        "Omdat een zelf gevonden inzicht beter beklijft en meer overtuigt",
+        "Omdat Socrates dat voorschreef"
+      ],
+      "juist": 2,
+      "uitleg": "Het generatie-effect: wat je zelf bedenkt, onthoud je beter en geloof je eerder."
+    },
+    {
+      "soort": "open",
+      "vraag": "Denk aan een recent gesprek met een klant of coachee waarin jij het antwoord al wist. Welke vraag had je kunnen stellen in plaats van het antwoord te geven?"
+    }
+  ],
+  "voorVandaag": {
+    "zin": "Ik weet het nog niet. Dat is mijn startpunt, niet mijn zwakte.",
+    "kijkpunt": "Let vandaag op het moment dat je iemand onderbreekt met een oplossing. Wat gebeurt er in je lichaam vlak daarvoor?",
+    "werkbrug": "Stel in je volgende contractbespreking minstens drie vragen voordat je een standpunt inneemt."
+  },
+  "verbanden": ["cgt-1-01", "ment-1-01"],
+  "bronnen": ["Plato, Apologie", "Plato, Laches", "Padesky (1993), Socratic questioning: changing minds or guiding discovery?"]
+}
