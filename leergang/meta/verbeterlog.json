@@ -13,7 +13,33 @@
         "Elke les eindigt met Voor vandaag: een zin, een kijkpunt en een werkbrug"
       ],
       "hypothese": "Lessen die expliciet verbinden met contractmanagement en coaching worden als boeiender beoordeeld dan lessen met alleen theorie.",
-      "nieuweLessen": ["fil-1-01", "ment-1-01", "lich-1-01", "cgt-1-01", "gel-1-01"]
+      "nieuweLessen": [
+        "fil-1-01",
+        "ment-1-01",
+        "lich-1-01",
+        "cgt-1-01",
+        "gel-1-01"
+      ]
+    },
+    {
+      "generatie": 2,
+      "datum": "2026-10-03",
+      "titel": "Luisteren voordat er data is",
+      "observaties": [
+        "Nog geen afgeronde lessen en geen wensen. Profielniveaus blijven gelijk.",
+        "Hypothese G1 (werkbrug maakt lessen boeiender): nog onbeslist, er zijn geen beoordelingen. Hij blijft staan als nevenhypothese.",
+        "Je eigen leermethode vraagt om lessen die met een scène openen, als lopend proza lezen en 15 tot 20 minuten duren. De lessen van G1 zijn met 8 à 9 minuten korter."
+      ],
+      "veranderingen": [
+        "Twee nieuwe lessen van rond de 14 minuten, die openen met een scène uit je werk",
+        "Werkregels aangescherpt: openen met een scène, de taal van Voor vandaag gelijkgetrokken, en een rem op het aantal open lessen",
+        "Op de kaart heten de onderdelen van Voor vandaag nu zoals in je leermethode: om mee te nemen, om vandaag te zien, in je werk"
+      ],
+      "hypothese": "Lessen van ongeveer 14 minuten met een openingsscène (G2) krijgen een hogere score op boeiend dan de kortere lessen van ongeveer 8 minuten (G1), zonder dat helder daalt.",
+      "nieuweLessen": [
+        "fil-1-02",
+        "lich-1-02"
+      ]
     }
   ]
 }

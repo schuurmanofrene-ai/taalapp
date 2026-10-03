@@ -101,7 +101,7 @@ Schrijf **twee tot vier** nieuwe lessen per ronde, zodat het nooit stopt en nooi
 - **Verbanden**: elke les verbindt naar minstens één les in een ander domein. Dit is de rode draad: filosofie, mentaliseren, lichaamstaal, CGT en geloof gaan allemaal over hoe een mens betekenis geeft.
 - **Voor vandaag**: altijd een zin, een kijkpunt en een werkbrug naar zijn werk als consultant, coach of therapeut.
 - **Inhoud**: klopt feitelijk, noemt echte denkers en bronnen, en is eerlijk over wetenschappelijke onzekerheid. Bij lichaamstaal: nooit leugendetectie-mythes, altijd basislijn, cluster en context. Bij geloof: respectvol, geïnformeerd, met de christelijke traditie als belangrijke bron maar zonder te preken, en met ruimte voor twijfel en andere stemmen.
-- **Lengte**: drie tot vijf secties, `leestijd` 7 tot 12 minuten. Op WO- en masterniveau mag het tot 15.
+- **Lengte**: drie tot zes secties, `leestijd` 8 tot 15 minuten (zie de open hypothese). Op WO- en masterniveau mag het tot 20.
 
 Nieuwe lessen krijgen `generatie` = de nieuwe generatie en `versie` 1.
 
@@ -135,18 +135,25 @@ Sluit af volgens `wijsheid-voor-vandaag` als die skill beschikbaar is.
 
 ## Werkregels
 
-*Deze sectie herschrijft Claude zelf na elke ronde. Generatie 1 zijn startregels zonder data; vanaf generatie 2 hoort bij elke regel bewijs.*
+*Deze sectie herschrijft Claude zelf na elke ronde. Bij elke regel staat de generatie en het bewijs. Bewijs is René's leerdata, of zijn eigen expliciete wensen en leermethode.*
 
-1. Begin elke les met iets wat René herkent uit zijn werk of leven. Pas daarna komt de theorie. *(G1: startregel, gebaseerd op zijn wens om theorie aan praktijk te koppelen)*
-2. Eén kernidee per les op MBO+ en HBO. Liever twee scherpe lessen dan één volle. *(G1: startregel)*
-3. Elke les die over het lezen van mensen gaat, benoemt expliciet wat je níet kunt concluderen. *(G1: startregel; beschermt tegen overinterpretatie, het grootste risico in zijn specialisme)*
-4. Open vragen vragen om een eigen voorbeeld, niet om het navertellen van de tekst. *(G1: startregel; zo is het SOLO-niveau te beoordelen)*
-5. Keuzevragen hebben afleiders die echte misverstanden weerspiegelen, zodat een fout antwoord iets vertelt. *(G1: startregel)*
+1. Open elke les met een scène: een concreet moment uit zijn werk of leven, in de jij-vorm. De eerste alinea is al inhoud, geen aankondiging. *(G1 startregel; G2 aangescherpt: zijn leermethode "Wijsheid voor vandaag" vraagt hier uitdrukkelijk om)*
+2. Eén kernidee per les op MBO+ en HBO. Liever twee scherpe lessen dan één volle. *(G1 startregel)*
+3. Elke les die over het lezen van mensen gaat, benoemt expliciet wat je níet kunt concluderen, en eindigt met een vraag die je kunt stellen in plaats van een conclusie. *(G1 startregel; G2 aangescherpt in lich-1-02)*
+4. Open vragen vragen om een eigen voorbeeld, niet om het navertellen van de tekst. *(G1 startregel; zo is het SOLO-niveau te beoordelen)*
+5. Keuzevragen hebben afleiders die echte misverstanden weerspiegelen, zodat een fout antwoord iets vertelt. *(G1 startregel)*
+6. René is 57 en heeft decennia ervaring met mensen. Gebruik die ervaring als materiaal, en zeg het eerlijk als onderzoek een intuïtie corrigeert. *(G2: zijn leermethode)*
+7. Geloof is een volwaardige gesprekspartner in de verbanden, niet alleen in het eigen domein. Laat zien waar het met filosofie of psychologie meeklinkt en waar het schuurt. *(G2: zijn leermethode; toegepast in fil-1-02 met het sereniteitsgebed)*
+8. Voor vandaag blijft een manier van kijken, geen huiswerk. Het kijkpunt richt zich bij voorkeur op hemzelf ("merk op wanneer jij…"), en de zin is eigen aan de les. *(G2: zijn leermethode)*
+9. Als er geen nieuwe voortgang is, schrijf dan precies twee nieuwe lessen, zodat het aantal open lessen niet boven de acht uitkomt. Een stapel ongelezen lessen voelt als achterstand, en dat past niet bij leren zonder haast. *(G2: nul afgeronde lessen, vijf open)*
 
 ## Open hypothese
 
-**G1 → te toetsen in G2:** lessen met een expliciete brug naar contractmanagement of coaching scoren gemiddeld hoger op `boeiend` dan lessen met vooral theorie. *Meting: vergelijk `boeiend` tussen lessen met en zonder casus uit zijn werk in de secties (niet alleen in de werkbrug).*
+**G2 → te toetsen in G3:** lessen van ongeveer 14 minuten met een openingsscène (`fil-1-02`, `lich-1-02`) krijgen een hogere score op `boeiend` dan de kortere G1-lessen van ongeveer 8 minuten, zonder dat `helder` daalt. *Meting: vergelijk het gemiddelde van `boeiend` en `helder` tussen G1- en G2-lessen zodra er per groep minstens twee beoordelingen zijn. Wordt dit bevestigd, verhoog dan de standaardlengte in stap 6. Zo niet, houd de korte vorm.*
+
+*Nevenhypothese uit G1, nog onbeslist:* een brug naar contractmanagement of coaching in de secties zelf maakt een les boeiender.
 
 ## Wijzigingslog van deze skill
 
+- **G2 (2026-10-03)**: nog geen leerdata. Werkregels 1 en 3 aangescherpt en 6 tot en met 9 toegevoegd op basis van René's eigen leermethode. Hypothese over lesduur opgesteld; de G1-hypothese blijft als nevenhypothese staan. Op de kaart heten de onderdelen van Voor vandaag nu "Om mee te nemen", "Om vandaag te zien" en "In je werk". In stap 6 mag de lengte voorlopig tot 15 minuten, om de hypothese te kunnen toetsen.
 - **G1 (2026-10-03)**: eerste versie. Cyclus van negen stappen, vijf startregels, eerste hypothese.

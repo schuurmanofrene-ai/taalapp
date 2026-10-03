@@ -467,8 +467,9 @@ textarea:focus { border-color: var(--brass); outline: none; }
     kolom.append(vragenblok(les.vragen, "Toets je begrip", "v"));
 
     const vv = les.voorVandaag;
-    if (vv) kolom.append(el("aside", { class: "vandaag" }, el("p", { class: "label" }, "Voor vandaag"), el("p", { class: "zin" }, vv.zin),
-      el("dl", {}, el("dt", {}, "Kijkpunt"), el("dd", {}, vv.kijkpunt), el("dt", {}, "Werkbrug"), el("dd", {}, vv.werkbrug))));
+    if (vv) kolom.append(el("aside", { class: "vandaag" }, el("p", { class: "label" }, "Voor vandaag"),
+      el("dl", {}, el("dt", {}, "Om mee te nemen"), el("dd", { class: "zin" }, `“${vv.zin}”`),
+        el("dt", {}, "Om vandaag te zien"), el("dd", {}, vv.kijkpunt), el("dt", {}, "In je werk"), el("dd", {}, vv.werkbrug))));
 
     if (les.verbanden?.length) {
       kolom.append(el("section", {}, el("p", { class: "label" }, "Verbonden sterren"),
