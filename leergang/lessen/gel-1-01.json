@@ -1,0 +1,66 @@
+{
+  "id": "gel-1-01",
+  "domein": "geloof",
+  "niveau": 1,
+  "titel": "Wat bedoelen we eigenlijk met God?",
+  "kern": "Voordat je kunt vragen of God bestaat, moet je weten wát je bedoelt, en mensen bedoelen er heel verschillende dingen mee.",
+  "generatie": 1,
+  "versie": 1,
+  "leestijd": 9,
+  "secties": [
+    {
+      "kop": "Eén woord, veel betekenissen",
+      "tekst": "Als twee mensen discussiëren over de vraag of God bestaat, praten ze vaak langs elkaar heen. De één bedoelt een oude man op een wolk, en zegt terecht dat die niet bestaat. De ander bedoelt de grond van alle bestaan, en zegt dat die er wel moet zijn. Ze verschillen niet echt van mening over het antwoord; ze verschillen over de vraag. Daarom begint de godsdienstfilosofie bij een begripsvraag: welk godsbeeld bespreken we?"
+    },
+    {
+      "kop": "Drie klassieke beelden",
+      "tekst": "Het klassieke theïsme, zoals bij Augustinus en Thomas van Aquino, ziet God als volmaakt, almachtig, alwetend en goed, en als de oorzaak van al het bestaande zonder zelf een ding tussen dingen te zijn. Het deïsme, populair in de Verlichting, ziet God als de ontwerper die de wereld in gang zette en zich daarna terugtrok. Het pantheïsme, bekend van de Nederlandse filosoof Spinoza, stelt dat God en de natuur één en hetzelfde zijn. Daarnaast zijn er persoonlijke godsbeelden uit de Bijbel: de God die spreekt, roept, troost en een verbond sluit met mensen."
+    },
+    {
+      "kop": "Drie wegen naar God",
+      "tekst": "Mensen komen langs verschillende wegen tot geloof of twijfel. De weg van de rede: argumenten, zoals de vraag waarom er iets is in plaats van niets. De weg van de ervaring: momenten van ontzag, gebed, verbondenheid of juist van stilte en afwezigheid. De weg van de openbaring en traditie: een tekst, een gemeenschap en een geschiedenis waarin mensen God menen te horen. Blaise Pascal, wiskundige en gelovige, schreef: het hart heeft zijn redenen die de rede niet kent. Hij bedoelde niet dat geloof onredelijk is, maar dat de rede niet het enige kenvermogen is."
+    },
+    {
+      "kop": "Waarom dit voor jou als professional telt",
+      "tekst": "In coaching en therapie kom je mensen tegen voor wie geloof een bron van kracht is, en mensen voor wie het een bron van schuld of angst is. Een goede professional mentaliseert ook hier: welk godsbeeld leeft er in deze persoon, en wat doet dat beeld met hem? Je hoeft het er niet mee eens te zijn om het te begrijpen. En voor jezelf geldt hetzelfde: je eigen godsbeeld kleurt je waarneming, of je nu gelooft of niet."
+    }
+  ],
+  "denkers": ["Augustinus", "Thomas van Aquino", "Baruch Spinoza", "Blaise Pascal"],
+  "vragen": [
+    {
+      "soort": "keuze",
+      "vraag": "Welk godsbeeld hoort bij Spinoza?",
+      "opties": [
+        "Deïsme: God schiep de wereld en trok zich terug",
+        "Pantheïsme: God en natuur zijn één",
+        "Klassiek theïsme: een volmaakt en persoonlijk wezen",
+        "Atheïsme: er is geen God"
+      ],
+      "juist": 1,
+      "uitleg": "Spinoza sprak van Deus sive Natura: God oftewel de Natuur."
+    },
+    {
+      "soort": "keuze",
+      "vraag": "Wat bedoelde Pascal met: het hart heeft zijn redenen die de rede niet kent?",
+      "opties": [
+        "Dat geloof onredelijk is",
+        "Dat gevoelens altijd gelijk hebben",
+        "Dat er naast logisch redeneren nog andere manieren van kennen zijn",
+        "Dat je niet over God moet nadenken"
+      ],
+      "juist": 2,
+      "uitleg": "Pascal was zelf een scherp wiskundige. Hij wees de rede niet af, maar zag haar grenzen."
+    },
+    {
+      "soort": "open",
+      "vraag": "Welk godsbeeld heb jij meegekregen in je opvoeding, en welk beeld leeft er nu in jou? Wat is er in de loop van de tijd veranderd?"
+    }
+  ],
+  "voorVandaag": {
+    "zin": "Eerst begrijpen wat iemand bedoelt, dan pas het oneens zijn.",
+    "kijkpunt": "Luister vandaag naar een gesprek over een groot woord, zoals vertrouwen of eerlijk, en vraag je af of beide partijen hetzelfde bedoelen.",
+    "werkbrug": "Vraag bij je volgende contractbespreking wat iedereen verstaat onder een term als redelijke inspanning. Grote woorden in contracten zijn net als het woord God: iedereen vult ze anders in."
+  },
+  "verbanden": ["fil-1-01", "ment-1-01"],
+  "bronnen": ["Pascal, Pensées, 277", "Spinoza, Ethica, deel IV, voorwoord", "Davies (2004), An Introduction to the Philosophy of Religion"]
+}

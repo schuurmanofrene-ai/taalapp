@@ -1,0 +1,66 @@
+{
+  "id": "cgt-1-01",
+  "domein": "cgt",
+  "niveau": 1,
+  "titel": "Het ABC-model: niet de gebeurtenis maar de gedachte",
+  "kern": "Niet wat er gebeurt bepaalt hoe je je voelt en gedraagt, maar hoe je het uitlegt.",
+  "generatie": 1,
+  "versie": 1,
+  "leestijd": 8,
+  "secties": [
+    {
+      "kop": "Een idee van tweeduizend jaar oud",
+      "tekst": "De Griekse filosoof Epictetus was een vrijgelaten slaaf. Rond het jaar 100 schreef hij: het zijn niet de dingen zelf die mensen verontrusten, maar hun oordelen over die dingen. Bijna negentienhonderd jaar later las de Amerikaanse psycholoog Albert Ellis die zin en bouwde er een therapie op. Ongeveer tegelijk ontwikkelde psychiater Aaron Beck de cognitieve therapie. Samen vormen zij de basis van wat we nu cognitieve gedragstherapie noemen."
+    },
+    {
+      "kop": "A, B en C",
+      "tekst": "A staat voor de activerende gebeurtenis: je manager loopt je op de gang voorbij zonder te groeten. B staat voor beliefs, de gedachten die je erover hebt: hij is boos op mij, ik heb iets fout gedaan. C staat voor de consequenties: je voelt je onrustig, je gaat piekeren en je vermijdt hem de rest van de dag. Wie alleen A en C ziet, denkt: hij maakt mij onrustig. Het ABC-model laat zien dat B ertussen zit. En B is het deel waar je invloed op hebt."
+    },
+    {
+      "kop": "Automatische gedachten",
+      "tekst": "Beck ontdekte dat zijn cliënten razendsnelle, korte gedachten hadden die ze zelf nauwelijks opmerkten. Hij noemde ze automatische gedachten. Ze voelen als waarheid, niet als interpretatie. Vaak volgen ze vaste denkfouten: zwart-witdenken, gedachtelezen, catastroferen, overgeneraliseren. De eerste stap in CGT is die gedachten vangen en opschrijven. Pas als een gedachte op papier staat, kun je hem bekijken in plaats van erdoor te kijken."
+    },
+    {
+      "kop": "Geen positief denken",
+      "tekst": "Een veelgehoord misverstand is dat CGT neerkomt op positief denken. Dat klopt niet. Het doel is realistisch denken. De gedachte mijn manager is boos op mij wordt niet vervangen door hij vindt mij geweldig, maar door een gedachte die beter past bij het bewijs: hij keek naar zijn telefoon en leek gehaast, ik weet niet wat er speelde. Die gedachte is minder pijnlijk omdat ze klopt, niet omdat ze vrolijk is."
+    }
+  ],
+  "denkers": ["Epictetus", "Albert Ellis", "Aaron Beck", "Judith Beck"],
+  "vragen": [
+    {
+      "soort": "keuze",
+      "vraag": "Waar staat de B in het ABC-model voor?",
+      "opties": [
+        "Behavior: het gedrag",
+        "Beliefs: de gedachten en interpretaties over de gebeurtenis",
+        "Bodily response: de lichamelijke reactie",
+        "Barrier: de drempel om te veranderen"
+      ],
+      "juist": 1,
+      "uitleg": "B staat voor beliefs. Gedrag en lichamelijke reacties horen bij C, de consequenties."
+    },
+    {
+      "soort": "keuze",
+      "vraag": "Een klant reageert drie dagen niet op je mail. Je denkt: het project gaat mislukken. Welke denkfout is dit vooral?",
+      "opties": [
+        "Catastroferen",
+        "Personaliseren",
+        "Zwart-witdenken",
+        "Emotioneel redeneren"
+      ],
+      "juist": 0,
+      "uitleg": "Van een stille inbox meteen naar een mislukt project springen is catastroferen: het ergste scenario als waarschijnlijk behandelen."
+    },
+    {
+      "soort": "open",
+      "vraag": "Maak een ABC van een situatie uit de afgelopen week. Schrijf bij B je eerste automatische gedachte op, en daarna een realistischer alternatief."
+    }
+  ],
+  "voorVandaag": {
+    "zin": "Tussen wat er gebeurt en wat ik voel, zit mijn uitleg.",
+    "kijkpunt": "Merk vandaag één keer een plotselinge stemmingswisseling op en vraag: wat ging er net door mijn hoofd?",
+    "werkbrug": "Als een coachee zegt dat iets hem kwaad maakt, vraag dan: wat zei je op dat moment tegen jezelf?"
+  },
+  "verbanden": ["fil-1-01"],
+  "bronnen": ["Epictetus, Handboekje (Enchiridion), 5", "Ellis (1962), Reason and Emotion in Psychotherapy", "Beck, J. (2020), Cognitive Behavior Therapy: Basics and Beyond"]
+}

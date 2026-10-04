@@ -1,0 +1,84 @@
+{
+  "id": "lich-1-02",
+  "domein": "lichaamstaal",
+  "niveau": 1,
+  "titel": "Het gezicht: wat Ekman vond en wat er sindsdien wankelt",
+  "kern": "Gezichtsuitdrukkingen dragen echte informatie over emotie, maar veel minder eenduidig dan populaire boeken beweren: context en basislijn wegen zwaarder dan één uitdrukking.",
+  "generatie": 2,
+  "versie": 1,
+  "leestijd": 14,
+  "secties": [
+    {
+      "kop": "Een glimlach aan tafel",
+      "tekst": "Je presenteert een voorstel. Aan de overkant zit de inkoper. Bij het bedrag trekt er iets over zijn gezicht: een fractie van een seconde gaan zijn mondhoeken naar beneden, dan glimlacht hij weer en zegt: klinkt redelijk. Wat heb je gezien? Een verborgen afkeer? Een rekensom? Of helemaal niets?\n\nDe man die ons leerde zulke momenten serieus te nemen, is de Amerikaanse psycholoog Paul Ekman. Zijn werk is wereldberoemd, inspireerde de televisieserie Lie to Me en werd gebruikt door politie en luchthavenbeveiliging. Het is ook het meest besproken en bekritiseerde werk in jouw vakgebied. Juist daarom moet je het goed kennen: wat staat er stevig, en wat niet?"
+    },
+    {
+      "kop": "Naar de hooglanden van Papoea-Nieuw-Guinea",
+      "tekst": "In de jaren zestig dachten veel antropologen dat gezichtsuitdrukkingen aangeleerd waren, net als taal. Ekman wilde dat toetsen. Hij reisde naar de Fore, een volk in de hooglanden van Papoea-Nieuw-Guinea dat weinig contact had gehad met westerse media. Hij vertelde korte verhalen, zoals: haar kind is gestorven, en liet foto's van gezichten zien. Welk gezicht hoort erbij?\n\nDe Fore kozen in veel gevallen dezelfde gezichten als Amerikanen. Ekman concludeerde dat er een kleine set basisemoties is met universele uitdrukkingen: blijdschap, verdriet, angst, woede, verrassing en walging. Later voegde hij minachting toe. Hij werkte met Wallace Friesen ook een systeem uit om elke spierbeweging in het gezicht te beschrijven, het Facial Action Coding System. Dat systeem wordt nog steeds gebruikt en staat los van de discussie die volgt: het beschrijft wat een gezicht doet, niet wat iemand voelt."
+    },
+    {
+      "kop": "Microexpressies",
+      "tekst": "Ekman beschreef ook microexpressies: heel korte uitdrukkingen, vaak korter dan een halve seconde, die zouden opduiken wanneer iemand een emotie probeert te verbergen. Het idee komt oorspronkelijk van de psychiaters Haggard en Isaacs, die in 1966 in gefilmde therapiesessies zulke flitsen zagen. Ekman maakte er een trainbare vaardigheid van.\n\nHier begint het terrein waar je voorzichtig moet zijn. Microexpressies bestaan. Maar dat ze betrouwbaar laten zien dat iemand iets verbergt, is nooit overtuigend aangetoond. Een Amerikaans programma op luchthavens, SPOT, leerde beveiligers verdachte reizigers te herkennen aan onder meer gezichtsuitdrukkingen. In 2013 concludeerde de Amerikaanse rekenkamer, het GAO, dat er geen wetenschappelijke onderbouwing was dat dit werkte."
+    },
+    {
+      "kop": "De kritiek: gezichten zijn geen display",
+      "tekst": "De scherpste kritiek komt van de neurowetenschapper Lisa Feldman Barrett. In 2019 publiceerde zij met vier collega's een groot overzicht van ruim duizend studies. Hun conclusie: mensen fronsen weliswaar vaker als ze boos zijn dan als ze blij zijn, maar lang niet altijd. In de onderzochte studies fronste iemand die boos was maar in ongeveer een op de drie gevallen. En een frons kan ook betekenen: ik concentreer me, ik zie slecht, ik heb hoofdpijn. Een uitdrukking is geen display waarop een emotie verschijnt, schrijft Barrett, maar een signaal dat je alleen in context kunt lezen.\n\nOok de Duchenne-glimlach, de echte glimlach waarbij de kraaienpootjes rond de ogen meedoen, blijkt minder zuiver dan gedacht. Onderzoek laat zien dat veel mensen hem bewust kunnen maken. De ogen liegen dus wel degelijk, als het moet.\n\nHet debat is niet beslecht. Ekman en zijn aanhangers wijzen erop dat de herkenning van basisemoties over culturen heen wel degelijk boven toeval ligt. Beide kanten hebben een punt. De nuchtere tussenstand: een gezicht geeft een aanwijzing over emotie, geen bewijs, en zeker geen bewijs van leugen."
+    },
+    {
+      "kop": "Wat je níet kunt concluderen, en wat wel",
+      "tekst": "Terug naar de inkoper. Je kunt niet concluderen dat hij liegt, dat hij het voorstel afwijst, of dat zijn glimlach nep was. Je kunt wel vaststellen: bij het bedrag gebeurde er iets in zijn gezicht dat afweek van hoe hij daarvoor keek. Dat is de basislijn-regel uit de vorige les over lichaamstaal. Een verandering op een specifiek moment is informatie. Wat ze betekent, weet je pas als je vraagt.\n\nDaarom is de beste reactie op een opvallende uitdrukking geen conclusie maar een uitnodiging. Bijvoorbeeld: ik zie u even nadenken bij het bedrag. Hoe valt het bij u? Je laat merken dat je oplet, je legt niets in zijn mond, en je geeft hem ruimte om zijn binnenwereld zelf te benoemen. Dat is mentaliseren in de praktijk: een hypothese, gesteld als vraag."
+    }
+  ],
+  "denkers": [
+    "Paul Ekman",
+    "Wallace Friesen",
+    "Lisa Feldman Barrett",
+    "Guillaume Duchenne"
+  ],
+  "vragen": [
+    {
+      "soort": "keuze",
+      "vraag": "Wat liet Ekmans onderzoek bij de Fore vooral zien?",
+      "opties": [
+        "Dat microexpressies leugens verraden",
+        "Dat mensen uit een afgelegen cultuur basisemoties vaak in dezelfde gezichten herkenden als Amerikanen",
+        "Dat alle emoties aangeleerd zijn",
+        "Dat het Facial Action Coding System gevoelens meet"
+      ],
+      "juist": 1,
+      "uitleg": "Het onderzoek ging over herkenning van basisemoties over culturen heen. Over leugens zei het niets, en FACS beschrijft spierbewegingen, geen gevoelens."
+    },
+    {
+      "soort": "keuze",
+      "vraag": "Een coachee fronst als je over haar leidinggevende begint. Wat is de meest verantwoorde lezing?",
+      "opties": [
+        "Ze is boos op haar leidinggevende",
+        "Ze verzwijgt iets",
+        "Er gebeurt iets bij dit onderwerp; vraag wat het bij haar oproept",
+        "Een frons zegt niets, dus negeer hem"
+      ],
+      "juist": 2,
+      "uitleg": "Een frons kan woede zijn, maar ook concentratie, twijfel of verdriet. Negeren gooit informatie weg; invullen gaat te ver. Een open vraag doet recht aan beide."
+    },
+    {
+      "soort": "open",
+      "vraag": "Beschrijf een moment uit je werk waarop je een gezichtsuitdrukking las en later bleek dat je het mis had, of juist gelijk. Wat wist je toen wel en niet, en welke vraag had je kunnen stellen?"
+    }
+  ],
+  "voorVandaag": {
+    "zin": "Een gezicht vertelt dat er iets is, niet wat.",
+    "kijkpunt": "Merk vandaag op wanneer jij uit één gezichtsuitdrukking een conclusie trekt. Houd die conclusie drie seconden vast als vraag in plaats van als feit.",
+    "werkbrug": "Als je in een onderhandeling een opvallende reactie ziet, benoem dan wat je waarneemt en vraag ernaar, in plaats van je strategie stilletjes om te gooien op basis van een vermoeden."
+  },
+  "verbanden": [
+    "lich-1-01",
+    "ment-1-01"
+  ],
+  "bronnen": [
+    "Ekman & Friesen (1971), Constants across cultures in the face and emotion",
+    "Haggard & Isaacs (1966), Micromomentary facial expressions",
+    "Barrett e.a. (2019), Emotional expressions reconsidered, Psychological Science in the Public Interest",
+    "GAO (2013), Aviation Security: TSA should limit future funding for behavior detection activities",
+    "Gunnery, Hall & Ruben (2013), The deliberate Duchenne smile"
+  ]
+}

@@ -1,0 +1,66 @@
+{
+  "id": "lich-1-01",
+  "domein": "lichaamstaal",
+  "niveau": 1,
+  "titel": "Comfort en ongemak: de basisas van lichaamstaal",
+  "kern": "Lichaamstaal vertelt je vooral iets over comfort en ongemak, en alleen als je de basislijn, de context en clusters van signalen meeweegt.",
+  "generatie": 1,
+  "versie": 1,
+  "leestijd": 9,
+  "secties": [
+    {
+      "kop": "Het eerlijke deel van het lichaam",
+      "tekst": "Joe Navarro werkte vijfentwintig jaar als FBI-agent in contraspionage. In zijn boek Wat ieder lichaam zegt noemt hij het limbische systeem het eerlijke deel van ons brein. Het reageert snel en grotendeels onbewust op gevaar en veiligheid. Navarro beschrijft drie oeroude reacties: bevriezen, vluchten en vechten. In een vergadering zie je die terug in kleinere vorm. Bevriezen: iemand wordt opeens heel stil en beweegt minder. Vluchten: de voeten draaien naar de deur, iemand leunt achteruit of zet een tas als barrière neer. Vechten: de kaak verstrakt, iemand gaat breder zitten."
+    },
+    {
+      "kop": "Kalmerende gebaren",
+      "tekst": "Na een moment van ongemak probeert het lichaam zichzelf te kalmeren. Navarro noemt dat pacifiers. Over de nek wrijven, aan de oorlel friemelen, de handen over de dijen strijken, diep uitademen met bolle wangen. Zo'n gebaar betekent niet dat iemand liegt. Het betekent alleen: hier was zojuist iets ongemakkelijks. Dat is waardevolle informatie. De vraag is niet wat zegt dit gebaar, maar: wat gebeurde er vlak daarvoor?"
+    },
+    {
+      "kop": "Drie regels die je beschermen tegen onzin",
+      "tekst": "Eén: ken de basislijn. Hoe gedraagt iemand zich als hij ontspannen is? Wie altijd met zijn armen over elkaar zit, zegt daarmee weinig. Twee: let op veranderingen. Een verandering ten opzichte van de basislijn, vlak na een bepaald onderwerp, is betekenisvoller dan een losse houding. Drie: zoek clusters. Eén signaal is ruis. Drie signalen die tegelijk dezelfde kant op wijzen, zijn een aanwijzing. En dan blijft het nog steeds een aanwijzing, geen bewijs."
+    },
+    {
+      "kop": "Wat de wetenschap ervan zegt",
+      "tekst": "Hier moet je als specialist scherp blijven. Onderzoek van onder anderen Aldert Vrij en Bella DePaulo laat zien dat er geen enkel lichaamssignaal bestaat dat betrouwbaar leugens verraadt. Er is geen Pinokkio-neus. Mensen raden gemiddeld nauwelijks beter dan toeval of iemand liegt, ook professionals. Wat wel goed werkt, is het lezen van emotionele toestand: spanning, ontspanning, betrokkenheid. Navarro's comfort-ongemak-as is daarom het sterkste deel van zijn werk. Gebruik lichaamstaal als kompas voor je volgende vraag, niet als leugendetector."
+    }
+  ],
+  "denkers": ["Joe Navarro", "Aldert Vrij", "Bella DePaulo", "Paul Ekman"],
+  "vragen": [
+    {
+      "soort": "keuze",
+      "vraag": "Een leverancier wrijft over zijn nek direct nadat je over de boeteclausule begint. Wat is de meest verantwoorde conclusie?",
+      "opties": [
+        "Hij liegt over de levertijden",
+        "Dit onderwerp geeft hem ongemak; vraag door op de boeteclausule",
+        "Hij heeft nekpijn",
+        "Hij wil het contract opzeggen"
+      ],
+      "juist": 1,
+      "uitleg": "Een kalmerend gebaar na een specifiek onderwerp wijst op ongemak rond dat onderwerp. Meer weet je nog niet. Doorvragen is de juiste stap."
+    },
+    {
+      "soort": "keuze",
+      "vraag": "Wat laat wetenschappelijk onderzoek zien over leugens herkennen aan lichaamstaal?",
+      "opties": [
+        "Wegkijken is een betrouwbaar teken van liegen",
+        "Professionals herkennen leugens in 90 procent van de gevallen",
+        "Er bestaat geen enkel signaal dat betrouwbaar leugens verraadt",
+        "Microexpressies zijn een sluitend bewijs"
+      ],
+      "juist": 2,
+      "uitleg": "Meta-analyses (onder meer Bond en DePaulo, 2006) laten zien dat mensen gemiddeld rond 54 procent juist raden. Dat is nauwelijks boven toeval."
+    },
+    {
+      "soort": "open",
+      "vraag": "Hoe zou je de basislijn van een nieuwe opdrachtgever in de eerste tien minuten van een kennismaking kunnen vaststellen? Noem concrete dingen waar je op let."
+    }
+  ],
+  "voorVandaag": {
+    "zin": "Een signaal is een uitnodiging tot een vraag, geen oordeel.",
+    "kijkpunt": "Kies vandaag één persoon en noteer drie dingen van zijn basislijn: hoe zit hij, hoe beweegt hij zijn handen, hoe snel praat hij?",
+    "werkbrug": "Let in je volgende onderhandeling op waar de voeten van de ander naar wijzen wanneer de prijs ter sprake komt."
+  },
+  "verbanden": ["ment-1-01"],
+  "bronnen": ["Navarro (2008), What Every BODY Is Saying", "Bond & DePaulo (2006), Accuracy of deception judgments", "Vrij (2008), Detecting Lies and Deceit"]
+}
