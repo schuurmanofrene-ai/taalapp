@@ -5,8 +5,8 @@
   "titel": "Het ABC-model: niet de gebeurtenis maar de gedachte",
   "kern": "Niet wat er gebeurt bepaalt hoe je je voelt en gedraagt, maar hoe je het uitlegt.",
   "generatie": 1,
-  "versie": 1,
-  "leestijd": 8,
+  "versie": 2,
+  "leestijd": 10,
   "secties": [
     {
       "kop": "Een idee van tweeduizend jaar oud",
@@ -17,6 +17,10 @@
       "tekst": "A staat voor de activerende gebeurtenis: je manager loopt je op de gang voorbij zonder te groeten. B staat voor beliefs, de gedachten die je erover hebt: hij is boos op mij, ik heb iets fout gedaan. C staat voor de consequenties: je voelt je onrustig, je gaat piekeren en je vermijdt hem de rest van de dag. Wie alleen A en C ziet, denkt: hij maakt mij onrustig. Het ABC-model laat zien dat B ertussen zit. En B is het deel waar je invloed op hebt."
     },
     {
+      "kop": "Drie toetsen om A, B en C uit elkaar te houden",
+      "tekst": "In de praktijk lopen de drie letters snel door elkaar, vooral als je veel ziet en snel denkt. Dan wordt het één groot verhaal. Drie korte toetsen helpen.\n\nDe cameratoets voor A: wat zou een camera hebben opgenomen? Woorden die gezegd zijn, handelingen die gebeurd zijn. Niet: hij was geïrriteerd. Wel: hij zei 'hoe kunnen we dat niet zien'.\n\nDe citaattoets voor B: schrijf de gedachte op zoals de stem in je hoofd haar zei, tussen aanhalingstekens. 'Ik voldoe niet.' 'Hij gaat me anders zien.' Een gedachte is vaak een oordeel of een voorspelling.\n\nDe één-woordtoets voor C: een gevoel past in één woord, zoals bang, boos, verdrietig, beschaamd of onrustig. Kun je er 'ik voel dat…' voor zetten en volgt er een hele zin, dan is het geen gevoel maar een gedachte in vermomming. 'Ik voel dat ik faal' hoort dus bij B. Zet bij C ook wat je deed: één handeling is genoeg."
+    },
+    {
       "kop": "Automatische gedachten",
       "tekst": "Beck ontdekte dat zijn cliënten razendsnelle, korte gedachten hadden die ze zelf nauwelijks opmerkten. Hij noemde ze automatische gedachten. Ze voelen als waarheid, niet als interpretatie. Vaak volgen ze vaste denkfouten: zwart-witdenken, gedachtelezen, catastroferen, overgeneraliseren. De eerste stap in CGT is die gedachten vangen en opschrijven. Pas als een gedachte op papier staat, kun je hem bekijken in plaats van erdoor te kijken."
     },
@@ -25,7 +29,12 @@
       "tekst": "Een veelgehoord misverstand is dat CGT neerkomt op positief denken. Dat klopt niet. Het doel is realistisch denken. De gedachte mijn manager is boos op mij wordt niet vervangen door hij vindt mij geweldig, maar door een gedachte die beter past bij het bewijs: hij keek naar zijn telefoon en leek gehaast, ik weet niet wat er speelde. Die gedachte is minder pijnlijk omdat ze klopt, niet omdat ze vrolijk is."
     }
   ],
-  "denkers": ["Epictetus", "Albert Ellis", "Aaron Beck", "Judith Beck"],
+  "denkers": [
+    "Epictetus",
+    "Albert Ellis",
+    "Aaron Beck",
+    "Judith Beck"
+  ],
   "vragen": [
     {
       "soort": "keuze",
@@ -61,6 +70,12 @@
     "kijkpunt": "Merk vandaag één keer een plotselinge stemmingswisseling op en vraag: wat ging er net door mijn hoofd?",
     "werkbrug": "Als een coachee zegt dat iets hem kwaad maakt, vraag dan: wat zei je op dat moment tegen jezelf?"
   },
-  "verbanden": ["fil-1-01"],
-  "bronnen": ["Epictetus, Handboekje (Enchiridion), 5", "Ellis (1962), Reason and Emotion in Psychotherapy", "Beck, J. (2020), Cognitive Behavior Therapy: Basics and Beyond"]
+  "verbanden": [
+    "fil-1-01"
+  ],
+  "bronnen": [
+    "Epictetus, Handboekje (Enchiridion), 5",
+    "Ellis (1962), Reason and Emotion in Psychotherapy",
+    "Beck, J. (2020), Cognitive Behavior Therapy: Basics and Beyond"
+  ]
 }
