@@ -40,6 +40,29 @@
         "fil-1-02",
         "lich-1-02"
       ]
+    },
+    {
+      "generatie": 3,
+      "datum": "2026-10-04",
+      "titel": "Het eerste spoor",
+      "observaties": [
+        "Eerste afgeronde les: cgt-1-01, het ABC-model. Keuzevragen 2 van 2, helder 5, moeilijk 3 (precies goed), boeiend 5.",
+        "Denkniveau van je open antwoord (SOLO): multistructureel met een relationele aanzet. Je zag zelf de veralgemening en bouwde een realistisch alternatief, maar A, B en C liepen nog door elkaar.",
+        "Je schreef: 'De ABC vind ik nog lastig in te zetten, ik ben snel met een groot verhaal', en vroeg om hulp.",
+        "Hypothese G2 (langere lessen boeiender): nog onbeslist, er is nog geen G2-les afgerond. Wel bleek dat een korte les al een 5 op boeiend kan krijgen. Een 5 laat geen ruimte om hoger te scoren, dus de meting moet anders.",
+        "Nevenhypothese G1 (brug naar je werk maakt boeiender): één steunend datapunt, je eigen werkmoment leverde boeiend 5 op. Te weinig om te beslissen."
+      ],
+      "veranderingen": [
+        "cgt-1-01 herschreven naar versie 2: een nieuwe sectie met drie toetsen om A, B en C uit elkaar te houden (camera, citaat, één woord)",
+        "Nieuwe les cgt-1-02 over het G-schema, de regel van één en de pijl naar beneden, precies op jouw lastige punt",
+        "Nieuwe les gel-1-02 over schuld en schaamte in Genesis 3 en bij June Tangney, als vervolg op het afschuiven in jouw voorbeeld",
+        "Werkregels: een vastloper in een open antwoord bepaalt de volgende les, en hypotheses worden gemeten met een maat zonder plafond"
+      ],
+      "hypothese": "Een les die direct ingaat op een vastloper uit je eigen open antwoord (cgt-1-02) levert een open antwoord op een hoger SOLO-niveau op dan je eerste ABC-antwoord, met A, B en C gescheiden.",
+      "nieuweLessen": [
+        "cgt-1-02",
+        "gel-1-02"
+      ]
     }
   ]
 }
