@@ -3,7 +3,8 @@
 Een levenslange leerweg in filosofie, intelligentie en mentaliseren, lichaamstaal,
 cognitief gedrag en geloof in God, van MBO+ tot master.
 
-- **De kaart**: https://claude.ai/artifact/Y5qYq38hguHVCyKx4TdkFQ (bron: `leergang.html`).
+- **Waar je leert**: Levend Brein, tabblad Leergang (https://claude.ai/artifact/WzqhKEpuvPAnxCVwpomTjd).
+  Er is ook een losse kaart als reserve: https://claude.ai/artifact/Y5qYq38hguHVCyKx4TdkFQ (bron: `leergang.html`).
   Een bewegende sterrenkaart: in het midden jij, vier ringen voor de niveaus, vijf sectoren
   voor de domeinen. Elke les is een ster; afgeronde lessen lichten op en vormen je spoor.
 - **De motor**: de skill `.claude/skills/levende-leergang/SKILL.md`. Typ `/levende-leergang`

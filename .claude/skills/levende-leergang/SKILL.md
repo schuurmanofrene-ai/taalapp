@@ -16,7 +16,8 @@ Dit tweede punt is de kern van de opdracht. Een ronde zonder bijgestelde werkreg
 
 | Wat | Waar |
 |---|---|
-| Het artifact (de bewegende kaart) | `https://claude.ai/artifact/Y5qYq38hguHVCyKx4TdkFQ`, bron in `leergang/leergang.html` |
+| Waar René leert | **Levend Brein**, tabblad Leergang: `https://claude.ai/artifact/WzqhKEpuvPAnxCVwpomTjd`. Alle `ArtifactData`-calls in deze skill gaan naar deze URL. De paginabron staat niet in de repo (er staan persoonlijke gegevens in); lees hem met `Artifact read` voordat je hem wijzigt. |
+| Losse kaart (reserve) | `https://claude.ai/artifact/Y5qYq38hguHVCyKx4TdkFQ`, bron in `leergang/leergang.html`. Niet gebruiken voor de groeironde. |
 | Lessen, bron van waarheid | `leergang/lessen/<id>.json`, gespiegeld naar db-collectie `lessen` |
 | Leerprofiel | `leergang/meta/profiel.json` ↔ db `meta/profiel` |
 | Groeilog | `leergang/meta/verbeterlog.json` ↔ db `meta/verbeterlog` |
@@ -62,6 +63,8 @@ ArtifactData get   collection=meta doc_id=verbeterlog   (noteer version)
 ```
 
 Neem alleen voortgang mee met een `datum` na de `datum` van de laatste generatie. Die is nieuw.
+
+Levend Brein kan zelf lessen schrijven (de knop "Schrijf de les" en de automatische groeironde in de pagina). Lees daarom ook `ArtifactData list collection=lessen` en zet elke les die nog niet in `leergang/lessen/` staat eerst in de repo. Doe hetzelfde met `meta/profiel` en `meta/verbeterlog` als die in de database nieuwer zijn dan in de repo. De database is leidend voor wat René heeft gezien; de repo is het archief.
 
 ### 3. Diagnose
 
@@ -159,6 +162,7 @@ Sluit af volgens `wijsheid-voor-vandaag` als die skill beschikbaar is.
 
 ## Wijzigingslog van deze skill
 
+- **G3 aanvulling 2 (2026-10-21)**: de route door de vakken ook in Levend Brein ingebouwd, ook in het dashboard ("volgende stap in je route"). De skill wijst nu naar Levend Brein, omdat René daar leert (zeven lessen afgerond); de losse kaart is reserve. Stap 2 haalt lessen die de pagina zelf schreef terug naar de repo.
 - **G3 aanvulling (2026-10-21)**: op René's verzoek is de route door de vakken gebouwd. Verbanden naar andere vakken zijn nu stappen die je doorloopt; een les is pas rond als de route rond is. Regel 13 toegevoegd, stap 6 en de validator aangepast (één tot drie routestappen per les).
 - **G3 (2026-10-04)**: eerste echte leerdata (cgt-1-01). Regel 4 bevestigd met bewijs, regels 10 tot en met 12 toegevoegd, regel 9 verduidelijkt. Nieuwe hypothese over vastlopers als stuur voor de volgende les. De meting van de G2-hypothese verlegd, omdat een 5 op boeiend een plafond is.
 - **G2 (2026-10-03)**: nog geen leerdata. Werkregels 1 en 3 aangescherpt en 6 tot en met 9 toegevoegd op basis van René's eigen leermethode. Hypothese over lesduur opgesteld; de G1-hypothese blijft als nevenhypothese staan. Op de kaart heten de onderdelen van Voor vandaag nu "Om mee te nemen", "Om vandaag te zien" en "In je werk". In stap 6 mag de lengte voorlopig tot 15 minuten, om de hypothese te kunnen toetsen.
