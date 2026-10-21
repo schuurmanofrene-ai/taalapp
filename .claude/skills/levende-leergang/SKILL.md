@@ -16,7 +16,7 @@ Dit tweede punt is de kern van de opdracht. Een ronde zonder bijgestelde werkreg
 
 | Wat | Waar |
 |---|---|
-| Het artifact (de bewegende kaart) | `https://claude.ai/artifact/71Anb4AmDFRoH1g5E6Zqqu`, bron in `leergang/leergang.html` |
+| Het artifact (de bewegende kaart) | `https://claude.ai/artifact/Y5qYq38hguHVCyKx4TdkFQ`, bron in `leergang/leergang.html` |
 | Lessen, bron van waarheid | `leergang/lessen/<id>.json`, gespiegeld naar db-collectie `lessen` |
 | Leerprofiel | `leergang/meta/profiel.json` ↔ db `meta/profiel` |
 | Groeilog | `leergang/meta/verbeterlog.json` ↔ db `meta/verbeterlog` |
