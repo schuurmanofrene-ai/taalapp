@@ -17,7 +17,7 @@ Dit tweede punt is de kern van de opdracht. Een ronde zonder bijgestelde werkreg
 | Wat | Waar |
 |---|---|
 | Waar René leert | **Levend Brein**, tabblad Leergang: `https://claude.ai/artifact/WzqhKEpuvPAnxCVwpomTjd`. Alle `ArtifactData`-calls in deze skill gaan naar deze URL. De paginabron staat niet in de repo (er staan persoonlijke gegevens in); lees hem met `Artifact read` voordat je hem wijzigt. |
-| Losse kaart (reserve) | `https://claude.ai/artifact/Y5qYq38hguHVCyKx4TdkFQ`, bron in `leergang/leergang.html`. Niet gebruiken voor de groeironde. |
+| Losse kaart | Verwijderd op 2026-10-21. `leergang/leergang.html` is alleen nog de oorspronkelijke bron van het tabblad Leergang; niet opnieuw publiceren als aparte kaart. |
 | Lessen, bron van waarheid | `leergang/lessen/<id>.json`, gespiegeld naar db-collectie `lessen` |
 | Leerprofiel | `leergang/meta/profiel.json` ↔ db `meta/profiel` |
 | Groeilog | `leergang/meta/verbeterlog.json` ↔ db `meta/verbeterlog` |
