@@ -16,7 +16,8 @@ Dit tweede punt is de kern van de opdracht. Een ronde zonder bijgestelde werkreg
 
 | Wat | Waar |
 |---|---|
-| Het artifact (de bewegende kaart) | `https://claude.ai/artifact/71Anb4AmDFRoH1g5E6Zqqu`, bron in `leergang/leergang.html` |
+| Waar René leert | **Levend Brein**, tabblad Leergang: `https://claude.ai/artifact/WzqhKEpuvPAnxCVwpomTjd`. Alle `ArtifactData`-calls in deze skill gaan naar deze URL. De paginabron staat niet in de repo (er staan persoonlijke gegevens in); lees hem met `Artifact read` voordat je hem wijzigt. |
+| Losse kaart | Verwijderd op 2026-10-21. `leergang/leergang.html` is alleen nog de oorspronkelijke bron van het tabblad Leergang; niet opnieuw publiceren als aparte kaart. |
 | Lessen, bron van waarheid | `leergang/lessen/<id>.json`, gespiegeld naar db-collectie `lessen` |
 | Leerprofiel | `leergang/meta/profiel.json` ↔ db `meta/profiel` |
 | Groeilog | `leergang/meta/verbeterlog.json` ↔ db `meta/verbeterlog` |
@@ -63,6 +64,8 @@ ArtifactData get   collection=meta doc_id=verbeterlog   (noteer version)
 
 Neem alleen voortgang mee met een `datum` na de `datum` van de laatste generatie. Die is nieuw.
 
+Levend Brein kan zelf lessen schrijven (de knop "Schrijf de les" en de automatische groeironde in de pagina). Lees daarom ook `ArtifactData list collection=lessen` en zet elke les die nog niet in `leergang/lessen/` staat eerst in de repo. Doe hetzelfde met `meta/profiel` en `meta/verbeterlog` als die in de database nieuwer zijn dan in de repo. De database is leidend voor wat René heeft gezien; de repo is het archief.
+
 ### 3. Diagnose
 
 Maak per afgeronde les en per domein een korte analyse:
@@ -98,7 +101,7 @@ Schrijf **twee tot vier** nieuwe lessen per ronde, zodat het nooit stopt en nooi
   - *Master*: eigen positie innemen, theorieën verbinden over domeinen heen, open problemen, kritiek op het veld zelf.
 - **Afwisselen (interleaving)**: nooit twee nieuwe lessen in hetzelfde domein in één ronde, tenzij René daar expliciet om vraagt.
 - **Ophalen (spaced retrieval)**: elke nieuwe les krijgt een tot twee `herhaling`-vragen uit eerder afgeronde lessen. Kies vooral vragen die hij eerder fout had, of lessen die het langst geleden zijn.
-- **Verbanden**: elke les verbindt naar minstens één les in een ander domein. Dit is de rode draad: filosofie, mentaliseren, lichaamstaal, CGT en geloof gaan allemaal over hoe een mens betekenis geeft.
+- **Verbanden en de route door de vakken**: elke les verbindt naar één tot drie lessen in een ánder domein. Op de kaart vormen die samen de route van de les: René rondt de les af, loopt daarna de route, en pas dan licht de ster helemaal op. Openstaande routes gaan op de kaart vóór nieuwe lessen. Zet de route-stappen in `verbanden` in de volgorde waarin ze het best te lopen zijn; verbanden binnen hetzelfde domein mogen erbij, die tellen niet mee in de route. Kies alleen verbanden die echt iets laten zien; elke stap kost René een hele les. Dit is de rode draad: filosofie, mentaliseren, lichaamstaal, CGT en geloof gaan allemaal over hoe een mens betekenis geeft.
 - **Voor vandaag**: altijd een zin, een kijkpunt en een werkbrug naar zijn werk als consultant, coach of therapeut.
 - **Inhoud**: klopt feitelijk, noemt echte denkers en bronnen, en is eerlijk over wetenschappelijke onzekerheid. Bij lichaamstaal: nooit leugendetectie-mythes, altijd basislijn, cluster en context. Bij geloof: respectvol, geïnformeerd, met de christelijke traditie als belangrijke bron maar zonder te preken, en met ruimte voor twijfel en andere stemmen.
 - **Lengte**: drie tot zes secties, `leestijd` 8 tot 15 minuten (zie de open hypothese). Op WO- en masterniveau mag het tot 20.
@@ -137,23 +140,30 @@ Sluit af volgens `wijsheid-voor-vandaag` als die skill beschikbaar is.
 
 *Deze sectie herschrijft Claude zelf na elke ronde. Bij elke regel staat de generatie en het bewijs. Bewijs is René's leerdata, of zijn eigen expliciete wensen en leermethode.*
 
-1. Open elke les met een scène: een concreet moment uit zijn werk of leven, in de jij-vorm. De eerste alinea is al inhoud, geen aankondiging. *(G1 startregel; G2 aangescherpt: zijn leermethode "Wijsheid voor vandaag" vraagt hier uitdrukkelijk om)*
+1. Open elke les met een scène: een concreet moment uit zijn werk of leven, in de jij-vorm. De eerste alinea is al inhoud, geen aankondiging. *(G1 startregel; G2: zijn leermethode vraagt hierom)*
 2. Eén kernidee per les op MBO+ en HBO. Liever twee scherpe lessen dan één volle. *(G1 startregel)*
-3. Elke les die over het lezen van mensen gaat, benoemt expliciet wat je níet kunt concluderen, en eindigt met een vraag die je kunt stellen in plaats van een conclusie. *(G1 startregel; G2 aangescherpt in lich-1-02)*
-4. Open vragen vragen om een eigen voorbeeld, niet om het navertellen van de tekst. *(G1 startregel; zo is het SOLO-niveau te beoordelen)*
+3. Elke les die over het lezen van mensen gaat, benoemt expliciet wat je níet kunt concluderen, en eindigt met een vraag die je kunt stellen in plaats van een conclusie. *(G1 startregel; G2 aangescherpt)*
+4. Open vragen vragen om een eigen voorbeeld, niet om het navertellen van de tekst. *(G1 startregel; G3 bevestigd: zijn eigen offerte-moment in cgt-1-01 gaf het rijkste materiaal tot nu toe, met boeiend 5)*
 5. Keuzevragen hebben afleiders die echte misverstanden weerspiegelen, zodat een fout antwoord iets vertelt. *(G1 startregel)*
 6. René is 57 en heeft decennia ervaring met mensen. Gebruik die ervaring als materiaal, en zeg het eerlijk als onderzoek een intuïtie corrigeert. *(G2: zijn leermethode)*
-7. Geloof is een volwaardige gesprekspartner in de verbanden, niet alleen in het eigen domein. Laat zien waar het met filosofie of psychologie meeklinkt en waar het schuurt. *(G2: zijn leermethode; toegepast in fil-1-02 met het sereniteitsgebed)*
+7. Geloof is een volwaardige gesprekspartner in de verbanden, niet alleen in het eigen domein. Laat zien waar het met filosofie of psychologie meeklinkt en waar het schuurt. *(G2: zijn leermethode; G3 toegepast in gel-1-02)*
 8. Voor vandaag blijft een manier van kijken, geen huiswerk. Het kijkpunt richt zich bij voorkeur op hemzelf ("merk op wanneer jij…"), en de zin is eigen aan de les. *(G2: zijn leermethode)*
-9. Als er geen nieuwe voortgang is, schrijf dan precies twee nieuwe lessen, zodat het aantal open lessen niet boven de acht uitkomt. Een stapel ongelezen lessen voelt als achterstand, en dat past niet bij leren zonder haast. *(G2: nul afgeronde lessen, vijf open)*
+9. Houd het aantal open lessen op hoogstens acht. Zonder nieuwe voortgang komen er precies twee bij. *(G2: nul afgerond en vijf open; G3: één afgerond, acht open na deze ronde)*
+10. Een vastloper in een open antwoord ("ik loop vast", A, B en C door elkaar, een expliciete hulpvraag) bepaalt de eerstvolgende les in dat domein. Die les gaat precies op dat punt in, en de oorspronkelijke les krijgt een versie 2 met het gereedschap dat ontbrak. *(G3: in cgt-1-01 liepen B en C door elkaar en vroeg hij om hulp; daarop volgden cgt-1-02 en cgt-1-01 v2)*
+11. Een persoonlijk en kwetsbaar moment uit zijn antwoord mag de volgende les inspireren, maar wordt nooit letterlijk geciteerd in een les. Gebruik een herkenbare variant. *(G3: zijn offerte-moment leidde tot gel-1-02, met een algemene scène)*
+12. Meet een hypothese met een maat die nog kan stijgen. Een beoordeling die al op 5 staat, kan iets alleen weerleggen, niet bevestigen. Gebruik dan het SOLO-niveau van open antwoorden of de score op herhaalvragen. *(G3: de eerste les kreeg meteen boeiend 5)*
+13. Een verband naar een ander vak is geen voetnoot maar een stap in een route die René afmaakt. Houd de route kort (één tot drie stappen) en zorg dat elke stap op zichzelf de moeite waard is. Bij het tellen van open lessen (regel 9) tellen open routestappen mee. *(G3: René raakte de klikbare verbanden kwijt na het afronden en vroeg om een flow die hij helemaal doorloopt; daarop is de route door de vakken in de kaart gebouwd)*
 
 ## Open hypothese
 
-**G2 → te toetsen in G3:** lessen van ongeveer 14 minuten met een openingsscène (`fil-1-02`, `lich-1-02`) krijgen een hogere score op `boeiend` dan de kortere G1-lessen van ongeveer 8 minuten, zonder dat `helder` daalt. *Meting: vergelijk het gemiddelde van `boeiend` en `helder` tussen G1- en G2-lessen zodra er per groep minstens twee beoordelingen zijn. Wordt dit bevestigd, verhoog dan de standaardlengte in stap 6. Zo niet, houd de korte vorm.*
+**G3 → te toetsen in G4:** een les die direct ingaat op een vastloper uit zijn eigen open antwoord (`cgt-1-02`) levert een open antwoord op een hoger SOLO-niveau op dan zijn eerste ABC-antwoord (multistructureel), met A, B en C gescheiden. *Meting: SOLO-niveau van het open antwoord in cgt-1-02 tegenover cgt-1-01, en de score op de herhaalvraag.*
 
-*Nevenhypothese uit G1, nog onbeslist:* een brug naar contractmanagement of coaching in de secties zelf maakt een les boeiender.
+*Nog lopend:* G2-hypothese over lesduur. Vergelijk `helder` en het SOLO-niveau, niet alleen `boeiend` (zie regel 12), tussen de G1-lessen (8 tot 10 minuten) en de lessen vanaf G2 (ongeveer 14 minuten). *Nevenhypothese G1:* een brug naar zijn werk in de secties maakt een les boeiender. Eén steunend datapunt.
 
 ## Wijzigingslog van deze skill
 
+- **G3 aanvulling 2 (2026-10-21)**: de route door de vakken ook in Levend Brein ingebouwd, ook in het dashboard ("volgende stap in je route"). De skill wijst nu naar Levend Brein, omdat René daar leert (zeven lessen afgerond); de losse kaart is reserve. Stap 2 haalt lessen die de pagina zelf schreef terug naar de repo.
+- **G3 aanvulling (2026-10-21)**: op René's verzoek is de route door de vakken gebouwd. Verbanden naar andere vakken zijn nu stappen die je doorloopt; een les is pas rond als de route rond is. Regel 13 toegevoegd, stap 6 en de validator aangepast (één tot drie routestappen per les).
+- **G3 (2026-10-04)**: eerste echte leerdata (cgt-1-01). Regel 4 bevestigd met bewijs, regels 10 tot en met 12 toegevoegd, regel 9 verduidelijkt. Nieuwe hypothese over vastlopers als stuur voor de volgende les. De meting van de G2-hypothese verlegd, omdat een 5 op boeiend een plafond is.
 - **G2 (2026-10-03)**: nog geen leerdata. Werkregels 1 en 3 aangescherpt en 6 tot en met 9 toegevoegd op basis van René's eigen leermethode. Hypothese over lesduur opgesteld; de G1-hypothese blijft als nevenhypothese staan. Op de kaart heten de onderdelen van Voor vandaag nu "Om mee te nemen", "Om vandaag te zien" en "In je werk". In stap 6 mag de lengte voorlopig tot 15 minuten, om de hypothese te kunnen toetsen.
 - **G1 (2026-10-03)**: eerste versie. Cyclus van negen stappen, vijf startregels, eerste hypothese.

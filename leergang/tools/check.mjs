@@ -55,6 +55,11 @@ for (const { f, les } of lessen) {
   const vv = les.voorVandaag || {};
   for (const veld of ["zin", "kijkpunt", "werkbrug"]) if (!vv[veld]) fout(f, `voorVandaag.${veld} ontbreekt`);
   for (const v of les.verbanden || []) if (!ids.has(v)) fout(f, `verband naar onbekende les ${v}`);
+  // De route door de vakken: verbanden naar ándere domeinen. Minstens één, hoogstens drie.
+  const domeinVan = (id) => lessen.find(({ les: l }) => l.id === id)?.les.domein;
+  const route = (les.verbanden || []).filter((v) => ids.has(v) && domeinVan(v) !== les.domein);
+  if (route.length < 1) fout(f, "geen verband naar een ander vak: de route door de vakken is leeg");
+  if (route.length > 3) fout(f, `route heeft ${route.length} stappen; houd het bij hoogstens drie`);
 }
 
 const profiel = JSON.parse(readFileSync(join(root, "meta", "profiel.json"), "utf8"));

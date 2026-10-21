@@ -1,0 +1,97 @@
+{
+  "id": "gel-1-02",
+  "domein": "geloof",
+  "niveau": 1,
+  "titel": "Verstoppen en afschuiven: schuld en schaamte sinds Genesis",
+  "kern": "Schaamte zegt 'ik ben slecht' en zet aan tot verstoppen en afschuiven. Schuld zegt 'ik deed iets verkeerd' en maakt herstel mogelijk. Het oudste verhaal over dat verschil staat aan het begin van de Bijbel.",
+  "generatie": 3,
+  "versie": 1,
+  "leestijd": 14,
+  "herhaling": [
+    {
+      "soort": "keuze",
+      "van": "cgt-1-01",
+      "vraag": "Waarom is CGT geen positief denken?",
+      "opties": [
+        "Omdat CGT juist negatief denken aanmoedigt",
+        "Omdat het doel een gedachte is die beter bij het bewijs past, niet een vrolijke gedachte",
+        "Omdat gedachten er in CGT niet toe doen",
+        "Omdat positief denken alleen bij geloof hoort"
+      ],
+      "juist": 1,
+      "uitleg": "Een realistische gedachte doet minder pijn omdat ze klopt, niet omdat ze vrolijk is."
+    }
+  ],
+  "secties": [
+    {
+      "kop": "Het eerste wat je wilt",
+      "tekst": "Iemand wijst op een fout in iets wat jij hebt gemaakt. Een offerte, een rapport, een berekening. Wat is het allereerste wat je lichaam wil? Bij veel mensen is het niet: rechtzetten. Het is: wegkruipen. Of het bij een ander leggen. De planning was krap. De input kwam laat. Niemand had het gezien.\n\nDat is geen karakterfout. Het is een van de oudste reflexen die we kennen, en een van de eerste verhalen van de Bijbel gaat er precies over."
+    },
+    {
+      "kop": "Genesis 3: waar ben je?",
+      "tekst": "Aan het eind van Genesis 2 staat een zin die je makkelijk overleest: de mens en zijn vrouw waren beiden naakt, en zij schaamden zich niet. Eén hoofdstuk later eten ze van de boom waarvan ze niet mochten eten. Het eerste wat er dan gebeurt, is niet dat ze iets leren. Het eerste is: hun ogen gaan open, ze zien dat ze naakt zijn, en ze maken schorten van vijgenbladeren. Daarna horen ze God in de hof, en ze verstoppen zich tussen de bomen.\n\nDan klinkt de vraag: waar ben je? Veel uitleggers lezen dat niet als een verhoor, want wie alles ziet, hoeft niet te vragen waar iemand is. Ze lezen het als een uitnodiging om tevoorschijn te komen.\n\nWat volgt is pijnlijk herkenbaar. De man zegt: de vrouw die U mij gegeven hebt, zij gaf mij van de boom. Let op de dubbele beweging: het ligt aan haar, en eigenlijk aan U, want U gaf haar. De vrouw zegt: de slang heeft mij bedrogen. Niemand zegt: ik heb het gedaan. Verstoppen en afschuiven, in vijf verzen."
+    },
+    {
+      "kop": "Wat de psychologie later ontdekte",
+      "tekst": "Duizenden jaren later onderzocht de Amerikaanse psycholoog June Tangney het verschil tussen schuld en schaamte. Haar onderscheid is eenvoudig. Bij schuld richt je je op wat je deed: ik heb iets verkeerd gedaan. Bij schaamte richt je je op wie je bent: ik ben verkeerd.\n\nDat verschil heeft grote gevolgen. In haar onderzoek gaat schuld vaker samen met herstel: sorry zeggen, het rechtzetten, het de volgende keer anders doen. Schaamte gaat vaker samen met verstoppen, ontkennen, de schuld bij een ander leggen en zelfs boosheid. Logisch eigenlijk. Als de fout zegt wie je bent, is toegeven te gevaarlijk. Dan moet de fout van iemand anders zijn.\n\nDe onderzoeker en schrijver Brené Brown maakte dit bekend met een korte formule: schuld zegt 'ik deed iets slechts', schaamte zegt 'ik ben slecht'. Genesis 3 laat precies de schaamtereactie zien: schorten, bomen, en wijzen naar een ander."
+    },
+    {
+      "kop": "Waar het verhaal en het onderzoek elkaar raken, en waar ze schuren",
+      "tekst": "Het onderzoek en het verhaal zeggen hetzelfde over de reflex. Ze verschillen in de uitweg. De psychologie zegt: verschuif van 'ik ben' naar 'ik deed', dan kun je herstellen. In de christelijke traditie loopt de uitweg via belijden, het hardop zeggen wat je deed, en via genade: je bent geaccepteerd voordat je het goedgemaakt hebt. In de eerste brief van Johannes staat: als wij onze zonden belijden, is Hij trouw en rechtvaardig om ons te vergeven.\n\nDat is een andere bron van veiligheid. In de psychologische route maak jij het onderscheid tussen daad en persoon. In de geloofsroute wordt het je aangereikt: je bent meer dan je fout, omdat Iemand anders dat over je zegt. Mensen die gelovig zijn, ervaren dat soms als bevrijdend en soms, als het geloof vooral om straf draaide, juist als een bron van extra schaamte. Beide ervaringen zijn echt. Het helpt om te zien welke van de twee in jezelf of in een coachee de boventoon voert."
+    },
+    {
+      "kop": "Wat het betekent",
+      "tekst": "De vraag 'waar ben je?' is ook een goede vraag voor jezelf, op het moment dat je wilt wegkruipen of afschuiven. Niet als verwijt, maar als uitnodiging om tevoorschijn te komen. De kortste zin om uit de schaamte te stappen is meestal: die fout was van mij. Wat er daarna gebeurt, is in de praktijk vaak opvallend mild. Mensen vergeven een fout makkelijker dan een verstopte fout.\n\nEn als professional: wie bij een cliënt of leverancier afschuiven ziet, ziet misschien geen onbetrouwbaar mens, maar iemand die zich schaamt. Dat vraagt een andere reactie dan een verwijt. Een verwijt maakt de schaamte groter, en dus het afschuiven ook."
+    }
+  ],
+  "denkers": [
+    "June Tangney",
+    "Brené Brown"
+  ],
+  "vragen": [
+    {
+      "soort": "keuze",
+      "vraag": "Wat onderscheidt schaamte van schuld volgens Tangney?",
+      "opties": [
+        "Schaamte is sterker dan schuld",
+        "Schaamte richt zich op wie je bent, schuld op wat je deed",
+        "Schuld is religieus, schaamte is psychologisch",
+        "Schaamte voel je alleen in gezelschap"
+      ],
+      "juist": 1,
+      "uitleg": "Het verschil zit in de richting: de persoon of de daad. Dat bepaalt of je gaat verstoppen of herstellen."
+    },
+    {
+      "soort": "keuze",
+      "vraag": "Een leverancier legt een gemiste deadline steeds bij anderen neer. Welke lezing past het best bij deze les?",
+      "opties": [
+        "Hij is onbetrouwbaar en dat zal niet veranderen",
+        "Hij liegt bewust om een boete te ontlopen",
+        "Afschuiven kan een schaamtereactie zijn; een gesprek over de daad in plaats van de persoon maakt herstel makkelijker",
+        "Je moet hem harder aanspreken, dan stopt het"
+      ],
+      "juist": 2,
+      "uitleg": "Schaamte voedt afschuiven. Een verwijt vergroot de schaamte; een zakelijk gesprek over wat er gebeurde en wat nodig is, opent ruimte voor herstel. Het kan natuurlijk ook iets anders zijn, maar deze lezing geeft je de beste eerste zet."
+    },
+    {
+      "soort": "open",
+      "vraag": "Denk aan een moment waarop jij of iemand in je werk een fout wilde verstoppen of afschuiven. Zat daar schaamte onder of schuld? En wat had de zin 'die fout was van mij' daar veranderd?"
+    }
+  ],
+  "voorVandaag": {
+    "zin": "Mensen vergeven een fout sneller dan een verstopte fout.",
+    "kijkpunt": "Merk vandaag het moment op waarop je de neiging voelt om iets uit te leggen voordat je het toegeeft. Vraag je stil af: waar ben je?",
+    "werkbrug": "Als een leverancier of collega afschuift, spreek dan over de daad en niet over de persoon: wat is er gebeurd en wat is nu nodig? Kijk of het afschuiven afneemt."
+  },
+  "verbanden": [
+    "cgt-1-02",
+    "cgt-1-01",
+    "gel-1-01"
+  ],
+  "bronnen": [
+    "Genesis 2:25 en 3:1-13",
+    "1 Johannes 1:9",
+    "Tangney & Dearing (2002), Shame and Guilt",
+    "Brown (2012), Daring Greatly"
+  ]
+}
