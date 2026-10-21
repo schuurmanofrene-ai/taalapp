@@ -98,7 +98,7 @@ Schrijf **twee tot vier** nieuwe lessen per ronde, zodat het nooit stopt en nooi
   - *Master*: eigen positie innemen, theorieën verbinden over domeinen heen, open problemen, kritiek op het veld zelf.
 - **Afwisselen (interleaving)**: nooit twee nieuwe lessen in hetzelfde domein in één ronde, tenzij René daar expliciet om vraagt.
 - **Ophalen (spaced retrieval)**: elke nieuwe les krijgt een tot twee `herhaling`-vragen uit eerder afgeronde lessen. Kies vooral vragen die hij eerder fout had, of lessen die het langst geleden zijn.
-- **Verbanden**: elke les verbindt naar minstens één les in een ander domein. Dit is de rode draad: filosofie, mentaliseren, lichaamstaal, CGT en geloof gaan allemaal over hoe een mens betekenis geeft.
+- **Verbanden en de route door de vakken**: elke les verbindt naar één tot drie lessen in een ánder domein. Op de kaart vormen die samen de route van de les: René rondt de les af, loopt daarna de route, en pas dan licht de ster helemaal op. Openstaande routes gaan op de kaart vóór nieuwe lessen. Zet de route-stappen in `verbanden` in de volgorde waarin ze het best te lopen zijn; verbanden binnen hetzelfde domein mogen erbij, die tellen niet mee in de route. Kies alleen verbanden die echt iets laten zien; elke stap kost René een hele les. Dit is de rode draad: filosofie, mentaliseren, lichaamstaal, CGT en geloof gaan allemaal over hoe een mens betekenis geeft.
 - **Voor vandaag**: altijd een zin, een kijkpunt en een werkbrug naar zijn werk als consultant, coach of therapeut.
 - **Inhoud**: klopt feitelijk, noemt echte denkers en bronnen, en is eerlijk over wetenschappelijke onzekerheid. Bij lichaamstaal: nooit leugendetectie-mythes, altijd basislijn, cluster en context. Bij geloof: respectvol, geïnformeerd, met de christelijke traditie als belangrijke bron maar zonder te preken, en met ruimte voor twijfel en andere stemmen.
 - **Lengte**: drie tot zes secties, `leestijd` 8 tot 15 minuten (zie de open hypothese). Op WO- en masterniveau mag het tot 20.
@@ -149,6 +149,7 @@ Sluit af volgens `wijsheid-voor-vandaag` als die skill beschikbaar is.
 10. Een vastloper in een open antwoord ("ik loop vast", A, B en C door elkaar, een expliciete hulpvraag) bepaalt de eerstvolgende les in dat domein. Die les gaat precies op dat punt in, en de oorspronkelijke les krijgt een versie 2 met het gereedschap dat ontbrak. *(G3: in cgt-1-01 liepen B en C door elkaar en vroeg hij om hulp; daarop volgden cgt-1-02 en cgt-1-01 v2)*
 11. Een persoonlijk en kwetsbaar moment uit zijn antwoord mag de volgende les inspireren, maar wordt nooit letterlijk geciteerd in een les. Gebruik een herkenbare variant. *(G3: zijn offerte-moment leidde tot gel-1-02, met een algemene scène)*
 12. Meet een hypothese met een maat die nog kan stijgen. Een beoordeling die al op 5 staat, kan iets alleen weerleggen, niet bevestigen. Gebruik dan het SOLO-niveau van open antwoorden of de score op herhaalvragen. *(G3: de eerste les kreeg meteen boeiend 5)*
+13. Een verband naar een ander vak is geen voetnoot maar een stap in een route die René afmaakt. Houd de route kort (één tot drie stappen) en zorg dat elke stap op zichzelf de moeite waard is. Bij het tellen van open lessen (regel 9) tellen open routestappen mee. *(G3: René raakte de klikbare verbanden kwijt na het afronden en vroeg om een flow die hij helemaal doorloopt; daarop is de route door de vakken in de kaart gebouwd)*
 
 ## Open hypothese
 
@@ -158,6 +159,7 @@ Sluit af volgens `wijsheid-voor-vandaag` als die skill beschikbaar is.
 
 ## Wijzigingslog van deze skill
 
+- **G3 aanvulling (2026-10-21)**: op René's verzoek is de route door de vakken gebouwd. Verbanden naar andere vakken zijn nu stappen die je doorloopt; een les is pas rond als de route rond is. Regel 13 toegevoegd, stap 6 en de validator aangepast (één tot drie routestappen per les).
 - **G3 (2026-10-04)**: eerste echte leerdata (cgt-1-01). Regel 4 bevestigd met bewijs, regels 10 tot en met 12 toegevoegd, regel 9 verduidelijkt. Nieuwe hypothese over vastlopers als stuur voor de volgende les. De meting van de G2-hypothese verlegd, omdat een 5 op boeiend een plafond is.
 - **G2 (2026-10-03)**: nog geen leerdata. Werkregels 1 en 3 aangescherpt en 6 tot en met 9 toegevoegd op basis van René's eigen leermethode. Hypothese over lesduur opgesteld; de G1-hypothese blijft als nevenhypothese staan. Op de kaart heten de onderdelen van Voor vandaag nu "Om mee te nemen", "Om vandaag te zien" en "In je werk". In stap 6 mag de lengte voorlopig tot 15 minuten, om de hypothese te kunnen toetsen.
 - **G1 (2026-10-03)**: eerste versie. Cyclus van negen stappen, vijf startregels, eerste hypothese.
