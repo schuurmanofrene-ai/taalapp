@@ -1,0 +1,98 @@
+{
+  "id": "cgt-1-01",
+  "bekend": [],
+  "bronnen": [
+    "Epictetus, Handboekje (Enchiridion), 5",
+    "Ellis (1962), Reason and Emotion in Psychotherapy",
+    "Beck, J. (2020), Cognitive Behavior Therapy: Basics and Beyond"
+  ],
+  "complexiteit": 7,
+  "denkers": [
+    "Epictetus",
+    "Albert Ellis",
+    "Aaron Beck",
+    "Judith Beck"
+  ],
+  "domein": "cgt",
+  "generatie": 1,
+  "kern": "Niet wat er gebeurt bepaalt hoe je je voelt en gedraagt, maar hoe je het uitlegt.",
+  "leestijd": 12,
+  "nieuw": [
+    {
+      "begrip": "ABC-model",
+      "niveau": "MBO+"
+    },
+    {
+      "begrip": "Denkfouten",
+      "niveau": "MBO+"
+    }
+  ],
+  "niveau": 1,
+  "secties": [
+    {
+      "kop": "Een idee van tweeduizend jaar oud",
+      "tekst": "De Griekse filosoof Epictetus was een vrijgelaten slaaf. Rond het jaar 100 schreef hij: het zijn niet de dingen zelf die mensen verontrusten, maar hun oordelen over die dingen. Bijna negentienhonderd jaar later las de Amerikaanse psycholoog Albert Ellis die zin en bouwde er een therapie op. Ongeveer tegelijk ontwikkelde psychiater Aaron Beck de cognitieve therapie. Samen vormen zij de basis van wat we nu cognitieve gedragstherapie noemen."
+    },
+    {
+      "kop": "A, B en C",
+      "tekst": "A staat voor de activerende gebeurtenis: je manager loopt je op de gang voorbij zonder te groeten. B staat voor beliefs, de gedachten die je erover hebt: hij is boos op mij, ik heb iets fout gedaan. C staat voor de consequenties: je voelt je onrustig, je gaat piekeren en je vermijdt hem de rest van de dag. Wie alleen A en C ziet, denkt: hij maakt mij onrustig. Het ABC-model laat zien dat B ertussen zit. En B is het deel waar je invloed op hebt."
+    },
+    {
+      "kop": "Drie toetsen om A, B en C uit elkaar te houden",
+      "tekst": "In de praktijk lopen de drie letters snel door elkaar, vooral als je veel ziet en snel denkt. Dan wordt het één groot verhaal. Drie korte toetsen helpen.\n\nDe cameratoets voor A: wat zou een camera hebben opgenomen? Woorden die gezegd zijn, handelingen die gebeurd zijn. Niet: hij was geïrriteerd. Wel: hij zei 'hoe kunnen we dat niet zien'.\n\nDe citaattoets voor B: schrijf de gedachte op zoals de stem in je hoofd haar zei, tussen aanhalingstekens. 'Ik voldoe niet.' 'Hij gaat me anders zien.' Een gedachte is vaak een oordeel of een voorspelling.\n\nDe één-woordtoets voor C: een gevoel past in één woord, zoals bang, boos, verdrietig, beschaamd of onrustig. Kun je er 'ik voel dat…' voor zetten en volgt er een hele zin, dan is het geen gevoel maar een gedachte in vermomming. 'Ik voel dat ik faal' hoort dus bij B. Zet bij C ook wat je deed: één handeling is genoeg."
+    },
+    {
+      "kop": "Automatische gedachten",
+      "tekst": "Beck ontdekte dat zijn cliënten razendsnelle, korte gedachten hadden die ze zelf nauwelijks opmerkten. Hij noemde ze automatische gedachten. Ze voelen als waarheid, niet als interpretatie. Vaak volgen ze vaste denkfouten: zwart-witdenken, gedachtelezen, catastroferen, overgeneraliseren. De eerste stap in CGT is die gedachten vangen en opschrijven. Pas als een gedachte op papier staat, kun je hem bekijken in plaats van erdoor te kijken."
+    },
+    {
+      "begrip": "Denkfouten",
+      "kop": "Denkfouten: de vaste afslagen van je brein",
+      "niveau": "MBO+",
+      "soort": "begrip",
+      "tekst": "Een klant reageert drie dagen niet op je mail. Binnen een minuut staat er in je hoofd al een scenario: hij is ontevreden, hij zoekt een andere partij, het project loopt af. Niemand heeft dat gezegd. Je brein heeft de stilte ingevuld, en het deed dat op een voorspelbare manier.\n\nAaron Beck merkte in de jaren zestig dat de automatische gedachten van zijn cliënten niet willekeurig waren. Ze volgden vaste patronen, die hij cognitieve vervormingen noemde. Zijn leerling David Burns maakte er in 1980 een bekende lijst van; in het Nederlands spreken we van denkfouten. Een denkfout is geen domheid. Het is een sluiproute die je brein neemt om tijd te sparen, en die onder spanning de verkeerde afslag neemt.\n\nVier komen het vaakst voor. Bij zwart-witdenken bestaan er maar twee standen: perfect of mislukt, voor of tegen. Bij gedachtelezen weet je zeker wat een ander denkt zonder dat hij het zei: hij vindt me incompetent. Bij catastroferen behandel je het ergste scenario alsof het waarschijnlijk is, zoals bij die stille inbox. Bij overgeneraliseren maak je van één gebeurtenis een wet, herkenbaar aan woorden als altijd en nooit: die leverancier levert nooit op tijd.\n\nIn je werk zijn denkfouten handige zoeklichten. Hoor je een coachee 'altijd' zeggen, dan is dat een uitnodiging om te vragen: altijd, of de laatste twee keer? En in een onderhandeling helpt het om bij jezelf te merken wanneer je gedachten leest in plaats van een vraag te stellen. Let op het verschil met een gewone negatieve gedachte. 'Ik heb een fout gemaakt in tabel drie' is onprettig, maar klopt. De denkfout zit in de sprong die daarna komt: 'dus ik ben niet geschikt voor dit werk.'\n\nEen kanttekening: de lijsten verschillen per auteur, van tien tot vijftien soorten, en ze overlappen. Het is geen wetenschappelijke indeling maar een praktisch hulpmiddel om gedachten te herkennen. Wie ze gebruikt om iemand te corrigeren ('dat is catastroferen!'), maakt van een zoeklicht een stok. Ze werken het best als je ze samen ontdekt."
+    },
+    {
+      "kop": "Geen positief denken",
+      "tekst": "Een veelgehoord misverstand is dat CGT neerkomt op positief denken. Dat klopt niet. Het doel is realistisch denken. De gedachte mijn manager is boos op mij wordt niet vervangen door hij vindt mij geweldig, maar door een gedachte die beter past bij het bewijs: hij keek naar zijn telefoon en leek gehaast, ik weet niet wat er speelde. Die gedachte is minder pijnlijk omdat ze klopt, niet omdat ze vrolijk is."
+    }
+  ],
+  "titel": "Het ABC-model: niet de gebeurtenis maar de gedachte",
+  "verbanden": [],
+  "versie": 3,
+  "voorVandaag": {
+    "kijkpunt": "Merk vandaag één keer een plotselinge stemmingswisseling op en vraag: wat ging er net door mijn hoofd?",
+    "werkbrug": "Als een coachee zegt dat iets hem kwaad maakt, vraag dan: wat zei je op dat moment tegen jezelf?",
+    "zin": "Tussen wat er gebeurt en wat ik voel, zit mijn uitleg."
+  },
+  "vragen": [
+    {
+      "juist": 1,
+      "opties": [
+        "Behavior: het gedrag",
+        "Beliefs: de gedachten en interpretaties over de gebeurtenis",
+        "Bodily response: de lichamelijke reactie",
+        "Barrier: de drempel om te veranderen"
+      ],
+      "soort": "keuze",
+      "uitleg": "B staat voor beliefs. Gedrag en lichamelijke reacties horen bij C, de consequenties.",
+      "vraag": "Waar staat de B in het ABC-model voor?"
+    },
+    {
+      "juist": 0,
+      "opties": [
+        "Catastroferen",
+        "Personaliseren",
+        "Zwart-witdenken",
+        "Emotioneel redeneren"
+      ],
+      "soort": "keuze",
+      "uitleg": "Van een stille inbox meteen naar een mislukt project springen is catastroferen: het ergste scenario als waarschijnlijk behandelen.",
+      "vraag": "Een klant reageert drie dagen niet op je mail. Je denkt: het project gaat mislukken. Welke denkfout is dit vooral?"
+    },
+    {
+      "soort": "open",
+      "vraag": "Maak een ABC van een situatie uit de afgelopen week. Schrijf bij B je eerste automatische gedachte op, en daarna een realistischer alternatief."
+    }
+  ]
+}

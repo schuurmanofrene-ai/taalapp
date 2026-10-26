@@ -1,0 +1,75 @@
+{
+    "generaties": [
+        {
+            "datum": "2026-10-03",
+            "generatie": 1,
+            "hypothese": "Lessen die expliciet verbinden met contractmanagement en coaching worden als boeiender beoordeeld dan lessen met alleen theorie.",
+            "nieuweLessen": [
+                "cgt-1-01"
+            ],
+            "observaties": [
+                "Nog geen leerdata. Startpunt gebaseerd op je doelen en beroep."
+            ],
+            "titel": "De eerste ring",
+            "veranderingen": [
+                "Vijf domeinen opgezet: filosofie, intelligentie en mentaliseren, lichaamstaal, cognitief gedrag en geloof in God",
+                "Vijf instaplessen op MBO-plusniveau, onderling verbonden",
+                "Elke les eindigt met Voor vandaag: een zin, een kijkpunt en een werkbrug"
+            ]
+        },
+        {
+            "datum": "2026-10-04",
+            "generatie": 3,
+            "hypothese": "Een les die direct ingaat op een vastloper uit je eigen open antwoord (cgt-1-02) levert een open antwoord op een hoger SOLO-niveau op dan je eerste ABC-antwoord, met A, B en C gescheiden.",
+            "nieuweLessen": [
+                "cgt-1-02"
+            ],
+            "observaties": [
+                "Eerste afgeronde les: cgt-1-01, het ABC-model. Keuzevragen 2 van 2, helder 5, moeilijk 3 (precies goed), boeiend 5.",
+                "Denkniveau van je open antwoord (SOLO): multistructureel met een relationele aanzet. Je zag zelf de veralgemening en bouwde een realistisch alternatief, maar A, B en C liepen nog door elkaar.",
+                "Je schreef: 'De ABC vind ik nog lastig in te zetten, ik ben snel met een groot verhaal', en vroeg om hulp.",
+                "Hypothese G2 (langere lessen boeiender): nog onbeslist, er is nog geen G2-les afgerond. Wel bleek dat een korte les al een 5 op boeiend kan krijgen. Een 5 laat geen ruimte om hoger te scoren, dus de meting moet anders.",
+                "Nevenhypothese G1 (brug naar je werk maakt boeiender): \u00e9\u00e9n steunend datapunt, je eigen werkmoment leverde boeiend 5 op. Te weinig om te beslissen."
+            ],
+            "titel": "Het eerste spoor",
+            "veranderingen": [
+                "cgt-1-01 herschreven naar versie 2: een nieuwe sectie met drie toetsen om A, B en C uit elkaar te houden (camera, citaat, \u00e9\u00e9n woord)",
+                "Nieuwe les cgt-1-02 over het G-schema, de regel van \u00e9\u00e9n en de pijl naar beneden, precies op jouw lastige punt",
+                "Nieuwe les gel-1-02 over schuld en schaamte in Genesis 3 en bij June Tangney, als vervolg op het afschuiven in jouw voorbeeld",
+                "Werkregels: een vastloper in een open antwoord bepaalt de volgende les, en hypotheses worden gemeten met een maat zonder plafond"
+            ]
+        },
+        {
+            "datum": "2026-10-26",
+            "generatie": 8,
+            "hypothese": "Als de open vraag van de volgende les hem vraagt om in een eigen werksituatie twee benoemde begrippen uit de les expliciet met elkaar te verbinden en daarbij minstens \u00e9\u00e9n alternatieve verklaring te geven voor wat hij waarneemt, dan bereikt zijn antwoord een relationeel niveau in plaats van een opsomming.",
+            "nieuweLessen": [
+                "cgt-1-03"
+            ],
+            "observaties": [
+                "Hypothese onbeslist: Er is nog geen enkele SOLO-meting vastgelegd. De drie recente open antwoorden (Ekman, Comfort en ongemak, Epictetus) horen niet bij de CGT-reeks, dus ook een informele inschatting zegt niets over een vervolgles op cgt-1-02 of over het scheiden van A, B en C. De hypothese blijft open totdat er een gemeten ABC-antwoord na een gerichte vervolgles ligt.",
+                "Bij de ziekmelding tekende je te snel onder de eerste duiding en zag je dat zelf terug",
+                "Bij je teamleider noemde je direct een negatief motief, terwijl de basislijn er al was",
+                "Bij je collega zocht je naar de beweegredenen, maar de waarneming stond nog niet helder op papier"
+            ],
+            "titel": "Van snel oordeel naar eerst kijken",
+            "veranderingen": [
+                "Nieuwe les cgt-1-03: Ik weet wat jij denkt: gedachtenlezen en de kunst van geleide ontdekking. Vanzelf geschreven omdat je bijna door je open lessen heen was."
+            ]
+        },
+        {
+            "generatie": 9,
+            "datum": "2026-10-26",
+            "titel": "Een eigen programma voor CGT",
+            "observaties": [
+                "Ren\u00e9 vroeg om elk vak een eigen programma te geven: alles door elkaar was te veel."
+            ],
+            "veranderingen": [
+                "Dit vak staat nu op zichzelf, met een eigen leerpad en vormgeving.",
+                "De route door andere vakken is weggehaald; verbanden wijzen alleen nog naar lessen in dit vak."
+            ],
+            "hypothese": "Als de open vraag van de volgende les hem vraagt om in een eigen werksituatie twee benoemde begrippen uit de les expliciet met elkaar te verbinden en daarbij minstens \u00e9\u00e9n alternatieve verklaring te geven voor wat hij waarneemt, dan bereikt zijn antwoord een relationeel niveau in plaats van een opsomming.",
+            "nieuweLessen": []
+        }
+    ]
+}

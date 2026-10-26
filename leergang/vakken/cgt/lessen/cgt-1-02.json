@@ -1,0 +1,121 @@
+{
+  "id": "cgt-1-02",
+  "bekend": [
+    {
+      "begrip": "ABC-model",
+      "van": "cgt-1-01"
+    }
+  ],
+  "bronnen": [
+    "Burns (1980), Feeling Good: The New Mood Therapy",
+    "Beck, J. (2020), Cognitive Behavior Therapy: Basics and Beyond, hoofdstuk over kernovertuigingen",
+    "Korrelboom & Ten Broeke (2014), Geïntegreerde cognitieve gedragstherapie"
+  ],
+  "complexer": "Je gaat van het herkennen van één gedachte naar het blootleggen van de lagen die eronder liggen.",
+  "complexiteit": 12,
+  "denkers": [
+    "Albert Ellis",
+    "Aaron Beck",
+    "Judith Beck",
+    "David Burns"
+  ],
+  "domein": "cgt",
+  "generatie": 3,
+  "herhaling": [
+    {
+      "juist": 1,
+      "opties": [
+        "Bij A, want het gebeurde echt",
+        "Bij B, want het is een oordeel in de vorm van een gevoel",
+        "Bij C, want er staat 'ik voelde'",
+        "Nergens, het is een conclusie achteraf"
+      ],
+      "soort": "keuze",
+      "uitleg": "Het woord 'voelde' maakt het nog geen gevoel. 'Tekortschieten' is een oordeel over jezelf en hoort bij B. Het gevoel eronder is misschien schaamte of angst.",
+      "van": "cgt-1-01",
+      "vraag": "Iemand schrijft bij C: 'ik voelde dat ik tekortschoot'. Waar hoort dit eigenlijk?"
+    }
+  ],
+  "kern": "Een moment pas je pas aan als je het eerst klein maakt: één gebeurtenis, één gedachte, één gevoel. Daarna kun je doorvragen naar wat eronder ligt.",
+  "leestijd": 16,
+  "nieuw": [
+    {
+      "begrip": "G-schema",
+      "niveau": "MBO+"
+    },
+    {
+      "begrip": "Kernovertuigingen",
+      "niveau": "HBO"
+    }
+  ],
+  "niveau": 1,
+  "secties": [
+    {
+      "kop": "Het verhaal dat te snel gaat",
+      "tekst": "Een coachee komt binnen en begint meteen te vertellen. Over de vergadering van dinsdag, over de collega die altijd zo doet, over vroeger, over wat zijn vrouw ervan vond, en waarom het eigenlijk allemaal begon bij die reorganisatie van drie jaar terug. Na tien minuten weet je veel, en tegelijk niets. Waar zit het moment waarop het misging?\n\nMisschien herken je dit ook van binnenuit. Wie veel ziet en snel denkt, maakt van één moment al gauw een heel verhaal. Dat is geen zwakte. Het is de kracht van een rijk brein dat verbanden legt. Maar een verhaal kun je niet veranderen. Een moment wel."
+    },
+    {
+      "kop": "Het G-schema: vijf vakjes",
+      "tekst": "In de Nederlandse GGZ en in coaching wordt het ABC-model vaak gebruikt in de vorm van het G-schema. Het heeft vijf vakjes in plaats van drie:\n\nGebeurtenis: wat gebeurde er, zoals een camera het zou zien?\nGedachten: wat zei de stem in je hoofd, letterlijk?\nGevoel: welk gevoel kwam er op, in één woord, en hoe sterk van 0 tot 100?\nGedrag: wat deed je, of liet je na?\nGevolg: wat leverde dat op, op korte en op lange termijn?\n\nDe twee extra vakjes zijn niet bedoeld om het ingewikkelder te maken. Ze helpen juist om C uit elkaar te halen: gevoel is iets anders dan gedrag, en gedrag heeft een gevolg dat je weer kunt bekijken. Vooral dat laatste vakje is verhelderend. Afschuiven geeft op korte termijn opluchting, en op lange termijn vaak precies het wantrouwen waar je bang voor was."
+    },
+    {
+      "kop": "De regel van één",
+      "tekst": "De belangrijkste discipline van het G-schema is klein blijven. Eén moment, niet een week. Eén gedachte, de heetste, niet alle tien. Eén gevoel, het sterkste.\n\nWie een groot verhaal heeft, kan het zo doen: vertel eerst het hele verhaal, aan jezelf of op papier, want dat moet er even uit. Vraag je daarna af: als dit een film was, welke seconde zou ik stilzetten? Dat is meestal het moment waarop het gevoel het hardst opkwam. Dat moment, en alleen dat, gaat het schema in.\n\nGetallen helpen hierbij. 'Ik was zenuwachtig' is vaag. 'Zenuwachtig, 70' is een meting. Als je straks een realistischer gedachte vindt en het gevoel daalt naar 40, zie je dat het werkt. Je hoeft niet naar nul. Een fout maken mag een beetje pijn doen."
+    },
+    {
+      "kop": "De pijl naar beneden",
+      "tekst": "Soms is de eerste gedachte niet de diepste. De Amerikaanse psychiater David Burns beschreef een techniek die in het Nederlands de pijltjestechniek heet. Je neemt de gedachte en vraagt steeds: stel dat dat waar is, wat zou dat dan betekenen? Wat zou daar zo erg aan zijn?\n\nNeem een voorbeeld. 'Mijn opdrachtgever ziet de fout in het rapport.' Stel dat dat waar is, wat dan? 'Dan denkt hij dat ik slordig ben.' En wat zou dat betekenen? 'Dan vertrouwt hij me niet meer.' En dan? 'Dan ben ik niet goed genoeg.'\n\nOnderaan de pijl ligt vaak een kernovertuiging: een oud, breed oordeel over jezelf, de ander of de wereld. Judith Beck onderscheidt er grofweg drie families van: ik ben niet capabel, ik ben niet de moeite waard om lief te hebben, en ik ben niets waard. Kernovertuigingen zijn meestal lang geleden gevormd en voelen als feit. Daarom is het zo nuttig om ze te zien: wat je ziet, kun je toetsen."
+    },
+    {
+      "begrip": "Kernovertuigingen",
+      "kop": "Kernovertuigingen en leefregels: gedachten in lagen",
+      "niveau": "HBO",
+      "soort": "begrip",
+      "tekst": "Iemand die al dertig jaar uitstekend werk levert, kan nog steeds bij elke kritische mail even ineenkrimpen. Zijn cv zegt iets anders, zijn collega's zeggen iets anders, en toch is daar die oude stem. Dat is het werk van een kernovertuiging.\n\nAaron Beck beschreef in de jaren zestig en zeventig dat gedachten in lagen liggen. Zijn dochter Judith Beck werkte dat uit in het handboek dat therapeuten nu wereldwijd gebruiken. Bovenaan liggen de automatische gedachten: snel, concreet, gebonden aan het moment. Daaronder liggen de leefregels of tussenliggende aannames, vaak in als-dan-vorm: als ik een fout maak, dan vinden ze me niet goed. En helemaal onderaan liggen de kernovertuigingen: kort, absoluut en algemeen. Ik ben niet goed genoeg. Anderen zijn niet te vertrouwen.\n\nKernovertuigingen ontstaan meestal vroeg, uit ervaringen waarvoor ze toen een logische verklaring leken. Daarna werken ze als een filter. Informatie die past, valt op en blijft hangen. Informatie die niet past, wordt weggeredeneerd als toeval of uitzondering. Zo houdt een overtuiging zichzelf in stand, ook als het bewijs ertegen zich opstapelt. De leefregels zijn de manier waarop iemand probeert te leven zonder dat de overtuiging bevestigd wordt: hard werken, nooit nee zeggen, alles controleren.\n\nIn je werk zie je kernovertuigingen vooral aan hun leefregels. Een opdrachtgever die alles drie keer laat nalopen, of een coachee die nooit om hulp vraagt, volgt misschien een regel die een diepere overtuiging beschermt. Het verschil met een automatische gedachte zit in de reikwijdte: 'hij vindt dit rapport slordig' gaat over vandaag, 'ik ben niet capabel' gaat over je hele leven.\n\nEen kanttekening: het lagenmodel is een denkmodel, geen ontdekking in het brein, en de grenzen tussen de lagen zijn vaag. Een kernovertuiging verandert ook zelden in één gesprek. In de CGT gebeurt dat stap voor stap, door nieuwe ervaringen te verzamelen die er niet in passen. Tegen iemand zeggen dat zijn overtuiging niet klopt, helpt weinig. Samen bijhouden wat er gebeurt als hij zijn leefregel eens loslaat, helpt veel meer."
+    },
+    {
+      "kop": "Wat je níet moet doen",
+      "tekst": "De pijl naar beneden is krachtig, en daarom ook iets om zorgvuldig mee om te gaan. Bij jezelf: gebruik hem als nieuwsgierige vraag, niet als bewijs dat je inderdaad niet goed genoeg bent. De kernovertuiging is wat je brein vreest, geen diagnose. Bij een coachee of cliënt: doe het alleen als er vertrouwen is en tijd om op te vangen wat er bovenkomt. Halverwege stoppen kan iemand met een open wond achterlaten.\n\nEn houd in gedachten dat het schema een hulpmiddel is, geen doel. Wie zijn leven in vakjes gaat opdelen, mist wat het verhaal ook vertelt. Het grote verhaal mag blijven. Het schema is de loep die je er af en toe overheen legt."
+    }
+  ],
+  "titel": "Van groot verhaal naar één zin: het G-schema en de pijl naar beneden",
+  "verbanden": [
+    "cgt-1-01"
+  ],
+  "versie": 2,
+  "voorVandaag": {
+    "kijkpunt": "Merk vandaag op wanneer je in je hoofd een heel verhaal over iets begint. Vraag je af: welke seconde zou ik hier stilzetten?",
+    "werkbrug": "Vraag een coachee die veel vertelt: als dit een film was, welk moment zetten we stil? Laat daarna alleen dat moment door de vijf vakjes gaan.",
+    "zin": "Een verhaal kun je niet veranderen, een moment wel."
+  },
+  "vragen": [
+    {
+      "juist": 1,
+      "opties": [
+        "Laten zien wie er schuld heeft",
+        "Zien wat je gedrag oplevert, op korte en op lange termijn",
+        "Het gevoel een cijfer geven",
+        "De gebeurtenis objectief beschrijven"
+      ],
+      "soort": "keuze",
+      "uitleg": "Het gevolg maakt zichtbaar dat gedrag dat nu oplucht, zoals vermijden of afschuiven, op termijn vaak juist versterkt waar je bang voor bent.",
+      "vraag": "Wat is het belangrijkste doel van het vakje 'Gevolg' in het G-schema?"
+    },
+    {
+      "juist": 1,
+      "opties": [
+        "Dit is de waarheid die eindelijk bovenkomt",
+        "Dit is een kernovertuiging: een oud oordeel dat als feit voelt en dat je kunt toetsen",
+        "Dit moet je meteen vervangen door 'ik ben geweldig'",
+        "Dit betekent dat de techniek mislukt is"
+      ],
+      "soort": "keuze",
+      "uitleg": "Een kernovertuiging voelt als feit, maar is een overtuiging. Het doel is haar te zien en te toetsen, niet haar te geloven of weg te poetsen met een positieve leus.",
+      "vraag": "Je gebruikt de pijltjestechniek en komt uit bij 'ik ben niet goed genoeg'. Wat is de juiste houding?"
+    },
+    {
+      "soort": "open",
+      "vraag": "Neem opnieuw een moment uit de afgelopen week en vul het G-schema in, met de regel van één: één seconde, één gedachte tussen aanhalingstekens, één gevoel met een cijfer. Wat zie je in het vakje Gevolg?"
+    }
+  ]
+}

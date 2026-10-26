@@ -1,0 +1,97 @@
+{
+  "bekend": [],
+  "bronnen": [
+    "Pascal, Pensées, 277",
+    "Spinoza, Ethica, deel IV, voorwoord",
+    "Davies (2004), An Introduction to the Philosophy of Religion"
+  ],
+  "complexiteit": 8,
+  "denkers": [
+    "Augustinus",
+    "Thomas van Aquino",
+    "Baruch Spinoza",
+    "Blaise Pascal"
+  ],
+  "domein": "geloof",
+  "generatie": 1,
+  "id": "gel-1-01",
+  "kern": "Voordat je kunt vragen of God bestaat, moet je weten wát je bedoelt, en mensen bedoelen er heel verschillende dingen mee.",
+  "leestijd": 11,
+  "nieuw": [
+    {
+      "begrip": "Drie godsbeelden",
+      "niveau": "MBO+"
+    },
+    {
+      "begrip": "Pantheïsme van Spinoza",
+      "niveau": "HBO"
+    }
+  ],
+  "niveau": 1,
+  "secties": [
+    {
+      "kop": "Eén woord, veel betekenissen",
+      "tekst": "Als twee mensen discussiëren over de vraag of God bestaat, praten ze vaak langs elkaar heen. De één bedoelt een oude man op een wolk, en zegt terecht dat die niet bestaat. De ander bedoelt de grond van alle bestaan, en zegt dat die er wel moet zijn. Ze verschillen niet echt van mening over het antwoord; ze verschillen over de vraag. Daarom begint de godsdienstfilosofie bij een begripsvraag: welk godsbeeld bespreken we?"
+    },
+    {
+      "kop": "Drie klassieke beelden",
+      "tekst": "Het klassieke theïsme, zoals bij Augustinus en Thomas van Aquino, ziet God als volmaakt, almachtig, alwetend en goed, en als de oorzaak van al het bestaande zonder zelf een ding tussen dingen te zijn. Het deïsme, populair in de Verlichting, ziet God als de ontwerper die de wereld in gang zette en zich daarna terugtrok. Het pantheïsme, bekend van de Nederlandse filosoof Spinoza, stelt dat God en de natuur één en hetzelfde zijn. Daarnaast zijn er persoonlijke godsbeelden uit de Bijbel: de God die spreekt, roept, troost en een verbond sluit met mensen."
+    },
+    {
+      "begrip": "Pantheïsme van Spinoza",
+      "kop": "Spinoza: God, oftewel de Natuur",
+      "niveau": "HBO",
+      "soort": "begrip",
+      "tekst": "Stel je een avond aan zee voor. De golven, de sterren, de wetmatigheid waarmee het getij komt en gaat. Sommige mensen voelen op zo'n moment iets wat ze God zouden noemen, zonder aan iemand te denken die luistert. Voor hen is de ordening zelf het heilige. Die gedachte kreeg haar scherpste vorm bij een lenzenslijper in Den Haag.\n\nBaruch Spinoza (1632-1677) groeide op in de Portugees-joodse gemeenschap van Amsterdam en werd daar op zijn drieëntwintigste verbannen om zijn ideeën. In zijn hoofdwerk, de Ethica, dat pas na zijn dood verscheen, gebruikt hij de uitdrukking Deus sive Natura: God, oftewel de Natuur. Dat noemen we pantheïsme: God is niet iets naast of boven de wereld, God is alles wat bestaat.\n\nHoe werkt dat denkbeeld? Voor Spinoza bestaat er maar één werkelijkheid, en alles volgt daaruit met noodzaak, zoals uit de definitie van een driehoek volgt dat de hoeken samen 180 graden zijn. Er is dus geen God die kiest, ingrijpt of beloont. Wie de samenhang van alles begrijpt, ervaart volgens Spinoza een rustige vreugde, die hij de intellectuele liefde tot God noemt.\n\nVoor je werk is dit nuttig omdat je mensen tegenkomt die zeggen: ik geloof wel in iets, maar niet in een God die gebed hoort. Dat is vaak geen halfslachtigheid, maar een positie met een lange geschiedenis. Het verschil met het deïsme is wezenlijk. De deïst gelooft in een maker die zich terugtrok. Spinoza gelooft in een God die nergens heen kan, omdat hij alles is.\n\nDe kanttekening: critici, ook in Spinoza's eigen tijd, zeiden dat God zo alleen een ander woord voor de natuur wordt, en dat pantheïsme in feite atheïsme is. Vanuit de Bijbelse traditie schuurt het ook: een God die geen persoon is, kan geen verbond sluiten, niet spreken en niet vergeven. Juist dat verschil maakt Spinoza een goede spiegel voor je eigen godsbeeld."
+    },
+    {
+      "kop": "Drie wegen naar God",
+      "tekst": "Mensen komen langs verschillende wegen tot geloof of twijfel. De weg van de rede: argumenten, zoals de vraag waarom er iets is in plaats van niets. De weg van de ervaring: momenten van ontzag, gebed, verbondenheid of juist van stilte en afwezigheid. De weg van de openbaring en traditie: een tekst, een gemeenschap en een geschiedenis waarin mensen God menen te horen. Blaise Pascal, wiskundige en gelovige, schreef: het hart heeft zijn redenen die de rede niet kent. Hij bedoelde niet dat geloof onredelijk is, maar dat de rede niet het enige kenvermogen is."
+    },
+    {
+      "kop": "Waarom dit voor jou als professional telt",
+      "tekst": "In coaching en therapie kom je mensen tegen voor wie geloof een bron van kracht is, en mensen voor wie het een bron van schuld of angst is. Een goede professional mentaliseert ook hier: welk godsbeeld leeft er in deze persoon, en wat doet dat beeld met hem? Je hoeft het er niet mee eens te zijn om het te begrijpen. En voor jezelf geldt hetzelfde: je eigen godsbeeld kleurt je waarneming, of je nu gelooft of niet."
+    }
+  ],
+  "titel": "Wat bedoelen we eigenlijk met God?",
+  "verbanden": [
+    "fil-1-01",
+    "ment-1-01"
+  ],
+  "versie": 2,
+  "voorVandaag": {
+    "kijkpunt": "Luister vandaag naar een gesprek over een groot woord, zoals vertrouwen of eerlijk, en vraag je af of beide partijen hetzelfde bedoelen.",
+    "werkbrug": "Vraag bij je volgende contractbespreking wat iedereen verstaat onder een term als redelijke inspanning. Grote woorden in contracten zijn net als het woord God: iedereen vult ze anders in.",
+    "zin": "Eerst begrijpen wat iemand bedoelt, dan pas het oneens zijn."
+  },
+  "vragen": [
+    {
+      "juist": 1,
+      "opties": [
+        "Deïsme: God schiep de wereld en trok zich terug",
+        "Pantheïsme: God en natuur zijn één",
+        "Klassiek theïsme: een volmaakt en persoonlijk wezen",
+        "Atheïsme: er is geen God"
+      ],
+      "soort": "keuze",
+      "uitleg": "Spinoza sprak van Deus sive Natura: God oftewel de Natuur.",
+      "vraag": "Welk godsbeeld hoort bij Spinoza?"
+    },
+    {
+      "juist": 2,
+      "opties": [
+        "Dat geloof onredelijk is",
+        "Dat gevoelens altijd gelijk hebben",
+        "Dat er naast logisch redeneren nog andere manieren van kennen zijn",
+        "Dat je niet over God moet nadenken"
+      ],
+      "soort": "keuze",
+      "uitleg": "Pascal was zelf een scherp wiskundige. Hij wees de rede niet af, maar zag haar grenzen.",
+      "vraag": "Wat bedoelde Pascal met: het hart heeft zijn redenen die de rede niet kent?"
+    },
+    {
+      "soort": "open",
+      "vraag": "Welk godsbeeld heb jij meegekregen in je opvoeding, en welk beeld leeft er nu in jou? Wat is er in de loop van de tijd veranderd?"
+    }
+  ]
+}

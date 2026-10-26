@@ -1,0 +1,133 @@
+{
+  "id": "fil-1-03",
+  "bekend": [
+    {
+      "begrip": "Wat in je macht ligt en wat niet",
+      "van": "fil-1-02"
+    },
+    {
+      "begrip": "Het ABC-model",
+      "van": "cgt-1-01"
+    }
+  ],
+  "bronnen": [
+    "Epictetus, Handboekje (Encheiridion), hoofdstuk 1 en 5",
+    "Epictetus, Diatriben (Gesprekken)",
+    "Sextus Empiricus, Grondtrekken van het pyrronisme",
+    "Edmund Husserl, Ideeën tot een zuivere fenomenologie (1913)",
+    "Maurice Merleau-Ponty, Fenomenologie van de waarneming (1945), voorwoord",
+    "Bijbel, Jakobus 1:19 en Genesis 3:12"
+  ],
+  "complexer": "René, waar Epictetus je vorige keer één visie gaf, zet deze les drie scholen tegenover elkaar die elkaar echt tegenspreken, en vraagt je om zelf af te wegen welke houding je wanneer kiest.",
+  "complexiteit": 16,
+  "denkers": [
+    "Epictetus",
+    "Albert Ellis",
+    "Zeno van Citium",
+    "Chrysippus",
+    "Pyrrho van Elis",
+    "Sextus Empiricus",
+    "Edmund Husserl",
+    "Maurice Merleau-Ponty"
+  ],
+  "domein": "filosofie",
+  "generatie": 6,
+  "herhaling": [
+    {
+      "juist": 1,
+      "opties": [
+        "Dat echte kennis onmogelijk is en je dus beter niets kunt beweren",
+        "Dat erkennen wat je niet zeker weet het begin is van werkelijk onderzoek",
+        "Dat je in een gesprek je eigen mening beter kunt verzwijgen",
+        "Dat alleen goden kennis hebben en mensen moeten gehoorzamen"
+      ],
+      "soort": "keuze",
+      "uitleg": "Socrates gebruikte zijn niet-weten als startpunt: wie toegeeft dat hij iets niet zeker weet, gaat vragen stellen en onderzoeken. Het is geen eindpunt van twijfel, en daarin verschilt het ook van de sceptici uit deze les, die het inhouden zelf als doel konden zien.",
+      "van": "fil-1-01",
+      "vraag": "Wat bedoelde Socrates met zijn 'niet-weten'?"
+    }
+  ],
+  "kern": "Wat we 'zien' is vaak al een oordeel dat we ongemerkt hebben ondertekend. De Stoïcijnen, de sceptici en later Husserl gaven elk een ander antwoord op de vraag hoe je die handtekening kunt uitstellen, en uit hun onderlinge strijd valt een werkbare eigen positie op te bouwen.",
+  "leestijd": 17,
+  "nieuw": [
+    {
+      "begrip": "Indruk en instemming",
+      "niveau": "MBO+"
+    },
+    {
+      "begrip": "Epoché",
+      "niveau": "HBO"
+    }
+  ],
+  "niveau": 1,
+  "secties": [
+    {
+      "kop": "Twee seconden aan tafel",
+      "tekst": "Dinsdagmiddag, derde overleg over een raamcontract dat al maanden schuurt. Tegenover René zit de accountmanager van de leverancier. Bij de vraag waarom de servicetermijnen opnieuw niet gehaald zijn, leunt hij achterover, slaat zijn armen over elkaar, kijkt kort naar zijn telefoon en zegt: 'Dat moeten we intern even bekijken.' Nog voordat de zin af is, staat er in René's hoofd al een complete conclusie. Hij schuift het af. Hij neemt ons niet serieus. Hier moet ik doorpakken.\n\nHet loont om even stil te staan bij hoe snel dat gaat. In misschien twee seconden zijn drie heel verschillende dingen aan elkaar gesmolten. Er is iets gezien: armen over elkaar, een blik op een scherm, een korte zin. Er is iets geoordeeld: hij ontwijkt, hij is onwillig. En er is al een gevolg in gang gezet: de toon wordt scherper, de volgende vraag wordt een verhoor. Van binnen voelt dat niet als drie stappen. Het voelt als één ding: zien wat er is.\n\nPrecies daar zit de vraag van deze les. Is wat we 'zien' eigenlijk wel zien? Of is het een voorstel van de geest dat we, zonder het te merken, al hebben ondertekend? Twee oude Griekse scholen dachten over die vraag na en kwamen tot een verschillend antwoord. Een filosoof uit de twintigste eeuw pakte een van die antwoorden op en maakte er een methode van. Ze spreken elkaar deels tegen, en juist in die spanning ligt iets bruikbaars voor de spreekkamer en de vergadertafel."
+    },
+    {
+      "kop": "Wat er al ligt, en wat het openlaat",
+      "tekst": "In de les over Epictetus stond een eenvoudige verdeling centraal: sommige dingen liggen in je macht, andere niet. Het gedrag van die accountmanager ligt niet in René's macht; zijn eigen oordeel en zijn eigen reactie wel. Epictetus zei het scherp in zijn Handboekje: niet de dingen zelf verontrusten mensen, maar hun oordelen over de dingen.\n\nDiezelfde gedachte kwam terug in het ABC-model uit de cognitieve gedragstherapie. A is de gebeurtenis, B de gedachte of overtuiging erover, C het gevoel en gedrag dat volgt. Albert Ellis, de Amerikaanse psycholoog die dit model vanaf de jaren vijftig ontwikkelde, noemde Epictetus uitdrukkelijk als inspiratiebron. Het is dus geen toeval dat die twee lessen zo op elkaar lijken.\n\nMaar beide laten een vraag open die er in de praktijk toe doet. Als het oordeel in mijn macht ligt, waarom voelt het dan niet zo? Het oordeel 'hij schuift het af' werd niet gekozen; het was er gewoon. Wie zegt dat je je oordelen in de hand hebt, moet ook kunnen aanwijzen op welk moment dat dan is. Daarvoor moeten we een laag dieper, naar hoe de Stoïcijnen zich het waarnemen zelf voorstelden."
+    },
+    {
+      "begrip": "Indruk en instemming",
+      "kop": "De handtekening onder een voorstel",
+      "niveau": "MBO+",
+      "soort": "begrip",
+      "tekst": "Een cliënt komt binnen, ploft in de stoel en zucht diep. Bij de therapeut komt meteen iets op: ze heeft er geen zin in. Dat beeld is er vanzelf, ongevraagd. Maar het ligt nog open of de therapeut het ook gelooft, of het laat liggen tot de cliënt iets zegt. Misschien heeft ze net drie trappen gelopen.\n\nDe Stoïcijnen gaven dit verschijnsel een naam: het verschil tussen indruk en instemming. De school werd rond 300 voor Christus in Athene gesticht door Zeno van Citium; zijn latere opvolger Chrysippus werkte de leer over waarneming uit. Epictetus, die zo'n vier eeuwen later lesgaf, maakte er een dagelijkse oefening van. In het Grieks heet de indruk phantasia en de instemming synkatathesis.\n\nHet werkt zo. Een indruk is wat de wereld je aanbiedt, inclusief de duiding die er al aan vastzit: niet alleen 'armen over elkaar', maar 'armen over elkaar, dus afwerend'. Daar kun je weinig aan doen. Instemming is de stap daarna: je zegt innerlijk ja, zo is het, en vanaf dat moment handel je ernaar. Pas bij die tweede stap ligt volgens de Stoïcijnen je vrijheid. Epictetus raadde aan een indruk aan te spreken: 'Je bent maar een indruk, en helemaal niet wat je lijkt te zijn.' Daarna toets je hem, voordat je hem toelaat.\n\nVoor René betekent dit iets concreets. Het snelle oordeel over de lege blik van een collega is op zich geen fout; het is een indruk. Als er een fout is, zit die in de handtekening die er direct onder wordt gezet.\n\nDit lijkt op de B uit het ABC-model, maar is niet hetzelfde. Het ABC-model zegt dat er een gedachte tussen gebeurtenis en gevoel zit. De Stoïcijnen splitsen die gedachte zelf nog eens in tweeën: wat opkomt en wat je aanneemt.\n\nEen eerlijke kanttekening: dit is een filosofisch model, geen gemeten proces. Psychologisch onderzoek laat zien dat waarnemen en duiden zo snel verweven raken dat een helder moment van 'instemmen' niet altijd aan te wijzen is. Het model werkt beter als oefening in vertragen dan als beschrijving van wat het brein precies doet."
+    },
+    {
+      "begrip": "Epoché",
+      "kop": "Tussen haakjes zetten",
+      "niveau": "HBO",
+      "soort": "begrip",
+      "tekst": "Een coach luistert naar een teamleider die vertelt dat een medewerker 'altijd' te laat komt en 'duidelijk' geen motivatie heeft. Ze zegt niet: dat klopt niet. Ze zegt ook niet: dat klopt. Ze vraagt: 'Wat zag je vanochtend precies, toen hij binnenkwam?' Het oordeel blijft even in de lucht hangen, niet weggegooid en niet aangenomen.\n\nDat opschorten heet epoché, Grieks voor 'inhouden'. Het woord komt van de sceptici, een school die teruggaat op Pyrrho van Elis, rond 300 voor Christus, en die we vooral kennen uit de geschriften van de arts Sextus Empiricus uit de tweede eeuw na Christus. Ruim zeventien eeuwen later nam de Duitse filosoof Edmund Husserl het woord over. In zijn boek Ideeën uit 1913 maakte hij er een methode van: zet je vanzelfsprekende aannames tussen haakjes, zodat je kunt beschrijven hoe iets zich werkelijk aan je voordoet.\n\nDe sceptici werkten zo: bij elke bewering zochten ze een even sterke tegenbewering. Hij schuift het af; maar misschien moet hij echt eerst intern overleggen. Wegen beide even zwaar, dan houd je je oordeel in. Sextus beschreef dat daar iets onverwachts op volgde: innerlijke rust, juist omdat je niet meer per se gelijk hoeft te hebben. Husserl ging het minder om rust en meer om zuiver beschrijven.\n\nIn het werk van René is dit precies de pauze tussen waarnemen en duiden die bij lichaamstaal zo nodig is: eerst beschrijven wat er gebeurt, pas dan vragen wat het betekent.\n\nHet verschil met de Stoïcijnse instemming is wezenlijk. De Stoïcijn houdt even in om daarna wel te kiezen: deze indruk klopt, die niet. De scepticus houdt in en blijft inhouden, omdat hij betwijfelt of zekerheid haalbaar is. Husserl houdt in om te kunnen beschrijven.\n\nEen eerlijke kanttekening: een volledig oordeelvrije blik bestaat waarschijnlijk niet. De Franse filosoof Maurice Merleau-Ponty schreef in 1945 dat de belangrijkste les van deze methode is dat je haar nooit helemaal kunt voltooien. Je eigen achtergrond kijkt altijd mee. Epoché is een richting, geen eindpunt."
+    },
+    {
+      "kop": "Drie scholen aan één tafel",
+      "tekst": "Zet de drie houdingen naast elkaar bij die accountmanager. De Stoïcijn zegt: je indruk is 'hij ontwijkt'; toets hem, en als hij de toets niet doorstaat, stem dan niet in. De scepticus zegt: tegenover 'hij ontwijkt' staat 'hij heeft geen mandaat', en zolang je dat niet weet, houd je beide in. Husserl zegt: beschrijf eerst wat er gebeurde, de armen, de telefoon, die ene zin, en kijk wat er overblijft als je je eerste duiding even weglaat.\n\nZe spreken elkaar echt tegen. De Stoïcijnen verweten de sceptici dat je met eeuwig inhouden niet kunt leven: wie nooit instemt, kan ook niet handelen. Dat bezwaar is terecht, zeker aan een tafel waar een contract op tijd rond moet. De sceptici verweten de Stoïcijnen op hun beurt dat ze te zeker waren over welke indrukken 'kloppen'. Ook dat raakt, juist bij lichaamstaal, waar de les over Ekman liet zien hoe wankel de koppeling tussen gezicht en gevoel kan zijn.\n\nEen mogelijke eigen positie ligt ertussenin: sceptisch zolang je kijkt, Stoïcijns zodra je moet handelen. Eerst beschrijven en inhouden; dan, met meer informatie, bewust instemmen of niet. Dat is geen eindantwoord, maar een werkhypothese om zelf te toetsen.\n\nOok het geloof kent deze spanning. In de brief van Jakobus staat: 'Ieder mens moet snel zijn om te horen, traag om te spreken, traag tot toorn.' Dat is geen scepticisme; Jakobus vraagt niet om nooit te oordelen, maar om een volgorde. In het verhaal uit Genesis, waar Adam meteen wijst naar 'de vrouw die U mij gegeven hebt', zie je het omgekeerde: een oordeel dat er sneller is dan het horen. Wie dat naast de collega legt die zijn fout doorschoof, ziet dat traag oordelen niet slap is. Het geeft de ander ruimte om alsnog eerlijk te worden."
+    },
+    {
+      "kop": "Terug naar één moment",
+      "tekst": "Wat betekent dit voor morgen? Geen nieuw groot verhaal over hoe mensen in elkaar zitten, maar een kleine handgreep bij één moment. Wanneer er een snel oordeel opkomt, halen drie vragen de gesmolten klomp weer uit elkaar. Wat zag of hoorde ik letterlijk, zo dat een camera het ook had vastgelegd? Welke indruk bood zich daarbij aan? En heb ik daar al mijn handtekening onder gezet, zichtbaar aan mijn toon, mijn houding, mijn volgende vraag?\n\nBij de collega met de lege blik en opgetrokken wenkbrauwen klinkt dat zo. Gezien: wenkbrauwen omhoog, even geen woorden, daarna een doordacht antwoord. Indruk: hij vindt het vreemd. Instemming: nog niet. Juist het weloverwogen antwoord dat volgt, is materiaal om die indruk te toetsen. Misschien is dit gewoon zijn manier van denken, zijn basis, en is er niets afwijkends aan.\n\nDat is ook het eerlijke slot: deze les belooft niet dat snelle oordelen verdwijnen. Ze komen vanzelf, bij iedereen. Wat oefenbaar is, is de ruimte tussen het moment dat een indruk binnenkomt en het moment dat je hem ondertekent. Die ruimte begint misschien bij één seconde. Over jaren kan ze groeien."
+    }
+  ],
+  "titel": "Zien of al ondertekend? Indruk, instemming en de kunst van het inhouden",
+  "verbanden": [],
+  "versie": 1,
+  "voorVandaag": {
+    "kijkpunt": "Merk vandaag één keer op dat er een snel oordeel over iemand opkomt, en benoem voor jezelf alleen wat een camera had vastgelegd, voordat je iets zegt.",
+    "werkbrug": "Vraag in je volgende overleg of coachgesprek, als je een ontwijkende reactie denkt te zien, eerst één beschrijvende vraag zoals 'Wat moet er intern nog gebeuren?' voordat je doorpakt.",
+    "zin": "Een indruk is een voorstel, geen feit; jij bepaalt of je tekent."
+  },
+  "vragen": [
+    {
+      "juist": 2,
+      "opties": [
+        "Bij het zien van de armen over elkaar",
+        "Bij de opkomende gedachte 'hij schuift het af'",
+        "Wanneer René 'hij schuift het af' als waar aanneemt en zijn toon erop afstemt",
+        "Wanneer de accountmanager zijn telefoon pakt"
+      ],
+      "soort": "keuze",
+      "uitleg": "De armen en de telefoon zijn wat waargenomen wordt; de gedachte 'hij schuift het af' is de indruk die vanzelf opkomt. Instemming is pas het innerlijke ja dat daarop volgt, zichtbaar wanneer René ernaar gaat handelen. Daar ligt volgens de Stoïcijnen de vrijheid.",
+      "vraag": "In de scène met de accountmanager: waar zit volgens de Stoïcijnen het moment van instemming?"
+    },
+    {
+      "juist": 1,
+      "opties": [
+        "Zijn oordeel blijvend inhouden, omdat zekerheid over de bedoelingen van de ander toch onbereikbaar is",
+        "Eerst beschrijven en tegenverklaringen onderzoeken, en dan bewust kiezen welke indruk hij laat meewegen in zijn besluit",
+        "Direct op zijn eerste indruk handelen, omdat ervaren professionals hun intuïtie kunnen vertrouwen",
+        "De lichaamstaal negeren en alleen naar de contracttekst kijken"
+      ],
+      "soort": "keuze",
+      "uitleg": "De voorgestelde positie combineert beide scholen: sceptisch inhouden zolang je kijkt, Stoïcijns kiezen zodra je moet handelen. Blijvend inhouden (optie 1) is precies het bezwaar van de Stoïcijnen: dan kun je niet handelen. Direct op de indruk handelen slaat de toets over.",
+      "vraag": "René moet aan het eind van het overleg beslissen of hij de leverancier formeel in gebreke stelt. Welke afweging past het best bij de eigen positie die in de les wordt voorgesteld?"
+    },
+    {
+      "soort": "open",
+      "vraag": "Kies één concreet moment uit deze week waarop je snel een oordeel had over iemand. Schrijf in drie losse zinnen op: wat je letterlijk zag of hoorde, welke indruk zich aandiende, en of en hoe je daar al mee instemde. Beargumenteer daarna welke houding op dat moment beter had gewerkt: Stoïcijns toetsen of sceptisch inhouden. Waarom die, en wat zou je de volgende keer anders doen?"
+    }
+  ]
+}

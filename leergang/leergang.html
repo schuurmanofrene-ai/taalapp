@@ -124,6 +124,7 @@ button { font: inherit; color: inherit; cursor: pointer; }
 .lesrij .nv { font-family: var(--f-mono); font-size: 0.72rem; color: var(--muted); width: 4.2em; }
 .lesrij .st { font-family: var(--f-mono); font-size: 0.75rem; color: var(--muted); font-variant-numeric: tabular-nums; }
 .lesrij .st.klaar { color: var(--good); }
+.lesrij .st.route { color: var(--brass); }
 
 .tijdlijn { list-style: none; margin: 0; padding: 0; display: grid; gap: 28px; }
 .tijdlijn > li { display: grid; grid-template-columns: 74px minmax(0, 1fr); gap: 18px; }
@@ -184,6 +185,42 @@ textarea:focus { border-color: var(--brass); outline: none; }
 .melding { font-family: var(--f-mono); font-size: 0.85rem; color: var(--good); }
 .melding.fout { color: var(--bad); }
 
+/* ---------- route door de vakken ---------- */
+.routes { display: grid; gap: 8px; }
+.routes[hidden] { display: none; }
+.routekaart {
+  width: 100%; text-align: left; display: grid; grid-template-columns: minmax(0, 1fr) auto; gap: 4px 12px; align-items: center;
+  background: var(--surface); border: 1px dashed var(--brass); border-radius: 12px; padding: 12px 14px;
+}
+.routekaart:hover { border-style: solid; }
+.routekaart .rt { font-weight: 600; }
+.routekaart .rv { grid-column: 1 / 3; color: var(--muted); font-size: 0.95rem; }
+.routekaart .rv b { color: var(--c); font-weight: 600; }
+.teller { font-family: var(--f-mono); font-size: 0.8rem; color: var(--brass); font-variant-numeric: tabular-nums; }
+
+.route { border: 1px solid var(--brass); border-radius: 14px; padding: 22px; display: grid; gap: 16px; scroll-margin-top: 72px; }
+.route .uitleg-route { color: var(--muted); }
+.stappen { list-style: none; margin: 0; padding: 0; display: grid; gap: 10px; counter-reset: stap; }
+.stap {
+  display: grid; grid-template-columns: 2.2rem minmax(0, 1fr); gap: 4px 12px; align-items: start;
+  padding: 12px; border-radius: 10px; background: var(--surface); border: 1px solid var(--line);
+}
+.stap .nr {
+  grid-row: 1 / 4; width: 2.2rem; height: 2.2rem; border-radius: 50%; border: 2px solid var(--c);
+  display: grid; place-items: center; font-family: var(--f-mono); font-size: 0.85rem; color: var(--c);
+}
+.stap.af .nr { background: var(--c); color: var(--surface); }
+.stap.volgende { border-color: var(--c); box-shadow: 0 0 0 1px var(--c) inset; }
+.stap .vak { font-family: var(--f-mono); font-size: 0.72rem; letter-spacing: 0.1em; text-transform: uppercase; color: var(--c); }
+.stap .tt { font-weight: 600; }
+.stap .kk { color: var(--muted); font-size: 0.95rem; }
+.stap .knop { margin-top: 6px; grid-column: 2; }
+.vanuit {
+  display: flex; flex-wrap: wrap; gap: 10px 16px; align-items: center; justify-content: space-between;
+  border: 1px dashed var(--brass); border-radius: 12px; padding: 12px 14px;
+}
+.vanuit p { min-width: 0; }
+
 @media (prefers-reduced-motion: reduce) { .lezer { animation: none; } }
 </style>
 
@@ -210,6 +247,10 @@ textarea:focus { border-color: var(--brass); outline: none; }
         <p class="kern" id="v-kern">Claude haalt je leerweg op.</p>
         <button class="knop" id="v-knop" disabled>Open de les</button>
       </article>
+      <div class="routes" id="routes" hidden>
+        <p class="label">Open routes · lessen die nog niet helemaal rond zijn</p>
+        <div class="routes" id="routelijst"></div>
+      </div>
       <div>
         <p class="label" style="margin-bottom:10px">Domeinen · afgerond van geschreven</p>
         <ul class="domeinen" id="domeinen"></ul>
@@ -311,15 +352,34 @@ textarea:focus { border-color: var(--brass); outline: none; }
     a.niveau - b.niveau || DOMEINEN.findIndex((d) => d.id === a.domein) - DOMEINEN.findIndex((d) => d.id === b.domein) || a.id.localeCompare(b.id));
   const klaar = (id) => state.voortgang.get(id)?.afgerond === true;
 
-  function volgendeLes() {
-    const p = state.profiel?.volgendeLes;
-    if (p && state.lessen.has(p) && !klaar(p)) return state.lessen.get(p);
-    return gesorteerd().find((l) => !klaar(l.id)) || null;
+  // Een route: de verbonden lessen uit ándere vakken. Een les is pas helemaal rond
+  // als hij zelf is afgerond én alle stappen van zijn route ook.
+  function routeVan(id) {
+    const les = state.lessen.get(id);
+    const stappen = (les?.verbanden || []).filter((v) => state.lessen.has(v) && state.lessen.get(v).domein !== les.domein);
+    const af = stappen.filter(klaar).length;
+    return { stappen, af, totaal: stappen.length, volgende: stappen.find((v) => !klaar(v)) || null, rond: klaar(id) && af === stappen.length };
   }
+  const datumVan = (id) => String(state.voortgang.get(id)?.datum || "");
+  function openRoutes() {
+    return gesorteerd().filter((l) => klaar(l.id) && !routeVan(l.id).rond)
+      .sort((a, b) => datumVan(a.id).localeCompare(datumVan(b.id)));
+  }
+
+  // Wat je begon maak je eerst af: open routes gaan voor nieuwe lessen.
+  function volgendeStap() {
+    const r = openRoutes()[0];
+    if (r) return { les: state.lessen.get(routeVan(r.id).volgende), vanuit: r.id };
+    const p = state.profiel?.volgendeLes;
+    if (p && state.lessen.has(p) && !klaar(p)) return { les: state.lessen.get(p), vanuit: null };
+    const les = gesorteerd().find((l) => !klaar(l.id));
+    return les ? { les, vanuit: null } : null;
+  }
+  const volgendeLes = () => volgendeStap()?.les || null;
 
   // ---------- render van het leesbare deel ----------
   function renderAlles() {
-    renderKop(); renderVolgende(); renderDomeinen(); renderProfiel(); renderOverzicht(); renderLog(); renderWensen();
+    renderKop(); renderVolgende(); renderRoutes(); renderDomeinen(); renderProfiel(); renderOverzicht(); renderLog(); renderWensen();
     $("kaartstatus").hidden = state.lessen.size > 0;
   }
 
@@ -330,19 +390,33 @@ textarea:focus { border-color: var(--brass); outline: none; }
   }
 
   function renderVolgende() {
-    const les = volgendeLes();
+    const stap = volgendeStap();
     const knop = $("v-knop");
     if (!state.lessen.size) return;
-    if (!les) {
-      $("v-titel").textContent = "Alles gelezen";
+    if (!stap) {
+      $("volgende").querySelector(".label").textContent = "Volgende les";
+      $("v-titel").textContent = "Alles gelezen en alle routes rond";
       $("v-kern").textContent = "Mooi werk. Vraag Claude om een nieuwe groeironde, dan verschijnen de volgende sterren.";
       knop.disabled = true; return;
     }
+    const { les, vanuit } = stap;
+    $("volgende").querySelector(".label").textContent = vanuit ? `Volgende stap in de route vanuit „${state.lessen.get(vanuit).titel}”` : "Volgende les";
     $("v-titel").textContent = les.titel;
     $("v-kern").textContent = les.kern;
     knop.disabled = false;
     knop.textContent = `Open · ${domNaam(les.domein)} · ${NIVEAUS[les.niveau]}`;
-    knop.onclick = () => openLes(les.id);
+    knop.onclick = () => openLes(les.id, vanuit);
+  }
+
+  function renderRoutes() {
+    const open = openRoutes();
+    $("routes").hidden = !open.length;
+    $("routelijst").replaceChildren(...open.map((l) => {
+      const r = routeVan(l.id), nxt = state.lessen.get(r.volgende);
+      return el("button", { class: "routekaart", style: `--c:${kleurVar(nxt.domein)}`, onclick: () => openLes(nxt.id, l.id) },
+        el("span", { class: "rt" }, l.titel), el("span", { class: "teller" }, `${r.af}/${r.totaal}`),
+        el("span", { class: "rv" }, "Volgende: ", el("b", {}, domNaam(nxt.domein)), ` · ${nxt.titel}`));
+    }));
   }
 
   function renderDomeinen() {
@@ -373,11 +447,11 @@ textarea:focus { border-color: var(--brass); outline: none; }
       const g = el("div", { class: "dgroep", style: `--c:${kleurVar(d.id)}` }, el("h3", {}, d.naam));
       if (!lessen.length) g.append(el("p", { class: "notitie" }, "Nog geen lessen geschreven."));
       for (const l of lessen) {
-        const v = state.voortgang.get(l.id);
-        const st = v?.afgerond ? (v.score ? `${v.score.goed}/${v.score.totaal}` : "klaar") : "open";
+        const v = state.voortgang.get(l.id), r = routeVan(l.id);
+        const st = !v?.afgerond ? "open" : !r.rond ? `route ${r.af}/${r.totaal}` : (v.score ? `${v.score.goed}/${v.score.totaal} ✓` : "rond ✓");
         g.append(el("button", { class: "lesrij", onclick: () => openLes(l.id) },
           el("span", { class: "nv" }, NIVEAUS[l.niveau]), el("span", { class: "lt" }, l.titel),
-          el("span", { class: "st" + (v?.afgerond ? " klaar" : "") }, st)));
+          el("span", { class: "st" + (r.rond ? " klaar" : v?.afgerond ? " route" : "") }, st)));
       }
       box.append(g);
     }
@@ -421,24 +495,24 @@ textarea:focus { border-color: var(--brass); outline: none; }
   });
 
   // ---------- de lezer ----------
-  let openId = null;
-  function openLes(id) {
+  let openId = null, openVanuit = null, routeZone = null;
+  function openLes(id, vanuit = null) {
     const les = state.lessen.get(id); if (!les) return;
-    openId = id;
+    openId = id; openVanuit = vanuit && state.lessen.has(vanuit) ? vanuit : null;
     const lezer = $("lezer");
-    lezer.replaceChildren(bouwLes(les));
+    lezer.replaceChildren(bouwLes(les, openVanuit));
     lezer.hidden = false; lezer.scrollTop = 0;
     document.body.style.overflow = "hidden";
     lezer.querySelector(".sluit")?.focus();
   }
   function sluitLes() {
-    $("lezer").hidden = true; openId = null; document.body.style.overflow = "";
+    $("lezer").hidden = true; openId = null; openVanuit = null; routeZone = null; document.body.style.overflow = "";
   }
   document.addEventListener("keydown", (e) => { if (e.key === "Escape" && openId) sluitLes(); });
 
   function concept(id) { return store.get("concept:" + id) || { keuzes: {}, open: {}, claude: {}, beoordeling: {}, opmerking: "" }; }
 
-  function bouwLes(les) {
+  function bouwLes(les, vanuit) {
     const eerder = state.voortgang.get(les.id);
     const c = eerder ? { keuzes: eerder.keuzes || {}, open: eerder.open || {}, claude: eerder.claude || {}, beoordeling: eerder.beoordeling || {}, opmerking: eerder.opmerking || "", ...concept(les.id) } : concept(les.id);
     const bewaarConcept = () => store.set("concept:" + les.id, c);
@@ -453,6 +527,12 @@ textarea:focus { border-color: var(--brass); outline: none; }
     kolom.append(el("header", {},
       el("div", { class: "chips" }, el("span", { class: "chip dchip" }, domNaam(les.domein)), les.versie > 1 ? el("span", { class: "chip" }, `herschreven, versie ${les.versie}`) : null),
       el("h1", { id: "l-titel" }, les.titel), el("p", { class: "kern" }, les.kern)));
+    if (vanuit) {
+      const r = routeVan(vanuit), nr = r.stappen.indexOf(les.id) + 1;
+      kolom.append(el("aside", { class: "vanuit" },
+        el("p", {}, el("span", { class: "label" }, `Route · stap ${nr} van ${r.totaal}`), el("br"), `Je komt hier via „${state.lessen.get(vanuit).titel}”.`),
+        el("button", { class: "knop licht", onclick: () => openLes(vanuit) }, "Terug naar die les")));
+    }
 
     const vragenblok = (vragen, kop, sleutel) => {
       if (!vragen?.length) return null;
@@ -470,12 +550,6 @@ textarea:focus { border-color: var(--brass); outline: none; }
     if (vv) kolom.append(el("aside", { class: "vandaag" }, el("p", { class: "label" }, "Voor vandaag"),
       el("dl", {}, el("dt", {}, "Om mee te nemen"), el("dd", { class: "zin" }, `“${vv.zin}”`),
         el("dt", {}, "Om vandaag te zien"), el("dd", {}, vv.kijkpunt), el("dt", {}, "In je werk"), el("dd", {}, vv.werkbrug))));
-
-    if (les.verbanden?.length) {
-      kolom.append(el("section", {}, el("p", { class: "label" }, "Verbonden sterren"),
-        el("div", { class: "chips" }, les.verbanden.filter((v) => state.lessen.has(v)).map((v) =>
-          el("button", { class: "chip", style: `color:${kleurVar(state.lessen.get(v).domein)}`, onclick: () => openLes(v) }, state.lessen.get(v).titel)))));
-    }
 
     // beoordeling: dit is de brandstof voor de volgende groeironde
     const schaal = (sleutel, vraag, links, rechts) => {
@@ -501,7 +575,53 @@ textarea:focus { border-color: var(--brass); outline: none; }
       schaal("boeiend", "Hoe boeiend was het voor jou?", "vlak", "raakte me"),
       el("label", { for: `opm-${les.id}`, class: "label" }, "Opmerking voor Claude"), opm,
       el("div", { class: "rij" }, afrond, melding)));
+    routeZone = { les, vanuit, el: el("div", { style: "display:grid;gap:20px" }) };
+    vulRouteZone();
+    kolom.append(routeZone.el);
+    const zelfdeVak = (les.verbanden || []).filter((v) => state.lessen.has(v) && state.lessen.get(v).domein === les.domein);
+    if (zelfdeVak.length) kolom.append(el("section", {}, el("p", { class: "label" }, "Verder in dit vak"),
+      el("div", { class: "chips" }, zelfdeVak.map((v) => el("button", { class: "chip", onclick: () => openLes(v) }, state.lessen.get(v).titel)))));
     return kolom;
+  }
+
+  function bouwStappen(r, vanuitId) {
+    return el("ol", { class: "stappen" }, r.stappen.map((id, i) => {
+      const s = state.lessen.get(id), af = klaar(id), isVolgende = id === r.volgende;
+      return el("li", { class: "stap" + (af ? " af" : "") + (isVolgende ? " volgende" : ""), style: `--c:${kleurVar(s.domein)}` },
+        el("span", { class: "nr", "aria-label": af ? "afgerond" : `stap ${i + 1}` }, af ? "✓" : i + 1),
+        el("span", { class: "vak" }, domNaam(s.domein)),
+        el("span", { class: "tt" }, s.titel),
+        el("span", { class: "kk" }, s.kern),
+        el("button", { class: isVolgende ? "knop" : "knop licht", onclick: () => openLes(id, vanuitId) }, af ? "Teruglezen" : isVolgende ? "Ga verder met deze stap" : "Open"));
+    }));
+  }
+
+  // Onderaan elke les: eerst terug de route in waar je vandaan kwam, dan de eigen route.
+  function vulRouteZone() {
+    if (!routeZone) return;
+    const { les, vanuit } = routeZone, kids = [];
+    if (vanuit) {
+      const r = routeVan(vanuit), bron = state.lessen.get(vanuit);
+      const tekst = !klaar(les.id) ? `Rond deze les af om stap ${r.stappen.indexOf(les.id) + 1} van de route vanuit „${bron.titel}” af te vinken.`
+        : r.volgende ? `Deze stap is klaar. Nog ${r.totaal - r.af} van ${r.totaal} te gaan in de route vanuit „${bron.titel}”.`
+        : `De route vanuit „${bron.titel}” is rond. Die ster licht nu helemaal op.`;
+      kids.push(el("section", { class: "route" }, el("p", { class: "label" }, "Je bent onderweg"), el("p", {}, tekst),
+        el("div", { class: "rij" },
+          r.volgende && klaar(les.id) ? el("button", { class: "knop", onclick: () => openLes(r.volgende, vanuit) }, `Volgende stap: ${state.lessen.get(r.volgende).titel}`) : null,
+          el("button", { class: "knop licht", onclick: () => openLes(vanuit) }, `Terug naar „${bron.titel}”`))));
+    }
+    const r = routeVan(les.id);
+    if (r.totaal) {
+      const uitleg = !klaar(les.id)
+        ? `Deze les raakt aan ${r.totaal === 1 ? "een ander vak" : r.totaal + " andere vakken"}. Rond hem eerst af; daarna loop je de route en pas dan licht de ster helemaal op.`
+        : r.rond ? "Route rond. Deze les is in alle vakken verbonden."
+        : `Les afgerond. Nog ${r.totaal - r.af} van ${r.totaal} ${r.totaal - r.af === 1 ? "stap" : "stappen"} in andere vakken, dan is deze ster helemaal rond.`;
+      kids.push(el("section", { class: "route" },
+        el("div", {}, el("p", { class: "label" }, "Route door de vakken"), el("h2", { style: "margin-top:6px" }, "Maak deze les rond")),
+        el("p", { class: "uitleg-route" }, uitleg),
+        bouwStappen(r, les.id)));
+    }
+    routeZone.el.replaceChildren(...kids);
   }
 
   function bouwVraag(les, v, sleutel, c, bewaar) {
@@ -576,8 +696,12 @@ Geef feedback in het Nederlands, hoogstens 150 woorden, in drie korte alinea's d
     try {
       await db.collection("voortgang").doc(les.id).set(doc);
       store.del("concept:" + les.id);
-      melding.className = "melding"; melding.textContent = `Bewaard: ${goed} van ${keuzeVragen.length} goed. Je ster licht nu op.`;
+      state.voortgang.set(les.id, doc); renderAlles(); vulRouteZone();
+      const r = routeVan(les.id);
+      melding.className = "melding";
+      melding.textContent = `Bewaard: ${goed} van ${keuzeVragen.length} goed.` + (r.rond ? " Je ster licht nu helemaal op." : " Loop hieronder de route om de les rond te maken.");
       knop.textContent = "Bijwerken";
+      if (!r.rond || openVanuit) routeZone?.el.scrollIntoView({ behavior: stil.matches ? "auto" : "smooth", block: "start" });
     } catch (e) {
       melding.className = "melding fout"; melding.textContent = "Bewaren mislukte. Je antwoorden staan nog in dit scherm; probeer het zo opnieuw.";
     } finally { knop.disabled = false; }
@@ -693,6 +817,19 @@ Geef feedback in het Nederlands, hoogstens 150 woorden, in drie korte alinea's d
       }
     }
 
+    // open routes: van een afgeronde les naar de stappen die nog wachten
+    ctx.lineWidth = 1.5; ctx.setLineDash([4, 5]); ctx.lineDashOffset = beweeg ? -t * 0.02 : 0;
+    for (const n of nodes) {
+      if (!n.les || !klaar(n.les.id)) continue;
+      for (const v of routeVan(n.les.id).stappen) {
+        const m = pos.get(v); if (!m || klaar(v)) continue;
+        const qx = (n.x + m.x) / 2 * 0.62 + cx * 0.38, qy = (n.y + m.y) / 2 * 0.62 + cy * 0.38;
+        ctx.strokeStyle = alpha(kleuren.brass, 0.85);
+        ctx.beginPath(); ctx.moveTo(n.x, n.y); ctx.quadraticCurveTo(qx, qy, m.x, m.y); ctx.stroke();
+      }
+    }
+    ctx.setLineDash([]);
+
     // jouw spoor: afgeronde lessen in de volgorde waarin je ze deed
     const spoor = [...state.voortgang.values()].filter((v) => v.afgerond && pos.has(v.lesId)).sort((a, b) => String(a.datum).localeCompare(String(b.datum)));
     if (spoor.length) {
@@ -719,8 +856,8 @@ Geef feedback in het Nederlands, hoogstens 150 woorden, in drie korte alinea's d
         ctx.beginPath(); ctx.arc(n.x, n.y, sz * 0.75, 0, 6.283); ctx.stroke(); ctx.setLineDash([]);
         continue;
       }
-      const af = klaar(n.les.id), isHover = hover === n.les.id;
-      if (af) {
+      const af = klaar(n.les.id), rond = af && routeVan(n.les.id).rond, isHover = hover === n.les.id;
+      if (rond) {
         const g = ctx.createRadialGradient(n.x, n.y, 0, n.x, n.y, sz * 3.4);
         g.addColorStop(0, alpha(kleur, 0.45)); g.addColorStop(1, alpha(kleur, 0));
         ctx.fillStyle = g; ctx.beginPath(); ctx.arc(n.x, n.y, sz * 3.4, 0, 6.283); ctx.fill();
@@ -730,8 +867,14 @@ Geef feedback in het Nederlands, hoogstens 150 woorden, in drie korte alinea's d
         ctx.strokeStyle = alpha(kleur, 1 - golf); ctx.lineWidth = 1.5;
         ctx.beginPath(); ctx.arc(n.x, n.y, sz * (1.3 + golf * 2.4), 0, 6.283); ctx.stroke();
       }
-      ctx.lineWidth = 2; ctx.strokeStyle = kleur; ctx.fillStyle = af ? kleur : kleuren.bg;
-      ctx.beginPath(); ctx.arc(n.x, n.y, sz * (isHover ? 1.35 : 1), 0, 6.283); ctx.fill(); ctx.stroke();
+      const straal = sz * (isHover ? 1.35 : 1);
+      ctx.lineWidth = 2; ctx.strokeStyle = kleur; ctx.fillStyle = rond ? kleur : kleuren.bg;
+      ctx.beginPath(); ctx.arc(n.x, n.y, straal, 0, 6.283); ctx.fill();
+      if (af && !rond) {
+        // half gevuld: de les is af, de route nog niet
+        ctx.fillStyle = kleur; ctx.beginPath(); ctx.arc(n.x, n.y, straal, Math.PI / 2, Math.PI * 1.5); ctx.closePath(); ctx.fill();
+      }
+      ctx.beginPath(); ctx.arc(n.x, n.y, straal, 0, 6.283); ctx.stroke();
     }
   }
 
@@ -747,7 +890,7 @@ Geef feedback in het Nederlands, hoogstens 150 woorden, in drie korte alinea's d
   canvas.addEventListener("pointermove", (ev) => {
     const { best } = raak(ev);
     hover = best?.les.id || null; canvas.style.cursor = best ? "pointer" : "default";
-    if (best) { tip.hidden = false; tip.style.left = best.x + "px"; tip.style.top = best.y + "px"; tip.textContent = `${best.les.titel} · ${NIVEAUS[best.niveau]}${klaar(best.les.id) ? " · afgerond" : ""}`; }
+    if (best) { tip.hidden = false; tip.style.left = best.x + "px"; tip.style.top = best.y + "px"; const r = routeVan(best.les.id); tip.textContent = `${best.les.titel} · ${NIVEAUS[best.niveau]}${r.rond ? " · rond" : klaar(best.les.id) ? ` · route ${r.af}/${r.totaal}` : ""}`; }
     else tip.hidden = true;
   });
   canvas.addEventListener("pointerleave", () => { hover = null; tip.hidden = true; });
@@ -767,7 +910,7 @@ Geef feedback in het Nederlands, hoogstens 150 woorden, in drie korte alinea's d
       if (!snap.size && !snap.metadata.fromCache) { $("kaartstatus").textContent = "Nog geen lessen. Vraag Claude om de eerste groeironde."; }
       renderAlles();
     }, fout);
-    db.collection("voortgang").onSnapshot((snap) => { state.voortgang = new Map(snap.docs.map((d) => [d.id, d.data()])); renderAlles(); }, fout);
+    db.collection("voortgang").onSnapshot((snap) => { state.voortgang = new Map(snap.docs.map((d) => [d.id, d.data()])); renderAlles(); vulRouteZone(); }, fout);
     db.collection("meta").onSnapshot((snap) => {
       for (const d of snap.docs) { if (d.id === "profiel") state.profiel = d.data(); if (d.id === "verbeterlog") state.log = d.data(); }
       renderAlles();
