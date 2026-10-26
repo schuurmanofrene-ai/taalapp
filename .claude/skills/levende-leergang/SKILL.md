@@ -169,6 +169,8 @@ Sluit af volgens `wijsheid-voor-vandaag` als die skill beschikbaar is.
 
 ## Wijzigingslog van deze skill
 
+- **2026-10-26 (pagina's)**: elk project is een eigen artifact (zie `leergang/README.md`). Levend Brein bevat alleen nog de leergang; wijsheidsroute, netwerk en Lean Six Sigma zijn losgekoppeld. Deze skill werkt nog steeds alleen op de database van Levend Brein.
+
 - **2026-10-25 (pagina)**: Levend Brein leert nu zelf tussen de groeirondes door. Nieuw in de pagina: SOLO-meting van elk open antwoord, een dagelijkse uitdaging met de sterkste tegenstem (rubric 0 tot 8, scherpte past zich aan), zekerheid opgeven bij herhalen (kalibratie), een docentgeheugen in `meta/docent` dat vóór elke nieuwe les de hypothese toetst en de werkregels herschrijft, en drie meters op Vandaag. Stap 1 en 3 van deze skill lezen die bronnen nu mee.
 
 - **G3 aanvulling 2 (2026-10-21)**: de route door de vakken ook in Levend Brein ingebouwd, ook in het dashboard ("volgende stap in je route"). De skill wijst nu naar Levend Brein, omdat René daar leert (zeven lessen afgerond); de losse kaart is reserve. Stap 2 haalt lessen die de pagina zelf schreef terug naar de repo.
