@@ -1,0 +1,97 @@
+{
+  "id": "ment-1-01",
+  "bekend": [
+    {
+      "begrip": "Houding van niet-weten",
+      "van": "fil-1-01"
+    }
+  ],
+  "bronnen": [
+    "Bateman & Fonagy (2016), Mentalization-Based Treatment for Personality Disorders",
+    "Allen, Fonagy & Bateman (2008), Mentalizing in Clinical Practice"
+  ],
+  "complexiteit": 5,
+  "denkers": [
+    "Peter Fonagy",
+    "Anthony Bateman",
+    "Mary Target"
+  ],
+  "domein": "mentaliseren",
+  "generatie": 1,
+  "kern": "Mentaliseren is gedrag van jezelf en anderen begrijpen vanuit wat er van binnen speelt: gedachten, gevoelens, bedoelingen en behoeften.",
+  "leestijd": 11,
+  "nieuw": [
+    {
+      "begrip": "Mentaliseren",
+      "niveau": "MBO+"
+    },
+    {
+      "begrip": "Psychische equivalentie",
+      "niveau": "HBO"
+    }
+  ],
+  "niveau": 1,
+  "secties": [
+    {
+      "kop": "Wat het woord betekent",
+      "tekst": "Mentaliseren komt van het Latijnse mens, geest. Je mentaliseert als je denkt: hij reageert zo kortaf omdat hij waarschijnlijk onder druk staat. Je kijkt dan niet alleen naar het gedrag maar ook naar de binnenwereld erachter. Psychologen Peter Fonagy en Anthony Bateman hebben dit begrip in de jaren negentig uitgewerkt. Volgens hen is mentaliseren een van de belangrijkste vaardigheden die mensen hebben. Het maakt samenwerken, liefhebben en conflicten oplossen mogelijk. Je doet het meestal vanzelf, zonder het te merken."
+    },
+    {
+      "kop": "Twee richtingen",
+      "tekst": "Je kunt naar buiten mentaliseren: wat gaat er in de ander om? En naar binnen: wat gaat er in mij om? Die tweede richting wordt vaak vergeten. Iemand die erg goed is in anderen lezen, kan zijn eigen irritatie of angst over het hoofd zien. Dan stuurt die verborgen emotie zijn waarneming. Een tweede onderscheid is automatisch tegenover gecontroleerd mentaliseren. Automatisch gaat snel en intuïtief, en klopt vaak, maar niet altijd. Gecontroleerd is traag: je stopt en vraagt je bewust af wat er speelt."
+    },
+    {
+      "kop": "Als mentaliseren uitvalt",
+      "tekst": "Onder stress valt mentaliseren weg. Iedereen heeft dat. Fonagy beschrijft drie manieren waarop het dan misgaat. Bij psychische equivalentie voelt je gedachte als feit: ik voel me genegeerd, dus hij negeert mij. Bij de teleologische modus telt alleen wat je ziet: als je echt om me gaf, had je gebeld. Bij de doen-alsof-modus praat iemand eindeloos over gevoelens, maar het raakt hem niet echt. Herkennen dat je zelf in zo'n modus zit, is al een eerste stap terug naar mentaliseren."
+    },
+    {
+      "begrip": "Psychische equivalentie",
+      "kop": "Psychische equivalentie: als een gevoel een feit wordt",
+      "niveau": "HBO",
+      "soort": "begrip",
+      "tekst": "Een kind van drie ligt 's avonds in bed en roept dat er een monster onder het bed zit. Je knipt het licht aan en laat zien dat er niets ligt. Het helpt nauwelijks. Voor het kind is de angst het bewijs: ik ben bang, dus het monster is er. Er zit nog geen ruimte tussen wat het voelt en wat er werkelijk is.\n\nPeter Fonagy en Mary Target beschreven dit in 1996 als een fase in de ontwikkeling van kinderen. Rond de vier à vijf jaar leert een kind dat een gedachte iets anders is dan de werkelijkheid: 'ik denk dat het zo is' wordt iets anders dan 'het is zo'. Hun belangrijkste punt geldt voor volwassenen: onder stress valt die ruimte weer weg. Het gevoel krijgt dan het gewicht van een feit. Dat noemen ze psychische equivalentie: binnen en buiten worden aan elkaar gelijk.\n\nJe herkent het aan stelligheid zonder bewijs. 'Ik voel dat ze ons willen lozen, dus dat is zo.' Tegenargumenten werken niet, omdat ze voelen als ontkenning van wat iemand ervaart. Hoe meer feiten je aandraagt, hoe harder het gevoel zich verdedigt.\n\nDat is de kern voor je praktijk. In de CGT zou je dit emotioneel redeneren noemen en de gedachte gaan toetsen. Maar wie in psychische equivalentie zit, kan nog niet toetsen, omdat er geen ruimte is om naar de gedachte te kijken. Eerst moet de spanning zakken en moet het gevoel erkend worden: 'ik snap dat het zo voelt.' Pas daarna ontstaat er weer ruimte om samen te bekijken of het ook zo is. Wie te vroeg gaat toetsen, krijgt een kind dat harder roept over het monster. Het verschil met emotioneel redeneren is dus vooral een verschil in volgorde: eerst ruimte maken, dan pas toetsen.\n\nDe kanttekening: het begrip komt uit de klinische theorie achter mentalisatiebevorderende therapie. Die therapie is goed onderzocht, vooral bij persoonlijkheidsproblematiek, maar de modi zelf zijn denkmodellen en lastig te meten. Gebruik het als lens om te kijken, niet als diagnose."
+    },
+    {
+      "kop": "De houding van niet-weten",
+      "tekst": "De kern van goed mentaliseren is een nieuwsgierige, bescheiden houding. Je weet nooit zeker wat er in een ander omgaat. Je kunt alleen goede hypotheses vormen en die toetsen. Wie denkt dat hij een ander volledig doorziet, mentaliseert juist slecht. Fonagy noemt dat hypermentaliseren: overdreven veel en te zeker interpreteren. Voor jou als lichaamstaalspecialist is dit cruciaal. Een signaal zegt nooit wát iemand denkt. Het nodigt je alleen uit om een betere vraag te stellen."
+    }
+  ],
+  "titel": "Mentaliseren: achter het gedrag kijken",
+  "verbanden": [],
+  "versie": 2,
+  "voorVandaag": {
+    "kijkpunt": "Vang vandaag één eigen conclusie over iemand en vraag je af: welke andere verklaring past ook?",
+    "werkbrug": "Formuleer bij een lastige leverancier twee mogelijke binnenwerelden achter zijn gedrag voordat je reageert.",
+    "zin": "Ik zie gedrag. De bedoeling erachter is een vermoeden, geen feit."
+  },
+  "vragen": [
+    {
+      "juist": 1,
+      "opties": [
+        "Teleologische modus",
+        "Psychische equivalentie",
+        "Doen-alsof-modus",
+        "Gecontroleerd mentaliseren"
+      ],
+      "soort": "keuze",
+      "uitleg": "Bij psychische equivalentie valt het verschil tussen gevoel en werkelijkheid weg. Het gevoel wordt als feit behandeld.",
+      "vraag": "Een collega zegt: ik voel dat de klant ons wil lozen, dus dat is zo. Welke modus is dit?"
+    },
+    {
+      "juist": 1,
+      "opties": [
+        "Heel goed kunnen inleven",
+        "Overdreven veel en te zeker invullen wat er in een ander omgaat",
+        "Mentaliseren zonder stress",
+        "Naar binnen mentaliseren"
+      ],
+      "soort": "keuze",
+      "uitleg": "Hypermentaliseren voelt als scherp inzicht, maar het zijn te stellige conclusies op te weinig basis.",
+      "vraag": "Wat is hypermentaliseren?"
+    },
+    {
+      "soort": "open",
+      "vraag": "Beschrijf een moment waarop jouw eigen mentaliseren uitviel onder druk. In welke van de drie modi zat je, en wat bracht je terug?"
+    }
+  ]
+}

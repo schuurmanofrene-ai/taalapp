@@ -1,0 +1,139 @@
+{
+  "id": "cgt-1-03",
+  "bekend": [
+    {
+      "begrip": "ABC-model",
+      "van": "cgt-1-01"
+    },
+    {
+      "begrip": "De ene zin uit het G-schema",
+      "van": "cgt-1-02"
+    },
+    {
+      "begrip": "Basislijn",
+      "van": "lich-1-03"
+    },
+    {
+      "begrip": "Mentaliseren",
+      "van": "ment-1-01"
+    }
+  ],
+  "bronnen": [
+    "Beck, A.T. (1976). Cognitive Therapy and the Emotional Disorders. New York: International Universities Press.",
+    "Beck, A.T., Rush, A.J., Shaw, B.F. & Emery, G. (1979). Cognitive Therapy of Depression. New York: Guilford Press.",
+    "Burns, D.D. (1980). Feeling Good: The New Mood Therapy. New York: William Morrow.",
+    "Ellis, A. (1962). Reason and Emotion in Psychotherapy. New York: Lyle Stuart.",
+    "Padesky, C.A. (1993). Socratic questioning: Changing minds or guiding discovery? Lezing, European Congress of Behavioural and Cognitive Therapies, Londen.",
+    "Braun, J.D., Strunk, D.R., Sasso, K.E. & Cooper, A.A. (2015). Therapist use of Socratic questioning predicts session-to-session symptom change in cognitive therapy for depression. Behaviour Research a",
+    "Bijbel, Marcus 10:46-52."
+  ],
+  "complexer": "Waar je in de vorige les een gedachte leerde vangen in één zin, leg je die zin nu naast een andere verklaring, en zie je twee grondleggers van de cognitieve gedragstherapie, Ellis en Beck, elkaar tegenspreken over hoe je zo'n gedachte het best bevraagt.",
+  "complexiteit": 18,
+  "denkers": [
+    "Aaron Beck",
+    "David Burns",
+    "Albert Ellis",
+    "Christine Padesky",
+    "Socrates"
+  ],
+  "domein": "cgt",
+  "generatie": 8,
+  "herhaling": [
+    {
+      "juist": 2,
+      "opties": [
+        "Wanneer je vriend contact opneemt",
+        "Wat de uitslag van het onderzoek wordt",
+        "Welk oordeel je aan zijn stilte verbindt en hoe je zelf reageert",
+        "Of anderen in jullie vriendenkring zich ook zorgen maken"
+      ],
+      "soort": "keuze",
+      "uitleg": "Epictetus scheidt wat van jou afhangt van wat niet van jou afhangt. Het gedrag van je vriend en de uitslag liggen buiten je macht; jouw oordeel over zijn stilte en jouw reactie, bijvoorbeeld een kort bericht sturen, liggen erbinnen.",
+      "van": "fil-1-02",
+      "vraag": "Je wacht op de uitslag van een medisch onderzoek van een goede vriend en hij laat al twee dagen niets van zich horen. Wat ligt volgens Epictetus in jouw macht?"
+    }
+  ],
+  "kern": "Gedachtenlezen is de snelle, zekere invulling van wat een ander denkt, meestal over jou. Geleide ontdekking is een manier van vragen waarmee je die invulling onderzoekt in plaats van haar meteen goed of fout te verklaren.",
+  "leestijd": 17,
+  "nieuw": [
+    {
+      "begrip": "Gedachtenlezen",
+      "niveau": "MBO+"
+    },
+    {
+      "begrip": "Geleide ontdekking",
+      "niveau": "HBO"
+    }
+  ],
+  "niveau": 1,
+  "secties": [
+    {
+      "kop": "De korte groet van je broer",
+      "tekst": "Het is de verjaardag van je moeder. De kamer zit vol, er staat koffie en taart, en dan komt je broer binnen. Je staat op, loopt naar hem toe en steekt je hand uit. Hij geeft je een korte hand, zegt 'hoi', kijkt je nauwelijks aan en draait zich naar je tante. Binnen een seconde staat de zin al in je hoofd: hij is nog steeds boos over dat gesprek van vorige maand.\n\nDie zin voelt niet als een gedachte. Hij voelt als iets wat je gezien hebt. En toch heb je het niet gezien. Wat je zag was een korte hand, een kort woord en een blik die wegging. De boosheid, de vorige maand, het 'nog steeds': dat heb je er zelf bij geschreven.\n\nHet ABC-model uit de eerste les van dit domein helpt om dat uit elkaar te halen. A is de gebeurtenis, B de gedachte die je erover hebt en C het gevoel en gedrag dat volgt. Niet de korte groet maakt dat je de rest van de middag om je broer heen loopt, maar de B die eraan vastzit. De les over indruk en instemming voegde daar iets aan toe: een indruk komt vanzelf, maar instemmen is een tweede stap, een handtekening die je zet of juist niet.\n\nDeze les gaat over een heel bepaalde soort B: de gedachte waarin je zeker meent te weten wat er in een ander omgaat. En over een manier om die gedachte niet af te keuren of goed te keuren, maar te onderzoeken. Eerder ging het om een gedachte vangen en terugbrengen tot één zin. Nu leg je die ene zin naast een andere mogelijke verklaring en kijk je welke het beste past bij wat je werkelijk zag en hoorde."
+    },
+    {
+      "begrip": "Gedachtenlezen",
+      "kop": "Een zucht op het terras",
+      "niveau": "MBO+",
+      "soort": "begrip",
+      "tekst": "Een vriend zit met zijn vrouw op een terras. Als hij een tweede biertje bestelt, zucht ze. Meer gebeurt er niet, en toch weet hij het meteen: ze vindt dat ik te veel drink en ze schaamt zich voor me. Hij zegt er niets van, maar de avond is voor hem verpest. Later blijkt ze moe te zijn en aan de oppas te denken.\n\nWat hier gebeurt heeft een naam: gedachtenlezen. De Amerikaanse psychiater Aaron Beck beschreef in de jaren zestig en zeventig hoe mensen met een depressie hun ervaringen kleuren met snelle, vertekende conclusies. Hij noemde dat denkfouten. Zijn leerling David Burns maakte er in 1980, in het boek Feeling Good, een herkenbare lijst van. Daarin staat gedachtenlezen als een vorm van voorbarig concluderen: je besluit dat iemand negatief over je denkt zonder dat na te gaan.\n\nHet werkt in drie stapjes die zo snel gaan dat ze één lijken. Je neemt een klein signaal waar, een zucht of een korte groet. Je vult de binnenkant van de ander in, meestal met iets dat over jou gaat. En je behandelt die invulling als feit, zodat je er meteen naar handelt: je trekt je terug, wordt kortaf of gaat je verdedigen. Het verraderlijke is dat jouw gedrag de ander weer iets geeft om op te reageren, waardoor je invulling bevestigd lijkt.\n\nIn je eigen leven kan het zich laten zien bij je broer op die verjaardag, maar ook bij een vriend die een lang bericht beantwoordt met alleen een duimpje.\n\nGedachtenlezen lijkt op mentaliseren, het kijken achter het gedrag uit een eerdere les. Beide gaan over de binnenwereld van een ander. Het verschil zit in de houding. Mentaliseren is nieuwsgierig en weet dat het ernaast kan zitten: misschien is hij moe, misschien boos, ik weet het nog niet. Gedachtenlezen is zeker en sluit af. Je zou kunnen zeggen: gedachtenlezen is mentaliseren waarbij het vraagteken eraf is gevallen.\n\nEerlijk is ook dit: soms klopt je lezing gewoon. Gedachtenlezen is geen fout omdat het altijd onjuist is, maar omdat je het niet toetst. En de lijsten met denkfouten zijn praktische hulpmiddelen uit de spreekkamer, geen wetenschappelijk vastgestelde indeling. Ze overlappen elkaar en verschillende auteurs tellen er een ander aantal."
+    },
+    {
+      "kop": "Bestrijden of onderzoeken: waar Ellis en Beck uiteengaan",
+      "tekst": "In de les over het G-schema en de pijl naar beneden ging het erom een groot verhaal terug te brengen tot één zin, de gedachte die er werkelijk toe doet. Bij de korte groet van je broer is die zin: hij is boos op mij. Dat is een B die je kunt vastpakken. De vraag is wat je ermee doet.\n\nHier lopen twee grondleggers van de cognitieve gedragstherapie uiteen. Albert Ellis, de Amerikaanse psycholoog die in de jaren vijftig het ABC-model bedacht, wilde een onredelijke gedachte actief bestrijden. Hij noemde dat disputeren. Hij stelde scherpe vragen als 'waar staat geschreven dat iedereen je altijd hartelijk moet groeten?' en hield de druk erop tot de gedachte bezweek. Beck koos een andere toon. Hij zag een gedachte niet als vijand maar als hypothese, een vermoeden dat je kunt toetsen zoals een onderzoeker dat doet. De samenwerking tussen therapeut en cliënt die daarbij hoort noemde hij samenwerkend empirisme: samen kijken wat de feiten zeggen.\n\nHet verschil is niet klein. Bij Ellis is het doel de gedachte te verslaan. Bij Beck is het doel uit te vinden of ze klopt, met de reële mogelijkheid dat ze wel degelijk klopt. Voor wie na een misser snel concludeert dat hij het fout deed, maakt dat veel uit. Wie een gedachte bestrijdt, heeft vaak alweer een vonnis klaar: die gedachte was dom. Wie een gedachte onderzoekt, houdt de uitkomst open.\n\nDe eenvoudigste onderzoeksstap is één andere verklaring bedenken. Niet tien, één. Hij is boos op mij, of: hij heeft net iets vervelends gehoord en is met zijn hoofd ergens anders. Daarna komt de vraag uit de les over de basislijn: hoe doet hij normaal? Groet je broer je altijd uitgebreid, dan is de korte hand een afwijking die aandacht verdient, maar nog geen bewijs van boosheid. Groet hij iedereen kort, dan valt er weinig te verklaren. De basislijn beslist niet welke verklaring klopt, wel of er iets te verklaren valt."
+    },
+    {
+      "begrip": "Geleide ontdekking",
+      "kop": "Een wandeling langs de rivier",
+      "niveau": "HBO",
+      "soort": "begrip",
+      "tekst": "Je wandelt met een vriend langs de rivier en vertelt over die verjaardag. Hij geeft geen advies. Hij vraagt: wat zag je precies? Je beschrijft de korte hand. Hij vraagt: hoe groet hij je meestal? Wat weet je over hoe zijn week was? Hij vat samen wat je zei en vraagt dan: als je dat allemaal naast elkaar legt, wat denk je nu? Je merkt dat je zelf bij een andere conclusie bent uitgekomen, en dat die meer van jou voelt dan wanneer hij haar had voorgezegd.\n\nDit heet geleide ontdekking. De term komt uit de kring rond Beck in de jaren zeventig, maar de Amerikaanse psychologe Christine Padesky werkte het helderst uit in een lezing uit 1993 met de veelzeggende titel 'Socratic questioning: changing minds or guiding discovery?' Haar punt: vragen dienen er niet voor iemand van mening te laten veranderen, maar om iemand zelf te laten ontdekken wat er speelt.\n\nPadesky beschrijft vier bewegingen. Eerst vragen die feiten boven tafel halen die nog niet in beeld waren. Dan aandachtig luisteren, ook naar wat de ander zelf nog niet opmerkt. Dan samenvatten, zodat alles naast elkaar komt te liggen. En ten slotte een verbindende vraag: wat betekent dit alles voor je eerste gedachte? Juist die laatste stap is beslissend, omdat daar het verband wordt gelegd.\n\nIn je eigen leven kun je deze vragen aan jezelf stellen, alsof je je eigen wandelvriend bent. Wat zag ik, wat weet ik van zijn basislijn, wat kan er nog meer spelen, en wat betekent dat nu?\n\nHet verschil met disputeren zit in de richting. Wie disputeert, weet het antwoord al en duwt de ander erheen. Wie geleid ontdekt, weet het antwoord ook niet en moet bereid zijn dat de eerste gedachte overeind blijft.\n\nOver het bewijs: Amerikaanse onderzoekers lieten in 2015 zien dat cliënten in therapie voor depressie meer vooruitgingen naar de volgende sessie wanneer de therapeut meer van zulke vragen stelde. Dat is bemoedigend, maar het ging om een kleine groep, een samenhang is nog geen bewijs van oorzaak, en het betrof getrainde therapeuten. Of jezelf zo bevragen even goed werkt, is op die manier niet onderzocht."
+    },
+    {
+      "kop": "Niet-weten als houding, ook in geloof",
+      "tekst": "Dat deze manier van vragen naar Socrates is vernoemd, is geen toeval. In de eerste filosofieles stond zijn niet-weten centraal: de Atheense filosoof beweerde niets zeker te weten en stelde daarom vragen die zijn gesprekspartners zelf tot inzicht brachten, of tot de ontdekking dat ze minder wisten dan ze dachten. Geleide ontdekking is dat niet-weten, omgezet in een werkwijze. Gedachtenlezen is er het tegendeel van: een stil, zeker weten over iemand anders.\n\nIn het evangelie van Marcus staat een moment dat hier licht op werpt. Bij Jericho roept een blinde man, Bartimeüs, om Jezus. Iedereen ziet wat hij nodig heeft. En toch vraagt Jezus hem: wat wilt u dat ik voor u doe? Hij vult niet in, hij vraagt. Je kunt dat lezen als respect: de ander mag zelf zeggen wat er in hem omgaat. Wie God vooral ervaart als groot en op afstand, en Jezus als dichterbij, vindt hier misschien een Jezus die die nabijheid juist vorm geeft door een vraag te stellen in plaats van een conclusie te trekken.\n\nDat is geen bewijs voor een psychologische techniek, en zo is het verhaal ook niet bedoeld. Het laat wel zien dat de houding van vragen in plaats van invullen ouder is dan elke therapie, en dat ze in geloof kan gelden als een vorm van liefde."
+    },
+    {
+      "kop": "Wat vaststaat en wat wankelt",
+      "tekst": "Vast staat dat mensen voortdurend de binnenkant van anderen invullen, en dat ze dat sneller doen dan ze merken. Vast staat ook dat een gedachte die je als feit behandelt je gevoel en gedrag stuurt; dat is de kern van het ABC-model. Wat wankelt is hoe scherp denkfouten van elkaar te onderscheiden zijn, en hoe goed de technieken werken buiten de spreekkamer, wanneer je ze in je eentje toepast.\n\nVoor de oefening van deze les helpt één afspraak met jezelf. Je hoeft je eerste gedachte niet goed of fout te verklaren. Dat zou weer een snelle handtekening zijn, alleen aan de andere kant. Je legt haar naast één andere verklaring en vraagt: welke past beter bij wat ik werkelijk zag en hoorde, en wat zou ik nog moeten weten om het te kunnen zeggen? Soms is het antwoord dat je eerste gedachte het meest waarschijnlijk is. Ook dat is een uitkomst van onderzoek, en geen vonnis over jezelf.\n\nDe volgorde blijft dezelfde als bij de basislijn: eerst één moment, eerst wat je zag en hoorde, dan pas wat het zou kunnen betekenen. Wie die volgorde aanhoudt, geeft de tweede gedachte vanzelf de ruimte."
+    }
+  ],
+  "titel": "Ik weet wat jij denkt: gedachtenlezen en de kunst van geleide ontdekking",
+  "verbanden": [],
+  "versie": 1,
+  "voorVandaag": {
+    "kijkpunt": "Merk vandaag één moment op waarop je zeker weet wat iemand anders denkt, en noem bij jezelf eerst alleen wat je zag en hoorde.",
+    "werkbrug": "Als iemand in je familie of vriendenkring kort of afwezig reageert, bedenk dan één andere verklaring dan de eerste die opkomt en stel daarna één open vraag, zoals Jezus aan Bartimeüs: wat speelt er bij jou?",
+    "zin": "Zet het vraagteken terug: wat ik denk dat jij denkt, is een vermoeden en geen feit."
+  },
+  "vragen": [
+    {
+      "juist": 1,
+      "opties": [
+        "Misschien is ze druk, of raakte mijn bericht iets bij haar; ik vraag het haar morgen.",
+        "Ze vindt mijn bericht overdreven, dat is wel duidelijk.",
+        "Ik zie alleen 'ok' staan en weet nog niet wat erachter zit.",
+        "Ik ga eerst na of ze vaker zo kort antwoordt op berichten."
+      ],
+      "soort": "keuze",
+      "uitleg": "Bij gedachtenlezen vul je de binnenkant van de ander met zekerheid in, meestal met iets wat over jou gaat, en is het vraagteken verdwenen. De andere reacties houden de vraag open: ze mentaliseren, scheiden waarneming van duiding of kijken eerst naar de basislijn.",
+      "vraag": "Je zus beantwoordt je lange, persoonlijke bericht met alleen 'ok'. Welke reactie is gedachtenlezen en geen mentaliseren?"
+    },
+    {
+      "juist": 2,
+      "opties": [
+        "Waar staat geschreven dat iedereen jou aardig moet vinden?",
+        "Dat verzin je maar, hij mag je heus wel.",
+        "Hoe praat hij op feestjes meestal met anderen, en wat weet je over hoe zijn dag was?",
+        "Waarom laat jij je toch zo snel raken door zoiets?"
+      ],
+      "soort": "keuze",
+      "uitleg": "Geleide ontdekking haalt met informatieve vragen feiten boven tafel die nog niet in beeld waren, hier de basislijn en de omstandigheden, zodat je vriend zelf zijn eerste gedachte kan toetsen. De eerste vraag is disputeren in de stijl van Ellis, de tweede geruststellen zonder onderzoek en de vierde een verkapt oordeel.",
+      "vraag": "Een vriend denkt dat zijn schoonzoon hem niet mag, omdat die op een feestje nauwelijks met hem praatte. Welke vraag past het best bij geleide ontdekking zoals Padesky die beschrijft?"
+    },
+    {
+      "soort": "open",
+      "vraag": "Kies één concreet moment met een collega, vriend of familielid waarop je meende te weten wat de ander dacht of voelde. Werk in deze stappen. 1) Waarnemen: beschrijf in één of twee zinnen alleen wat je zag en hoorde, zonder uitleg. 2) Eerste gedachte: schrijf die op als één zin en leg uit waarom het gedachtenlezen is. 3) Basislijn: hoe gedraagt deze persoon zich normaal, en was wat je zag daar een afwijking van? 4) Andere verklaring: geef minstens één alternatieve verklaring die even goed bij je waarneming past. 5) Verbinden: leg uit hoe gedachtenlezen en geleide ontdekking in dit moment met el"
+    }
+  ]
+}

@@ -1,0 +1,94 @@
+{
+  "id": "fil-1-01",
+  "bekend": [],
+  "bronnen": [
+    "Plato, Apologie",
+    "Plato, Laches",
+    "Padesky (1993), Socratic questioning: changing minds or guiding discovery?"
+  ],
+  "complexiteit": 4,
+  "denkers": [
+    "Socrates",
+    "Plato",
+    "Aaron Beck",
+    "Christine Padesky"
+  ],
+  "domein": "filosofie",
+  "generatie": 1,
+  "kern": "Wijsheid begint bij het eerlijk erkennen van wat je nog niet weet, en goede vragen brengen je verder dan snelle antwoorden.",
+  "leestijd": 10,
+  "nieuw": [
+    {
+      "begrip": "Socratische methode",
+      "niveau": "MBO+"
+    },
+    {
+      "begrip": "Generatie-effect",
+      "niveau": "HBO"
+    }
+  ],
+  "niveau": 1,
+  "secties": [
+    {
+      "kop": "Een man die zei dat hij niets wist",
+      "tekst": "Socrates leefde rond 400 voor Christus in Athene. Hij schreef zelf niets op; wat we van hem weten komt vooral van zijn leerling Plato. Het orakel van Delphi zou hebben gezegd dat niemand wijzer was dan Socrates. Socrates vond dat vreemd, want hij voelde zich helemaal niet wijs. Dus ging hij in gesprek met mensen die als wijs bekendstonden: politici, dichters, ambachtslieden. Steeds ontdekte hij hetzelfde. Ze wisten veel over hun eigen vak, maar dachten daardoor dat ze ook over grote vragen als rechtvaardigheid of moed alles wisten. Socrates concludeerde: misschien ben ik alleen wijzer omdat ik weet dat ik het niet weet."
+    },
+    {
+      "kop": "De socratische methode",
+      "tekst": "Socrates gaf geen lezingen. Hij stelde vragen. Iemand beweerde bijvoorbeeld: moed is standhouden in de strijd. Socrates vroeg dan: is het ook moedig om slim terug te trekken om later te winnen? De ander moest zijn definitie bijstellen. Zo ging het gesprek verder, vraag na vraag, tot er een tegenspraak bovenkwam. Dat moment van verwarring heet aporie: je loopt vast. Voor Socrates was dat geen mislukking maar winst. Wie ziet dat zijn eerste antwoord niet klopt, gaat pas echt denken. Hij noemde zichzelf een vroedvrouw: hij bracht geen kennis, hij hielp anderen hun eigen inzichten ter wereld te brengen."
+    },
+    {
+      "kop": "Waarom dit nu nog werkt",
+      "tekst": "In de cognitieve gedragstherapie heet een kernvaardigheid letterlijk socratisch vragen. De therapeut zegt niet: die gedachte klopt niet. Hij vraagt: welk bewijs heb je ervoor? Wat zou je tegen een vriend zeggen die dit dacht? Zo ontdekt de cliënt zelf dat een gedachte wankelt. Een inzicht dat je zelf vindt, beklijft beter dan een inzicht dat je wordt verteld. In de psychologie heet dat het generatie-effect. In coaching werkt het net zo. Een goede coach is nieuwsgierig en houdt zijn eigen oordeel even vast."
+    },
+    {
+      "begrip": "Generatie-effect",
+      "kop": "Het generatie-effect: waarom zelf vinden beter beklijft",
+      "niveau": "HBO",
+      "soort": "begrip",
+      "tekst": "Stel dat een collega je vertelt dat de boeteclausule in een nieuw contract onwerkbaar is. Je knikt, en een week later ben je het kwijt. Stel nu dat hij je vraagt: wat gebeurt er met deze clausule als de leverancier twee dagen te laat is? Je rekent het zelf uit en ziet het probleem. Dat inzicht raak je niet meer kwijt.\n\nDat verschil heeft een naam. In 1978 lieten de Amerikaanse psychologen Norman Slamecka en Peter Graf proefpersonen woordparen leren. De ene groep las de paren gewoon: warm, koud. De andere groep moest het tweede woord zelf aanvullen: warm, k... Bij de toets onthield de tweede groep duidelijk meer. Ze noemden het het generatie-effect: wat je zelf voortbrengt, onthoud je beter dan wat je alleen leest.\n\nWaarom werkt het? Wie zelf iets moet bedenken, zoekt in zijn geheugen, legt verbanden en levert een kleine inspanning. Die inspanning laat een dieper spoor na. Daarbij speelt eigenaarschap mee: een conclusie die je zelf trok, voelt als de jouwe, en die verdedig je eerder dan een conclusie van een ander.\n\nHier raakt het Socrates en je werk. Een therapeut die een cliënt laat ontdekken dat een gedachte wankelt, maakt gebruik van dit effect. Hetzelfde geldt aan de onderhandelingstafel: een tegenpartij die zelf het risico ziet, beweegt sneller dan een die het krijgt voorgehouden. Het lijkt op het testeffect, dat later in de leergang aan bod komt, maar het is niet hetzelfde. Bij het testeffect haal je iets op wat je eerder leerde. Bij het generatie-effect maak je iets nieuws.\n\nDe kanttekening: het effect is vaak herhaald, maar het werkt alleen als de ander het antwoord ook echt kan vinden. Is de vraag te moeilijk, dan levert zelf zoeken vooral frustratie op, en soms onthoud je dan juist het foute antwoord. Goed socratisch vragen is dus doseren: genoeg ruimte om zelf te vinden, niet zo veel dat iemand verdwaalt."
+    },
+    {
+      "kop": "De valkuil",
+      "tekst": "Socratisch vragen kan ook ontaarden in een spelletje waarin de vragensteller al weet waar hij naartoe wil en de ander in een hoek drijft. Dan voelt het als een verhoor. Het verschil zit in de houding: werkelijk niet-weten tegenover gespeeld niet-weten. Mensen voelen dat feilloos aan, vaak eerder via je toon en lichaamshouding dan via je woorden. Echte nieuwsgierigheid is daarom geen techniek maar een innerlijke stand van zaken."
+    }
+  ],
+  "titel": "Socrates en de kunst van het niet-weten",
+  "verbanden": [],
+  "versie": 2,
+  "voorVandaag": {
+    "kijkpunt": "Let vandaag op het moment dat je iemand onderbreekt met een oplossing. Wat gebeurt er in je lichaam vlak daarvoor?",
+    "werkbrug": "Stel in je volgende contractbespreking minstens drie vragen voordat je een standpunt inneemt.",
+    "zin": "Ik weet het nog niet. Dat is mijn startpunt, niet mijn zwakte."
+  },
+  "vragen": [
+    {
+      "juist": 1,
+      "opties": [
+        "Het moment dat je het juiste antwoord vindt",
+        "Het moment dat je vastloopt en ziet dat je eerdere antwoord niet klopt",
+        "Een wiskundig bewijs uit het oude Griekenland",
+        "De uitspraak van het orakel van Delphi"
+      ],
+      "soort": "keuze",
+      "uitleg": "Aporie betekent letterlijk geen doorgang. Je loopt vast, en volgens Socrates begint daar het echte denken.",
+      "vraag": "Wat bedoelde Socrates met aporie?"
+    },
+    {
+      "juist": 2,
+      "opties": [
+        "Omdat therapeuten geen mening mogen hebben",
+        "Omdat vragen sneller gaat",
+        "Omdat een zelf gevonden inzicht beter beklijft en meer overtuigt",
+        "Omdat Socrates dat voorschreef"
+      ],
+      "soort": "keuze",
+      "uitleg": "Het generatie-effect: wat je zelf bedenkt, onthoud je beter en geloof je eerder.",
+      "vraag": "Waarom gebruikt een CGT-therapeut socratische vragen in plaats van de cliënt gewoon te vertellen dat een gedachte niet klopt?"
+    },
+    {
+      "soort": "open",
+      "vraag": "Denk aan een recent gesprek met een klant of coachee waarin jij het antwoord al wist. Welke vraag had je kunnen stellen in plaats van het antwoord te geven?"
+    }
+  ]
+}

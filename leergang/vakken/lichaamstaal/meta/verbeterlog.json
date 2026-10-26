@@ -1,0 +1,71 @@
+{
+    "generaties": [
+        {
+            "datum": "2026-10-03",
+            "generatie": 1,
+            "hypothese": "Lessen die expliciet verbinden met contractmanagement en coaching worden als boeiender beoordeeld dan lessen met alleen theorie.",
+            "nieuweLessen": [
+                "lich-1-01"
+            ],
+            "observaties": [
+                "Nog geen leerdata. Startpunt gebaseerd op je doelen en beroep."
+            ],
+            "titel": "De eerste ring",
+            "veranderingen": [
+                "Vijf domeinen opgezet: filosofie, intelligentie en mentaliseren, lichaamstaal, cognitief gedrag en geloof in God",
+                "Vijf instaplessen op MBO-plusniveau, onderling verbonden",
+                "Elke les eindigt met Voor vandaag: een zin, een kijkpunt en een werkbrug"
+            ]
+        },
+        {
+            "datum": "2026-10-03",
+            "generatie": 2,
+            "hypothese": "Lessen van ongeveer 14 minuten met een openingssc\u00e8ne (G2) krijgen een hogere score op boeiend dan de kortere lessen van ongeveer 8 minuten (G1), zonder dat helder daalt.",
+            "nieuweLessen": [
+                "lich-1-02"
+            ],
+            "observaties": [
+                "Nog geen afgeronde lessen en geen wensen. Profielniveaus blijven gelijk.",
+                "Hypothese G1 (werkbrug maakt lessen boeiender): nog onbeslist, er zijn geen beoordelingen. Hij blijft staan als nevenhypothese.",
+                "Je eigen leermethode vraagt om lessen die met een sc\u00e8ne openen, als lopend proza lezen en 15 tot 20 minuten duren. De lessen van G1 zijn met 8 \u00e0 9 minuten korter."
+            ],
+            "titel": "Luisteren voordat er data is",
+            "veranderingen": [
+                "Twee nieuwe lessen van rond de 14 minuten, die openen met een sc\u00e8ne uit je werk",
+                "Werkregels aangescherpt: openen met een sc\u00e8ne, de taal van Voor vandaag gelijkgetrokken, en een rem op het aantal open lessen",
+                "Op de kaart heten de onderdelen van Voor vandaag nu zoals in je leermethode: om mee te nemen, om vandaag te zien, in je werk"
+            ]
+        },
+        {
+            "datum": "2026-10-24",
+            "generatie": 7,
+            "hypothese": "Bij een afwijkend moment in zijn volgende les of reflectie benoemt Ren\u00e9 eerst de basislijn en scheidt hij zijn waarneming van zijn oordeel, voordat hij een verklaring of conclusie geeft.",
+            "nieuweLessen": [
+                "lich-1-03"
+            ],
+            "observaties": [
+                "Bij de ziekmelding tekende je direct onder de eerste duiding; na luisteren bleek de situatie anders.",
+                "In het gesprek met je collega vroeg je naar zijn beweegredenen, maar je kreeg nog geen helder beeld.",
+                "Bij het afschuiven van een fout zocht je naar leren in plaats van schuld en wilde je het gesprek open houden."
+            ],
+            "titel": "Van snel tekenen naar eerst kijken",
+            "veranderingen": [
+                "Nieuwe les lich-1-03: Alarm of vonnis? De basislijn en de Othello-fout. Vanzelf geschreven omdat je bijna door je open lessen heen was."
+            ]
+        },
+        {
+            "generatie": 9,
+            "datum": "2026-10-26",
+            "titel": "Een eigen programma voor Lichaamstaal",
+            "observaties": [
+                "Ren\u00e9 vroeg om elk vak een eigen programma te geven: alles door elkaar was te veel."
+            ],
+            "veranderingen": [
+                "Dit vak staat nu op zichzelf, met een eigen leerpad en vormgeving.",
+                "De route door andere vakken is weggehaald; verbanden wijzen alleen nog naar lessen in dit vak."
+            ],
+            "hypothese": "Als de open vraag van de volgende les hem vraagt om in een eigen werksituatie twee benoemde begrippen uit de les expliciet met elkaar te verbinden en daarbij minstens \u00e9\u00e9n alternatieve verklaring te geven voor wat hij waarneemt, dan bereikt zijn antwoord een relationeel niveau in plaats van een opsomming.",
+            "nieuweLessen": []
+        }
+    ]
+}

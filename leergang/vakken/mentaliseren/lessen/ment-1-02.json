@@ -1,0 +1,126 @@
+{
+  "id": "ment-1-02",
+  "bekend": [
+    {
+      "begrip": "G-schema",
+      "van": "cgt-1-02"
+    },
+    {
+      "begrip": "ABC-model",
+      "van": "cgt-1-01"
+    }
+  ],
+  "bronnen": [
+    "Ebbinghaus, H. (1885). Über das Gedächtnis.",
+    "Roediger, H. L. & Karpicke, J. D. (2006). Test-enhanced learning. Psychological Science, 17(3).",
+    "Kolb, D. A. (1984). Experiential Learning.",
+    "Pashler, H. et al. (2008). Learning styles: Concepts and evidence. Psychological Science in the Public Interest, 9(3).",
+    "Schön, D. A. (1983). The Reflective Practitioner.",
+    "Flavell, J. H. (1979). Metacognition and cognitive monitoring. American Psychologist, 34(10).",
+    "Sisk, V. F. et al. (2018). To what extent and under which circumstances are growth mind-sets important to academic achievement? Psychological Science, 29(4).",
+    "Ignatius van Loyola, Geestelijke Oefeningen (1548)."
+  ],
+  "complexer": "Je kijkt niet alleen meer naar de stof, maar naar hoe je zelf leert: denken over je eigen denken.",
+  "complexiteit": 14,
+  "denkers": [
+    "Hermann Ebbinghaus",
+    "Henry Roediger",
+    "Jeffrey Karpicke",
+    "David Kolb",
+    "Donald Schön",
+    "John Flavell",
+    "Peter Fonagy",
+    "Ignatius van Loyola"
+  ],
+  "domein": "mentaliseren",
+  "generatie": 4,
+  "herhaling": [
+    {
+      "juist": 1,
+      "opties": [
+        "Bij A, de gebeurtenis",
+        "Bij B, de gedachte of het oordeel",
+        "Bij C, het gevolg in gevoel en gedrag",
+        "Bij geen van drieën, het is een feit"
+      ],
+      "soort": "keuze",
+      "uitleg": "'Echt gefaald' is een oordeel over de gebeurtenis en hoort dus bij B. A is wat feitelijk gebeurde, bijvoorbeeld een verkeerd cijfer in tabel drie. C is wat volgt: somberheid, een harde nek, de mail niet durven openen. Dit punt liep eerder door elkaar, en het helpt om bij elk woord te vragen of een camera het had kunnen vastleggen.",
+      "van": "cgt-1-01",
+      "vraag": "Na een fout in een rapportage noteert een cliënt: 'Ik heb echt gefaald.' Waar hoort deze zin thuis in het ABC-model?"
+    }
+  ],
+  "kern": "Een leerweg werkt niet door veel te lezen, maar door kort terug te halen, één concreet moment te bekijken en daar iets kleins mee te proberen. Deze les laat zien waarom de leergang zo is gebouwd en hoe je hem het beste loopt.",
+  "leestijd": 16,
+  "nieuw": [
+    {
+      "begrip": "Testeffect",
+      "niveau": "HBO"
+    },
+    {
+      "begrip": "Metacognitie",
+      "niveau": "HBO"
+    }
+  ],
+  "niveau": 1,
+  "opVerzoek": "Ik ben nog een beetje aan het begrijpen hoe dit programma loopt",
+  "secties": [
+    {
+      "kop": "De vraag in de eerste sessie",
+      "tekst": "Stel je dit moment voor. Een nieuwe cliënt zit tegenover je, jas nog half aan, koffie onaangeroerd. Na tien minuten kennismaken komt de vraag die bijna altijd komt: 'Maar hoe gaat dit eigenlijk? Wat gaan we hier doen, en hoe weet ik of het werkt?' Je legt dan rustig uit dat jullie eerst kijken wat er speelt, dat je samen een paar situaties uitpluist, dat er huiswerk komt en dat de verandering meestal niet in de sessie zelf gebeurt maar in de dagen ertussen.\n\nNu zit jij aan de andere kant van de tafel. Je schreef dat je nog bezig bent te begrijpen hoe dit programma loopt. Dat is precies de goede vraag, en het is dezelfde vraag die jouw cliënten stellen. Iemand die weet hoe een route in elkaar zit, loopt hem met meer vertrouwen en haalt er meer uit. Daarom gaat deze les niet over een nieuw stuk filosofie of lichaamstaal, maar over het leren zelf: wat er in je hoofd gebeurt als iets blijft hangen, waarom de lessen zijn opgebouwd zoals ze zijn, en wat jouw volgende stap is.\n\nDe les valt onder intelligentie en mentaliseren, en dat is geen toeval. Mentaliseren betekent dat je kijkt naar de gedachten en bedoelingen achter gedrag. Dat kun je bij een ander doen, maar ook bij jezelf. Wie zijn eigen leren bekijkt, mentaliseert over zichzelf als leerling."
+    },
+    {
+      "kop": "Waarom terughalen sterker werkt dan teruglezen",
+      "tekst": "In 1885 deed de Duitse psycholoog Hermann Ebbinghaus iets wat niemand voor hem zo nauwkeurig had gedaan: hij leerde zichzelf lijsten met betekenisloze lettergrepen en mat hoe snel hij ze vergat. Zo ontstond de vergeetcurve. Het grootste deel van wat je leert, ben je binnen een dag of twee kwijt, tenzij je er op het juiste moment naar terugkeert. Dat patroon is sindsdien vele malen herhaald en geldt als stevig.\n\nHonderdtwintig jaar later lieten Henry Roediger en Jeffrey Karpicke zien wat dat terugkeren het beste kan zijn. Studenten die een tekst één keer lazen en zichzelf daarna overhoorden, onthielden na een week veel meer dan studenten die de tekst nog eens lazen. Het heet het testeffect, of in de vakliteratuur retrieval practice: iets actief uit je geheugen ophalen versterkt het spoor, terwijl teruglezen vooral een prettig gevoel van herkenning geeft. Daarbij komt het spacing-effect: herhaling werkt beter als er tijd tussen zit. Beide bevindingen staan in het leeronderzoek zo vast als iets daar kan vaststaan.\n\nDit verklaart een vast onderdeel van elke les: de herhalingsvraag over een eerdere les. Die is er niet om je te controleren. Op het moment dat je even moet nadenken waar ook alweer het verschil zat, doet je geheugen precies het werk waardoor het blijft hangen. Een vraag die je eerst fout hebt en daarna begrijpt, levert vaak meer op dan een vraag die je direct goed hebt. Je hebt tot nu toe alle keuzevragen goed. Dat is mooi, maar het is geen eindstation. De lat schuift langzaam omhoog, van MBO-plus naar masterniveau, zodat het ophalen moeite blijft kosten. Die moeite is geen teken dat het misgaat. Het is het leren zelf."
+    },
+    {
+      "kop": "Van groot verhaal naar één moment",
+      "tekst": "Een bekend model uit het volwassenenonderwijs is de leercirkel van de Amerikaanse onderwijspsycholoog David Kolb, uit 1984. Je hebt een concrete ervaring, je kijkt er bewust naar terug, je maakt er een algemener idee van en je probeert dat idee in een nieuwe situatie uit. Daarna begint de cirkel opnieuw. Kolb gebruikte daarvoor ook de leerstijlen, het idee dat de ene mens een doener is en de andere een denker. Hier is eerlijkheid nodig. De cirkel zelf is een bruikbare kaart, maar de leerstijlen houden geen stand. Harold Pashler en collega's zochten in 2008 naar bewijs dat lessen beter werken als ze bij iemands stijl passen, en vonden het niet. Gebruik de cirkel dus als route en laat het etiket liggen.\n\nDe filosoof Donald Schön voegde iets toe wat jij als consultant en therapeut direct herkent. Hij onderscheidde reflection-in-action, het bijsturen tijdens het gesprek zelf, van reflection-on-action, het terugkijken achteraf. Een vakman wordt beter doordat hij het tweede zo vaak doet dat het eerste vanzelf gaat.\n\nHier ligt jouw volgende stap. Je schreef zelf dat je snel met een groot verhaal komt. In je antwoorden zie je dat terug. Bij de les over Genesis begon je bij de collega die een fout doorschoof en eindigde je bij wat je had kunnen zeggen en hoe je lichaam erbij zou staan. Dat is rijk materiaal, maar het zijn drie momenten tegelijk. Reflectie werkt het scherpst op één moment van een paar seconden: het moment dat hij de naam van zijn collega noemde. Wat zag je? Wat dacht je precies, in één zin? Wat deed je lichaam? Dat is het G-schema uit cgt-1-02 en het ABC-model, maar dan toegepast op je eigen leren. Hoe kleiner het moment, hoe beter A, B en C uit elkaar blijven. Een oordeel als 'hij verschuilt zich' hoort dan bij B, de gedachte, en niet bij A, wat er feitelijk gebeurde."
+    },
+    {
+      "kop": "Kijken naar je eigen denken",
+      "tekst": "De Amerikaanse psycholoog John Flavell gaf er in 1979 een naam aan: metacognitie, denken over je eigen denken. Weten wat je weet, merken wat je niet weet en bijsturen hoe je leert. Peter Fonagy, de grondlegger van het mentaliseren, laat zien dat dit vermogen onder spanning als eerste wegvalt. Onder druk weet je het ineens zeker, en dat is precies wanneer je het het minst zeker zou moeten weten.\n\nDat brengt ons terug bij Socrates uit fil-1-01. Zijn niet-weten was geen bescheidenheid om de bescheidenheid. Het was metacognitie avant la lettre: eerlijk zien waar je kennis ophoudt. In de les over het gezicht deed je dat zelf. Je schreef over je collega met de lege blik en de opgetrokken wenkbrauwen: 'Ik heb dit nooit zo getest. Te snel en oordelend.' Dat is Socrates en Flavell in twee zinnen.\n\nOok hier is eerlijkheid nodig. Je hebt vast gehoord van het Dunning-Krugereffect, het idee dat wie weinig weet zichzelf het sterkst overschat. Een deel daarvan blijkt een statistisch artefact te zijn, een vertekening die vanzelf ontstaat door de manier van meten. Hetzelfde geldt voor de groeimindset van Carol Dweck. De gedachte dat je kunt groeien is waardevol, maar grote meta-analyses, zoals die van Sisk en collega's in 2018, vinden gemiddeld kleine effecten. Wat wel overeind blijft, is eenvoudiger: wie regelmatig en concreet terugkijkt en zich eerlijk afvraagt of het klopt, wordt beter. Niet spectaculair en niet snel, maar gestaag."
+    },
+    {
+      "kop": "Een dagelijkse terugblik met een lange geschiedenis",
+      "tekst": "Lang voordat iemand van metacognitie sprak, leerde Ignatius van Loyola, de stichter van de jezuïeten, zijn volgelingen het examen. Dat is een korte terugblik aan het eind van de dag, van een kwartier of minder. Je begint met dankbaarheid. Daarna loop je de dag langzaam door en blijf je hangen bij één moment dat iets in je raakte, prettig of pijnlijk. Je vraagt je af wat daar gebeurde, waar God in dat moment was, en wat je morgen anders wilt doen.\n\nHet verband met gel-1-02 is direct. Adam en Eva verstopten zich en schoven de schuld door. Het examen is daar het tegengif voor: niet weglopen van wat er gebeurde, maar er rustig naar kijken, in het vertrouwen dat je gezien wordt zonder te worden afgeschreven. Of je dat moment nu voor Gods aangezicht legt of alleen voor jezelf, de beweging is dezelfde als in Schöns reflection-on-action en in een CGT-dagboek. Het is opvallend dat een zestiende-eeuwse spirituele praktijk en modern leeronderzoek bij hetzelfde uitkomen: kort, dagelijks, één moment, zonder oordeel vooraf.\n\nNu je dit weet, wordt de vorm van de leergang begrijpelijk. Elke les begint met een scène, omdat leren aan een concreet moment moet haken. Er volgt lopend proza dat de vakken met elkaar laat praten, omdat lichaamstaal, CGT, filosofie en geloof in jouw werk ook niet los van elkaar staan. Daarna komt de herhalingsvraag, omdat terughalen sterker werkt dan teruglezen, en de open vraag, omdat je in je eigen woorden moet bouwen. Tot slot Voor vandaag, met een kijkpunt en een werkbrug, omdat de cirkel van Kolb pas rond is als je iets uitprobeert. De niveaus van MBO-plus tot master volgen ruwweg het model van de broers Dreyfus, van beginner die regels volgt naar expert die situaties ziet. Dat model is meer beschrijving dan bewezen wet, maar als richting klopt het. Je hoeft niets te haasten. Een leerweg van jaren wordt gelopen in dagen."
+    }
+  ],
+  "titel": "Leren hoe je leert: de route van deze leergang",
+  "verbanden": [],
+  "versie": 1,
+  "voorVandaag": {
+    "kijkpunt": "Kies vanavond in vijf minuten één moment van vandaag dat iets in je raakte, en schrijf alleen op wat een camera zou hebben gezien, zonder bijvoeglijke naamwoorden.",
+    "werkbrug": "Leg een nieuwe coachcliënt of opdrachtgever deze week in drie zinnen uit hoe jullie traject loopt en waarom de verandering tussen de afspraken gebeurt. Let daarbij op wat het met zijn houding doet als hij de route kent.",
+    "zin": "Niet meer lezen, maar kleiner kijken."
+  },
+  "vragen": [
+    {
+      "juist": 2,
+      "opties": [
+        "Dat iedereen het beste leert in zijn eigen leerstijl",
+        "Dat een tekst twee keer lezen het meest oplevert",
+        "Dat jezelf overhoren beter onthouden oplevert dan opnieuw lezen",
+        "Dat vergeten vooral een kwestie van motivatie is"
+      ],
+      "soort": "keuze",
+      "uitleg": "Dat is het testeffect: actief ophalen versterkt het geheugenspoor, terwijl teruglezen vooral een gevoel van herkenning geeft. Leerstijlen vonden in onderzoek geen steun, zoals Pashler en collega's lieten zien.",
+      "vraag": "Wat laat het onderzoek van Roediger en Karpicke vooral zien?"
+    },
+    {
+      "juist": 1,
+      "opties": [
+        "Het hele gesprek van begin tot eind opschrijven",
+        "Eén moment van een paar seconden kiezen en daarvan los noteren wat er gebeurde, wat je dacht en wat je lichaam deed",
+        "Bepalen welk type collega hij is, zodat je hem voortaan beter kunt inschatten",
+        "Wachten tot je er geen emotie meer bij voelt en het dan laten rusten"
+      ],
+      "soort": "keuze",
+      "uitleg": "Reflectie werkt het scherpst op één klein moment. Dan blijven A, B en C uit elkaar en zie je je eigen gedachte in plaats van het grote verhaal. Dat sluit aan bij Schöns reflection-on-action en bij het examen van Ignatius.",
+      "vraag": "Je wilt een lastig gesprek met een collega achteraf goed bekijken. Welke aanpak past het best bij deze les?"
+    },
+    {
+      "soort": "open",
+      "vraag": "Kies één moment van hooguit tien seconden uit je werk van deze week. Beschrijf dat moment zo klein mogelijk: wat zou een camera hebben vastgelegd (A), welke ene zin ging door je hoofd (B), en wat deed je lichaam en wat deed je daarna (C)? Kijk tot slot terug zoals Socrates: wat weet je over dat moment eigenlijk niet zeker?"
+    }
+  ]
+}

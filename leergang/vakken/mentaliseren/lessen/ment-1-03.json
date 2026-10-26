@@ -1,0 +1,122 @@
+{
+  "id": "ment-1-03",
+  "bekend": [
+    {
+      "begrip": "Testeffect",
+      "van": "ment-1-02"
+    }
+  ],
+  "bronnen": [
+    "Zeigarnik, B. (1927). Das Behalten erledigter und unerledigter Handlungen. Psychologische Forschung.",
+    "Ghibellini, R. & Meier, B. Meta-analyse naar het Zeigarnik- en Ovsiankina-effect.",
+    "Gick, M. L. & Holyoak, K. J. (1980). Analogical problem solving. Cognitive Psychology.",
+    "Barnett, S. M. & Ceci, S. J. (2002). When and where do we apply what we learn? Psychological Bulletin.",
+    "Gollwitzer, P. M. & Sheeran, P. (2006). Implementation intentions and goal achievement: a meta-analysis. Advances in Experimental Social Psychology.",
+    "Roediger, H. L. & Karpicke, J. D. (2006). Test-enhanced learning. Psychological Science.",
+    "Guigo II, Scala claustralium (De ladder van de monniken), 12e eeuw.",
+    "Johannes 1:14"
+  ],
+  "complexer": "Je verbindt onderzoek naar geheugen, transfer en planning tot één eigen werkwijze.",
+  "complexiteit": 15,
+  "denkers": [
+    "Bluma Zeigarnik",
+    "Kurt Lewin",
+    "Maria Ovsiankina",
+    "Mary Gick",
+    "Keith Holyoak",
+    "Dedre Gentner",
+    "Susan Barnett",
+    "Stephen Ceci"
+  ],
+  "domein": "mentaliseren",
+  "generatie": 5,
+  "herhaling": [
+    {
+      "juist": 0,
+      "opties": [
+        "Dat is een oordeel, en dat hoort bij B, de gedachte. Bij C horen het gevoel en het gedrag, zoals 'somber, ik trok me terug'.",
+        "Dat is correct, want falen is het gevolg van de gebeurtenis.",
+        "Het hoort bij A, omdat het over wat er gebeurde gaat.",
+        "Het maakt niet uit waar je het noteert, zolang je het opschrijft."
+      ],
+      "soort": "keuze",
+      "uitleg": "'Echt gefaald' is een beoordeling en daarmee een gedachte (B). C beschrijft wat die gedachte oplevert aan gevoel en gedrag. Juist dat onderscheid maakt de gedachte zichtbaar en bespreekbaar.",
+      "van": "cgt-1-01",
+      "vraag": "In het ABC-model noteert iemand bij C: 'Ik heb echt gefaald.' Wat is daar aan de hand?"
+    }
+  ],
+  "kern": "Kennis uit het ene vak werkt zelden vanzelf door in het andere. Een verband moet je actief lopen, klein en met een plan, anders blijft het een voetnoot die je kwijtraakt.",
+  "leestijd": 16,
+  "nieuw": [
+    {
+      "begrip": "Transfer",
+      "niveau": "HBO"
+    },
+    {
+      "begrip": "Implementatie-intenties",
+      "niveau": "HBO"
+    }
+  ],
+  "niveau": 1,
+  "opVerzoek": "Ja je de link binnen de lessen omzetten in een flow, zodat ik ze moet doorlopen om de les af te sluiten. Nu ben ik ze soms kwijt. Het betreft de link van een andere discipline die onderaan in de les staan. Ik wil ze aansluitend doorlopen en afsluiten.",
+  "secties": [
+    {
+      "kop": "De regel onderaan het verslag",
+      "tekst": "Stel je dit moment voor. Een evaluatiegesprek over een lopend contract is goed verlopen, de sfeer was open en de leverancier heeft zijn knelpunten eerlijk benoemd. In het verslag staan vier heldere afspraken, en helemaal onderaan één regel: 'zie ook: afstemming met inkoop over de indexering'. Drie weken later blijkt dat niemand die afstemming heeft gezocht. Niemand was onwillig. De regel stond er gewoon, onderaan, als iets wat erbij hoorde maar niet echt meedeed.\n\nIn deze leergang heb je precies dat gemerkt. Onder elke les staan verbanden naar een ander vak, en je raakt ze soms kwijt. Je vroeg of die verbanden een vaste route kunnen worden die je doorloopt voordat een les afgesloten is. Hoe de app werkt, regelt deze les niet. Deze les laat wel zien waarom je gevoel klopt, wat het onderzoek zegt over het overspringen van kennis van het ene domein naar het andere, en hoe je zelf van een verwijzing een route maakt. De drie verbanden aan het eind van deze les zijn daarom geen voetnoot. Ze zijn het tweede deel van de les."
+    },
+    {
+      "kop": "Wat onaf is, blijft knagen, maar onthoud je het ook?",
+      "tekst": "In de jaren twintig zat de psycholoog Kurt Lewin met zijn studenten in een Berlijns café. Het verhaal gaat dat hem opviel hoe een ober een hele tafel bestellingen uit zijn hoofd kende, maar alles vergeten was zodra er betaald was. Zijn studente Bluma Zeigarnik toetste dat in 1927 in het lab. Proefpersonen kregen kleine taken en werden bij een deel ervan onderbroken. Achteraf herinnerden ze zich de onderbroken taken beter dan de afgemaakte. Dat werd het Zeigarnik-effect: wat onaf is, blijft actief in het geheugen.\n\nHier moet ik eerlijk zijn, want dit is een van die bevindingen die in populaire boeken steviger staat dan in het onderzoek. Latere herhalingen gaven wisselende uitkomsten, en een recente meta-analyse van Ghibellini en Meier vond geen betrouwbaar algemeen geheugenvoordeel voor onafgemaakte taken. Wat beter standhoudt, is iets anders, beschreven door Maria Ovsiankina, ook een studente van Lewin: mensen hebben een duidelijke neiging om een onderbroken taak weer op te pakken. Het onaffe trekt aan, maar het zorgt er niet voor dat je de inhoud vasthoudt.\n\nDat verklaart je ervaring vrij precies. Een half gelopen verband geeft een licht knagend gevoel dat er nog iets openstaat. Dat gevoel vertelt je alleen niet meer wat het was of waar het stond. De trek om af te maken is er, de structuur om het ook te doen ontbreekt. Daar zit dus geen gebrek aan discipline, maar een gebrek aan route."
+    },
+    {
+      "kop": "Waarom een verband niet vanzelf overspringt",
+      "tekst": "Je zou denken dat wie iets in de ene les begrepen heeft, het in de andere vanzelf herkent. Het onderzoek naar transfer, het overdragen van wat je geleerd hebt naar een nieuwe situatie, laat iets anders zien. In 1980 gaven Mary Gick en Keith Holyoak proefpersonen eerst een verhaal over een generaal die een vesting niet met één groot leger kon innemen, maar wel met kleine groepen die van alle kanten tegelijk oprukten. Daarna kregen ze een medisch probleem: een tumor die je met één sterke straal niet kunt bereiken zonder gezond weefsel te vernietigen. De oplossing is dezelfde, veel zwakke stralen uit verschillende richtingen. Toch zag maar een kleine minderheid dat uit zichzelf. Kregen ze de hint dat het verhaal van de generaal kon helpen, dan vonden de meesten de oplossing meteen.\n\nDat patroon is vaak teruggevonden. Susan Barnett en Stephen Ceci lieten in een overzicht uit 2002 zien dat transfer naar een ver liggend domein zeldzaam is, tenzij iemand de brug expliciet slaat. Dedre Gentner vond dat het helpt om twee gevallen bewust naast elkaar te leggen en te vragen wat ze gemeen hebben. Pas dan zie je de diepe structuur onder de verschillende oppervlakte.\n\nMisschien herken je dit, want het raakt precies je aandachtspunt bij lichaamstaal. Een wrijvende hand is oppervlakte. Wat het betekent, hangt af van iets wat je niet direct ziet: de basislijn van deze persoon, het onderwerp, het moment. Bij leren werkt het net zo. 'Eén zin in plaats van een groot verhaal' in de cgt-les en 'eerst de basis, dan de afwijking' in de lichaamstaalles hebben een verschillende buitenkant, maar dezelfde kern: vertraag, en ga niet van het geheel naar het oordeel. Die kern springt pas over als jij hem bewust oversteekt. Daarom is het verband onderaan de les geen extraatje. Het is de hint uit het experiment van Gick en Holyoak."
+    },
+    {
+      "kop": "Een route lopen: klein, met een plan, uit je hoofd",
+      "tekst": "Hoe maak je van een verwijzing een route? Drie bevindingen helpen, en ze staan steviger dan het Zeigarnik-effect.\n\nDe eerste komt van Peter Gollwitzer: implementatie-intenties, vaste als-dan-plannen. 'Als ik een les heb uitgelezen, dan open ik direct het eerste verband, voordat ik iets anders doe.' Een meta-analyse van Gollwitzer en Paschal Sheeran uit 2006 vond over honderden studies een gemiddeld tot groot effect van zulke plannen op het daadwerkelijk uitvoeren van voornemens. Het werkt omdat de beslissing al genomen is voordat het moment komt.\n\nDe tweede is ophaaloefening, in het Engels retrieval practice. Henry Roediger en Jeffrey Karpicke lieten in 2006 zien dat mensen een tekst veel beter onthouden als ze die na het lezen proberen op te halen uit hun hoofd, dan wanneer ze hem nog eens lezen. Herlezen voelt vertrouwd, ophalen voelt moeizaam, en juist dat moeizame beklijft. Lees een verband dus niet eerst opnieuw, maar vraag je af wat je je ervan herinnert, en kijk pas daarna.\n\nDe derde ben jij zelf, want hier komt je volgende stap samen. Je komt snel met een groot verhaal, en waarneming, oordeel en gevolg lopen bij jou nog weleens door elkaar. Loop elk verband daarom in drie korte zinnen, strikt gescheiden. Wat stond er, zo feitelijk mogelijk? Wat vind ik ervan? Wat doe ik er morgen mee, in één concreet moment? Merk je dat er in je eerste zin al een oordeel zit, zoals 'die les was eigenlijk heel belangrijk', haal het er dan uit en zet het in de tweede. Zo wordt de route meteen oefenstof voor precies datgene waar je mee bezig bent."
+    },
+    {
+      "kop": "Het grote en het nabije",
+      "tekst": "Na de les over God schreef je iets wat ik serieus wil nemen: God is de maker van alles en te groot om aan te spreken voor kleine zaken, en Jezus staat dichterbij. Ik ga dat niet rechtzetten of invullen, want het is jouw zoektocht en je wilt niet met de menigte meegaan. Ik wil wel de vorm ervan laten zien, omdat die ook over leren gaat.\n\nDe christelijke traditie heeft het spanningsveld dat jij beschrijft nooit weggepoetst. Bij Johannes staat dat het Woord vlees werd en onder ons woonde. Wat ver en groot is, wordt nabij in één mens, op één plek, op één moment. Over de vraag wat dat precies betekent, verschillen theologen al eeuwen van mening, en dat mag gezegd worden. Maar de beweging zelf herken je: iets groots blijft op afstand tot het landt in iets kleins en concreets. Een principe uit een les werkt net zo. 'Mentaliseren' blijft een groot woord tot het landt in die ene collega met die opgetrokken wenkbrauwen.\n\nDe kloosters van de middeleeuwen hadden daar een leerpraktijk voor. De kartuizer Guigo II beschreef in de twaalfde eeuw de lectio divina als een ladder: lezen, overwegen, bidden en rusten. Je leest langzaam, keert terug naar één zin en laat die doorwerken in je eigen leven. Dat is geen onderzoek in de moderne zin, maar het is opvallend hoe dicht het ligt bij wat Roediger en Gentner later vonden: terugkeren, ophalen, verbinden.\n\nDaarom volgt nu je route, in deze volgorde. Eerst cgt-1-02, met de vraag: welk groot verhaal van vandaag kan ik terugbrengen tot één zin? Daarna lich-1-01, met de vraag: waar trok ik vandaag een conclusie zonder de basislijn te kennen? En tot slot gel-1-01, met de vraag: waar werd iets groots voor mij vandaag even klein en nabij? Loop ze direct na deze les, elk in drie zinnen. Pas dan is deze les af."
+    }
+  ],
+  "titel": "Van voetnoot naar route: waarom verbanden niet vanzelf overspringen",
+  "verbanden": [],
+  "versie": 1,
+  "voorVandaag": {
+    "kijkpunt": "Let vandaag op één moment waarop je iets uit het ene vak bijna toepast in het andere, en vraag je af wat de gedeelde kern eronder is.",
+    "werkbrug": "Zet onder je volgende verslag of coachsessie geen 'zie ook', maar een als-dan-afspraak met naam en moment, zoals 'Als het overleg met inkoop is ingepland, dan stuurt René dezelfde dag de indexeringsvraag.'",
+    "zin": "Een verband dat je niet loopt, blijft een voetnoot."
+  },
+  "vragen": [
+    {
+      "juist": 2,
+      "opties": [
+        "Dat mensen een analogie vrijwel altijd uit zichzelf herkennen.",
+        "Dat medische problemen moeilijker zijn dan militaire.",
+        "Dat weinig mensen de oplossing spontaan overzetten, maar dat de meesten het wel doen zodra ze een expliciete hint krijgen.",
+        "Dat herlezen van het eerste verhaal de beste voorbereiding is."
+      ],
+      "soort": "keuze",
+      "uitleg": "Transfer gebeurt zelden vanzelf. Een expliciete brug, zoals een verband dat je bewust loopt, maakt het verschil. Dat is precies waarom de route na de les ertoe doet.",
+      "vraag": "Wat lieten Gick en Holyoak zien met het vesting- en tumorprobleem?"
+    },
+    {
+      "juist": 1,
+      "opties": [
+        "Het is een van de best bevestigde effecten uit de psychologie.",
+        "Het geheugenvoordeel voor onaffe taken is wankel, maar de neiging om onderbroken taken weer op te pakken (Ovsiankina) staat steviger.",
+        "Het is volledig weerlegd en heeft geen enkele waarde.",
+        "Het geldt alleen voor obers."
+      ],
+      "soort": "keuze",
+      "uitleg": "Herhalingen van Zeigarniks geheugenbevinding gaven wisselende uitkomsten. De trek om af te maken is beter onderbouwd. Die trek zegt alleen niets over het onthouden van de inhoud, en daarom heb je een route nodig.",
+      "vraag": "Welke uitspraak over het Zeigarnik-effect is het eerlijkst?"
+    },
+    {
+      "soort": "open",
+      "vraag": "Kies één verband uit deze les en loop het in drie gescheiden zinnen. Wat zag of las ik precies (waarneming)? Wat vind ik ervan (oordeel)? Wat doe ik er morgen mee, in één concreet moment in mijn werk als consultant, coach of therapeut (gevolg)? Controleer daarna: zat er in je eerste zin toch een oordeel verstopt?"
+    }
+  ]
+}
