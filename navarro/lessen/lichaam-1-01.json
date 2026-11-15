@@ -1,0 +1,89 @@
+{
+  "id": "lichaam-1-01",
+  "domein": "lichaam",
+  "niveau": 1,
+  "titel": "De voeten: waar Navarro begint met kijken",
+  "kern": "Navarro leest het lichaam van onder naar boven, omdat we op onze voeten en benen het minst letten. Waar de voeten heen wijzen, zegt vaak iets over waar iemand heen wil. Het blijft een hypothese, die je toetst aan de basislijn.",
+  "generatie": 1,
+  "versie": 1,
+  "leestijd": 12,
+  "secties": [
+    {
+      "kop": "Ja zeggen met je gezicht, nee met je voeten",
+      "tekst": "Het is na afloop van een kick-off. Je staat met de projectleider van de opdrachtgever aan een statafel. Hij knikt, glimlacht en zegt dat hij het plan ‘helemaal ziet zitten’. Je kijkt even naar beneden. Zijn bovenlichaam is naar jou gekeerd, maar zijn beide voeten wijzen naar de uitgang. Twee minuten later kijkt hij op zijn telefoon en neemt hij afscheid.\n\nWas hij onoprecht? Waarschijnlijk niet. Waarschijnlijk had hij een volgende afspraak en was zijn lichaam al onderweg. Maar zijn voeten vertelden het je eerder dan zijn mond. Dat is precies waarom Navarro in Wat ieder lichaam zegt niet bij het gezicht begint, maar bij de voeten."
+    },
+    {
+      "kop": "Waarom juist de voeten",
+      "tekst": "Navarro's redenering is eenvoudig. Van jongs af aan leren we ons gezicht te beheersen: glimlachen als het moet, een neutrale blik als het spannend wordt. Op onze voeten let bijna niemand, ook wijzelf niet. Ze zijn bovendien gebouwd om te bewegen: naar iets toe wat we willen, weg van iets wat we vermijden. Daarom noemt hij de voeten en benen het eerlijkste deel van het lichaam.\n\nHet idee is ouder dan Navarro. Paul Ekman en Wallace Friesen schreven in 1969 al over ‘lekkage’: emoties zouden vooral uitlekken via lichaamsdelen waar we minder op letten, zoals benen en voeten. Navarro maakte er een praktische kijkregel van: kijk eerst onder de tafel, dan pas naar het gezicht."
+    },
+    {
+      "kop": "Vijf dingen die voeten kunnen laten zien",
+      "tekst": "Wegdraaien. Als iemand in gesprek één of beide voeten wegdraait, terwijl het bovenlichaam nog naar je toe staat, wil hij vaak weg: hij is klaar, heeft haast of voelt zich niet op zijn gemak.\n\nNaar je toe draaien. Andersom geldt het ook: als iemand die eerst half afgewend stond zijn voeten naar je toe draait, is dat een teken van betrokkenheid. Bij een groepje mensen zie je zo wie welkom is.\n\nTegen de zwaartekracht in. Op de tenen veren, tenen die omhoog wijzen terwijl de hiel op de grond blijft: Navarro ziet dat als positieve opwinding, iemand die blij is met wat hij hoort.\n\nStaand de benen kruisen. Dat doen we vooral als we ons veilig voelen, want het maakt ons minder snel om weg te komen. Bij iemand die je wantrouwt doe je het zelden.\n\nPlotseling stilstaan. Voeten die eerst wiebelden en dan opeens bevriezen of om de stoelpoten haken, passen bij de bevriesreactie uit de les over het eerlijke brein."
+    },
+    {
+      "kop": "De basislijn eerst",
+      "tekst": "Elk van deze signalen kan ook iets heel anders betekenen. Sommige mensen wiebelen altijd met hun voet. Iemand kan zijn voeten naar de deur draaien omdat de tafel scheef staat, of omdat zijn knie pijn doet. Daarom staat bij Navarro de basislijn centraal: hoe zit en staat iemand als er niets bijzonders speelt? Pas een verandering ten opzichte van die basislijn, op een duidelijk moment, maakt een signaal betekenisvol.\n\nEen voorbeeld. Iemand wiebelt het hele overleg met zijn voet. Dan noem je de nieuwe tarieven, en het wiebelen stopt abrupt. Dat stoppen is informatie. Het wiebelen zelf was dat niet."
+    },
+    {
+      "kop": "Wat de wetenschap ervan zegt",
+      "tekst": "De claim dat voeten het eerlijkste lichaamsdeel zijn, is aantrekkelijk maar weinig direct onderzocht. Navarro baseert zich vooral op zijn ervaring als FBI-agent, niet op gecontroleerde experimenten. De lekkagehypothese van Ekman en Friesen is later maar beperkt bevestigd, en onderzoek naar leugens vindt geen betrouwbare ‘voetensignalen’ voor bedrog.\n\nWat wel stand lijkt te houden, is het algemenere idee dat lichaamsoriëntatie iets zegt over aandacht en betrokkenheid: we richten ons lichaam naar wat ons interesseert. Gebruik de voeten dus als vroege hint over richting en comfort. Niet als leugendetector, en altijd in combinatie met andere signalen."
+    }
+  ],
+  "denkers": ["Joe Navarro", "Paul Ekman", "Wallace Friesen"],
+  "herhaling": [
+    {
+      "soort": "keuze",
+      "van": "brein-1-01",
+      "vraag": "Wat zegt een kalmerend gebaar vlak na een bepaalde vraag?",
+      "opties": [
+        "Dat de ander liegt over dat onderwerp",
+        "Dat het onderwerp ongemak gaf, om een reden die je nog niet kent",
+        "Niets, want kalmerende gebaren zijn toeval",
+        "Dat de ander het gesprek wil beëindigen"
+      ],
+      "juist": 1,
+      "uitleg": "Het gebaar vertelt dat er ongemak was en wanneer. Het waarom vraagt een open vraag."
+    }
+  ],
+  "vragen": [
+    {
+      "soort": "keuze",
+      "vraag": "Waarom begint Navarro bij de voeten in plaats van bij het gezicht?",
+      "opties": [
+        "Omdat voeten meer spieren hebben dan het gezicht",
+        "Omdat we ons gezicht van jongs af leren beheersen en op onze voeten nauwelijks letten",
+        "Omdat onderzoek aantoont dat voeten leugens verraden",
+        "Omdat het gezicht geen emoties laat zien"
+      ],
+      "juist": 1,
+      "uitleg": "Het gaat om bewuste controle: het gezicht houden we in de hand, de voeten veel minder. Dat voeten leugens verraden, is juist níet aangetoond."
+    },
+    {
+      "soort": "keuze",
+      "vraag": "Een opdrachtgever wiebelt het hele gesprek met zijn voet. Wanneer wordt dat wiebelen interessant?",
+      "opties": [
+        "Meteen, want wiebelen betekent ongeduld",
+        "Als het plotseling stopt of verandert op een duidelijk moment in het gesprek",
+        "Nooit, want voeten zeggen niets",
+        "Alleen als hij daarbij ook glimlacht"
+      ],
+      "juist": 1,
+      "uitleg": "Het wiebelen is zijn basislijn. Pas een verandering daarin, gekoppeld aan een moment, is betekenisvol."
+    },
+    {
+      "soort": "open",
+      "vraag": "Kies een overleg dat je deze week hebt of had. Beschrijf hoe je daar ongemerkt naar de voeten en benen van de anderen kunt kijken, en wat je als basislijn wilt vastleggen voordat het lastige onderwerp op tafel komt."
+    }
+  ],
+  "voorVandaag": {
+    "zin": "Het lichaam wijst vaak al de kant op die de woorden nog moeten nemen.",
+    "kijkpunt": "Merk vandaag op waar jóuw voeten naar wijzen in een gesprek dat je liever zou afronden.",
+    "werkbrug": "Kijk bij je volgende netwerkmoment naar de voeten in een groepje. Draaien ze naar je toe als je aansluit, of blijven ze gesloten?"
+  },
+  "verbanden": ["brein-1-01", "invloed-1-01"],
+  "bronnen": [
+    "Navarro & Karlins (2008), What Every BODY Is Saying, hoofdstuk over voeten en benen",
+    "Navarro (2018), The Dictionary of Body Language",
+    "Ekman & Friesen (1969), Nonverbal leakage and clues to deception, Psychiatry"
+  ]
+}

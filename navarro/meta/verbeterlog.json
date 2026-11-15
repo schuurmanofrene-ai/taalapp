@@ -1,0 +1,26 @@
+{
+  "generaties": [
+    {
+      "generatie": 1,
+      "datum": "2026-11-15",
+      "titel": "Onder de tafel beginnen",
+      "observaties": [
+        "Nog geen leerdata in deze leergang. Startpunt gebaseerd op je doelen, je beroep en wat de Levende Leergang al over je leren heeft geleerd.",
+        "In de Levende Leergang wordt de hypothese over langere lessen met een openingsscène nog getoetst. Deze leergang begint daarom direct met lessen van 12 tot 14 minuten die met een scène openen."
+      ],
+      "veranderingen": [
+        "Vijf werkterreinen opgezet naar Navarro's boeken: Het eerlijke brein, Van voet tot gezicht, Luider dan woorden, Gevaarlijke persoonlijkheden en Uitzonderlijk zijn",
+        "Vijf instaplessen op MBO-plusniveau, onderling verbonden, elk met een scène uit je werk",
+        "Elke les heeft een vaste sectie Wat de wetenschap ervan zegt, zodat Navarro's ervaring steeds naast het onderzoek staat"
+      ],
+      "hypothese": "De sectie Wat de wetenschap ervan zegt verhoogt het begrip zonder de les minder boeiend te maken: keuzevragen over de wetenschappelijke kanttekening worden even vaak goed beantwoord als vragen over Navarro's eigen inzichten, en boeiend scoort gemiddeld 4 of hoger.",
+      "nieuweLessen": [
+        "brein-1-01",
+        "lichaam-1-01",
+        "invloed-1-01",
+        "persoonlijkheid-1-01",
+        "uitzonderlijk-1-01"
+      ]
+    }
+  ]
+}

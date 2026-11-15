@@ -1,0 +1,91 @@
+{
+  "id": "brein-1-01",
+  "domein": "brein",
+  "niveau": 1,
+  "titel": "Bevriezen, vluchten, vechten: het eerlijke brein aan tafel",
+  "kern": "Volgens Navarro reageert het lichaam op dreiging eerder en eerlijker dan woorden: eerst bevriezen, dan vluchten, dan vechten. Daarna probeert het zichzelf te kalmeren. Wie die volgorde kent, ziet ongemak, maar nog geen leugen.",
+  "generatie": 1,
+  "versie": 1,
+  "leestijd": 13,
+  "secties": [
+    {
+      "kop": "Het moment dat iemand stil valt",
+      "tekst": "Je zit tegenover de accountmanager van een leverancier. Het gesprek loopt soepel: hij praat met zijn handen, leunt naar voren, lacht om een grap over de koffie. Dan noem je de boeteclausule bij te late levering. Zijn handen komen tot stilstand op tafel. Zijn adem wordt korter. Een paar seconden lang beweegt hij bijna niet. Daarna leunt hij achterover, strijkt met beide handen over zijn dijen en zegt: ‘Daar komen we vast wel uit.’\n\nJe hebt zojuist in een paar seconden drie dingen gezien die Joe Navarro zijn hele loopbaan heeft bestudeerd: een bevriezing, een kleine vlucht en een kalmerend gebaar. Deze les gaat over wat dat betekent, en vooral over wat het níet betekent."
+    },
+    {
+      "kop": "Wie Navarro is, en waarom hij over het brein begint",
+      "tekst": "Joe Navarro kwam als kind uit Cuba naar de Verenigde Staten en werkte vijfentwintig jaar als special agent bij de FBI, vooral in contraspionage en gedragsanalyse. In 2008 verscheen zijn bekendste boek, What Every BODY Is Saying (met Marvin Karlins), in het Nederlands uitgegeven als Wat ieder lichaam zegt.\n\nNavarro begint niet bij gebaren maar bij het brein. Hij noemt het limbische systeem het ‘eerlijke brein’: het deel dat snel en grotendeels buiten ons bewustzijn reageert op gevaar en veiligheid. Woorden kun je kiezen. Een schrikreactie veel minder. Daarom, zegt hij, vertelt het lichaam vaak eerder dan de mond hoe iemand zich voelt."
+    },
+    {
+      "kop": "De volgorde: bevriezen, vluchten, vechten",
+      "tekst": "In de volksmond heet het ‘vechten of vluchten’. Navarro draait het om en zet er iets voor: bevriezen komt eerst. Een roofdier ziet beweging, dus stilvallen is de oudste bescherming. In een vergaderzaal zie je dat als ingehouden adem, handen die stoppen, iemand die zich klein maakt of zijn voeten om de stoelpoten haakt.\n\nLukt bevriezen niet, dan volgt vluchten. Dat is zelden de deur uit rennen. Het is achteroverleunen, het bovenlichaam wegdraaien, een map of laptop als barrière voor je houden, de ogen even sluiten of afdekken. Pas als laatste komt vechten: een verstrakte kaak, een harde toon, breder gaan zitten, iemand in de rede vallen, de discussie op scherp zetten. Die volgorde helpt je te zien hoe ver iemands spanning al is opgelopen."
+    },
+    {
+      "kop": "Na de schrik: het lichaam kalmeert zichzelf",
+      "tekst": "Na een moment van spanning probeert het lichaam terug te gaan naar rust. Navarro noemt die gebaren pacifiers, kalmerende gebaren. Hij beschrijft er veel: over de nek wrijven, de kuil onder de keel aanraken of afdekken, aan een oorlel of ketting friemelen, de kraag lostrekken om lucht te krijgen (‘ventileren’), de handpalmen over de dijen strijken, diep uitademen met bolle wangen.\n\nDe kracht van dit inzicht zit in de timing. Een kalmerend gebaar op zichzelf zegt weinig: iedereen wrijft weleens over zijn nek. Maar een kalmerend gebaar vlak na een specifieke vraag of een specifiek onderwerp vertelt je: hier gebeurde net iets wat ongemak gaf. Navarro's vraag is dus niet ‘wat betekent dit gebaar?’, maar ‘wat ging hieraan vooraf?’"
+    },
+    {
+      "kop": "Wat de wetenschap ervan zegt",
+      "tekst": "Hier moet je als specialist scherp blijven, en Navarro zegt het zelf ook: er bestaat geen Pinokkio-effect. Er is geen enkel lichaamssignaal dat betrouwbaar verraadt dat iemand liegt. Een grote overzichtsstudie van DePaulo en collega's (2003) vond hooguit zwakke en wisselende verbanden tussen gedrag en liegen, en mensen raden gemiddeld nauwelijks beter dan toeval (Bond & DePaulo, 2006: ongeveer 54 procent).\n\nOok het ‘limbische systeem’ is een vereenvoudiging. Hersenonderzoekers als Joseph LeDoux laten zien dat emotie niet in één apart oerbrein zit, maar in samenwerkende netwerken. Navarro's beeld is dus een bruikbare metafoor, geen neurologisch schema. Wat overeind blijft: spanning en ontspanning worden vaak zichtbaar in houding en beweging. Daar zit de waarde, mits je die als aanwijzing gebruikt en niet als bewijs."
+    },
+    {
+      "kop": "Van signaal naar vraag",
+      "tekst": "Terug naar de leverancier. Wat weet je? Dat de boeteclausule hem ongemak gaf. Niet waaróm. Misschien liegt hij over zijn levertijden. Misschien weet hij dat zijn productie achterloopt en schaamt hij zich. Misschien kreeg hij vanochtend nog een standje van zijn eigen directeur over precies deze clausule.\n\nDe professionele stap is daarom geen conclusie maar een open vraag, rustig gesteld: ‘Ik zie dat die clausule iets losmaakt. Wat zou het voor jullie lastig maken?’ Zo gebruik je het eerlijke brein van de ander niet om hem te ontmaskeren, maar om het gesprek te brengen waar het echte probleem zit."
+    }
+  ],
+  "denkers": ["Joe Navarro", "Marvin Karlins", "Bella DePaulo", "Charles Bond", "Joseph LeDoux"],
+  "vragen": [
+    {
+      "soort": "keuze",
+      "vraag": "Volgens Navarro reageert het lichaam op dreiging in een vaste volgorde. Welke?",
+      "opties": [
+        "Vechten, vluchten, bevriezen",
+        "Vluchten, vechten, bevriezen",
+        "Bevriezen, vluchten, vechten",
+        "Bevriezen, vechten, vluchten"
+      ],
+      "juist": 2,
+      "uitleg": "Navarro zet bevriezen voorop, omdat stilvallen de oudste bescherming tegen een roofdier is. Vluchten volgt, vechten is het laatste redmiddel."
+    },
+    {
+      "soort": "keuze",
+      "vraag": "Een opdrachtgever trekt zijn kraag los direct nadat je vraagt waarom het budget is gehalveerd. Wat is de meest verantwoorde conclusie?",
+      "opties": [
+        "Hij verzwijgt iets over het budget",
+        "Het is warm in de kamer",
+        "Deze vraag gaf hem ongemak; vraag rustig door naar wat erachter zit",
+        "Hij wil het gesprek beëindigen"
+      ],
+      "juist": 2,
+      "uitleg": "Ventileren vlak na een specifieke vraag wijst op ongemak rond dat onderwerp. Waarom hij ongemak voelt, weet je nog niet. Daarvoor is een open vraag nodig."
+    },
+    {
+      "soort": "keuze",
+      "vraag": "Hoe zou je Navarro's ‘limbische systeem’ wetenschappelijk het eerlijkst omschrijven?",
+      "opties": [
+        "Een precies afgebakend hersendeel dat emoties apart verwerkt",
+        "Een bruikbare metafoor voor snelle, weinig gefilterde emotionele reacties",
+        "Een achterhaald idee zonder enige waarde",
+        "Het deel van het brein dat leugens produceert"
+      ],
+      "juist": 1,
+      "uitleg": "Modern hersenonderzoek ziet emotie als samenwerkende netwerken, niet als één oerbrein. Als beeld voor snelle reacties die we slecht kunnen sturen, blijft Navarro's idee wel bruikbaar."
+    },
+    {
+      "soort": "open",
+      "vraag": "Denk aan een gesprek uit je eigen praktijk waarin iemand plotseling stilviel of zich terugtrok. Wat ging er direct aan vooraf, en welke open vraag had je toen kunnen stellen?"
+    }
+  ],
+  "voorVandaag": {
+    "zin": "Een schrik is een wegwijzer, geen bekentenis.",
+    "kijkpunt": "Merk vandaag op wanneer jíj zelf even bevriest of een kalmerend gebaar maakt. Wat ging eraan vooraf?",
+    "werkbrug": "Let in je volgende contractbespreking op het moment dat de handen van de ander stilvallen, en onthoud welk onderwerp er op dat moment op tafel lag."
+  },
+  "verbanden": ["lichaam-1-01", "uitzonderlijk-1-01"],
+  "bronnen": [
+    "Navarro & Karlins (2008), What Every BODY Is Saying",
+    "DePaulo e.a. (2003), Cues to deception, Psychological Bulletin",
+    "Bond & DePaulo (2006), Accuracy of deception judgments",
+    "LeDoux (2015), Anxious"
+  ]
+}

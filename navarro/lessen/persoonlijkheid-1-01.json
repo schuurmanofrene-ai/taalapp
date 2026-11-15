@@ -1,0 +1,84 @@
+{
+  "id": "persoonlijkheid-1-01",
+  "domein": "persoonlijkheid",
+  "niveau": 1,
+  "titel": "Vier patronen die schade doen, en het recht om jezelf te beschermen",
+  "kern": "In Dangerous Personalities beschrijft Navarro vier patronen: narcistisch, emotioneel instabiel, paranoïde en roofzuchtig. Zijn doel is geen diagnose, maar zelfbescherming: gedrag over langere tijd zien, en serieus nemen wat iemand met jou doet.",
+  "generatie": 1,
+  "versie": 1,
+  "leestijd": 14,
+  "secties": [
+    {
+      "kop": "De contractpartner die je uitput",
+      "tekst": "Je werkt al een half jaar met een directeur aan de andere kant van een groot contract. In het begin was hij charmant: hij prees je scherpte en nam je mee uit lunchen. Inmiddels herken je een patroon. Afspraken worden achteraf anders herinnerd. Kritiek op zijn organisatie beantwoordt hij met een persoonlijke sneer. Als er iets misgaat, ligt het altijd bij een ander. Na elk overleg ben je moe, en je merkt dat je je zinnen vooraf zorgvuldig uitkiest.\n\nNavarro schreef Dangerous Personalities (2014, met Toni Sciarra Poynter) voor precies dit soort momenten. Niet om iemand een etiket op te plakken, maar om je te helpen zien wat er gebeurt, en om je toestemming te geven jezelf te beschermen."
+    },
+    {
+      "kop": "Waarom een FBI-agent hierover schrijft",
+      "tekst": "In zijn FBI-jaren had Navarro te maken met mensen die anderen veel schade deden: spionnen, oplichters, geweldplegers. Hij merkte dat de grootste schade vaak niet kwam van onbekenden, maar van mensen die dichtbij stonden: een collega, een leidinggevende, een partner. En dat de omgeving de signalen vaak jarenlang wegverklaarde.\n\nZijn uitgangspunt is daarom eenvoudig: let op patronen in gedrag over tijd, niet op één incident. En neem je eigen ervaring serieus. Hoe voel je je rond deze persoon? Op je hoede, uitgeput, schuldig zonder te weten waarom? Navarro beschouwt dat gevoel als informatie, niet als zwakte."
+    },
+    {
+      "kop": "De vier patronen in het kort",
+      "tekst": "Narcistisch. Iemand die zich ver boven anderen plaatst, recht meent te hebben op bewondering en voorrang, weinig echte empathie toont en anderen gebruikt. Kritiek wordt beantwoord met kleineren of woede.\n\nEmotioneel instabiel. Iemand met heftige en snel wisselende emoties, die anderen afwisselend op een voetstuk zet en afwijst, met een sterke angst om verlaten te worden. Wie dichtbij staat, loopt op eieren.\n\nParanoïde. Iemand die overal kwade bedoelingen ziet, wantrouwig is tegenover iedereen buiten een kleine kring, en die achterdocht kan laten omslaan in aanvallen op vermeende vijanden.\n\nRoofzuchtig. Navarro's term voor iemand zonder geweten, die anderen ziet als prooi: charmant als het uitkomt, berekenend, zonder spijt. Dit patroon noemt hij het gevaarlijkst.\n\nNavarro wijst er ook op dat de patronen kunnen samengaan, en dat het risico dan groter wordt."
+    },
+    {
+      "kop": "Wat de wetenschap ervan zegt",
+      "tekst": "Navarro's vier patronen lijken op persoonlijkheidsstoornissen uit de DSM-5: de narcistische, de borderline, de paranoïde en de antisociale persoonlijkheidsstoornis, met psychopathie zoals Robert Hare die beschreef als zwaarste vorm van de roofzuchtige variant. Maar Navarro gebruikt bewust geen diagnostische taal. Zijn checklists zijn geen gevalideerde test.\n\nDe psychologie ziet persoonlijkheid bovendien steeds meer als een glijdende schaal, niet als hokjes. Iedereen heeft wat narcistische of wantrouwige trekken; het gaat om de mate, de starheid en de schade. Daarin zit het risico van zijn boek. Wie overal ‘narcisten’ ziet, maakt van een moeilijke collega een monster, en sluit een gesprek af voordat het begint."
+    },
+    {
+      "kop": "Je dubbele rol: beschermen zonder diagnosticeren",
+      "tekst": "Als CGT-professional ken je de diagnostische criteria. Juist daarom is het verleidelijk om ze buiten de behandelkamer te gebruiken. In een contractrelatie heb je echter geen diagnostische opdracht en geen toestemming. Wat je wel kunt doen, is gedrag beschrijven en daar je grenzen op afstemmen.\n\nNavarro's praktische raad sluit daarbij aan: leg afspraken schriftelijk vast, betrek getuigen bij belangrijke overleggen, let op je eigen basislijn (hoe gespannen word jij in zijn buurt?) en wacht niet tot iemand anders zegt dat het erg genoeg is. Niet ‘hij is een narcist’, maar ‘hij herinnert afspraken anders dan ze gemaakt zijn, dus ik bevestig ze voortaan per mail’."
+    }
+  ],
+  "denkers": ["Joe Navarro", "Toni Sciarra Poynter", "Robert Hare"],
+  "herhaling": [
+    {
+      "soort": "keuze",
+      "van": "brein-1-01",
+      "vraag": "Wat is volgens Navarro de eerste reactie van het lichaam op dreiging?",
+      "opties": ["Vechten", "Vluchten", "Bevriezen", "Kalmeren"],
+      "juist": 2,
+      "uitleg": "Bevriezen komt eerst, daarna vluchten, en vechten als laatste."
+    }
+  ],
+  "vragen": [
+    {
+      "soort": "keuze",
+      "vraag": "Wat is het hoofddoel van Navarro's Dangerous Personalities?",
+      "opties": [
+        "Leken leren persoonlijkheidsstoornissen te diagnosticeren",
+        "Patronen leren herkennen zodat je jezelf en anderen kunt beschermen",
+        "Bewijzen dat de meeste leidinggevenden psychopaat zijn",
+        "Therapeuten een nieuwe behandelmethode geven"
+      ],
+      "juist": 1,
+      "uitleg": "Navarro schrijft voor zelfbescherming. Zijn checklists zijn uitdrukkelijk geen diagnostisch instrument."
+    },
+    {
+      "soort": "keuze",
+      "vraag": "Een collega reageert één keer fel op kritiek. Wat zou Navarro aanraden?",
+      "opties": [
+        "Hem zo snel mogelijk als narcist benoemen",
+        "Kijken of dit gedrag een patroon is over langere tijd, en wat het met jou doet",
+        "Het negeren, want gevoelens zijn geen informatie",
+        "Hem met de DSM-5-criteria confronteren"
+      ],
+      "juist": 1,
+      "uitleg": "Eén incident is geen patroon. Navarro kijkt naar gedrag over tijd, en naar jouw eigen ervaring als bron van informatie."
+    },
+    {
+      "soort": "open",
+      "vraag": "Denk aan een lastige werkrelatie, zonder namen. Beschrijf drie concrete gedragingen die je zag, zonder een etiket of diagnose te gebruiken. Welke grens of afspraak zou je op basis van die gedragingen kunnen stellen?"
+    }
+  ],
+  "voorVandaag": {
+    "zin": "Beschrijf het gedrag, niet de mens, en bescherm wat je dierbaar is.",
+    "kijkpunt": "Merk vandaag op bij wie jij je woorden extra zorgvuldig kiest, en wat je lichaam dan doet.",
+    "werkbrug": "Bevestig na je volgende lastige overleg de gemaakte afspraken binnen een uur per mail, in neutrale bewoordingen."
+  },
+  "verbanden": ["invloed-1-01", "uitzonderlijk-1-01"],
+  "bronnen": [
+    "Navarro & Sciarra Poynter (2014), Dangerous Personalities",
+    "American Psychiatric Association (2013), DSM-5, sectie persoonlijkheidsstoornissen",
+    "Hare (1993), Without Conscience"
+  ]
+}
