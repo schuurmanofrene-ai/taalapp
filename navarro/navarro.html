@@ -1,779 +1,308 @@
-<title>Navarro Leergang</title>
-<link rel="preconnect" href="https://fonts.googleapis.com">
-<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
-<link rel="stylesheet" href="https://fonts.googleapis.com/css2?family=Instrument+Serif:ital@0;1&family=Newsreader:ital,opsz,wght@0,6..72,400;0,6..72,600;1,6..72,400&family=IBM+Plex+Mono:wght@400;500&display=swap">
+<title>Leerweg Navarro</title>
+<meta name="claude:viewport-fit-sides" content="cover">
+<link rel="stylesheet" href="https://fonts.googleapis.com/css2?family=Young+Serif&family=Source+Serif+4:ital,opsz,wght@0,8..60,400;0,8..60,600;1,8..60,400&family=IBM+Plex+Mono:wght@400;500&display=swap">
 <style>
-/* Layout: een sterrenkaart als astrolabium. Midden = jij, vier ringen = MBO+ tot Master,
-   vijf sectoren = Navarro's vijf werkterreinen. Daaronder het leesbare deel: volgende les, profiel, groeilog. */
-:root {
-  --bg: #efebe3;
-  --surface: #faf7f1;
-  --ink: #241f1c;
-  --muted: #5b6170;
-  --line: #d3cabd;
-  --brass: #94661c;
-  --good: #2f7d4a;
-  --bad: #b0412e;
-  --d-brein: #b4462f;
-  --d-lichaam: #2f6f8f;
-  --d-invloed: #8a6a12;
-  --d-persoonlijkheid: #7a3f78;
-  --d-uitzonderlijk: #2f7a54;
-  --f-display: "Instrument Serif", "Iowan Old Style", Georgia, serif;
-  --f-body: "Newsreader", "Iowan Old Style", Georgia, serif;
-  --f-mono: "IBM Plex Mono", ui-monospace, "SF Mono", Menlo, monospace;
+/* Layout: één leeskolom, niveaus als trappen (tabs), lessen als uitklapbare hoofdstukken met afvinkbare voortgang.
+   Zelfde opbouw als de Leerweg Filosofie; eigen accent in roestrood voor het werk van Navarro. */
+:root{
+  --bg:#f1efec; --surface:#ffffff; --ink:#241e1b; --muted:#6a5f58; --line:#ddd5ce;
+  --accent:#9c4a2f; --accent-soft:#f2e3dc; --gold:#8a6d2a;
+  --display:"Young Serif",Georgia,serif; --body:"Source Serif 4",Georgia,serif; --mono:"IBM Plex Mono",ui-monospace,monospace;
 }
-@media (prefers-color-scheme: dark) {
-  :root:not([data-theme="light"]) {
-    --bg: #15120f; --surface: #1f1a16; --ink: #ece4d8; --muted: #a59a8c; --line: #3a322b;
-    --brass: #d8a94f; --good: #6cc48a; --bad: #ee8a74;
-    --d-brein: #f08b70; --d-lichaam: #7fc0e0; --d-invloed: #e0bd5a;
-    --d-persoonlijkheid: #d59ad2; --d-uitzonderlijk: #74cf9c;
-    color-scheme: dark;
-  }
-}
-:root[data-theme="dark"] {
-  --bg: #15120f; --surface: #1f1a16; --ink: #ece4d8; --muted: #a59a8c; --line: #3a322b;
-  --brass: #d8a94f; --good: #6cc48a; --bad: #ee8a74;
-  --d-brein: #f08b70; --d-lichaam: #7fc0e0; --d-invloed: #e0bd5a;
-  --d-persoonlijkheid: #d59ad2; --d-uitzonderlijk: #74cf9c;
-  color-scheme: dark;
-}
-
-* { box-sizing: border-box; }
-body {
-  background: var(--bg); color: var(--ink);
-  font-family: var(--f-body); font-size: 1.0625rem; line-height: 1.6;
-  padding-inline: 16px; padding-block: 0 64px;
-}
-.wrap { max-width: 1120px; margin-inline: auto; }
-h1, h2, h3 { font-family: var(--f-display); font-weight: 400; text-wrap: balance; line-height: 1.1; margin: 0; }
-h1 { font-size: clamp(2.4rem, 7vw, 4rem); letter-spacing: -0.01em; }
-h2 { font-size: clamp(1.7rem, 4vw, 2.2rem); }
-h3 { font-size: 1.45rem; }
-p { margin: 0; }
-.label {
-  font-family: var(--f-mono); font-size: 0.72rem; letter-spacing: 0.12em;
-  text-transform: uppercase; color: var(--muted);
-}
-button { font: inherit; color: inherit; cursor: pointer; }
-:focus-visible { outline: 2px solid var(--brass); outline-offset: 3px; border-radius: 4px; }
-
-/* ---------- kop ---------- */
-.kop { display: flex; flex-wrap: wrap; align-items: end; justify-content: space-between; gap: 12px 24px; padding-block: 28px 8px; }
-.kop .sub { color: var(--muted); max-width: 46ch; }
-.gen {
-  display: inline-flex; align-items: baseline; gap: 10px; font-family: var(--f-mono);
-  border: 1px solid var(--line); border-radius: 999px; padding: 6px 14px; font-size: 0.85rem;
-}
-.gen b { color: var(--brass); font-weight: 500; font-variant-numeric: tabular-nums; }
-
-/* ---------- kaart ---------- */
-.kaartvak { display: grid; grid-template-columns: minmax(0, 1.35fr) minmax(0, 1fr); gap: 28px; align-items: start; padding-block: 8px 40px; }
-@media (max-width: 860px) { .kaartvak { grid-template-columns: minmax(0, 1fr); } }
-.kaart { position: relative; width: 100%; max-width: 640px; aspect-ratio: 1; margin-inline: auto; }
-.kaart canvas { width: 100%; height: 100%; display: block; touch-action: manipulation; }
-.tip {
-  position: absolute; pointer-events: none; background: var(--surface); border: 1px solid var(--line);
-  padding: 6px 10px; border-radius: 6px; font-size: 0.9rem; max-width: 220px; line-height: 1.3;
-  transform: translate(-50%, calc(-100% - 14px));
-}
-.kaartstatus { position: absolute; inset: auto 0 6% 0; text-align: center; color: var(--muted); font-style: italic; }
-
-.zij { display: grid; gap: 22px; min-width: 0; }
-.volgende {
-  background: var(--surface); border: 1px solid var(--line); border-radius: 14px; padding: 22px;
-  display: grid; gap: 10px;
-}
-.volgende h3 { font-size: 1.75rem; }
-.volgende .kern { color: var(--muted); }
-.knop {
-  justify-self: start; display: inline-flex; align-items: center; gap: 10px; border: 0; border-radius: 999px;
-  background: var(--ink); color: var(--bg); padding: 10px 20px; font-family: var(--f-mono); font-size: 0.85rem; letter-spacing: 0.04em;
-}
-.knop:hover { background: var(--brass); }
-.knop[disabled] { opacity: 0.45; cursor: default; background: var(--ink); }
-.sluit { white-space: nowrap; }
-.knop.licht { background: transparent; color: var(--ink); border: 1px solid var(--line); }
-.knop.licht:hover { border-color: var(--brass); color: var(--brass); background: transparent; }
-
-.domeinen { display: grid; gap: 10px; list-style: none; margin: 0; padding: 0; }
-.domeinen li { display: grid; grid-template-columns: 12px minmax(0, 1fr) auto; gap: 12px; align-items: center; }
-.stip { width: 12px; height: 12px; border-radius: 50%; background: var(--c); }
-.balk { grid-column: 2 / 4; height: 3px; background: var(--line); border-radius: 2px; overflow: hidden; margin-top: -4px; }
-.balk i { display: block; height: 100%; background: var(--c); }
-.telling { font-family: var(--f-mono); font-size: 0.8rem; color: var(--muted); font-variant-numeric: tabular-nums; }
-.ringen { display: flex; flex-wrap: wrap; gap: 6px 16px; }
-
-/* ---------- secties eronder ---------- */
-.blok { border-top: 1px solid var(--line); padding-block: 36px; display: grid; gap: 20px; }
-.twee { display: grid; grid-template-columns: minmax(0, 1fr) minmax(0, 1fr); gap: 28px; }
-@media (max-width: 760px) { .twee { grid-template-columns: minmax(0, 1fr); } }
-.lijst { list-style: none; margin: 0; padding: 0; display: grid; gap: 8px; }
-.lijst li { padding-left: 18px; position: relative; }
-.lijst li::before { content: ""; position: absolute; left: 0; top: 0.7em; width: 7px; height: 7px; border: 1px solid var(--brass); border-radius: 50%; }
-.notitie { font-style: italic; color: var(--muted); max-width: 65ch; }
-
-.overzicht { display: grid; grid-template-columns: repeat(auto-fill, minmax(min(100%, 300px), 1fr)); gap: 24px; }
-.dgroep h3 { font-size: 1.3rem; color: var(--c); margin-bottom: 6px; }
-.lesrij {
-  width: 100%; display: grid; grid-template-columns: auto minmax(0, 1fr) auto; gap: 10px; align-items: baseline;
-  text-align: left; background: none; border: 0; border-bottom: 1px solid var(--line); padding: 8px 0;
-}
-.lesrij:hover .lt { color: var(--brass); }
-.lesrij .nv { font-family: var(--f-mono); font-size: 0.72rem; color: var(--muted); width: 4.2em; }
-.lesrij .st { font-family: var(--f-mono); font-size: 0.75rem; color: var(--muted); font-variant-numeric: tabular-nums; }
-.lesrij .st.klaar { color: var(--good); }
-
-.tijdlijn { list-style: none; margin: 0; padding: 0; display: grid; gap: 28px; }
-.tijdlijn > li { display: grid; grid-template-columns: 74px minmax(0, 1fr); gap: 18px; }
-.tijdlijn .g { font-family: var(--f-display); font-size: 2.6rem; color: var(--brass); line-height: 1; }
-.tijdlijn h3 { margin-bottom: 8px; }
-.tijdlijn .hyp { margin-top: 10px; padding: 10px 14px; border: 1px dashed var(--line); border-radius: 10px; }
-
-textarea {
-  width: 100%; min-height: 96px; resize: vertical; font: inherit; color: var(--ink);
-  background: var(--surface); border: 1px solid var(--line); border-radius: 10px; padding: 12px;
-}
-textarea:focus { border-color: var(--brass); outline: none; }
-.wensen li { color: var(--muted); }
-.wensen li b { color: var(--ink); font-weight: 400; }
-
-/* ---------- lezer ---------- */
-.lezer {
-  position: fixed; inset: 0; z-index: 10; background: var(--bg); overflow-y: auto;
-  padding-inline: 16px; padding-block: calc(env(safe-area-inset-top, 0px) + 12px) calc(env(safe-area-inset-bottom, 0px) + 48px);
-  animation: open 0.35s ease-out;
-}
-@keyframes open { from { opacity: 0.4; transform: translateY(14px); } to { opacity: 1; transform: none; } }
-.lezer .kolom { max-width: 68ch; margin-inline: auto; display: grid; gap: 28px; }
-.lezerbalk { position: sticky; top: 0; display: flex; justify-content: space-between; align-items: center; gap: 12px; background: var(--bg); padding-block: 8px; border-bottom: 1px solid var(--line); z-index: 1; }
-.lezer header { display: grid; gap: 12px; }
-.lezer h1 { font-size: clamp(2.2rem, 6vw, 3.3rem); }
-.lezer .kern { font-size: 1.25rem; font-style: italic; color: var(--muted); }
-.lezer section { display: grid; gap: 10px; }
-.lezer section h2 { font-size: 1.6rem; }
-.chips { display: flex; flex-wrap: wrap; gap: 8px; }
-.chip { border: 1px solid var(--line); border-radius: 999px; padding: 2px 12px; font-size: 0.9rem; }
-.dchip { color: var(--c); border-color: var(--c); font-family: var(--f-mono); font-size: 0.72rem; letter-spacing: 0.1em; text-transform: uppercase; }
-
-.vraag { display: grid; gap: 10px; padding: 18px; border: 1px solid var(--line); border-radius: 12px; background: var(--surface); }
-.vraag .q { font-weight: 600; }
-.opties { display: grid; gap: 8px; }
-.optie { text-align: left; background: var(--bg); border: 1px solid var(--line); border-radius: 8px; padding: 10px 14px; }
-.optie:hover:not([disabled]) { border-color: var(--brass); }
-.optie[disabled] { cursor: default; }
-.optie.goed { border-color: var(--good); color: var(--good); }
-.optie.fout { border-color: var(--bad); color: var(--bad); text-decoration: line-through; }
-.uitleg { color: var(--muted); font-size: 0.98rem; }
-.claude { border-left: 2px solid var(--brass); padding-left: 14px; white-space: pre-wrap; }
-.rij { display: flex; flex-wrap: wrap; gap: 10px; align-items: center; }
-
-.vandaag { border: 1px solid var(--brass); border-radius: 14px; padding: 22px; display: grid; gap: 14px; }
-.vandaag .zin { font-family: var(--f-display); font-size: 1.7rem; line-height: 1.2; }
-.vandaag dl { margin: 0; display: grid; gap: 10px; }
-.vandaag dt { font-family: var(--f-mono); font-size: 0.72rem; letter-spacing: 0.12em; text-transform: uppercase; color: var(--brass); }
-.vandaag dd { margin: 0; }
-
-.schaal { display: grid; gap: 6px; }
-.schaal .seg { display: grid; grid-template-columns: repeat(5, minmax(0, 1fr)); gap: 6px; }
-.schaal .seg button { border: 1px solid var(--line); background: var(--surface); border-radius: 8px; padding: 6px 0; font-family: var(--f-mono); font-size: 0.85rem; }
-.schaal .seg button[aria-pressed="true"] { background: var(--ink); color: var(--bg); border-color: var(--ink); }
-.schaal .uiteinden { display: flex; justify-content: space-between; font-size: 0.85rem; color: var(--muted); }
-
-.melding { font-family: var(--f-mono); font-size: 0.85rem; color: var(--good); }
-.melding.fout { color: var(--bad); }
-
-@media (prefers-reduced-motion: reduce) { .lezer { animation: none; } }
+@media (prefers-color-scheme:dark){:root:not([data-theme="light"]){
+  --bg:#18140f; --surface:#221c17; --ink:#ede6de; --muted:#a99c90; --line:#3a3029;
+  --accent:#e08d6e; --accent-soft:#3a251c; --gold:#d6b766; color-scheme:dark}}
+:root[data-theme="dark"]{
+  --bg:#18140f; --surface:#221c17; --ink:#ede6de; --muted:#a99c90; --line:#3a3029;
+  --accent:#e08d6e; --accent-soft:#3a251c; --gold:#d6b766; color-scheme:dark}
+body{background:var(--bg);color:var(--ink);font-family:var(--body);font-size:17px;line-height:1.62}
+.wrap{max-width:760px;margin:0 auto;padding-block:40px 80px;padding-left:max(16px,env(safe-area-inset-left,0px));padding-right:max(16px,env(safe-area-inset-right,0px))}
+h1,h2,h3{font-family:var(--display);font-weight:400;text-wrap:balance;margin:0}
+h1{font-size:clamp(2rem,6vw,2.9rem);line-height:1.1}
+h2{font-size:1.6rem;line-height:1.2}
+.label{font-family:var(--mono);font-size:.72rem;letter-spacing:.09em;text-transform:uppercase;color:var(--muted)}
+.lead{color:var(--muted);font-size:1.08rem;max-width:62ch;margin:14px 0 0}
+header{display:grid;gap:6px;margin-bottom:28px}
+.masters{display:grid;grid-template-columns:repeat(auto-fit,minmax(160px,1fr));gap:10px;margin:22px 0 8px}
+.master{border-top:2px solid var(--accent);padding-top:8px}
+.master b{font-family:var(--display);font-weight:400;font-size:1.05rem;display:block}
+.master span{font-size:.9rem;color:var(--muted)}
+.progress{display:flex;align-items:center;gap:12px;margin:26px 0 8px}
+.bar{flex:1;height:6px;background:var(--line);border-radius:3px;overflow:hidden}
+.bar i{display:block;height:100%;background:var(--accent);width:0;transition:width .4s}
+.progress .label{font-variant-numeric:tabular-nums;white-space:nowrap}
+nav.steps{position:sticky;top:env(safe-area-inset-top,0px);z-index:5;background:var(--bg);display:flex;gap:6px;padding:10px 0;overflow-x:auto;border-bottom:1px solid var(--line)}
+body::before{content:"";position:fixed;inset:0 0 auto;height:env(safe-area-inset-top,0px);z-index:10;background:var(--bg)}
+nav.steps button{font-family:var(--mono);font-size:.78rem;letter-spacing:.04em;background:transparent;color:var(--muted);border:1px solid var(--line);border-radius:999px;padding:7px 14px;cursor:pointer;white-space:nowrap}
+nav.steps button[aria-selected="true"]{background:var(--accent);border-color:var(--accent);color:var(--bg)}
+nav.steps button:focus-visible,summary:focus-visible,input:focus-visible{outline:2px solid var(--gold);outline-offset:2px}
+.level-head{margin:30px 0 18px;display:grid;gap:8px}
+.level-head p{margin:0;max-width:62ch}
+.meta{display:flex;flex-wrap:wrap;gap:8px 18px;font-size:.92rem;color:var(--muted)}
+.lessons{display:grid;gap:10px}
+details{background:var(--surface);border:1px solid var(--line);border-radius:8px}
+details[data-done="1"] summary .n{background:var(--accent);color:var(--bg);border-color:var(--accent)}
+summary{list-style:none;cursor:pointer;display:grid;grid-template-columns:auto 1fr;gap:14px;align-items:start;padding:16px 18px}
+summary::-webkit-details-marker{display:none}
+.n{font-family:var(--mono);font-size:.78rem;width:30px;height:30px;border-radius:50%;border:1px solid var(--line);display:grid;place-items:center;font-variant-numeric:tabular-nums;margin-top:2px}
+summary h3{font-size:1.18rem;line-height:1.3}
+summary .who{font-size:.9rem;color:var(--muted);margin-top:2px}
+.body{padding:0 18px 20px 62px;display:grid;gap:14px;min-width:0}
+.body p{margin:0}
+.block{display:grid;gap:4px}
+.key{background:var(--accent-soft);border-radius:6px;padding:12px 14px}
+.key ul{margin:4px 0 0;padding-left:1.1em}
+.quote{border-left:2px solid var(--gold);padding-left:14px;font-style:italic}
+.quote small{display:block;font-style:normal;font-family:var(--mono);font-size:.72rem;color:var(--muted);margin-top:4px;letter-spacing:.04em}
+.done{display:flex;align-items:center;gap:8px;font-family:var(--mono);font-size:.8rem;color:var(--muted);cursor:pointer}
+.done input{accent-color:var(--accent);width:18px;height:18px}
+.exam{margin-top:18px;border:1px dashed var(--gold);border-radius:8px;padding:16px 18px;display:grid;gap:6px}
+section.rhythm{margin-top:56px;display:grid;gap:14px}
+.rhythm ol{margin:0;padding-left:1.2em;display:grid;gap:6px}
+@media (max-width:520px){.body{padding-left:18px}}
+@media (prefers-reduced-motion:reduce){.bar i{transition:none}}
 </style>
 
 <div class="wrap">
-  <header class="kop">
-    <div>
-      <p class="label">Naar de boeken en kennis van Joe Navarro · met de wetenschap ernaast</p>
-      <h1>Navarro Leergang</h1>
-      <p class="sub">Leren kijken zoals een FBI-gedragsanalist, en kritisch blijven zoals een onderzoeker. Claude leest je antwoorden en beoordelingen, schrijft de volgende lessen en scherpt zijn eigen werkwijze aan.</p>
-    </div>
-    <div class="gen" id="gen"><span class="label">Generatie</span><b id="gen-nr">–</b><span id="gen-datum"></span></div>
-  </header>
+<header>
+  <span class="label">Levenslange leerweg · van MBO+ naar Master</span>
+  <h1>Leerweg Navarro</h1>
+  <p class="lead">Een doorlopend programma in vier niveaus naar de boeken en kennis van Joe Navarro, oud-FBI-agent en specialist in non-verbaal gedrag. Elke les geeft je de kern, de uitleg, een citaat uit de bron, de vertaling naar je praktijk als consultant, coach en therapeut, en de tekst die je erbij leest. Naast Navarro staat steeds het onderzoek: wat standhoudt, en wat wankelt. Je volgt de lessen in volgorde en vinkt af wat je hebt doorgewerkt.</p>
+  <div class="masters">
+    <div class="master"><b>Joe Navarro</b><span>leest comfort en ongemak, van voet tot gezicht</span></div>
+    <div class="master"><b>Paul Ekman</b><span>bracht emotie in het gezicht in kaart</span></div>
+    <div class="master"><b>Aldert Vrij</b><span>toetst wat werkelijk werkt bij leugens en verhoren</span></div>
+    <div class="master"><b>Lisa Feldman Barrett</b><span>laat zien dat context de betekenis bepaalt</span></div>
+  </div>
+  <div class="progress"><div class="bar"><i id="bar"></i></div><span class="label" id="count">0 van 0 lessen</span></div>
+</header>
 
-  <section class="kaartvak" aria-label="Kaart van je leerweg in het werk van Navarro">
-    <div class="kaart" id="kaart">
-      <canvas id="canvas" aria-label="Bewegende kaart met je lessen als sterren. Tik op een ster om de les te openen."></canvas>
-      <div class="tip" id="tip" hidden></div>
-      <p class="kaartstatus" id="kaartstatus">Je lessen worden geladen…</p>
-    </div>
-    <div class="zij">
-      <article class="volgende" id="volgende">
-        <p class="label">Volgende les</p>
-        <h3 id="v-titel">Even geduld</h3>
-        <p class="kern" id="v-kern">Claude haalt je leerweg op.</p>
-        <button class="knop" id="v-knop" disabled>Open de les</button>
-      </article>
-      <div>
-        <p class="label" style="margin-bottom:10px">Domeinen · afgerond van geschreven</p>
-        <ul class="domeinen" id="domeinen"></ul>
-      </div>
-      <div>
-        <p class="label" style="margin-bottom:6px">Ringen, van binnen naar buiten</p>
-        <div class="ringen"><span>MBO+</span><span>HBO</span><span>WO</span><span>Master</span><span class="notitie">en daarna de horizon, die steeds verder schuift</span></div>
-      </div>
-    </div>
-  </section>
+<nav class="steps" role="tablist" id="tabs"></nav>
+<main id="level"></main>
 
-  <section class="blok" aria-labelledby="h-profiel">
-    <div>
-      <p class="label">Leerprofiel</p>
-      <h2 id="h-profiel">Wat Claude over jouw leren weet</h2>
-    </div>
-    <p class="notitie" id="p-notitie">Het profiel verschijnt zodra de leergang geladen is.</p>
-    <div class="twee">
-      <div><p class="label" style="margin-bottom:8px">Sterk</p><ul class="lijst" id="p-sterk"></ul></div>
-      <div><p class="label" style="margin-bottom:8px">Aandacht</p><ul class="lijst" id="p-aandacht"></ul></div>
-    </div>
-  </section>
-
-  <section class="blok" aria-labelledby="h-lessen">
-    <div>
-      <p class="label">Alle lessen</p>
-      <h2 id="h-lessen">De sterren op een rij</h2>
-    </div>
-    <div class="overzicht" id="overzicht"></div>
-  </section>
-
-  <section class="blok" aria-labelledby="h-groei">
-    <div>
-      <p class="label">Groeilog</p>
-      <h2 id="h-groei">Hoe de leergang zichzelf verbetert</h2>
-    </div>
-    <ol class="tijdlijn" id="tijdlijn" reversed></ol>
-  </section>
-
-  <section class="blok" aria-labelledby="h-wens">
-    <div>
-      <p class="label">Voor de volgende ronde</p>
-      <h2 id="h-wens">Vraag of wens voor Claude</h2>
-    </div>
-    <div class="twee">
-      <form id="wensform" style="display:grid;gap:10px">
-        <label for="wens" class="notitie">Iets wat je dieper wilt begrijpen, een vraag uit je werk, of iets wat beter kan aan de lessen. Claude leest dit bij de volgende groeironde.</label>
-        <textarea id="wens" placeholder="Bijvoorbeeld: ik wil oefenen met het lezen van handen tijdens een prijsonderhandeling."></textarea>
-        <div class="rij"><button class="knop" type="submit" id="wensknop">Bewaar voor Claude</button><span class="melding" id="wensmelding" role="status"></span></div>
-      </form>
-      <div>
-        <p class="label" style="margin-bottom:8px">Nog open</p>
-        <ul class="lijst wensen" id="wensen"><li>Nog geen wensen.</li></ul>
-      </div>
-    </div>
-  </section>
+<section class="rhythm">
+  <span class="label">Vast weekritme · ongeveer drie uur</span>
+  <h2>Zo werk je elke week</h2>
+  <ol>
+    <li><b>Lezen, 45 minuten.</b> De bron die bij de les hoort, langzaam en met potlood.</li>
+    <li><b>Observeren, 30 minuten.</b> Ga zitten op een openbare plek, zoals een station, café of wachtruimte. Kies één persoon en noteer eerst de basislijn, daarna elke verandering.</li>
+    <li><b>Toepassen, 30 minuten.</b> Koppel de les aan één cliënt, één contract of één gesprek uit je week.</li>
+    <li><b>Avondnotitie, 5 minuten per dag.</b> Eén moment van ongemak bij jezelf en één bij een ander, met wat er direct aan voorafging.</li>
+    <li><b>Uitleggen, eens per maand.</b> Leg één begrip uit aan een collega of naaste, inclusief wat je er níet uit mag concluderen.</li>
+  </ol>
+  <p class="lead">Tempo: niveau 1 ongeveer zes maanden, niveau 2 een jaar, niveau 3 anderhalf jaar. Niveau 4 heeft geen einde.</p>
+</section>
 </div>
 
-<div class="lezer" id="lezer" role="dialog" aria-modal="true" aria-labelledby="l-titel" hidden></div>
-
 <script>
-(() => {
-  "use strict";
+const LEVELS=[
+{id:"mbo",tab:"1 · MBO+",title:"Fundament: leren kijken zoals Navarro",intro:"Je leert de basis uit What Every BODY Is Saying: waarom het lichaam informatie geeft, hoe het eerlijke brein reageert op dreiging, en de drie regels die je beschermen tegen onzin: basislijn, verandering en clusters.",dur:"± 6 maanden",goal:"Comfort en ongemak herkennen en een signaal omzetten in een goede vraag",
+lessons:[
+{t:"Wie Navarro is en waarom het lichaam spreekt",who:"Joe Navarro, Marvin Karlins",
+ k:["<b>Non-verbale communicatie</b>: alles wat we laten zien behalve woorden, van houding tot kleding en stiptheid","<b>Observeren</b> is een vaardigheid, geen talent: bewust kijken in plaats van alleen zien","Lichaamstaal vertelt vooral iets over <b>gevoel en intentie</b>, niet over feiten"],
+ u:"Joe Navarro kwam als kind met zijn familie uit Cuba naar de Verenigde Staten. Hij moest een nieuwe taal leren en merkte dat hij mensen beter begreep door naar ze te kijken dan door naar ze te luisteren. Later werkte hij vijfentwintig jaar als special agent bij de FBI, vooral in contraspionage en gedragsanalyse. In 2008 schreef hij met psycholoog Marvin Karlins What Every BODY Is Saying, dat wereldwijd een bestseller werd. Zijn uitgangspunt is eenvoudig: het lichaam laat voortdurend zien hoe iemand zich voelt en wat hij van plan is. Wie leert observeren, krijgt toegang tot informatie die in woorden vaak ontbreekt. Tegelijk benadrukt Navarro dat lichaamstaal geen gedachten leest. Het geeft aanwijzingen, die je moet toetsen.",
+ c:["Observeren is niet hetzelfde als kijken. Het is bewust en doelgericht waarnemen.","Navarro, What Every BODY Is Saying, hoofdstuk 1 (parafrase)"],
+ p:"Als consultant, coach en therapeut werk je al jaren met mensen. Je leest ze dus al, maar grotendeels intuïtief. Deze leerweg maakt die intuïtie bewust, toetsbaar en bespreekbaar, zodat je haar kunt uitleggen, verbeteren en corrigeren.",
+ r:"Navarro en Karlins, What Every BODY Is Saying, inleiding en hoofdstuk 1"},
+{t:"De tien geboden van het observeren",who:"Joe Navarro",
+ k:["Wees een <b>bekwaam waarnemer</b> van je omgeving","Kijk altijd <b>in context</b>","Ken <b>universele</b> én <b>persoonlijke</b> gedragingen","Stel de <b>basislijn</b> vast en let op <b>veranderingen</b>","Zoek <b>clusters</b> van signalen, herken <b>misleidende</b> signalen, en observeer <b>onopvallend</b>"],
+ u:"Navarro vat zijn methode samen in tien geboden. Kijk actief naar je omgeving, zoals je ook leert autorijden door de weg te lezen. Observeer in context: een trillende hand bij een sollicitatie zegt iets anders dan bij iemand die het koud heeft. Leer gedragingen die bij vrijwel alle mensen voorkomen, zoals de lippen op elkaar persen bij spanning. Leer ook de persoonlijke gewoonten van iemand kennen. Stel vast hoe iemand zich gedraagt als er niets bijzonders speelt, en let op wat daarvan afwijkt. Vertrouw nooit op één signaal, maar zoek meerdere signalen die tegelijk of kort na elkaar dezelfde kant op wijzen. Wees alert op gedrag dat bewust wordt opgevoerd. Het belangrijkste gebod noemt hij het onderscheid tussen comfort en ongemak. En kijk zo dat de ander het niet merkt, want wie zich bekeken voelt, gaat zich anders gedragen.",
+ c:["Het onderscheid tussen comfort en ongemak is het belangrijkste wat je kunt leren lezen.","Navarro, What Every BODY Is Saying, hoofdstuk 1 (parafrase)"],
+ p:"Deze tien geboden zijn een bruikbare checklist voor elk belangrijk gesprek. Vooral het laatste gebod is relevant in therapie: een cliënt die merkt dat je zijn handen bestudeert, voelt zich eerder geobserveerd dan gezien.",
+ r:"Navarro en Karlins, What Every BODY Is Saying, hoofdstuk 1 (de tien geboden)"},
+{t:"Het eerlijke brein: bevriezen, vluchten, vechten",who:"Joe Navarro, Joseph LeDoux",
+ k:["Het <b>limbische systeem</b> als 'eerlijk brein': snel, automatisch en weinig gefilterd","<b>Bevriezen</b> komt eerst: stilvallen, adem inhouden, klein maken","<b>Vluchten</b>: wegdraaien, achteroverleunen, barrières opwerpen","<b>Vechten</b>: verstrakken, harder praten, breed gaan zitten, aanvallen"],
+ u:"Navarro legt lichaamstaal uit vanuit het brein. Het deel dat snel en grotendeels onbewust reageert op gevaar en veiligheid, noemt hij het limbische systeem, of het eerlijke brein. Woorden kun je kiezen, een schrikreactie veel minder. Hij draait de bekende formule 'vechten of vluchten' om en zet er iets voor: bevriezen komt eerst, omdat een roofdier beweging ziet. In een vergadering zie je dat als handen die stilvallen of een ingehouden adem. Daarna volgt vluchten, zelden letterlijk: iemand leunt achterover, draait zijn romp weg of zet een tas of laptop als barrière neer. Vechten komt pas als laatste en is in moderne vorm meestal verbaal: een scherpe toon, iemand onderbreken, de discussie op de spits drijven. Hersenonderzoekers zoals LeDoux laten zien dat 'het limbische systeem' een vereenvoudiging is: emotie zit in samenwerkende netwerken, niet in één oerbrein. Als beeld voor snelle, slecht te sturen reacties blijft het bruikbaar.",
+ c:["Het limbische systeem reageert op de wereld om ons heen reflexmatig, ogenblikkelijk en zonder na te denken.","Navarro, What Every BODY Is Saying, hoofdstuk 2 (parafrase)"],
+ p:"De volgorde helpt je zien hoe ver iemands spanning al is opgelopen. Een opdrachtgever die bevriest bij een onderwerp, heeft nog ruimte. Een opdrachtgever die al vecht, heeft eerst rust nodig voordat inhoudelijke argumenten nog landen.",
+ r:"Navarro en Karlins, What Every BODY Is Saying, hoofdstuk 2"},
+{t:"Comfort en ongemak: de hoofdas",who:"Joe Navarro",
+ k:["Vrijwel al het non-verbale gedrag valt op een as van <b>comfort</b> naar <b>ongemak</b>","Comfort: ontspannen gezicht, open romp, <b>spiegelen</b>, ruimte innemen","Ongemak: spanning, afstand, afschermen, <b>minder bewegen</b>","De vraag is niet 'liegt hij?' maar <b>'wanneer werd het ongemakkelijk?'</b>"],
+ u:"Navarro's belangrijkste inzicht is dat je de meeste lichaamstaal kunt lezen langs één as: voelt iemand zich op zijn gemak, of niet? Bij comfort zie je ontspannen gezichtsspieren, een romp die naar de ander gekeerd is, gebaren die meebewegen met het gesprek, en vaak spiegelen: mensen die zich bij elkaar op hun gemak voelen, nemen onbewust elkaars houding over. Bij ongemak zie je het omgekeerde: gespannen kaken en lippen, afstand nemen, het lichaam afschermen met armen of voorwerpen, minder gebaren. Dit is het sterkste deel van zijn werk, omdat het niet beweert dat je gedachten kunt lezen. Het zegt alleen: hier verandert iemands gevoel. Dat ongemak kan uit schuld voortkomen, maar net zo goed uit angst, schaamte, vermoeidheid of een stoel die niet lekker zit. Daarom is ongemak nooit een bewijs van liegen.",
+ c:["Er bestaat geen enkel non-verbaal gedrag dat op zichzelf bewijst dat iemand liegt.","Navarro, What Every BODY Is Saying, hoofdstuk 9 (parafrase)"],
+ p:"In contractonderhandelingen is de comfort-as een kompas voor je volgende vraag. Als de ander ontspant bij een voorstel, ben je dicht bij een akkoord. Als hij verstrakt, weet je waar je moet doorvragen of meer ruimte moet geven.",
+ r:"Navarro en Karlins, What Every BODY Is Saying, hoofdstuk 2 en 9"},
+{t:"Kalmerende gebaren",who:"Joe Navarro",
+ k:["<b>Pacifiers</b>: gebaren waarmee het lichaam zichzelf kalmeert na spanning","Voorbeelden: <b>nek aanraken</b>, het kuiltje onder de keel afdekken, <b>ventileren</b> (kraag lostrekken), handen over de dijen strijken, uitademen met bolle wangen","De betekenis zit in de <b>timing</b>: wat ging eraan vooraf?"],
+ u:"Na een moment van ongemak probeert het lichaam terug te keren naar rust. Navarro noemt die gebaren pacifiers, naar het Engelse woord voor fopspeen. Hij ziet ze als een van de meest betrouwbare aanwijzingen voor spanning, juist omdat ze zo gewoon zijn: over de nek wrijven, aan een oorlel of ketting friemelen, met de hand over het voorhoofd of de wang strijken, de kraag van een overhemd lostrekken om lucht te krijgen, de handpalmen over de dijen strijken onder tafel, of diep uitademen met bolle wangen. Bij vrouwen ziet hij vaker het afdekken van het kuiltje onder de keel, bij mannen het aanraken van nek of das. Een kalmerend gebaar op zichzelf betekent weinig: iedereen doet het af en toe. Maar een kalmerend gebaar vlak na een bepaalde vraag of een bepaald onderwerp vertelt je: dit raakte iets.",
+ c:["Kalmerende gebaren vertellen je niet wát iemand denkt, maar wel dát er net iets ongemakkelijks gebeurde.","Navarro, What Every BODY Is Saying, hoofdstuk 2 (parafrase)"],
+ p:"In therapie wijst een kalmerend gebaar vaak op een thema dat de cliënt nog niet in woorden heeft. Je kunt het zacht benoemen: 'Ik zag dat je even uitademde toen je over je vader begon. Wat gebeurde er toen?'",
+ r:"Navarro en Karlins, What Every BODY Is Saying, hoofdstuk 2 (pacifying behaviors)"},
+{t:"Basislijn, verandering en clusters",who:"Joe Navarro",
+ k:["<b>Basislijn</b>: hoe iemand zich gedraagt als er niets bijzonders speelt","<b>Verandering</b> ten opzichte van die basislijn is betekenisvoller dan een losse houding","<b>Clusters</b>: meerdere signalen die tegelijk dezelfde kant op wijzen","Ook dan blijft het een <b>hypothese</b>, geen bewijs"],
+ u:"Wie altijd met zijn armen over elkaar zit, zegt daarmee weinig. Wie altijd ontspannen zit en opeens zijn armen kruist zodra de prijs ter sprake komt, zegt wel iets. Daarom begint Navarro elke observatie met de basislijn. Kijk in de eerste minuten van een gesprek hoe iemand zit, hoe hij zijn handen gebruikt, hoe vaak hij knippert, hoe snel hij praat. Daarna let je op veranderingen, en vooral op het moment waarop ze plaatsvinden. Eén signaal is ruis. Drie signalen die tegelijk of snel na elkaar dezelfde kant op wijzen, zoals verstrakte lippen, een afgewende romp en een hand naar de nek, vormen een cluster. Dat is een sterkere aanwijzing. Maar ook een cluster vertelt je alleen dat iets verandert, niet waarom. De volgende stap is altijd een vraag.",
+ c:["Zonder basislijn weet je niet wat normaal is voor deze persoon, en dus ook niet wat afwijkt.","Navarro, What Every BODY Is Saying, hoofdstuk 1 (parafrase)"],
+ p:"Gebruik de eerste tien minuten van een kennismaking met een nieuwe opdrachtgever als basislijnmeting. Stel eerst neutrale vragen, over de reis of het bedrijf, en bewaar de lastige onderwerpen voor later.",
+ r:"Navarro en Karlins, What Every BODY Is Saying, hoofdstuk 1; Navarro, The Dictionary of Body Language, inleiding"},
+{t:"Voeten en benen: het eerlijkste deel",who:"Joe Navarro, Paul Ekman, Wallace Friesen",
+ k:["We letten weinig op onze <b>voeten</b>, dus verraden ze meer","<b>Wegdraaiende voeten</b>: iemand wil weg","<b>Tegen de zwaartekracht in</b>: op de tenen veren, tenen omhoog, bij positieve emotie","Staand de <b>benen kruisen</b>: een teken van comfort","<b>Plotseling stilvallen</b> van wiebelende voeten: bevriezen"],
+ u:"Navarro begint zijn lichaamskaart niet bij het gezicht maar bij de voeten. We leren van jongs af ons gezicht te beheersen, maar op onze voeten let bijna niemand. Bovendien zijn voeten gebouwd om ons naar iets toe of van iets weg te bewegen. Als iemand in een gesprek zijn voeten naar de deur draait terwijl zijn bovenlichaam nog naar jou staat, wil hij waarschijnlijk weg. Op de tenen veren of de tenen omhoog laten wijzen ziet hij als blijdschap. Staand de benen kruisen doen we vooral als we ons veilig voelen, omdat het vluchten lastiger maakt. Het idee is ouder: Ekman en Friesen schreven in 1969 al over 'lekkage', emoties die vooral uitlekken via lichaamsdelen waar we minder op letten. Wetenschappelijk is de claim dat voeten het eerlijkst zijn weinig direct getoetst. Gebruik voeten dus als vroege hint over richting en comfort, niet als bewijs.",
+ c:["Wil je weten wat iemand werkelijk wil, kijk dan naar zijn voeten.","Navarro, What Every BODY Is Saying, hoofdstuk 3 (parafrase)"],
+ p:"Kijk na een kick-off naar de voeten in een groepje. Zo zie je wie aansluiting zoekt en wie al onderweg is naar de volgende afspraak, nog voordat iemand iets zegt.",
+ r:"Navarro en Karlins, What Every BODY Is Saying, hoofdstuk 3; Ekman en Friesen, Nonverbal leakage and clues to deception (1969)"}
+],
+exam:"Houd twee weken een observatielogboek bij van één persoon die je regelmatig ziet, bijvoorbeeld een collega of een vaste contactpersoon. Beschrijf zijn basislijn, drie momenten van verandering met wat eraan voorafging, en welke vraag je op elk moment had kunnen stellen. Schrijf er één A4 bij over wat je níet kon concluderen."},
 
-  const DOMEINEN = [
-    // Vijf werkterreinen, elk verankerd in een of meer boeken van Navarro.
-    { id: "brein", naam: "Het eerlijke brein", kort: "Brein" },
-    { id: "lichaam", naam: "Van voet tot gezicht", kort: "Lichaam" },
-    { id: "invloed", naam: "Luider dan woorden", kort: "Invloed" },
-    { id: "persoonlijkheid", naam: "Gevaarlijke persoonlijkheden", kort: "Persoonlijkheden" },
-    { id: "uitzonderlijk", naam: "Uitzonderlijk zijn", kort: "Uitzonderlijk" },
-  ];
-  const NIVEAUS = ["", "MBO+", "HBO", "WO", "Master"];
-  const domNaam = (id) => (DOMEINEN.find((d) => d.id === id) || { naam: id }).naam;
-  const kleurVar = (id) => `var(--d-${id})`;
+{id:"hbo",tab:"2 · HBO",title:"Toepassing: het hele lichaam lezen in je praktijk",intro:"Je loopt Navarro's lichaamskaart verder af, van romp tot ogen, en past alles toe in onderhandeling, coaching en therapie. Je leert ook wat jij zelf uitzendt en hoe je jezelf beschermt tegen mensen die schade doen.",dur:"± 1 jaar",goal:"Signalen in clusters lezen en toepassen in je eigen beroepspraktijk",
+lessons:[
+{t:"De romp: naar je toe of van je af",who:"Joe Navarro",
+ k:["<b>Ventraal toekeren</b>: de buik naar iemand richten bij sympathie en vertrouwen","<b>Ventraal afwenden</b>: de romp wegdraaien bij afkeer of ongemak","<b>Wegleunen</b> en <b>barrières</b>: armen, tassen, mappen, koffiekopjes","<b>Opblazen</b> en <b>klein maken</b>: borst uit bij dominantie, schouders op bij onzekerheid"],
+ u:"De romp bevat onze kwetsbaarste organen. Daarom beschermen we hem onbewust. Navarro beschrijft hoe we onze buikkant, de ventrale kant, richten naar mensen en dingen die we prettig vinden, en afwenden van wat we niet vertrouwen. Bij een ongemakkelijk onderwerp zie je iemand iets wegdraaien of achteroverleunen, ook als zijn gezicht vriendelijk blijft. Mensen zetten ook barrières neer: armen gekruist voor de borst, een tas op schoot, een laptop open, een koffiekopje dat net tussen hen en de ander wordt geschoven. Iemand die zich groot maakt, met de borst naar voren en de armen ver uit elkaar, claimt ruimte. Iemand die zijn schouders optrekt en zijn hoofd laat zakken, het 'schildpadeffect', voelt zich onzeker of beschaamd.",
+ c:["De romp vertelt ons, net als de voeten, vaak waar iemand werkelijk naartoe wil.","Navarro, What Every BODY Is Saying, hoofdstuk 4 (parafrase)"],
+ p:"Let in een onderhandeling op het moment dat een barrière verschijnt of verdwijnt. Een map die opzij wordt gelegd na jouw voorstel kan betekenen dat de ander zich opent voor een akkoord.",
+ r:"Navarro en Karlins, What Every BODY Is Saying, hoofdstuk 4"},
+{t:"Armen: territorium, terugtrekken en status",who:"Joe Navarro",
+ k:["<b>Armen terugtrekken</b> tegen het lichaam bij spanning","<b>Handen in de zij</b>: ruimte claimen, soms dominantie of ergernis","<b>Armen op de rug</b>: de 'koninklijke houding', die afstand vraagt","<b>Ruimte innemen</b> met armen over stoelleuningen: zelfvertrouwen en territorium"],
+ u:"Armen bewegen vrijer als we ons goed voelen, en worden stil en dicht tegen het lichaam gehouden als we gespannen zijn. Kinderen die gestraft worden, houden hun armen strak langs hun lichaam. Volwassenen doen dat in kleinere vorm. Navarro bespreekt de handen in de zij als een manier om territorium te claimen. Je ziet het bij agenten, managers en mensen die ergens 'hun probleem' van maken. Met de armen op de rug, zoals een koning of een inspecteur die rondloopt, zeg je zonder woorden: kom niet te dichtbij. Iemand die zijn armen over de leuning van twee stoelen legt, neemt ruimte in en toont zelfvertrouwen. Dezelfde houding kan dus status, ontspanning of dominantie uitdrukken. Pas de context en de verandering vertellen je welke.",
+ c:["De armen zijn er om te beschermen, en dat doen ze ook onbewust, wanneer we ons bedreigd voelen.","Navarro, What Every BODY Is Saying, hoofdstuk 5 (parafrase)"],
+ p:"Kijk naar je eigen armen als je iets ongemakkelijks moet vertellen, zoals een boete of een negatieve beoordeling. Houd je ze strak tegen je lijf, dan zendt je lichaam onzekerheid uit, ook als je woorden stevig zijn.",
+ r:"Navarro en Karlins, What Every BODY Is Saying, hoofdstuk 5"},
+{t:"Handen: zelfvertrouwen en twijfel",who:"Joe Navarro",
+ k:["<b>Torenspits</b>: vingertoppen tegen elkaar, een teken van zelfvertrouwen","<b>Duimen</b>: zichtbaar en omhoog bij zekerheid, verstopt in zakken bij onzekerheid","<b>Handen wringen</b> en <b>vingers in elkaar vergrendeld</b>: stress","<b>Zichtbare handen</b> en open handpalmen wekken vertrouwen"],
+ u:"Onze handen zijn rijk aan zenuwen en worden in de hersenen sterk vertegenwoordigd. Ze zijn daardoor expressief, maar we beheersen ze ook beter dan onze voeten. Navarro beschrijft de torenspits, waarbij de vingertoppen van beide handen tegen elkaar rusten, als een van de duidelijkste tekens van zelfvertrouwen. Duimen die zichtbaar zijn of omhoog wijzen horen bij zekerheid. Wie onzeker is, verstopt zijn duimen vaak in zijn zakken of trekt ze in. Bij stress wringen mensen hun handen, wrijven ze hun handpalmen tegen elkaar of vergrendelen ze hun vingers zo stevig dat de knokkels wit worden. Navarro wijst er ook op dat verborgen handen, onder tafel of achter de rug, bij anderen wantrouwen wekken. Dat is de reden waarom hij adviseert in gesprekken je handen zichtbaar te houden.",
+ c:["Wanneer de handen zelfvertrouwen tonen, ziet de rest van de wereld dat ook.","Navarro, What Every BODY Is Saying, hoofdstuk 6 (parafrase)"],
+ p:"In coaching kun je een cliënt laten merken wat zijn handen doen als hij over zijn ambitie praat, en daarna als hij over zijn twijfel praat. Dat verschil maakt een innerlijk conflict zichtbaar.",
+ r:"Navarro en Karlins, What Every BODY Is Saying, hoofdstuk 6; Navarro, The Dictionary of Body Language, deel over handen"},
+{t:"Gezicht en ogen",who:"Joe Navarro, Paul Ekman",
+ k:["<b>Ogen afschermen</b>: knipperen, ogen dichtdoen of de hand ervoor bij iets onwelkoms","<b>Lippen verdwijnen</b>: op elkaar persen bij stress","<b>Lippen tuiten</b>: het niet eens zijn, of een alternatief overwegen","<b>Wenkbrauwflits</b>: een snelle groet van herkenning; <b>neus optrekken</b>: afkeer"],
+ u:"Het gezicht is het moeilijkst te lezen, zegt Navarro, juist omdat we het zo goed hebben leren beheersen. Toch geeft het waardevolle aanwijzingen. Bij iets wat we niet willen zien of horen, schermen we onze ogen af: we knipperen langer, sluiten de ogen even of brengen een hand naar het voorhoofd. Bij stress persen we de lippen op elkaar tot ze bijna verdwijnen. Lippen die zich tuiten, alsof iemand gaat fluiten, wijzen vaak op het oneens zijn of het overwegen van een alternatief, terwijl iemand luistert. Bij een begroeting trekken mensen wereldwijd kort de wenkbrauwen op, de wenkbrauwflits, als teken van herkenning en welkom. Een opgetrokken neus wijst op afkeer. Dit sluit aan bij het werk van Paul Ekman, dat je op niveau 3 kritisch onderzoekt.",
+ c:["Het gezicht is de plek waar mensen het meest hun best doen om te verbergen wat ze voelen.","Navarro, What Every BODY Is Saying, hoofdstuk 7 (parafrase)"],
+ p:"Lippen die verdwijnen bij het lezen van een contractclausule zijn een van de bruikbaarste signalen in je vak. Ze vertellen je welke bepaling de ander zorgen baart, nog voordat hij iets zegt.",
+ r:"Navarro en Karlins, What Every BODY Is Saying, hoofdstuk 7; Ekman, Gegrepen door emoties (Emotions Revealed), hoofdstuk 1"},
+{t:"Luider dan woorden: wat jij uitzendt",who:"Joe Navarro, Toni Sciarra Poynter, Nalini Ambady",
+ k:["<b>Non-verbale intelligentie</b>: lezen wat anderen uitzenden én bewust zijn van wat jij uitzendt","<b>Eerste indruk</b>: binnen enkele seconden gevormd","<b>Psychologisch comfort</b> geven als bron van vertrouwen en invloed","Kleding, verzorging, stiptheid en ruimtegebruik tellen mee"],
+ u:"In Louder Than Words (2010) draait Navarro de blik om. Je observeert niet alleen, je wordt ook geobserveerd. Hij spreekt van non-verbale intelligentie: het vermogen om bewust te zien wat anderen uitzenden en om bewust te zijn van wat jij zelf uitzendt. Mensen vormen razendsnel een oordeel. Nalini Ambady en Robert Rosenthal lieten in 1993 zien dat oordelen na een paar seconden stomme video van een docent opvallend goed overeenkwamen met de beoordelingen van studenten aan het einde van het semester. Navarro's advies: geef de ander psychologisch comfort. Keer je romp naar hem toe, houd je handen zichtbaar, begroet met een wenkbrauwflits en kom niet te dichtbij voordat de ander daar ruimte voor geeft. Wees ook eerlijk over wat het onderzoek niet laat zien. Het bekende 'power posing', dat beweerde dat twee minuten in een krachtige houding je hormonen veranderen, werd in grotere herhalingen niet bevestigd.",
+ c:["Wie anderen op hun gemak stelt, krijgt hun vertrouwen.","Navarro, Louder Than Words (parafrase)"],
+ p:"In de therapeutische relatie is dit misschien het belangrijkste deel van Navarro. Een cliënt die zich onveilig voelt, gaat bevriezen of vluchten, hoe vriendelijk je woorden ook zijn. Je lichaam draagt de relatie voordat je je eerste vraag stelt.",
+ r:"Navarro en Sciarra Poynter, Louder Than Words, hoofdstuk 1 tot en met 4; Ambady en Rosenthal, Half a minute (1993)"},
+{t:"Onderhandelen en pokeren: lezen onder druk",who:"Joe Navarro, Phil Hellmuth, Marvin Karlins",
+ k:["<b>Tells</b>: gedrag dat iets verraadt over iemands gevoel of positie","Een sterke positie: <b>ontspanning</b>, gebaren tegen de zwaartekracht in, zichtbare duimen","Een zwakke positie: <b>lippen persen</b>, bevriezen, kalmerende gebaren","Je eigen tells <b>beheersen</b> door rust en een vaste routine"],
+ u:"Met pokerkampioen Phil Hellmuth en Marvin Karlins schreef Navarro Read 'Em and Weep (2006), over lichaamstaal aan de pokertafel. Poker is een zuiver laboratorium: er staat iets op het spel, en iedereen probeert zijn gevoel te verbergen. Navarro's les is dezelfde als in zijn andere boeken. Spelers met een sterke hand ontspannen vaak, gaan rechter zitten en laten gebaren zien die tegen de zwaartekracht in gaan. Spelers met een zwakke hand vertonen eerder spanning: lippen die verdwijnen, bewegingen die bevriezen, een hand naar de nek. Tegelijk weten ervaren spelers dat ze gelezen worden. Ze voeren soms bewust gedrag op. Navarro raadt daarom aan je eigen gedrag zo constant mogelijk te houden, met dezelfde routine bij elke hand, zodat er weinig te lezen valt.",
+ c:["Aan de pokertafel worden niet alleen de kaarten gespeeld, maar ook de mensen.","Navarro, Hellmuth en Karlins, Read 'Em and Weep (parafrase)"],
+ p:"Een contractonderhandeling lijkt op poker: er is risico, informatie is ongelijk verdeeld en iedereen beschermt zijn positie. Werk met een vaste routine voor jezelf: dezelfde houding, dezelfde pauze, dezelfde manier van een voorstel lezen. Zo lekt er weinig uit, ook als de inzet hoog is.",
+ r:"Navarro, Hellmuth en Karlins, Read 'Em and Weep, hoofdstuk 1 tot en met 3"},
+{t:"Gevaarlijke persoonlijkheden en zelfbescherming",who:"Joe Navarro, Toni Sciarra Poynter",
+ k:["Vier patronen: <b>narcistisch</b>, <b>emotioneel instabiel</b>, <b>paranoïde</b> en <b>roofzuchtig</b>","Let op <b>patronen over tijd</b>, niet op één incident","Je eigen gevoel rond iemand, zoals uitputting of op je hoede zijn, is <b>informatie</b>","Het doel is <b>zelfbescherming</b>, geen diagnose"],
+ u:"In Dangerous Personalities (2014) beschrijft Navarro vier patronen van mensen die anderen veel schade kunnen doen. De narcistische persoonlijkheid plaatst zichzelf ver boven anderen, eist bewondering en voorrang en kan slecht tegen kritiek. De emotioneel instabiele persoonlijkheid heeft heftig wisselende emoties en zet anderen afwisselend op een voetstuk en aan de kant. De paranoïde persoonlijkheid ziet overal kwade bedoelingen. De roofzuchtige persoonlijkheid ziet anderen als prooi en kent geen spijt. Volgens Navarro kunnen de patronen samengaan, en dan wordt het risico groter. Hij geeft checklists, maar benadrukt dat die geen diagnostisch instrument zijn. Zijn kernboodschap is dat je patronen over langere tijd moet zien, je eigen ervaring serieus moet nemen en jezelf toestemming moet geven om grenzen te stellen.",
+ c:["Je bent niet verplicht om jezelf te laten beschadigen door wie dan ook.","Navarro, Dangerous Personalities (parafrase)"],
+ p:"Als CGT-professional ken je de diagnostische criteria. In een contractrelatie heb je echter geen diagnostische opdracht. Beschrijf daar gedrag, niet de mens: niet 'hij is een narcist', maar 'hij herinnert afspraken anders, dus ik bevestig ze voortaan per mail'.",
+ r:"Navarro en Sciarra Poynter, Dangerous Personalities, inleiding en hoofdstuk 1 en 2"}
+],
+exam:"Analyseer een echt gesprek uit je praktijk, zoals een onderhandeling, een coachingsgesprek of een intake, met Navarro's lichaamskaart. Beschrijf de basislijn, minstens drie clusters met het moment waarop ze verschenen, wat jij zelf uitzond, en welke vragen je stelde of had kunnen stellen. Sluit af met de grenzen van je analyse: wat had ook een andere verklaring kunnen hebben? Omvang: 1500 woorden."},
 
-  const state = { lessen: new Map(), voortgang: new Map(), profiel: null, log: null, wensen: [], geladen: false };
-  let db = null, sample = null;
+{id:"wo",tab:"3 · WO",title:"Onderbouwing: wat het onderzoek zegt en waar het wankelt",intro:"Je legt Navarro naast de wetenschap. Je leest het onderzoek naar emotie in het gezicht, naar leugens en verhoren, en naar het brein, en je leert onderscheiden wat stevig staat, wat wankelt en waar pseudowetenschap begint.",dur:"± 1,5 jaar",goal:"Navarro's claims toetsen aan primair onderzoek en een onderbouwd oordeel geven",
+lessons:[
+{t:"Darwin, Ekman en de universele emoties",who:"Charles Darwin, Paul Ekman, Wallace Friesen",
+ k:["<b>Darwin (1872)</b>: emotie-uitdrukkingen als erfenis van de evolutie","<b>Basisemoties</b>: blijdschap, verdriet, angst, woede, verrassing, afkeer","<b>Ekman en Friesen (1971)</b>: herkenning van gezichtsuitdrukkingen bij de Fore in Papoea-Nieuw-Guinea","<b>FACS</b>: een systeem om elke gezichtsbeweging in spiereenheden te beschrijven","<b>Weergaveregels</b>: culturele regels over wanneer je emoties toont"],
+ u:"In The Expression of the Emotions in Man and Animals (1872) stelde Darwin dat gezichtsuitdrukkingen aangeboren zijn en een evolutionaire functie hadden. Paul Ekman toetste dat idee in de jaren zestig en zeventig. Hij reisde onder meer naar de Fore in Papoea-Nieuw-Guinea, een gemeenschap met weinig contact met westerse media. Daar herkenden mensen de meeste uitdrukkingen van westerse foto's, al lukte het onderscheid tussen angst en verrassing slechter. Met Wallace Friesen ontwikkelde Ekman het Facial Action Coding System (FACS), dat elke gezichtsbeweging beschrijft in termen van spiergroepen. Hij introduceerde ook de weergaveregels: culturen verschillen niet zozeer in welke emoties mensen voelen, maar in wanneer ze die mogen tonen. Navarro's lezing van het gezicht leunt sterk op deze traditie.",
+ c:["Emoties bepalen de kwaliteit van ons leven.","Ekman, Gegrepen door emoties (Emotions Revealed), inleiding"],
+ p:"De weergaveregels zijn direct relevant in internationale contracten. Een Japanse, Duitse en Braziliaanse onderhandelaar kunnen hetzelfde voelen en toch heel verschillend laten zien wat ze voelen.",
+ r:"Ekman, Gegrepen door emoties, hoofdstuk 1 en 2; Ekman en Friesen, Constants across cultures in the face and emotion (1971)"},
+{t:"De kritiek: emoties worden gemaakt",who:"Lisa Feldman Barrett, James Russell",
+ k:["<b>Theorie van geconstrueerde emotie</b>: het brein voorspelt en maakt emoties uit lichaamssignalen en context","<b>Barrett e.a. (2019)</b>: gezichtsbewegingen zijn geen betrouwbare vingerafdruk van emotie","Dezelfde uitdrukking kan <b>verschillende emoties</b> betekenen, en dezelfde emotie verschillende uitdrukkingen","<b>Context</b> bepaalt vaak meer dan het gezicht zelf"],
+ u:"Lisa Feldman Barrett stelt in How Emotions Are Made (2017) dat emoties geen vaste programma's zijn die in het gezicht naar buiten komen. Het brein voorspelt voortdurend wat er aan de hand is, op basis van lichaamssignalen, ervaring, taal en context, en construeert daaruit een emotie. In 2019 publiceerde ze met vier collega's, onder wie aanhangers van beide kampen, een groot overzichtsartikel. De conclusie: mensen fronsen wel vaker als ze boos zijn dan als ze blij zijn, maar het verband is zwak en wisselend. Vaak fronsen mensen als ze boos zijn niet, en ze fronsen ook om andere redenen, zoals concentratie. Uit een gezichtsbeweging alleen kun je dus niet betrouwbaar een emotie afleiden. James Russell had al eerder gewezen op methodische zwakheden in het onderzoek bij de Fore, zoals de vooraf gegeven keuzelijst met emotiewoorden.",
+ c:["Je brein reageert niet op de wereld. Het voorspelt haar.","Barrett, How Emotions Are Made (parafrase)"],
+ p:"Dit verklaart waarom Navarro's nadruk op context en basislijn zo belangrijk is. Je leest geen emotie van een gezicht af. Je leest een verandering in een situatie, en dan stel je een vraag.",
+ r:"Barrett, How Emotions Are Made, hoofdstuk 1 en 3; Barrett e.a., Emotional expressions reconsidered (2019)"},
+{t:"Liegen en lichaamstaal: wat meta-analyses laten zien",who:"Bella DePaulo, Charles Bond, Maria Hartwig",
+ k:["<b>DePaulo e.a. (2003)</b>: hooguit zwakke en wisselende verbanden tussen gedrag en liegen","<b>Bond en DePaulo (2006)</b>: mensen raden gemiddeld ongeveer <b>54 procent</b> juist","Ook <b>professionals</b>, zoals politie en douane, doen het nauwelijks beter","<b>Hartwig en Bond (2011)</b>: het probleem zit vooral in het gebrek aan betrouwbare signalen"],
+ u:"Wegkijken, friemelen, aan je neus zitten: in alle culturen geloven mensen dat leugenaars zich zo verraden. Het onderzoek laat iets anders zien. Bella DePaulo en collega's analyseerden in 2003 meer dan honderd studies naar ruim honderdvijftig gedragingen. De meeste hadden geen of nauwelijks een verband met liegen. Wegkijken hoorde daar niet bij. Bond en DePaulo bundelden in 2006 honderden studies naar hoe goed mensen leugens herkennen: gemiddeld 54 procent, waar 50 procent toeval is. Politiemensen, rechters en douaniers deden het nauwelijks beter, maar waren wel zekerder van hun oordeel. Maria Hartwig en Bond lieten in 2011 zien dat mensen wel op de signalen letten die er zijn, maar dat liegen gewoon weinig zichtbare sporen nalaat. Navarro erkent dit ook: er is geen Pinokkio-effect.",
+ c:["Er is geen non-verbaal gedrag dat uniek is voor liegen, zoals de groeiende neus van Pinokkio.","Vrij, Detecting Lies and Deceit (parafrase)"],
+ p:"Als specialist in lichaamstaal is dit misschien de belangrijkste les om aan anderen uit te leggen. Wie in een contractgeschil of een HR-zaak zegt 'ik zag aan hem dat hij loog', geeft een mening, geen bewijs.",
+ r:"DePaulo e.a., Cues to deception (2003); Bond en DePaulo, Accuracy of deception judgments (2006); Hartwig en Bond, Why do lie-catchers fail? (2011)"},
+{t:"Van het lichaam naar het gesprek: verhoren die werken",who:"Aldert Vrij, Pär Anders Granhag, John Schafer",
+ k:["<b>Cognitieve belasting</b>: liegen kost meer denkwerk, dus vragen die het denken zwaarder maken helpen","<b>Onverwachte vragen</b> en <b>vertellen in omgekeerde volgorde</b>","<b>Strategisch gebruik van bewijs</b>: informatie pas laat in het gesprek tonen","<b>Informatie verzamelen</b> werkt beter dan beschuldigen (Meissner e.a., 2014)"],
+ u:"Omdat lichaamssignalen tekortschieten, verlegde het onderzoek de aandacht naar het gesprek zelf. De Nederlandse psycholoog Aldert Vrij, hoogleraar in Portsmouth, ontwikkelde met collega's de cognitieve benadering. Liegen kost meer denkwerk dan de waarheid vertellen, dus wie het denken extra belast, bijvoorbeeld door iemand een verhaal achterstevoren te laten vertellen of onverwachte vragen te stellen, maakt verschillen beter zichtbaar. Pär Anders Granhag en Maria Hartwig ontwikkelden het strategisch gebruik van bewijs: je laat iemand eerst vrij vertellen en toont pas daarna wat je weet. Navarro schreef met John Schafer Advanced Interviewing Techniques (2004), waarin rapport en goed luisteren centraal staan. Een meta-analyse van Meissner en collega's (2014) liet zien dat informatieverzamelende verhoren meer ware en minder valse bekentenissen opleveren dan beschuldigende verhoren.",
+ c:["Het verschil tussen waarheid en leugen zit vaker in wat iemand zegt dan in hoe hij beweegt.","Vrij, Detecting Lies and Deceit (parafrase)"],
+ p:"Voor contractmanagement is dit goud waard. Vraag een leverancier niet 'klopt deze planning?', maar 'loop me eens door de laatste drie weken, van achter naar voren'. Details, logica en wat er ontbreekt vertellen meer dan zijn handen.",
+ r:"Vrij, Detecting Lies and Deceit, hoofdstuk 14 en 15; Navarro en Schafer, Advanced Interviewing Techniques, hoofdstuk 1 tot en met 3; Meissner e.a., Accusatorial and information-gathering interrogation methods (2014)"},
+{t:"Het limbische brein onder de loep",who:"Paul MacLean, Joseph LeDoux, Lisa Feldman Barrett",
+ k:["<b>Het drie-eenheidsbrein</b> van MacLean: reptielenbrein, limbisch brein en neocortex","Modern onderzoek: emotie zit in <b>verspreide netwerken</b>, niet in één oerbrein","<b>LeDoux</b>: overlevingscircuits zijn niet hetzelfde als bewuste angst","Wat overeind blijft: <b>snelle, automatische reacties</b> die moeilijk te onderdrukken zijn"],
+ u:"Navarro's 'eerlijke brein' gaat terug op het model van Paul MacLean uit de jaren zestig. Volgens MacLean bestaat het brein uit drie lagen die in de evolutie na elkaar zijn ontstaan: een reptielenbrein voor overleven, een limbisch brein voor emotie en een neocortex voor denken. Het model is populair, maar onder neurowetenschappers verlaten. Hersengebieden die emotie verwerken, zoals de amygdala, werken voortdurend samen met gebieden voor denken en waarnemen, en ook reptielen hebben structuren die op de onze lijken. Joseph LeDoux onderscheidt overlevingscircuits, die automatisch op dreiging reageren, van de bewuste ervaring van angst, die veel meer van het hele brein vraagt. Barrett gaat verder en ziet emotie als een voorspelling van het hele brein. Wat van Navarro overeind blijft, is de observatie dat lichamelijke stressreacties snel en moeilijk te sturen zijn. Zijn verklaring is een metafoor, geen neurologie.",
+ c:["Het idee van een apart, oud emotioneel brein in ons hoofd is een mythe.","Barrett, How Emotions Are Made (parafrase)"],
+ p:"Gebruik Navarro's beeld van het eerlijke brein gerust in psycho-educatie met cliënten, maar zeg erbij dat het een beeld is. Dat maakt je als professional geloofwaardiger dan wie het als hersenfeit presenteert.",
+ r:"LeDoux, Anxious, hoofdstuk 1 tot en met 3; Barrett, Zeven en een half lesje over het brein, lesje 1"},
+{t:"Waar het misgaat: pseudowetenschap in lichaamstaal",who:"Vincent Denault, Sigmund Freud, Sharon Jordan",
+ k:["<b>Freud (1905)</b>: 'verraad sijpelt uit al zijn poriën', het oude geloof dat het lichaam alles verraadt","<b>SPOT</b>: een Amerikaans programma om terroristen op vliegvelden aan gedrag te herkennen, zonder bewezen effect","<b>Micro-expressietraining</b> verbeterde leugendetectie niet (Jordan e.a., 2019)","<b>Denault e.a. (2020)</b>: de gevaren van pseudowetenschap in rechtspraak en veiligheid"],
+ u:"Het geloof dat het lichaam alles verraadt, is oud. Freud schreef in 1905 dat niemand een geheim kan bewaren, omdat het verraad uit iemands poriën sijpelt. Dat geloof heeft gevolgen. De Amerikaanse luchtvaartbeveiliging trainde duizenden medewerkers om terroristen aan hun gedrag te herkennen. De Amerikaanse rekenkamer concludeerde in 2013 dat er geen wetenschappelijk bewijs was dat dit werkte. Onderzoek naar een bekende training in het herkennen van micro-expressies vond geen betere leugendetectie. Vincent Denault en een grote groep onderzoekers waarschuwden in 2020 dat ongefundeerde lichaamstaalmethoden in rechtszalen en verhoorkamers tot onterechte verdenkingen leiden. Navarro zelf is voorzichtiger dan veel van zijn navolgers. Maar zijn boeken worden vaak gelezen alsof ze leugendetectie leren. Kenmerken van pseudowetenschap: stellige claims, geen getoetste voorspellingen, autoriteit in plaats van bewijs, en geen aandacht voor fouten.",
+ c:["Wie ogen heeft om te zien en oren om te horen, kan zich ervan overtuigen dat geen sterveling een geheim kan bewaren. Als zijn lippen zwijgen, babbelt hij met zijn vingertoppen; verraad sijpelt uit al zijn poriën.","Freud, Fragment van een hysterie-analyse (1905)"],
+ p:"Als specialist heb je een verantwoordelijkheid tegenover opdrachtgevers die snel een oordeel willen. Je kunt laten zien wat lichaamstaal wél oplevert, zoals betere vragen en meer gevoel voor spanning en vertrouwen, zonder mee te gaan in beloftes die niet kloppen.",
+ r:"Denault e.a., The analysis of nonverbal communication: the dangers of pseudoscience in security and justice contexts (2020); Jordan e.a., A test of the micro-expressions training tool (2019)"},
+{t:"Persoonlijkheid lezen: van checklist naar wetenschap",who:"Robert Hare, Delroy Paulhus, David Funder",
+ k:["<b>Psychopathie</b> en de PCL-R van Robert Hare","De <b>duistere driehoek</b>: narcisme, machiavellisme en psychopathie (Paulhus en Williams, 2002)","Persoonlijkheid als <b>dimensie</b>, niet als hokje","<b>Funder</b>: wanneer is een oordeel over iemands persoonlijkheid juist?"],
+ u:"Navarro's vier gevaarlijke persoonlijkheden lijken op erkende stoornissen: de narcistische, borderline-, paranoïde en antisociale persoonlijkheidsstoornis. De roofzuchtige persoonlijkheid ligt dicht bij psychopathie, die Robert Hare meetbaar maakte met de Psychopathy Checklist (PCL-R). Die vraagt een getrainde professional, een uitgebreid interview en dossierinformatie, geen lijstje na een vergadering. Paulhus en Williams beschreven in 2002 de duistere driehoek: drie verwante trekken die ook bij mensen zonder stoornis in verschillende mate voorkomen. De psychologie ziet persoonlijkheid steeds meer als een glijdende schaal. David Funder onderzocht wanneer mensen elkaar juist inschatten. Volgens zijn model moet relevant gedrag zichtbaar zijn, moet de waarnemer het opmerken en moet hij het juist gebruiken. Uit onderzoek blijkt dat sommige trekken, zoals extraversie, al bij een eerste ontmoeting redelijk te zien zijn. Andere, zoals betrouwbaarheid, veel minder.",
+ c:["Psychopaten zijn sociale roofdieren die charmeren, manipuleren en zich meedogenloos een weg door het leven banen.","Hare, Without Conscience (parafrase)"],
+ p:"Navarro's boek helpt je alert te zijn. Het onderzoek helpt je bescheiden te blijven. Een eerste indruk van betrouwbaarheid zegt weinig. Het gedrag van iemand onder druk, over maanden heen, zegt veel meer.",
+ r:"Hare, Without Conscience, hoofdstuk 1 tot en met 3; Paulhus en Williams, The Dark Triad of personality (2002); Funder, On the accuracy of personality judgment (1995)"}
+],
+exam:"Schrijf een essay van 3000 woorden met een eigen stelling. Een voorbeeld: 'Navarro's lichaamstaal is waardevol als gespreksinstrument, maar onbruikbaar als bewijsmiddel.' Onderbouw de stelling met minstens vier primaire bronnen uit dit niveau, bespreek het sterkste tegenargument en verdedig je positie met een logisch geldig betoog."},
 
-  // ---------- kleine hulpjes ----------
-  const $ = (id) => document.getElementById(id);
-  function el(tag, attrs, ...kids) {
-    const n = document.createElement(tag);
-    for (const [k, v] of Object.entries(attrs || {})) {
-      if (v == null || v === false) continue;
-      if (k === "class") n.className = v;
-      else if (k === "style") n.style.cssText = v;
-      else if (k.startsWith("on")) n.addEventListener(k.slice(2), v);
-      else n.setAttribute(k, v === true ? "" : v);
-    }
-    for (const k of kids.flat()) if (k != null && k !== false) n.append(k.nodeType ? k : String(k));
-    return n;
-  }
-  const store = {
-    get(k) { try { return JSON.parse(localStorage.getItem(k)); } catch { return null; } },
-    set(k, v) { try { localStorage.setItem(k, JSON.stringify(v)); } catch {} },
-    del(k) { try { localStorage.removeItem(k); } catch {} },
-  };
-  const gesorteerd = () => [...state.lessen.values()].sort((a, b) =>
-    a.niveau - b.niveau || DOMEINEN.findIndex((d) => d.id === a.domein) - DOMEINEN.findIndex((d) => d.id === b.domein) || a.id.localeCompare(b.id));
-  const klaar = (id) => state.voortgang.get(id)?.afgerond === true;
+{id:"master",tab:"4 · Master",title:"Synthese: een eigen positie en een eigen methode",intro:"Je verbindt Navarro met de filosofie, de ethiek en de andere scholen in het lezen van mensen. Dit niveau heeft geen einde. Het leidt naar een eigen, verantwoorde methode voor je werk als consultant, coach en gedragstherapeut.",dur:"Doorlopend",goal:"Een eigen stem ontwikkelen en lichaamstaal verantwoord inzetten in je praktijk",
+lessons:[
+{t:"De lezer heeft zelf een lichaam",who:"Maurice Merleau-Ponty, Elaine Hatfield, Gregory Hickok",
+ k:["<b>Intercorporaliteit</b>: lichamen begrijpen elkaar direct, vóór elke redenering","<b>Emotionele besmetting</b>: we nemen onbewust elkaars stemming en houding over","De <b>spiegelneuronen</b>-hype en de kritiek daarop","Je eigen spanning <b>kleurt</b> wat je bij de ander ziet"],
+ u:"Navarro beschrijft de waarnemer als iemand die van buitenaf kijkt. De filosofie van Merleau-Ponty, die je in de Leerweg Filosofie leert, laat zien dat dat niet klopt. We begrijpen een ander eerst met ons eigen lichaam: we zien woede in een gebaar zoals we vriendelijkheid in een glimlach zien. Elaine Hatfield en collega's beschreven in 1994 emotionele besmetting: mensen nemen onbewust elkaars gezichtsuitdrukking, houding en stemming over. Spiegelneuronen werden lang gepresenteerd als de verklaring daarvoor. Gregory Hickok liet in The Myth of Mirror Neurons (2014) zien dat die claim veel te ver ging. Wat blijft: lezen is geen neutraal registreren. Als jij gespannen bent, zie je bij anderen sneller dreiging. Een goede lezer kent daarom eerst zijn eigen basislijn.",
+ c:["Het lichaam is ons algemene middel om een wereld te hebben.","Merleau-Ponty, Fenomenologie van de waarneming, deel I, hoofdstuk 3"],
+ p:"In supervisie en intervisie kun je dit gebruiken. Vraag na een moeilijk gesprek niet alleen 'wat zag ik bij de cliënt?', maar ook 'wat gebeurde er in mijn eigen lichaam, en hoe kleurde dat mijn waarneming?'",
+ r:"Hatfield, Cacioppo en Rapson, Emotional Contagion, hoofdstuk 1; Hickok, The Myth of Mirror Neurons, hoofdstuk 1 en 9"},
+{t:"Cultuur, vooroordeel en wie er gelezen wordt",who:"David Matsumoto, Joshua Correll, Vincent Denault",
+ k:["<b>Weergaveregels</b> verschillen per cultuur, beroep en situatie","<b>Vooroordeel</b>: we lezen dreiging sneller bij mensen die we als 'anders' zien","<b>Neurodiversiteit</b>: autisme en ADHD veranderen de basislijn ingrijpend","Wie de macht heeft om te lezen, heeft ook de macht om te <b>etiketteren</b>"],
+ u:"Navarro's voorbeelden komen vooral uit de Amerikaanse middenklasse en de wereld van de FBI. David Matsumoto liet in veel studies zien dat culturen sterk verschillen in hoe open emoties getoond worden. Oogcontact geldt in de ene cultuur als eerlijk en in de andere als brutaal. Onderzoek van Joshua Correll en collega's naar beslissingen onder tijdsdruk liet zien dat mensen sneller dreiging zien bij mensen met een andere huidskleur. Ook neurodiversiteit maakt een verschil: iemand met autisme kan weinig oogcontact maken of weinig mimiek tonen zonder dat dat iets zegt over zijn gevoel of oprechtheid. Denault wijst erop dat rechters en jury's 'houding' en 'gedrag' van verdachten meewegen, met risico op onrecht. Wie mensen leest, moet dus ook zijn eigen vooroordelen lezen.",
+ c:["Universele emoties worden overal gevoeld, maar niet overal op dezelfde manier getoond.","Matsumoto, Culture and Psychology (parafrase)"],
+ p:"In internationale contracten en diverse teams is dit dagelijkse praktijk. Stel bij een nieuwe gesprekspartner extra lang de basislijn vast, en wees voorzichtig met signalen die in jouw eigen cultuur iets betekenen.",
+ r:"Matsumoto en Hwang, Culture and emotion (2012); Correll e.a., The police officer's dilemma (2002); Denault e.a. (2020)"},
+{t:"De ethiek van het lezen",who:"Emmanuel Levinas, Joe Navarro",
+ k:["<b>Toestemming</b>: wanneer mag je iemand lezen, en wanneer zeg je dat je het doet?","<b>Macht</b>: lezen kan helpen, maar ook manipuleren","Het recht op een <b>binnenwereld</b> die niet volledig gekend wordt","<b>Beroepsethiek</b> voor coach, therapeut en consultant"],
+ u:"Lichaamstaal lezen is een vorm van macht. Je ziet iets wat de ander misschien niet wilde laten zien. Navarro gebruikt die kennis om te beschermen en om beter te communiceren. Anderen gebruiken dezelfde kennis om te verkopen, te verleiden of te manipuleren. Levinas, die je in de Leerweg Filosofie tegenkomt, stelt dat de ander altijd meer is dan mijn beeld van hem. Wie denkt dat hij een mens volledig doorziet, doet hem tekort. Daaruit volgen een paar beroepsregels. Gebruik wat je ziet om beter te vragen en te begrijpen, niet om de ander te ontmaskeren of te sturen tegen zijn eigen belang in. Wees open over je werkwijze waar dat past, bijvoorbeeld in een coachingstraject. En laat een interpretatie altijd terugtoetsen door de ander zelf.",
+ c:["Het gelaat spreekt. Het eerste woord van het gelaat is: gij zult niet doden.","Levinas, Ethiek en oneindigheid, hoofdstuk 7"],
+ p:"Schrijf voor je eigen praktijk drie regels op voor het gebruik van lichaamstaal. Bijvoorbeeld: ik benoem wat ik zie als vraag, nooit als conclusie. Ik gebruik wat ik zie nooit om iemand onder druk te zetten. En ik vertel cliënten dat ik op lichaamstaal let.",
+ r:"Levinas, Ethiek en oneindigheid (gesprekken met Philippe Nemo); Navarro, Dangerous Personalities, slothoofdstuk"},
+{t:"Uitzonderlijk zijn: vijf eigenschappen als beroepsideaal",who:"Joe Navarro, James Gross, Alasdair MacIntyre",
+ k:["De vijf eigenschappen uit Be Exceptional: <b>zelfbeheersing</b>, <b>observatie</b>, <b>communicatie</b>, <b>handelen</b> en <b>psychologisch comfort</b>","Zelfbeheersing als <b>fundament</b> onder de andere vier","<b>Emotieregulatie</b>: herwaarderen werkt beter dan onderdrukken (Gross)","Deugden binnen een <b>praktijk</b> (MacIntyre)"],
+ u:"In Be Exceptional (2021) vat Navarro samen wat hij zag bij mensen die anderen positief beïnvloeden: zelfbeheersing, observatie, communicatie, handelen op het juiste moment, en anderen psychologisch comfort geven. Zelfbeheersing staat voorop: wie door zijn eigen ongemak wordt gegrepen, kijkt slecht en handelt impulsief. Het boek is een boek vol ervaring, geen onderzoeksverslag, en hoort deels bij het genre zelfhulp. De kern sluit wel aan bij onderzoek. James Gross liet zien dat een situatie anders interpreteren meestal beter werkt dan een emotie onderdrukken. MacIntyre geeft er een filosofisch kader voor: deugden zijn eigenschappen die je nodig hebt om de goederen te bereiken die eigen zijn aan een praktijk. Voor jouw praktijk is dat bijvoorbeeld werkelijke verandering bij een cliënt, of een eerlijk en werkbaar contract.",
+ c:["Uitzonderlijke mensen beginnen bij zichzelf: wie zichzelf niet kan beheersen, kan anderen niet goed helpen.","Navarro, Be Exceptional, hoofdstuk 1 (parafrase)"],
+ p:"Gebruik de vijf eigenschappen als jaarlijkse zelfevaluatie. Waar sta je op elk van de vijf, en welke ene gewoonte ga je komend jaar oefenen?",
+ r:"Navarro, Be Exceptional, hoofdstuk 1 en 5; Gross, The emerging field of emotion regulation (1998); MacIntyre, After Virtue, hoofdstuk 14"},
+{t:"Scholen vergelijken: Navarro, Ekman, Vrij en Hughes",who:"Joe Navarro, Paul Ekman, Aldert Vrij, Chase Hughes",
+ k:["<b>Navarro</b>: comfort en ongemak, ervaring uit het veld","<b>Ekman</b>: emotie in het gezicht, FACS en micro-expressies","<b>Vrij</b>: experimenteel onderzoek, de nadruk op het gesprek","<b>Hughes</b>: beïnvloeding en profilering, met een smalle wetenschappelijke basis","Vergelijk scholen op <b>claim</b>, <b>bewijs</b> en <b>toepassing</b>"],
+ u:"Wie zich in lichaamstaal verdiept, komt verschillende scholen tegen. Navarro werkt vanuit veldervaring en de as van comfort en ongemak, en is relatief voorzichtig over leugendetectie. Ekman werkt vanuit de evolutietheorie en uitgebreid laboratoriumonderzoek naar het gezicht, maar zijn claims over micro-expressies zijn omstreden. Vrij werkt experimenteel en concludeert dat het gesprek meer oplevert dan het lichaam. Chase Hughes, van wie je een eigen leerprogramma volgt, richt zich op beïnvloeding en profilering. Zijn methoden zijn veel minder onafhankelijk onderzocht. Leer deze scholen te vergelijken met drie vragen. Wat beweert de school precies? Welk bewijs is daarvoor, en door wie is het getoetst? En wat doet het met de mensen op wie het wordt toegepast? Zo bouw je een eigen kader dat niet afhangt van één goeroe.",
+ c:["Buitengewone beweringen vragen om buitengewoon bewijs.","Carl Sagan, Cosmos (1980)"],
+ p:"Maak voor jezelf een tabel met de vier scholen en zet er per school de drie vragen naast. Gebruik die tabel als je opdrachtgevers adviseert over trainingen in lichaamstaal of 'leugendetectie'.",
+ r:"Vrij, Detecting Lies and Deceit, hoofdstuk 1 en 16; Ekman, Telling Lies, epiloog; Denault e.a. (2020)"},
+{t:"Eigen synthese: een methode voor coaching en contractmanagement",who:"Jij, in gesprek met Navarro en het onderzoek",
+ k:["<b>Waarnemen</b>: basislijn, verandering, clusters, context en je eigen lichaam","<b>Vragen</b>: van signaal naar open vraag, en het gesprek als belangrijkste bron","<b>Beschermen</b>: patronen over tijd, grenzen, schriftelijke afspraken","<b>Ethiek</b>: toestemming, bescheidenheid en het recht van de ander op een binnenwereld"],
+ u:"Het masterniveau eindigt niet met een toets, maar met een eigen methode die steeds groeit. Je bouwt haar op vier pijlers. De eerste is waarnemen, gevoed door Navarro's lichaamskaart, Ekmans werk over het gezicht en Barretts nadruk op context. De tweede is vragen, gevoed door Vrij, de cognitieve benadering en de socratische dialoog uit de CGT. De derde is beschermen, gevoed door Dangerous Personalities, Hare en Funder. De vierde is ethiek, gevoed door Levinas, MacIntyre en je eigen beroepscode. Elk jaar herschrijf je dit document en voeg je één nieuwe bron toe. Zo wordt Navarro geen recept, maar een gesprekspartner in je eigen vakmanschap.",
+ c:["Ken uzelf.","Inscriptie in de tempel van Apollo in Delphi"],
+ p:"Het eindproduct kan een workshop worden, een opleidingsmodule of de basis van je eigen methode voor coaching en onderhandelen met lichaamstaal en cognitieve gedragstherapie. Het werk is nooit af; elke nieuwe observatie voegt iets toe.",
+ r:"Je eigen aantekeningen en observatielogboeken uit alle niveaus, aangevuld met één nieuwe primaire bron per kwartaal"}
+],
+exam:"Werk je eigen methode uit in een document van ongeveer 10.000 woorden met de vier pijlers: waarnemen, vragen, beschermen en ethiek. Neem per pijler minstens één casus uit je eigen praktijk op. Elk jaar herzie je het en voeg je één nieuwe bron of denker toe."}
+];
 
-  function volgendeLes() {
-    const p = state.profiel?.volgendeLes;
-    if (p && state.lessen.has(p) && !klaar(p)) return state.lessen.get(p);
-    return gesorteerd().find((l) => !klaar(l.id)) || null;
-  }
-
-  // ---------- render van het leesbare deel ----------
-  function renderAlles() {
-    renderKop(); renderVolgende(); renderDomeinen(); renderProfiel(); renderOverzicht(); renderLog(); renderWensen();
-    $("kaartstatus").hidden = state.lessen.size > 0;
-  }
-
-  function renderKop() {
-    const g = state.profiel?.generatie ?? state.log?.generaties?.at(-1)?.generatie;
-    $("gen-nr").textContent = g ?? "–";
-    $("gen-datum").textContent = state.profiel?.bijgewerkt ? "· " + state.profiel.bijgewerkt : "";
-  }
-
-  function renderVolgende() {
-    const les = volgendeLes();
-    const knop = $("v-knop");
-    if (!state.lessen.size) return;
-    if (!les) {
-      $("v-titel").textContent = "Alles gelezen";
-      $("v-kern").textContent = "Mooi werk. Vraag Claude om een nieuwe groeironde, dan verschijnen de volgende sterren.";
-      knop.disabled = true; return;
-    }
-    $("v-titel").textContent = les.titel;
-    $("v-kern").textContent = les.kern;
-    knop.disabled = false;
-    knop.textContent = `Open · ${domNaam(les.domein)} · ${NIVEAUS[les.niveau]}`;
-    knop.onclick = () => openLes(les.id);
-  }
-
-  function renderDomeinen() {
-    const ul = $("domeinen"); ul.replaceChildren();
-    for (const d of DOMEINEN) {
-      const alle = [...state.lessen.values()].filter((l) => l.domein === d.id);
-      const af = alle.filter((l) => klaar(l.id)).length;
-      const niv = state.profiel?.niveauPerDomein?.[d.id] || 1;
-      const pct = alle.length ? Math.round((af / alle.length) * 100) : 0;
-      ul.append(el("li", { style: `--c:${kleurVar(d.id)}` },
-        el("span", { class: "stip" }), el("span", {}, d.naam),
-        el("span", { class: "telling" }, `${NIVEAUS[niv]} · ${af}/${alle.length}`),
-        el("span", { class: "balk" }, el("i", { style: `width:${pct}%` }))));
-    }
-  }
-
-  function renderProfiel() {
-    const p = state.profiel; if (!p) return;
-    $("p-notitie").textContent = p.notitieVanClaude || p.samenvatting || "";
-    const vul = (id, items) => $(id).replaceChildren(...(items?.length ? items : ["Nog niets vastgesteld."]).map((t) => el("li", {}, t)));
-    vul("p-sterk", p.sterktes); vul("p-aandacht", p.aandachtspunten);
-  }
-
-  function renderOverzicht() {
-    const box = $("overzicht"); box.replaceChildren();
-    for (const d of DOMEINEN) {
-      const lessen = gesorteerd().filter((l) => l.domein === d.id);
-      const g = el("div", { class: "dgroep", style: `--c:${kleurVar(d.id)}` }, el("h3", {}, d.naam));
-      if (!lessen.length) g.append(el("p", { class: "notitie" }, "Nog geen lessen geschreven."));
-      for (const l of lessen) {
-        const v = state.voortgang.get(l.id);
-        const st = v?.afgerond ? (v.score ? `${v.score.goed}/${v.score.totaal}` : "klaar") : "open";
-        g.append(el("button", { class: "lesrij", onclick: () => openLes(l.id) },
-          el("span", { class: "nv" }, NIVEAUS[l.niveau]), el("span", { class: "lt" }, l.titel),
-          el("span", { class: "st" + (v?.afgerond ? " klaar" : "") }, st)));
-      }
-      box.append(g);
-    }
-  }
-
-  function renderLog() {
-    const ol = $("tijdlijn"); ol.replaceChildren();
-    const gens = [...(state.log?.generaties || [])].reverse();
-    if (!gens.length) { ol.append(el("li", {}, el("span"), el("p", { class: "notitie" }, "Het groeilog verschijnt na de eerste ronde."))); return; }
-    for (const g of gens) {
-      ol.append(el("li", {},
-        el("span", { class: "g", "aria-label": `Generatie ${g.generatie}` }, g.generatie),
-        el("div", {},
-          el("p", { class: "label" }, g.datum || ""),
-          el("h3", {}, g.titel || `Generatie ${g.generatie}`),
-          g.observaties?.length ? el("p", { class: "label", style: "margin-top:6px" }, "Gezien") : null,
-          g.observaties?.length ? el("ul", { class: "lijst" }, g.observaties.map((t) => el("li", {}, t))) : null,
-          g.veranderingen?.length ? el("p", { class: "label", style: "margin-top:12px" }, "Veranderd") : null,
-          g.veranderingen?.length ? el("ul", { class: "lijst" }, g.veranderingen.map((t) => el("li", {}, t))) : null,
-          g.hypothese ? el("p", { class: "hyp" }, el("span", { class: "label" }, "Te toetsen · "), g.hypothese) : null)));
-    }
-  }
-
-  function renderWensen() {
-    const open = state.wensen.filter((w) => w.status !== "verwerkt");
-    $("wensen").replaceChildren(...(open.length ? open.map((w) => el("li", {}, el("b", {}, w.tekst), " · ", w.datum?.slice(0, 10) || "")) : [el("li", {}, "Nog geen wensen.")]));
-  }
-
-  $("wensform").addEventListener("submit", async (e) => {
-    e.preventDefault();
-    const tekst = $("wens").value.trim(); const m = $("wensmelding");
-    if (!tekst) { m.className = "melding fout"; m.textContent = "Schrijf eerst je vraag of wens."; return; }
-    if (!db) { m.className = "melding fout"; m.textContent = "Bewaren lukt alleen als je de pagina in Claude opent."; return; }
-    $("wensknop").disabled = true;
-    try {
-      await db.collection("verzoeken").add({ tekst, datum: new Date().toISOString(), status: "open" });
-      $("wens").value = ""; m.className = "melding"; m.textContent = "Bewaard. Claude leest het bij de volgende ronde.";
-    } catch (err) {
-      m.className = "melding fout"; m.textContent = err?.code === "quota_exceeded" ? "De opslag is vol. Vraag Claude oude wensen op te ruimen." : "Bewaren mislukte. Probeer het zo nog eens.";
-    } finally { $("wensknop").disabled = false; }
-  });
-
-  // ---------- de lezer ----------
-  let openId = null;
-  function openLes(id) {
-    const les = state.lessen.get(id); if (!les) return;
-    openId = id;
-    const lezer = $("lezer");
-    lezer.replaceChildren(bouwLes(les));
-    lezer.hidden = false; lezer.scrollTop = 0;
-    document.body.style.overflow = "hidden";
-    lezer.querySelector(".sluit")?.focus();
-  }
-  function sluitLes() {
-    $("lezer").hidden = true; openId = null; document.body.style.overflow = "";
-  }
-  document.addEventListener("keydown", (e) => { if (e.key === "Escape" && openId) sluitLes(); });
-
-  function concept(id) { return store.get("concept:" + id) || { keuzes: {}, open: {}, claude: {}, beoordeling: {}, opmerking: "" }; }
-
-  function bouwLes(les) {
-    const eerder = state.voortgang.get(les.id);
-    const c = eerder ? { keuzes: eerder.keuzes || {}, open: eerder.open || {}, claude: eerder.claude || {}, beoordeling: eerder.beoordeling || {}, opmerking: eerder.opmerking || "", ...concept(les.id) } : concept(les.id);
-    const bewaarConcept = () => store.set("concept:" + les.id, c);
-
-    const kolom = el("div", { class: "kolom", style: `--c:${kleurVar(les.domein)}` });
-    const voeg = kolom.append.bind(kolom);
-    kolom.append = (...k) => voeg(...k.filter((x) => x != null));
-    kolom.append(el("div", { class: "lezerbalk" },
-      el("span", { class: "label" }, `${NIVEAUS[les.niveau]} · ${les.leestijd || 8} min lezen`),
-      el("button", { class: "knop licht sluit", onclick: sluitLes }, "Naar de kaart")));
-
-    kolom.append(el("header", {},
-      el("div", { class: "chips" }, el("span", { class: "chip dchip" }, domNaam(les.domein)), les.versie > 1 ? el("span", { class: "chip" }, `herschreven, versie ${les.versie}`) : null),
-      el("h1", { id: "l-titel" }, les.titel), el("p", { class: "kern" }, les.kern)));
-
-    const vragenblok = (vragen, kop, sleutel) => {
-      if (!vragen?.length) return null;
-      const s = el("section", {}, el("h2", {}, kop));
-      vragen.forEach((v, i) => s.append(bouwVraag(les, v, `${sleutel}${i}`, c, bewaarConcept)));
-      return s;
-    };
-
-    kolom.append(vragenblok(les.herhaling, "Eerst even ophalen", "h"));
-    for (const s of les.secties || []) kolom.append(el("section", {}, el("h2", {}, s.kop), ...String(s.tekst).split(/\n\n+/).map((t) => el("p", {}, t))));
-    if (les.denkers?.length) kolom.append(el("section", {}, el("p", { class: "label" }, "Denkers in deze les"), el("div", { class: "chips" }, les.denkers.map((d) => el("span", { class: "chip" }, d)))));
-    kolom.append(vragenblok(les.vragen, "Toets je begrip", "v"));
-
-    const vv = les.voorVandaag;
-    if (vv) kolom.append(el("aside", { class: "vandaag" }, el("p", { class: "label" }, "Voor vandaag"),
-      el("dl", {}, el("dt", {}, "Om mee te nemen"), el("dd", { class: "zin" }, `“${vv.zin}”`),
-        el("dt", {}, "Om vandaag te zien"), el("dd", {}, vv.kijkpunt), el("dt", {}, "In je werk"), el("dd", {}, vv.werkbrug))));
-
-    if (les.verbanden?.length) {
-      kolom.append(el("section", {}, el("p", { class: "label" }, "Verbonden sterren"),
-        el("div", { class: "chips" }, les.verbanden.filter((v) => state.lessen.has(v)).map((v) =>
-          el("button", { class: "chip", style: `color:${kleurVar(state.lessen.get(v).domein)}`, onclick: () => openLes(v) }, state.lessen.get(v).titel)))));
-    }
-
-    // beoordeling: dit is de brandstof voor de volgende groeironde
-    const schaal = (sleutel, vraag, links, rechts) => {
-      const seg = el("div", { class: "seg", role: "group", "aria-label": vraag });
-      for (let n = 1; n <= 5; n++) {
-        seg.append(el("button", { type: "button", "aria-pressed": String(c.beoordeling[sleutel] === n), onclick: (e) => {
-          c.beoordeling[sleutel] = n; bewaarConcept();
-          seg.querySelectorAll("button").forEach((b, j) => b.setAttribute("aria-pressed", String(j + 1 === n)));
-        } }, n));
-      }
-      return el("div", { class: "schaal" }, el("p", {}, vraag), seg, el("div", { class: "uiteinden" }, el("span", {}, links), el("span", {}, rechts)));
-    };
-    const opm = el("textarea", { id: `opm-${les.id}`, placeholder: "Wat bleef hangen, wat schuurde, wat wil je dieper?" });
-    opm.value = c.opmerking || "";
-    opm.addEventListener("input", () => { c.opmerking = opm.value; bewaarConcept(); });
-    const melding = el("span", { class: "melding", role: "status" });
-    const afrond = el("button", { class: "knop", onclick: () => rondAf(les, c, afrond, melding) }, eerder?.afgerond ? "Bijwerken" : "Les afronden");
-    kolom.append(el("section", {},
-      el("h2", {}, "Hoe was deze les?"),
-      el("p", { class: "notitie" }, "Claude gebruikt dit om de volgende lessen beter op jou af te stemmen."),
-      schaal("helder", "Hoe helder was de uitleg?", "onduidelijk", "glashelder"),
-      schaal("moeilijk", "Hoe zwaar voelde het?", "te makkelijk", "te moeilijk"),
-      schaal("boeiend", "Hoe boeiend was het voor jou?", "vlak", "raakte me"),
-      el("label", { for: `opm-${les.id}`, class: "label" }, "Opmerking voor Claude"), opm,
-      el("div", { class: "rij" }, afrond, melding)));
-    return kolom;
-  }
-
-  function bouwVraag(les, v, sleutel, c, bewaar) {
-    const box = el("div", { class: "vraag" }, el("p", { class: "q" }, v.vraag));
-    if (v.soort === "keuze") {
-      const opties = el("div", { class: "opties" });
-      const uitleg = el("p", { class: "uitleg" });
-      const toon = (gekozen) => {
-        opties.querySelectorAll("button").forEach((b, j) => {
-          b.disabled = true;
-          if (j === v.juist) b.classList.add("goed"); else if (j === gekozen) b.classList.add("fout");
-        });
-        uitleg.textContent = (gekozen === v.juist ? "Juist. " : "Niet helemaal. ") + (v.uitleg || "");
-      };
-      v.opties.forEach((o, j) => opties.append(el("button", { class: "optie", type: "button", onclick: () => { c.keuzes[sleutel] = j; bewaar(); toon(j); } }, o)));
-      box.append(opties, uitleg);
-      if (c.keuzes[sleutel] != null) toon(c.keuzes[sleutel]);
-    } else {
-      const ta = el("textarea", { id: `open-${les.id}-${sleutel}`, "aria-label": v.vraag, placeholder: "Schrijf je antwoord. Er is geen fout antwoord, wel een dieper antwoord." });
-      ta.value = c.open[sleutel] || "";
-      ta.addEventListener("input", () => { c.open[sleutel] = ta.value; bewaar(); });
-      const uit = el("p", { class: "claude" }); uit.hidden = !c.claude[sleutel]; uit.textContent = c.claude[sleutel] || "";
-      box.append(ta);
-      if (sample) {
-        const k = el("button", { class: "knop licht", type: "button" }, "Laat Claude meekijken");
-        k.onclick = () => kijkMee(les, v, ta, uit, k, sleutel, c, bewaar);
-        box.append(el("div", { class: "rij" }, k));
-      }
-      box.append(uit);
-    }
-    return box;
-  }
-
-  async function kijkMee(les, v, ta, uit, knop, sleutel, c, bewaar) {
-    const antwoord = ta.value.trim();
-    uit.hidden = false;
-    if (antwoord.length < 15) { uit.textContent = "Schrijf eerst een paar zinnen, dan kan Claude er iets zinnigs over zeggen."; return; }
-    knop.disabled = true; uit.textContent = "Claude denkt na…";
-    const lesstof = (les.secties || []).map((s) => `${s.kop}: ${s.tekst}`).join("\n").slice(0, 6000);
-    const prompt = `Je bent een warme maar scherpe docent in een levenslange leergang. De leergang volgt het werk van Joe Navarro (non-verbale communicatie, gevaarlijke persoonlijkheden, uitzonderlijk zijn) en zet het steeds naast wat onderzoek laat zien. De leerling is René, consultant in contractmanagement, coach en CGT-professional met lichaamstaal als specialisatie. Nooit leugendetectie-mythes; altijd basislijn, context en clusters.
-Les: "${les.titel}" (domein ${domNaam(les.domein)}, niveau ${NIVEAUS[les.niveau]}).
-Lesstof:
-${lesstof}
-
-Vraag: ${v.vraag}
-Antwoord van René:
-${antwoord.slice(0, 4000)}
-
-Geef feedback in het Nederlands, hoogstens 150 woorden, in drie korte alinea's die beginnen met "Sterk:", "Dieper:" en "Doorvraag:". Benoem bij Sterk concreet wat goed is. Laat bij Dieper zien hoe het antwoord één niveau hoger kan, met verwijzing naar de lesstof. Eindig met één prikkelende doorvraag. Geen opsommingstekens, geen markdown.`;
-    try {
-      const { text } = await sample(prompt, { onText: ({ text }) => { uit.textContent = text; } });
-      c.claude[sleutel] = text; bewaar();
-    } catch (e) {
-      if (e?.code === "not_granted" || e?.code === "sampling_disabled" || e?.code === "capability_disabled") { uit.textContent = "Meekijken staat uit voor deze pagina."; knop.hidden = true; }
-      else if (e?.code === "rate_limited") uit.textContent = e.text || "Even te veel vragen tegelijk. Probeer het over een paar minuten opnieuw.";
-      else if (e?.code !== "cancelled") uit.textContent = (e?.text ? e.text + "\n\n" : "") + "Het antwoord kwam niet door. Probeer het nog eens.";
-    } finally { knop.disabled = false; }
-  }
-
-  async function rondAf(les, c, knop, melding) {
-    if (!db) { melding.className = "melding fout"; melding.textContent = "Afronden lukt alleen als je de pagina in Claude opent."; return; }
-    const keuzeVragen = [...(les.herhaling || []).map((v, i) => ["h" + i, v]), ...(les.vragen || []).map((v, i) => ["v" + i, v])].filter(([, v]) => v.soort === "keuze");
-    const goed = keuzeVragen.filter(([k, v]) => c.keuzes[k] === v.juist).length;
-    const onbeantwoord = keuzeVragen.filter(([k]) => c.keuzes[k] == null).length;
-    if (onbeantwoord) { melding.className = "melding fout"; melding.textContent = `Beantwoord eerst nog ${onbeantwoord} keuzevraag${onbeantwoord > 1 ? "en" : ""}.`; return; }
-    knop.disabled = true;
-    const doc = {
-      lesId: les.id, domein: les.domein, niveau: les.niveau, versie: les.versie || 1, afgerond: true,
-      datum: new Date().toISOString(), score: { goed, totaal: keuzeVragen.length },
-      keuzes: c.keuzes, open: c.open, claude: c.claude, beoordeling: c.beoordeling, opmerking: c.opmerking || "",
-    };
-    try {
-      await db.collection("voortgang").doc(les.id).set(doc);
-      store.del("concept:" + les.id);
-      melding.className = "melding"; melding.textContent = `Bewaard: ${goed} van ${keuzeVragen.length} goed. Je ster licht nu op.`;
-      knop.textContent = "Bijwerken";
-    } catch (e) {
-      melding.className = "melding fout"; melding.textContent = "Bewaren mislukte. Je antwoorden staan nog in dit scherm; probeer het zo opnieuw.";
-    } finally { knop.disabled = false; }
-  }
-
-  // ---------- de bewegende kaart ----------
-  const canvas = $("canvas"), ctx = canvas.getContext("2d"), tip = $("tip");
-  const stil = matchMedia("(prefers-reduced-motion: reduce)");
-  let W = 0, H = 0, dpr = 1, kleuren = {}, nodes = [], hover = null;
-  const sterren = Array.from({ length: 110 }, () => ({ x: Math.random(), y: Math.random(), r: Math.random() * 1.1 + 0.3, f: Math.random() * 6.28 }));
-
-  function leesKleuren() {
-    const cs = getComputedStyle(document.documentElement);
-    const g = (n) => cs.getPropertyValue(n).trim();
-    kleuren = { ink: g("--ink"), muted: g("--muted"), line: g("--line"), brass: g("--brass"), bg: g("--bg") };
-    for (const d of DOMEINEN) kleuren[d.id] = g(`--d-${d.id}`);
-  }
-  leesKleuren();
-  matchMedia("(prefers-color-scheme: dark)").addEventListener("change", leesKleuren);
-  new MutationObserver(leesKleuren).observe(document.documentElement, { attributes: true, attributeFilter: ["data-theme"] });
-
-  function maat() {
-    const r = canvas.getBoundingClientRect();
-    dpr = Math.min(window.devicePixelRatio || 1, 2); W = r.width; H = r.height;
-    canvas.width = Math.round(W * dpr); canvas.height = Math.round(H * dpr);
-  }
-  new ResizeObserver(maat).observe(canvas); maat();
-
-  const RING = [0, 0.25, 0.44, 0.63, 0.82];
-  const basisHoek = (d) => -Math.PI / 2 + d * (2 * Math.PI / DOMEINEN.length);
-
-  function alpha(hex, a) {
-    if (!hex.startsWith("#")) return hex;
-    const n = parseInt(hex.slice(1), 16);
-    return `rgba(${(n >> 16) & 255},${(n >> 8) & 255},${n & 255},${a})`;
-  }
-
-  function plaatsNodes(rot) {
-    const cx = W / 2, cy = H / 2, R = Math.min(W, H) / 2;
-    const uit = [];
-    DOMEINEN.forEach((d, di) => {
-      for (let k = 1; k <= 4; k++) {
-        const lessen = gesorteerd().filter((l) => l.domein === d.id && l.niveau === k);
-        const slots = Math.max(3, lessen.length + 1);
-        const breedte = Math.min(0.95, 0.42 + k * 0.12);
-        for (let j = 0; j < slots; j++) {
-          const a = basisHoek(di) + rot + (slots === 1 ? 0 : (j / (slots - 1) - 0.5) * breedte);
-          const r = RING[k] * R;
-          uit.push({ x: cx + Math.cos(a) * r, y: cy + Math.sin(a) * r, les: lessen[j] || null, domein: d.id, niveau: k, leeg: !lessen[j] });
-        }
-      }
-    });
-    return uit;
-  }
-
-  function teken(t) {
-    if (!W) return;
-    const beweeg = !stil.matches;
-    const rot = beweeg ? t * 0.000017 : 0;
-    const cx = W / 2, cy = H / 2, R = Math.min(W, H) / 2;
-    ctx.setTransform(dpr, 0, 0, dpr, 0, 0);
-    ctx.clearRect(0, 0, W, H);
-
-    // achtergrondsterren
-    for (const s of sterren) {
-      const tw = beweeg ? 0.35 + 0.35 * Math.sin(t * 0.0012 + s.f) : 0.5;
-      ctx.fillStyle = alpha(kleuren.muted, tw * 0.6);
-      ctx.beginPath(); ctx.arc(s.x * W, s.y * H, s.r, 0, 6.283); ctx.fill();
-    }
-
-    // ringen en horizon
-    ctx.lineWidth = 1;
-    for (let k = 1; k <= 4; k++) {
-      ctx.strokeStyle = alpha(kleuren.muted, 0.28); ctx.setLineDash([]);
-      ctx.beginPath(); ctx.arc(cx, cy, RING[k] * R, 0, 6.283); ctx.stroke();
-      ctx.fillStyle = alpha(kleuren.muted, 0.85); ctx.font = `500 ${Math.max(9, R * 0.03)}px "IBM Plex Mono", monospace`;
-      ctx.textAlign = "center";
-      const la = basisHoek(0.5) + rot;
-      ctx.fillText(NIVEAUS[k], cx + Math.cos(la) * RING[k] * R, cy + Math.sin(la) * RING[k] * R + 3);
-    }
-    ctx.strokeStyle = alpha(kleuren.brass, 0.45); ctx.setLineDash([2, 7]);
-    ctx.lineDashOffset = beweeg ? -t * 0.01 : 0;
-    ctx.beginPath(); ctx.arc(cx, cy, 0.96 * R, 0, 6.283); ctx.stroke(); ctx.setLineDash([]);
-
-    // domeinnamen langs de horizon
-    ctx.font = `italic ${Math.max(12, R * 0.05)}px "Instrument Serif", Georgia, serif`;
-    DOMEINEN.forEach((d, di) => {
-      const a = basisHoek(di) + rot, r = 0.905 * R;
-      ctx.fillStyle = kleuren[d.id];
-      ctx.textAlign = "center"; ctx.textBaseline = "middle";
-      ctx.fillText(d.kort || d.naam, cx + Math.cos(a) * r, cy + Math.sin(a) * r);
-    });
-    ctx.textBaseline = "alphabetic";
-
-    nodes = plaatsNodes(rot);
-    const pos = new Map(nodes.filter((n) => n.les).map((n) => [n.les.id, n]));
-
-    // verbanden tussen lessen, met lichtdeeltjes die erover reizen
-    const gedaan = new Set();
-    for (const n of nodes) {
-      if (!n.les) continue;
-      for (const v of n.les.verbanden || []) {
-        const m = pos.get(v); if (!m) continue;
-        const key = [n.les.id, v].sort().join("|"); if (gedaan.has(key)) continue; gedaan.add(key);
-        const qx = (n.x + m.x) / 2 * 0.62 + cx * 0.38, qy = (n.y + m.y) / 2 * 0.62 + cy * 0.38;
-        ctx.strokeStyle = alpha(kleuren.muted, 0.32); ctx.lineWidth = 1;
-        ctx.beginPath(); ctx.moveTo(n.x, n.y); ctx.quadraticCurveTo(qx, qy, m.x, m.y); ctx.stroke();
-        if (beweeg) {
-          const p = ((t * 0.00011) + (key.length * 0.137)) % 1, q = 1 - p;
-          const px = q * q * n.x + 2 * q * p * qx + p * p * m.x, py = q * q * n.y + 2 * q * p * qy + p * p * m.y;
-          ctx.fillStyle = alpha(kleuren.brass, 0.9); ctx.beginPath(); ctx.arc(px, py, 1.8, 0, 6.283); ctx.fill();
-        }
-      }
-    }
-
-    // jouw spoor: afgeronde lessen in de volgorde waarin je ze deed
-    const spoor = [...state.voortgang.values()].filter((v) => v.afgerond && pos.has(v.lesId)).sort((a, b) => String(a.datum).localeCompare(String(b.datum)));
-    if (spoor.length) {
-      ctx.strokeStyle = alpha(kleuren.brass, 0.75); ctx.lineWidth = 1.5;
-      ctx.beginPath(); ctx.moveTo(cx, cy);
-      for (const v of spoor) { const n = pos.get(v.lesId); ctx.lineTo(n.x, n.y); }
-      ctx.stroke();
-    }
-
-    // het midden: jij
-    const puls = beweeg ? 1 + 0.12 * Math.sin(t * 0.002) : 1;
-    ctx.fillStyle = alpha(kleuren.brass, 0.14); ctx.beginPath(); ctx.arc(cx, cy, R * 0.085 * puls, 0, 6.283); ctx.fill();
-    ctx.fillStyle = kleuren.brass; ctx.beginPath(); ctx.arc(cx, cy, R * 0.022, 0, 6.283); ctx.fill();
-    ctx.fillStyle = kleuren.ink; ctx.font = `italic ${Math.max(13, R * 0.055)}px "Instrument Serif", Georgia, serif`; ctx.textAlign = "center";
-    ctx.fillText("jij", cx, cy + R * 0.085 + Math.max(13, R * 0.05));
-
-    // de sterren zelf
-    const volgende = volgendeLes();
-    const sz = Math.max(4.5, R * 0.022);
-    for (const n of nodes) {
-      const kleur = kleuren[n.domein];
-      if (n.leeg) {
-        ctx.strokeStyle = alpha(kleur, 0.35); ctx.setLineDash([1.5, 3]);
-        ctx.beginPath(); ctx.arc(n.x, n.y, sz * 0.75, 0, 6.283); ctx.stroke(); ctx.setLineDash([]);
-        continue;
-      }
-      const af = klaar(n.les.id), isHover = hover === n.les.id;
-      if (af) {
-        const g = ctx.createRadialGradient(n.x, n.y, 0, n.x, n.y, sz * 3.4);
-        g.addColorStop(0, alpha(kleur, 0.45)); g.addColorStop(1, alpha(kleur, 0));
-        ctx.fillStyle = g; ctx.beginPath(); ctx.arc(n.x, n.y, sz * 3.4, 0, 6.283); ctx.fill();
-      }
-      if (volgende && volgende.id === n.les.id) {
-        const golf = beweeg ? (t * 0.0007) % 1 : 0.4;
-        ctx.strokeStyle = alpha(kleur, 1 - golf); ctx.lineWidth = 1.5;
-        ctx.beginPath(); ctx.arc(n.x, n.y, sz * (1.3 + golf * 2.4), 0, 6.283); ctx.stroke();
-      }
-      ctx.lineWidth = 2; ctx.strokeStyle = kleur; ctx.fillStyle = af ? kleur : kleuren.bg;
-      ctx.beginPath(); ctx.arc(n.x, n.y, sz * (isHover ? 1.35 : 1), 0, 6.283); ctx.fill(); ctx.stroke();
-    }
-  }
-
-  function lus(t) { teken(t); requestAnimationFrame(lus); }
-  requestAnimationFrame(lus);
-
-  function raak(ev) {
-    const r = canvas.getBoundingClientRect(); const x = ev.clientX - r.left, y = ev.clientY - r.top;
-    let best = null, bd = 22 * 22;
-    for (const n of nodes) { if (!n.les) continue; const d = (n.x - x) ** 2 + (n.y - y) ** 2; if (d < bd) { bd = d; best = n; } }
-    return { best, x, y };
-  }
-  canvas.addEventListener("pointermove", (ev) => {
-    const { best } = raak(ev);
-    hover = best?.les.id || null; canvas.style.cursor = best ? "pointer" : "default";
-    if (best) { tip.hidden = false; tip.style.left = best.x + "px"; tip.style.top = best.y + "px"; tip.textContent = `${best.les.titel} · ${NIVEAUS[best.niveau]}${klaar(best.les.id) ? " · afgerond" : ""}`; }
-    else tip.hidden = true;
-  });
-  canvas.addEventListener("pointerleave", () => { hover = null; tip.hidden = true; });
-  canvas.addEventListener("click", (ev) => { const { best } = raak(ev); if (best) openLes(best.les.id); });
-
-  // ---------- verbinding met de database ----------
-  renderAlles();
-  (async () => {
-    const c = window.claude;
-    if (!c?.use) { $("kaartstatus").textContent = "Open deze pagina in Claude om je lessen te zien."; return; }
-    c.use("sample").then((s) => { sample = s; if (openId) openLes(openId); }).catch(() => {});
-    db = await c.use("db").catch(() => null);
-    if (!db) { $("kaartstatus").textContent = "Je lessen zijn hier niet bereikbaar. Open de pagina ingelogd in Claude."; return; }
-    const fout = () => { $("kaartstatus").hidden = false; $("kaartstatus").textContent = "De verbinding viel weg. Herlaad de pagina."; };
-    db.collection("lessen").onSnapshot((snap) => {
-      state.lessen = new Map(snap.docs.map((d) => [d.id, { id: d.id, ...d.data() }]));
-      if (!snap.size && !snap.metadata.fromCache) { $("kaartstatus").textContent = "Nog geen lessen. Vraag Claude om de eerste groeironde."; }
-      renderAlles();
-    }, fout);
-    db.collection("voortgang").onSnapshot((snap) => { state.voortgang = new Map(snap.docs.map((d) => [d.id, d.data()])); renderAlles(); }, fout);
-    db.collection("meta").onSnapshot((snap) => {
-      for (const d of snap.docs) { if (d.id === "profiel") state.profiel = d.data(); if (d.id === "verbeterlog") state.log = d.data(); }
-      renderAlles();
-    }, fout);
-    db.collection("verzoeken").onSnapshot((snap) => { state.wensen = snap.docs.map((d) => d.data()).sort((a, b) => String(b.datum).localeCompare(String(a.datum))); renderWensen(); }, fout);
-  })();
-})();
+const KEY="leerweg-navarro-v1";
+let done={};try{done=JSON.parse(localStorage.getItem(KEY)||"{}")}catch(e){done={}}
+function save(){try{localStorage.setItem(KEY,JSON.stringify(done))}catch(e){}}
+const total=LEVELS.reduce((s,l)=>s+l.lessons.length,0);
+function updateProgress(){const n=Object.values(done).filter(Boolean).length;document.getElementById("bar").style.width=(n/total*100)+"%";document.getElementById("count").textContent=n+" van "+total+" lessen"}
+const tabs=document.getElementById("tabs"),main=document.getElementById("level");
+LEVELS.forEach((L,i)=>{const b=document.createElement("button");b.role="tab";b.textContent=L.tab;b.dataset.id=L.id;b.onclick=()=>{location.hash=L.id};tabs.appendChild(b)});
+function render(id){
+  const L=LEVELS.find(l=>l.id===id)||LEVELS[0];
+  [...tabs.children].forEach(b=>b.setAttribute("aria-selected",b.dataset.id===L.id));
+  let h=`<div class="level-head"><span class="label">Niveau ${L.tab}</span><h2>${L.title}</h2><p>${L.intro}</p><div class="meta"><span><b>Duur</b> ${L.dur}</span><span><b>Doel</b> ${L.goal}</span></div></div><div class="lessons">`;
+  L.lessons.forEach((s,j)=>{const key=L.id+"-"+j;const d=done[key]?1:0;
+    h+=`<details ${j===0&&!d?"open":""} data-done="${d}"><summary><span class="n">${j+1}</span><div><h3>${s.t}</h3><div class="who">${s.who}</div></div></summary><div class="body">
+    <div class="key"><span class="label">Kernbegrippen</span><ul>${s.k.map(x=>`<li>${x}</li>`).join("")}</ul></div>
+    <div class="block"><span class="label">Uitleg</span><p>${s.u}</p></div>
+    <div class="quote">${s.c[0]}<small>${s.c[1]}</small></div>
+    <div class="block"><span class="label">In je praktijk</span><p>${s.p}</p></div>
+    <div class="block"><span class="label">Lezen</span><p>${s.r}</p></div>
+    <label class="done"><input type="checkbox" id="c-${key}" data-key="${key}" ${d?"checked":""}> Les doorgewerkt</label></div></details>`});
+  h+=`</div><div class="exam"><span class="label">Afsluitende opdracht niveau ${L.tab}</span><p style="margin:0">${L.exam}</p></div>`;
+  main.innerHTML=h;
+  main.querySelectorAll("input[data-key]").forEach(c=>c.onchange=()=>{done[c.dataset.key]=c.checked;save();c.closest("details").dataset.done=c.checked?1:0;updateProgress()});
+}
+function route(){render(location.hash.slice(1))}
+window.addEventListener("hashchange",()=>{route();tabs.scrollIntoView({block:"start"})});
+route();updateProgress();
 </script>

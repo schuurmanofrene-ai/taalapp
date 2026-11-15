@@ -1,31 +1,19 @@
-# Navarro Leergang
+# Leerweg Navarro
 
-Een levenslange leerweg door het werk van Joe Navarro, voormalig FBI-agent en gedragsanalist,
-van MBO+ tot master. Gebouwd naar het model van de Levende Leergang (`../leergang`).
+Een levenslange leerweg in vier niveaus (MBO+, HBO, WO, Master) naar de boeken en kennis van
+Joe Navarro, oud-FBI-agent en specialist in non-verbaal gedrag. Opgebouwd zoals de Leerweg Filosofie:
+één leeskolom, niveaus als tabbladen, lessen als uitklapbare hoofdstukken met kernbegrippen, uitleg,
+citaat, praktijk en leesopdracht, een afvinkbare voortgang, een afsluitende opdracht per niveau en
+een vast weekritme.
 
-- **De kaart**: https://claude.ai/artifact/BQauUygbunn8DnpmKqkoc4 (bron: `navarro.html`).
-  In het midden jij, vier ringen voor de niveaus, vijf sectoren voor Navarro's werkterreinen.
-  Elke les is een ster; afgeronde lessen lichten op en vormen je spoor.
-- **De motor**: de skill `.claude/skills/navarro-leergang/SKILL.md`. Typ `/navarro-leergang`
-  in een Claude Code-sessie op deze repo. Claude leest je voortgang, schrijft nieuwe lessen
-  en herschrijft zijn eigen werkregels op basis van wat je data laten zien.
+- **De pagina**: https://claude.ai/artifact/BQauUygbunn8DnpmKqkoc4 (bron: `navarro.html`)
+- **Voortgang**: blijft in je eigen browser bewaard (afvinken per les)
 
-## De vijf werkterreinen
+## Opbouw
 
-| Code | Werkterrein | Vooral uit |
+| Niveau | Thema | Vooral uit |
 |---|---|---|
-| `brein` | Het eerlijke brein: comfort en ongemak, bevriezen-vluchten-vechten, kalmerende gebaren | What Every BODY Is Saying (2008) |
-| `lichaam` | Van voet tot gezicht: het lichaam deel voor deel gelezen | What Every BODY Is Saying, The Dictionary of Body Language (2018) |
-| `invloed` | Luider dan woorden: wat jij uitzendt, eerste indruk, vertrouwen, leiderschap | Louder Than Words (2010) |
-| `persoonlijkheid` | Gevaarlijke persoonlijkheden: vier patronen en zelfbescherming | Dangerous Personalities (2014) |
-| `uitzonderlijk` | Uitzonderlijk zijn: zelfbeheersing, observatie, communicatie, handelen, psychologisch comfort | Be Exceptional (2021) |
-
-Op hogere niveaus komen ook Navarro's werk over verhoren (Advanced Interviewing Techniques, met
-John Schafer) en zijn pokerboek aan bod, en vooral het wetenschappelijke debat over zijn methode.
-
-## Bestanden
-
-- `lessen/*.json`: elke les (bron van waarheid, gespiegeld naar de database van het artifact)
-- `meta/profiel.json`: wat Claude over jouw leren in deze leergang weet
-- `meta/verbeterlog.json`: elke generatie: wat er gezien, veranderd en getoetst is
-- `tools/check.mjs`: controleert alles voordat het naar de kaart gaat
+| 1 · MBO+ | Fundament: leren kijken zoals Navarro | What Every BODY Is Saying |
+| 2 · HBO | Toepassing: het hele lichaam lezen in je praktijk | What Every BODY Is Saying, Louder Than Words, Read 'Em and Weep, Dangerous Personalities |
+| 3 · WO | Onderbouwing: wat het onderzoek zegt en waar het wankelt | Ekman, Barrett, DePaulo, Vrij, LeDoux, Denault, Hare |
+| 4 · Master | Synthese: een eigen positie en een eigen methode | Merleau-Ponty, Levinas, Be Exceptional, MacIntyre |
