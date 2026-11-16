@@ -3,7 +3,7 @@
 Een levenslange leerweg in vier niveaus (MBO+, HBO, WO, Master) naar de boeken en kennis van
 Joe Navarro, oud-FBI-agent en specialist in non-verbaal gedrag. Opgebouwd zoals de Leerweg Filosofie:
 één leeskolom, niveaus als tabbladen, lessen als uitklapbare hoofdstukken met kernbegrippen, uitleg,
-verdieping (drie uitgewerkte paragrafen), misverstanden, citaat, praktijk en bronnen, en een
+een schema, verdieping (drie uitgewerkte paragrafen), een korte casus, misverstanden, video's, citaat, praktijk en bronnen, en een
 afvinkbare voortgang. Zonder opdrachten: alleen lezen en
 begrijpen, in je eigen tempo.
 
