@@ -1,0 +1,274 @@
+<title>Leerweg Intelligentie</title>
+<meta name="claude:viewport-fit-sides" content="cover">
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link rel="stylesheet" href="https://fonts.googleapis.com/css2?family=Fraunces:opsz,wght@9..144,400;9..144,600;9..144,700&family=Bricolage+Grotesque:wght@400;500;600&display=swap">
+<style>
+/* Layout: één smalle leeskolom; vier niveaus als een opgaande ladder, elk met uitklapbare modules.
+   Drie vaste kleuren voor Sternbergs drie denkwijzen: analytisch, creatief, praktisch. */
+:root{
+  --bg:#f3f6fc; --surface:#ffffff; --fg:#1b2333; --muted:#5a6478; --line:#d9e0ee;
+  --accent:#2f4fb5; --accent-soft:#e3e9fb;
+  --ana:#2f6fb5; --cre:#a24ea8; --pra:#2d8a63;
+  --ana-soft:#e2edf9; --cre-soft:#f4e6f5; --pra-soft:#e1f2ea;
+  --display:"Fraunces", Georgia, "Times New Roman", serif;
+  --body:"Bricolage Grotesque", system-ui, -apple-system, "Segoe UI", sans-serif;
+}
+@media (prefers-color-scheme: dark){ :root:not([data-theme="light"]){
+  --bg:#11151f; --surface:#191f2c; --fg:#e6eaf3; --muted:#9aa4b8; --line:#2b3346;
+  --accent:#8ea8ff; --accent-soft:#232c45;
+  --ana:#7fb2f0; --cre:#d79ade; --pra:#6fcfa3;
+  --ana-soft:#1c2a3d; --cre-soft:#2f2033; --pra-soft:#18302a; color-scheme:dark }}
+:root[data-theme="dark"]{
+  --bg:#11151f; --surface:#191f2c; --fg:#e6eaf3; --muted:#9aa4b8; --line:#2b3346;
+  --accent:#8ea8ff; --accent-soft:#232c45;
+  --ana:#7fb2f0; --cre:#d79ade; --pra:#6fcfa3;
+  --ana-soft:#1c2a3d; --cre-soft:#2f2033; --pra-soft:#18302a; color-scheme:dark }
+*{box-sizing:border-box}
+body{background:var(--bg);color:var(--fg);font-family:var(--body);font-size:17px;line-height:1.6;
+  padding-left:max(16px,env(safe-area-inset-left,0px));padding-right:max(16px,env(safe-area-inset-right,0px));padding-block:32px 64px}
+.wrap{max-width:720px;margin:0 auto;display:flex;flex-direction:column;gap:56px}
+h1,h2,h3{font-family:var(--display);line-height:1.15;text-wrap:balance;margin:0}
+h1{font-size:clamp(2.1rem,6vw,3rem);font-weight:700}
+h2{font-size:1.65rem;font-weight:600}
+h3{font-size:1.15rem;font-weight:600}
+p{margin:0}
+.eyebrow{font-size:.78rem;letter-spacing:.09em;text-transform:uppercase;color:var(--muted);font-weight:600}
+section{display:flex;flex-direction:column;gap:16px}
+.lead{font-size:1.12rem;color:var(--fg)}
+.muted{color:var(--muted)}
+.meester{display:grid;grid-template-columns:auto 1fr;gap:20px;align-items:start;background:var(--surface);border:1px solid var(--line);border-radius:14px;padding:22px}
+.meester>div{min-width:0;display:flex;flex-direction:column;gap:10px}
+.mono{width:64px;height:64px;border-radius:50%;background:var(--accent-soft);color:var(--accent);display:grid;place-items:center;font-family:var(--display);font-size:1.5rem;font-weight:700}
+.lenzen{display:grid;grid-template-columns:repeat(3,1fr);gap:12px}
+.lens{border-radius:12px;padding:16px;display:flex;flex-direction:column;gap:6px;min-width:0}
+.lens b{font-family:var(--display);font-size:1.05rem}
+.lens.ana{background:var(--ana-soft)} .lens.ana b{color:var(--ana)}
+.lens.cre{background:var(--cre-soft)} .lens.cre b{color:var(--cre)}
+.lens.pra{background:var(--pra-soft)} .lens.pra b{color:var(--pra)}
+@media (max-width:620px){.lenzen{grid-template-columns:1fr}.meester{grid-template-columns:1fr}}
+.niveau{border-left:3px solid var(--line);padding-left:20px;display:flex;flex-direction:column;gap:14px}
+.niveau .kop{display:flex;flex-direction:column;gap:4px}
+.voortgang{font-size:.85rem;color:var(--muted);font-variant-numeric:tabular-nums}
+details{background:var(--surface);border:1px solid var(--line);border-radius:12px}
+details[open]{border-color:var(--accent)}
+summary{list-style:none;cursor:pointer;padding:14px 16px;display:grid;grid-template-columns:2.2rem 1fr auto;gap:10px;align-items:baseline}
+summary::-webkit-details-marker{display:none}
+summary:focus-visible{outline:2px solid var(--accent);outline-offset:2px;border-radius:12px}
+.nr{font-family:var(--display);color:var(--muted);font-variant-numeric:tabular-nums}
+.st{min-width:0}
+.st strong{display:block;font-weight:600}
+.st span{font-size:.9rem;color:var(--muted)}
+.vink{font-size:.8rem;color:var(--pra);font-weight:600;white-space:nowrap}
+.inhoud{padding:0 16px 18px 16px;display:flex;flex-direction:column;gap:12px}
+.rij{display:grid;grid-template-columns:7.5rem 1fr;gap:10px;font-size:.95rem}
+.rij>*{min-width:0}
+.rij dt{color:var(--muted);font-size:.82rem;text-transform:uppercase;letter-spacing:.06em;padding-top:3px}
+.rij dd{margin:0}
+@media (max-width:480px){.rij{grid-template-columns:1fr;gap:2px}}
+.drie{display:flex;flex-direction:column;gap:8px;margin:0;padding:0;list-style:none}
+.drie li{border-radius:8px;padding:8px 12px;font-size:.95rem}
+.drie .a{background:var(--ana-soft)} .drie .c{background:var(--cre-soft)} .drie .p{background:var(--pra-soft)}
+.drie em{font-style:normal;font-weight:600;margin-right:6px}
+.drie .a em{color:var(--ana)} .drie .c em{color:var(--cre)} .drie .p em{color:var(--pra)}
+label.klaar{display:flex;gap:8px;align-items:center;font-size:.9rem;color:var(--muted);cursor:pointer}
+.proef{background:var(--accent-soft);border-radius:12px;padding:16px;display:flex;flex-direction:column;gap:6px}
+.les{background:var(--surface);border:1px solid var(--line);border-radius:14px;padding:clamp(18px,4vw,32px);display:flex;flex-direction:column;gap:18px}
+.les p{max-width:65ch}
+.les h3{margin-top:6px}
+.vv{border-top:1px solid var(--line);padding-top:16px;display:flex;flex-direction:column;gap:8px}
+.vv .zin{font-family:var(--display);font-size:1.25rem;font-style:italic}
+table{border-collapse:collapse;width:100%;font-size:.95rem}
+.tabel{overflow-x:auto}
+th,td{text-align:left;padding:8px 10px;border-bottom:1px solid var(--line);vertical-align:top}
+th{font-size:.8rem;text-transform:uppercase;letter-spacing:.06em;color:var(--muted);font-weight:600}
+ul.bron{margin:0;padding-left:1.1rem;display:flex;flex-direction:column;gap:6px;font-size:.95rem}
+@media (prefers-reduced-motion:no-preference){details[open] .inhoud{animation:in .25s ease-out}@keyframes in{from{opacity:.4;transform:translateY(-3px)}to{opacity:1;transform:none}}}
+</style>
+
+<div class="wrap">
+
+<header style="display:flex;flex-direction:column;gap:14px">
+  <span class="eyebrow">Levende Leergang · domein intelligentie en mentaliseren</span>
+  <h1>Leerweg Intelligentie</h1>
+  <p class="lead">Een programma van vier niveaus, van MBO+ tot master, met één leermeester die je de hele weg begeleidt en een kamer vol gastdocenten die hem tegenspreken. Vierentwintig modules, zonder haast. Reken op een module per twee tot vier weken.</p>
+</header>
+
+<section>
+  <span class="eyebrow">Je leermeester</span>
+  <div class="meester">
+    <div class="mono" aria-hidden="true">RS</div>
+    <div>
+      <h2>Robert J. Sternberg</h2>
+      <p>Er bestaat geen objectief beste leraar over intelligentie. Wel een die het beste past bij jou. Sternberg (geboren 1949, hoogleraar aan Cornell, oud-voorzitter van de American Psychological Association) heeft vijftig jaar onderzoek gedaan naar precies de drie dingen die jij in je werk nodig hebt: slim analyseren, creatief bedenken en praktisch handelen tussen echte mensen. Later voegde hij daar wijsheid aan toe: intelligentie die het gemeenschappelijk goed dient.</p>
+      <p>Hij is ook een leraar met een eigen verhaal. Als kind kreeg hij last van toetsangst en scoorde hij slecht op IQ-tests. Zijn juf in groep 6 verwachtte meer van hem, en hij werd een topleerling. Op de universiteit kreeg hij een zes voor inleiding psychologie, met het advies een ander vak te kiezen. Dat verhaal vertelt hij zelf, als bewijs dat een testscore een momentopname is en geen vonnis.</p>
+      <p class="muted">Waar Sternberg een blinde vlek heeft, laat het programma anderen aan het woord: de psychometrici die zeggen dat hij de algemene factor g onderschat, en de onderzoekers die zijn eigen theorie kritisch toetsten.</p>
+    </div>
+  </div>
+</section>
+
+<section>
+  <span class="eyebrow">Hoe hij lesgeeft</span>
+  <h2>Elke module langs drie lenzen</h2>
+  <p>Sternberg en Elena Grigorenko lieten in klassen zien dat leerlingen meer onthouden als ze dezelfde stof op drie manieren verwerken. Daarom eindigt elke module hier met drie opdrachten, één per lens.</p>
+  <div class="lenzen">
+    <div class="lens ana"><b>Analytisch</b><span>Vergelijk, beoordeel, zoek het zwakke punt in het argument.</span></div>
+    <div class="lens cre"><b>Creatief</b><span>Bedenk een eigen voorbeeld, model of tegenargument.</span></div>
+    <div class="lens pra"><b>Praktisch</b><span>Pas het toe in een gesprek, onderhandeling of coachsessie.</span></div>
+  </div>
+</section>
+
+<section id="route">
+  <span class="eyebrow">De route</span>
+  <h2>Vier niveaus, vierentwintig modules</h2>
+  <p class="muted">Tik op een module voor de kernvraag, de gastdocent en de drie opdrachten. Vink af wat je hebt gedaan; dat onthoudt alleen deze browser.</p>
+  <div id="niveaus" style="display:flex;flex-direction:column;gap:40px"></div>
+</section>
+
+<section id="les1">
+  <span class="eyebrow">Module 1.1 volledig uitgewerkt</span>
+  <article class="les">
+    <h2>Het verhaal van de toets</h2>
+    <p class="muted">Leestijd ongeveer 12 minuten · niveau MBO+</p>
+
+    <p>Je zit tegenover een kandidaat-leverancier. Op papier scoort zijn team hoog: certificaten, assessments, een keurige capaciteitsmatrix. Toch knaagt er iets. In het gesprek beantwoordt de projectleider elke vraag correct, maar hij ziet niet dat jouw collega van inkoop al tien minuten wil ingrijpen. Is deze man intelligent? Ja, volgens de toets. En toch weet jij dat dit contract over een half jaar gaat schuren.</p>
+
+    <h3>Waarom de eerste toets werd gemaakt</h3>
+    <p>In 1904 vroeg de Franse overheid aan psycholoog Alfred Binet om een manier te vinden waarop scholen konden zien welke kinderen extra hulp nodig hadden. Samen met Théodore Simon maakte hij in 1905 de eerste bruikbare intelligentietest. Het doel was dus helpen, niet sorteren. Binet waarschuwde zelf tegen het idee dat intelligentie een vaste hoeveelheid is. Hij noemde dat een "brute pessimisme" en schreef dat je intelligentie kunt ontwikkelen met oefening en goed onderwijs.</p>
+
+    <h3>Hoe een hulpmiddel een etiket werd</h3>
+    <p>De Duitse psycholoog William Stern bedacht in 1912 het intelligentiequotiënt: mentale leeftijd gedeeld door werkelijke leeftijd, maal honderd. In Amerika maakte Lewis Terman er in 1916 de Stanford-Binet van, en daarna werden tests op grote schaal gebruikt om rekruten, immigranten en schoolkinderen in te delen. Precies het gebruik waar Binet voor gewaarschuwd had. De psycholoog Edwin Boring vatte de verwarring in 1923 droog samen: intelligentie is wat de test meet. Die zin is half een grap en half een eerlijke bekentenis. Niemand had eerst precies gedefinieerd wat er gemeten werd.</p>
+
+    <h3>Wat een IQ-score wél zegt</h3>
+    <p>Dit is het moment om eerlijk te zijn, want hier corrigeert onderzoek een veelgehoorde intuïtie. IQ-scores zijn geen onzin. Ze voorspellen redelijk goed hoe iemand het op school doet en, iets zwakker, hoe snel iemand een complex vak leert. Ze zijn ook behoorlijk stabiel over het leven. Wie zegt dat IQ niets betekent, zit ernaast. Maar een gemiddelde voorspelling over een grote groep zegt weinig over die ene persoon tegenover je. En de toets meet vooral analytisch redeneren met duidelijke vragen en één juist antwoord. In het echte leven zijn de vragen zelden duidelijk, en zijn er vaak meer goede antwoorden.</p>
+
+    <h3>Waar Sternberg begint</h3>
+    <p>Sternberg zegt: de toets meet iets echts, maar te weinig. Een projectleider die elke vraag goed beantwoordt en de spanning aan tafel mist, laat analytisch vermogen zien zonder praktische intelligentie. Dat is geen tekort aan slimheid in het algemeen; het is een ander soort slim dat ontbreekt. Over die drie soorten gaat module 1.4. Voor nu is één ding genoeg: een score is een momentopname van één vermogen, gemeten op één manier.</p>
+
+    <h3>Opdrachten</h3>
+    <ul class="drie">
+      <li class="a"><em>Analytisch</em>Binet wilde helpen, latere gebruikers wilden sorteren. Noem één verschil in hoe je een uitslag leest als je wilt helpen in plaats van selecteren.</li>
+      <li class="c"><em>Creatief</em>Bedenk drie vragen voor een gesprek met een leverancier die iets meten wat geen assessment meet. Wat meet elke vraag?</li>
+      <li class="p"><em>Praktisch</em>Denk aan een cliënt die zichzelf "niet slim" noemt. Welke ene zin uit deze les zou je hem geven, en hoe zeg je die?</li>
+    </ul>
+
+    <div class="vv">
+      <span class="eyebrow">Voor vandaag</span>
+      <p class="zin">Een score is een foto van één vermogen, op één moment.</p>
+      <p><b>Om vandaag te zien:</b> merk op wanneer jij iemand indeelt als "slim" of "niet zo slim". Waar baseer je dat op?</p>
+      <p><b>In je werk:</b> vraag bij de volgende leveranciersselectie naast de certificaten ook naar een situatie waarin het team een onduidelijk probleem moest oplossen.</p>
+    </div>
+    <p class="muted" style="font-size:.9rem">Bronnen: Binet (1909), <i>Les idées modernes sur les enfants</i>; Boring (1923), "Intelligence as the tests test it", <i>New Republic</i>; Sternberg (1996), <i>Successful Intelligence</i>; Deary (2020), <i>Intelligence: A Very Short Introduction</i>, 2e druk.</p>
+  </article>
+</section>
+
+<section>
+  <span class="eyebrow">De lerarenkamer</span>
+  <h2>Wie er naast Sternberg spreekt</h2>
+  <div class="tabel">
+  <table>
+    <thead><tr><th>Gastdocent</th><th>Brengt in</th><th>Waar hij of zij Sternberg tegenspreekt of aanvult</th></tr></thead>
+    <tbody>
+      <tr><td>Alfred Binet</td><td>De eerste test</td><td>Deelt zijn idee dat intelligentie te ontwikkelen is</td></tr>
+      <tr><td>Charles Spearman, John Carroll</td><td>De algemene factor g, het CHC-model</td><td>Zien g als kern; Sternberg vindt g te smal</td></tr>
+      <tr><td>Ian Deary</td><td>Het grootste levenslooponderzoek naar IQ</td><td>Laat zien hoeveel IQ wél voorspelt</td></tr>
+      <tr><td>James Flynn</td><td>Stijgende scores over generaties</td><td>Omgeving doet ertoe, ook voor g</td></tr>
+      <tr><td>Howard Gardner</td><td>Meervoudige intelligentie</td><td>Breder dan Sternberg, maar zwakker onderbouwd</td></tr>
+      <tr><td>Daniel Kahneman, Gary Klein</td><td>Snel en traag denken, intuïtie van experts</td><td>Wanneer je je onderbuik kunt vertrouwen</td></tr>
+      <tr><td>Keith Stanovich</td><td>Rationaliteit naast intelligentie</td><td>Slimme mensen kunnen dom handelen; meetbaar</td></tr>
+      <tr><td>Carol Dweck</td><td>Mindset</td><td>Populair idee met kleinere effecten dan gedacht</td></tr>
+      <tr><td>Peter Fonagy</td><td>Mentaliseren</td><td>Sociale intelligentie vanuit hechting</td></tr>
+      <tr><td>Igor Grossmann</td><td>Wijsheid als meetbaar gedrag</td><td>Toetst Sternbergs wijsheidsidee in experimenten</td></tr>
+      <tr><td>François Chollet</td><td>Intelligentie en kunstmatige intelligentie</td><td>Intelligentie als efficiënt nieuwe vaardigheden leren</td></tr>
+      <tr><td>Augustinus, Thomas van Aquino, Pascal</td><td>Verstand, inzicht en het hart</td><td>Een oudere vraag: waartoe dient het verstand?</td></tr>
+    </tbody>
+  </table>
+  </div>
+</section>
+
+<section>
+  <span class="eyebrow">Zo gebruik je dit</span>
+  <h2>Het ritme</h2>
+  <p>Lees een module, doe de drie opdrachten en draag de zin van Voor vandaag een week mee. Rond je een module af, zeg dan in een sessie <b>"groeironde"</b> of typ <b>/levende-leergang</b>. Dan schrijf ik de volgende module als volledige les op je sterrenkaart, afgestemd op je antwoorden. Na niveau 4 stopt het niet: dan kies jij een open vraag en verdiepen we die samen.</p>
+  <p class="muted">Een niveau gaat omhoog als je op het huidige niveau minstens twee modules goed afrondt en in een open antwoord laat zien dat je ideeën met elkaar kunt verbinden. Nooit meer dan één stap tegelijk.</p>
+</section>
+
+<section>
+  <span class="eyebrow">Om zelf verder te lezen</span>
+  <h2>Kernboeken, van makkelijk naar moeilijk</h2>
+  <ul class="bron">
+    <li>Ian Deary, <i>Intelligence: A Very Short Introduction</i> (2020). Kort, eerlijk, ideaal begin.</li>
+    <li>Robert Sternberg, <i>Successful Intelligence</i> (1996). Het hart van zijn theorie, voor een breed publiek.</li>
+    <li>Daniel Kahneman, <i>Ons feilbare denken</i> (2011). Systeem 1 en 2.</li>
+    <li>Keith Stanovich, <i>What Intelligence Tests Miss</i> (2009). Rationaliteit naast IQ.</li>
+    <li>Robert Sternberg, <i>Adaptive Intelligence</i> (2021). Intelligentie voor het gemeenschappelijk goed.</li>
+    <li>Sternberg en Kaufman (red.), <i>The Cambridge Handbook of Intelligence</i> (2e druk, 2020). Naslag voor WO en master.</li>
+  </ul>
+</section>
+
+</div>
+
+<script>
+const N = [
+ {nr:1,naam:"MBO+",titel:"Wat is intelligentie eigenlijk?",doel:"Je kent de belangrijkste ideeën over intelligentie en kunt een IQ-score in eigen woorden duiden.",
+  mods:[
+  {t:"Het verhaal van de toets",v:"Waarom is de IQ-test bedacht, en wat meet hij wel en niet?",g:"Alfred Binet",b:"Binet-Simon (1905), IQ, Boring (1923)",o:["Vergelijk helpen en sorteren als doel van een toets.","Bedenk drie vragen die meten wat een assessment mist.","Geef een cliënt die zich dom voelt één zin mee."],w:"Leveranciersselectie: kijk verder dan certificaten.",les:true},
+  {t:"Eén vermogen of vele?",v:"Waarom hangen scores op heel verschillende tests met elkaar samen?",g:"Charles Spearman",b:"g-factor, positieve samenhang",o:["Leg uit waarom één factor de samenhang verklaart.","Bedenk een vaardigheid die volgens jou los staat van g.","Herken in een team wie snel leert en wie veel weet."],w:"Teamsamenstelling bij complexe contracten."},
+  {t:"Vloeibaar en gekristalliseerd",v:"Wat neemt af met de jaren, en wat groeit juist door?",g:"Raymond Cattell, John Horn",b:"Gf en Gc, woordenschat piekt rond 65 à 70 jaar",o:["Vergelijk wat jij op 30 en op 57 beter kon.","Ontwerp een werkwijze die op Gc leunt.","Gebruik je ervaring bewust in een lastig gesprek."],w:"Jouw ervaring als vermogen, niet als achterstand."},
+  {t:"Drie soorten slim",v:"Wat zijn analytische, creatieve en praktische intelligentie?",g:"Robert Sternberg",b:"Triarchische theorie (1985)",o:["Analyseer een collega langs de drie.","Bedenk een opdracht die alle drie vraagt.","Benoem welke van de drie jouw sterkste is."],w:"Coaching: maak een sterkteprofiel in drie kleuren."},
+  {t:"Mindset, eerlijk bekeken",v:"Helpt geloven dat je kunt groeien echt?",g:"Carol Dweck",b:"Groeimindset; meta-analyse Sisk e.a. (2018): kleine effecten",o:["Weeg de belofte tegen het bewijs.","Herschrijf een vaste-mindsetzin van een cliënt.","Let op hoe je zelf over je leren praat."],w:"Feedback geven op inzet en strategie."},
+  {t:"Slim is niet hetzelfde als verstandig",v:"Hoe kunnen intelligente mensen domme beslissingen nemen?",g:"Keith Stanovich",b:"Dysrationalia",o:["Zoek het denkfout-moment in een bekend projectdebacle.","Bedenk een eigen voorbeeld van slim maar onverstandig.","Bouw een stopvraag in voor grote beslissingen."],w:"Contractbesluiten onder tijdsdruk."}
+  ],proef:"Schrijf een halve pagina voor een cliënt: wat intelligentie is, wat een score zegt, en wat niet."},
+ {nr:2,naam:"HBO",titel:"Intelligentie in de praktijk",doel:"Je past theorieën over intelligentie toe in coaching, onderhandeling en contractmanagement.",
+  mods:[
+  {t:"Stille kennis",v:"Wat weten ervaren professionals zonder dat ze het kunnen uitleggen?",g:"Sternberg en Wagner",b:"Tacit knowledge, praktische intelligentie",o:["Analyseer welke ongeschreven regels in jouw vak gelden.","Maak er een korte gids van voor een starter.","Vraag een ervaren collega naar één ongeschreven regel."],w:"Overdracht van contractkennis bij wisselingen."},
+  {t:"Aanpassen, vormen of kiezen",v:"Wat doe je als je omgeving niet bij je past?",g:"Robert Sternberg",b:"Succesvolle intelligentie",o:["Analyseer een vastgelopen samenwerking langs de drie opties.","Bedenk een vierde optie die hij mist.","Gebruik het als coachvraag."],w:"Coaching bij loopbaanvragen."},
+  {t:"Snel en traag denken",v:"Wanneer misleidt je eerste indruk je?",g:"Daniel Kahneman",b:"Systeem 1 en 2, ankereffect, framing",o:["Vind het anker in een recente onderhandeling.","Ontwerp een tegenanker.","Zet een eerste bod bewust neer."],w:"Onderhandelen over prijs en voorwaarden."},
+  {t:"Emotionele intelligentie kritisch",v:"Is EQ een vermogen, een persoonlijkheid of een verkooppraatje?",g:"Mayer, Salovey en Caruso",b:"Vaardigheidsmodel (MSCEIT) tegenover populaire modellen",o:["Vergelijk het vaardigheidsmodel met Goleman.","Bedenk hoe je emotiebegrip zou kunnen toetsen.","Benoem in een gesprek hardop een emotie die je ziet."],w:"Lichaamstaal: zien wat je voelt bij een ander."},
+  {t:"Mentaliseren als sociale intelligentie",v:"Hoe begrijp je wat er in een ander omgaat, zonder te gokken?",g:"Peter Fonagy",b:"Mentaliseren, niet-weten",o:["Analyseer waar jouw mentaliseren uitvalt.","Bedenk twee verklaringen voor gedrag van een klant.","Stel een open vraag in plaats van een conclusie."],w:"Brug naar je lichaamstaalspecialisatie."},
+  {t:"Wanneer intuïtie te vertrouwen is",v:"Wanneer weet een expert het echt, en wanneer denkt hij het alleen?",g:"Kahneman en Klein",b:"Voorwaarden: een regelmatige omgeving en snelle feedback (2009)",o:["Beoordeel of jouw lichaamstaalintuïtie aan de voorwaarden voldoet.","Bedenk een manier om feedback op je inschattingen te krijgen.","Houd een maand een logboek van voorspellingen."],w:"Kalibratie van je eigen expertise."}
+  ],proef:"Een casus uit je praktijk, geanalyseerd met drie theorieën uit dit niveau, met een advies."},
+ {nr:3,naam:"WO",titel:"Het debat",doel:"Je leest onderzoek kritisch, kent de grote meningsverschillen en kunt ze zelf wegen.",
+  mods:[
+  {t:"Hoe meet je een geest?",v:"Wat betekenen betrouwbaarheid, validiteit en factoranalyse?",g:"John Carroll",b:"CHC-model (1993), psychometrie",o:["Beoordeel de validiteit van een assessment dat je kent.","Ontwerp een test voor praktische intelligentie.","Lees een testrapport en vind de beperkingen."],w:"Assessments in selectie beoordelen."},
+  {t:"Het Flynn-effect",v:"Waarom stegen IQ-scores een eeuw lang, en waarom dalen ze nu soms?",g:"James Flynn",b:"Flynn (1984, 2007); Bratsberg en Rogeberg (2018)",o:["Weeg drie verklaringen.","Bedenk een eigen verklaring en hoe je die toetst.","Wat zegt dit over je cliënten?"],w:"Omgeving vormt denken."},
+  {t:"Erfelijkheid zonder misverstand",v:"Wat zegt een erfelijkheidspercentage wel en niet?",g:"Eric Turkheimer",b:"Erfelijkheid als populatiegetal, gen-omgeving",o:["Ontleed de uitspraak dat IQ voor 50 procent erfelijk is.","Bedenk een analogie die het misverstand uitlegt.","Reageer in een gesprek op fatalisme."],w:"Coaching bij 'zo ben ik nu eenmaal'."},
+  {t:"Meervoudige intelligentie onder vuur",v:"Waarom is een populaire theorie wetenschappelijk omstreden?",g:"Howard Gardner",b:"Gardner (1983), kritiek Waterhouse (2006), de leerstijlenmythe",o:["Zet bewijs voor en tegen naast elkaar.","Herformuleer Gardner zodat hij toetsbaar wordt.","Ontmasker een leerstijlclaim in een training."],w:"Trainingsaanbod kritisch inkopen."},
+  {t:"Rationaliteit meten",v:"Is goed denken een apart vermogen naast intelligentie?",g:"Keith Stanovich",b:"Rationaliteitsquotiënt (2016), mindware",o:["Vergelijk RQ en IQ.","Bedenk een rationaliteitsopdracht uit je vak.","Leer een cliënt één denkgereedschap."],w:"Besluitvorming in contractbeheer."},
+  {t:"Wijsheid als onderzoeksobject",v:"Kun je wijsheid meten en oefenen?",g:"Igor Grossmann",b:"Sternbergs balanstheorie; Solomons paradox (Grossmann en Kross, 2014)",o:["Analyseer waarom we wijzer zijn over anderen dan over onszelf.","Bedenk een oefening in zelfafstand.","Gebruik de derde-persoonsvraag in een sessie."],w:"Coaching: afstand nemen van je eigen probleem."}
+  ],proef:"Een kort essay (1500 woorden) over één debat, met bronnen en een eigen afweging."},
+ {nr:4,naam:"Master",titel:"Een eigen positie",doel:"Je verbindt intelligentie met filosofie, technologie, ethiek en geloof en formuleert je eigen model.",
+  mods:[
+  {t:"Wat bedoelen we eigenlijk?",v:"Is intelligentie een ding, een eigenschap of een oordeel?",g:"Legg en Hutter, Boring",b:"Begripsanalyse, operationalisme",o:["Vergelijk vijf definities.","Schrijf je eigen definitie.","Toets hem aan een casus."],w:"Helder taalgebruik in rapportages."},
+  {t:"Kunstmatige intelligentie als spiegel",v:"Wat leren taalmodellen ons over menselijke intelligentie?",g:"François Chollet",b:"On the Measure of Intelligence (2019)",o:["Wat kan een AI en wat niet, volgens Chollet?","Bedenk een taak die mensen makkelijk en AI moeilijk vinden.","Bepaal wat jij niet uitbesteedt."],w:"AI in contractmanagement verantwoord inzetten."},
+  {t:"Intelligentie, macht en ethiek",v:"Hoe is het begrip misbruikt, en wat is de les?",g:"Stephen Jay Gould en zijn critici",b:"Eugenetica, The Mismeasure of Man, Sternberg (2021)",o:["Weeg Gould en de kritiek op hem.","Bedenk een ethische code voor testgebruik.","Herken sorteren in je eigen organisatie."],w:"Selectie en eerlijkheid."},
+  {t:"Collectieve intelligentie",v:"Kan een team slimmer zijn dan zijn leden?",g:"Anita Woolley",b:"c-factor (2010), kritiek Credé en Howardson (2017)",o:["Beoordeel het bewijs.","Ontwerp een vergadering die collectief slimmer maakt.","Let op beurtverdeling in je volgende overleg."],w:"Contractoverleg en stuurgroepen."},
+  {t:"Verstand, inzicht en het hart",v:"Wat zegt de christelijke traditie over intelligentie en wijsheid?",g:"Augustinus, Thomas van Aquino, Pascal",b:"Ratio en intellectus, Spreuken, 'le cœur a ses raisons'",o:["Vergelijk Thomas' intellectus met Sternbergs wijsheid.","Bedenk waar geloof en psychologie elkaar raken en schuren.","Hoe klinkt dit door in jouw begeleiding?"],w:"Zingeving in coaching, met respect voor elke levensovertuiging."},
+  {t:"Meesterproef",v:"Wat is jouw model van intelligentie voor je werk met mensen?",g:"Alle gastdocenten",b:"Synthese",o:["Verantwoord je model met bronnen.","Maak er een eigen instrument of gespreksmodel van.","Test het in drie echte gesprekken."],w:"Je eigen methode als consultant en coach."}
+  ],proef:"Een positiestuk van 4000 woorden plus een getest gespreksmodel. Daarna kies je zelf een open vraag om verder te verdiepen."}
+];
+const KEY="leerweg-intelligentie-klaar";
+let klaar={}; try{klaar=JSON.parse(localStorage.getItem(KEY)||"{}")}catch(e){}
+const bewaar=()=>{try{localStorage.setItem(KEY,JSON.stringify(klaar))}catch(e){}};
+const esc=s=>s.replace(/[&<>"]/g,c=>({"&":"&amp;","<":"&lt;",">":"&gt;",'"':"&quot;"}[c]));
+const doel=document.getElementById("niveaus");
+function teken(){
+  doel.innerHTML=N.map(n=>{
+    const af=n.mods.filter((m,i)=>klaar[`${n.nr}.${i+1}`]).length;
+    return `<div class="niveau"><div class="kop"><span class="eyebrow">Niveau ${n.nr} · ${n.naam}</span><h3 style="font-size:1.4rem">${esc(n.titel)}</h3><p class="muted">${esc(n.doel)}</p><span class="voortgang">${af} van ${n.mods.length} modules afgerond</span></div>
+    ${n.mods.map((m,i)=>{const id=`${n.nr}.${i+1}`;return `<details><summary><span class="nr">${id}</span><span class="st"><strong>${esc(m.t)}</strong><span>${esc(m.g)}</span></span>${klaar[id]?'<span class="vink">✓ klaar</span>':'<span></span>'}</summary>
+      <div class="inhoud"><dl style="margin:0;display:flex;flex-direction:column;gap:8px">
+      <div class="rij"><dt>Kernvraag</dt><dd>${esc(m.v)}</dd></div>
+      <div class="rij"><dt>Begrippen</dt><dd>${esc(m.b)}</dd></div>
+      <div class="rij"><dt>In je werk</dt><dd>${esc(m.w)}</dd></div></dl>
+      <ul class="drie"><li class="a"><em>Analytisch</em>${esc(m.o[0])}</li><li class="c"><em>Creatief</em>${esc(m.o[1])}</li><li class="p"><em>Praktisch</em>${esc(m.o[2])}</li></ul>
+      ${m.les?'<a href="#les1" style="color:var(--accent);font-weight:600">Lees de volledige les hieronder</a>':''}
+      <label class="klaar"><input type="checkbox" id="k${id.replace('.','-')}" data-id="${id}" ${klaar[id]?'checked':''}> Afgerond</label></div></details>`}).join("")}
+    <div class="proef"><span class="eyebrow">Proef van niveau ${n.nr}</span><p>${esc(n.proef)}</p></div></div>`}).join("");
+}
+teken();
+doel.addEventListener("change",e=>{const id=e.target.dataset.id;if(!id)return;
+  const open=[...doel.querySelectorAll("details")].map(d=>d.open);
+  klaar[id]=e.target.checked;bewaar();teken();
+  doel.querySelectorAll("details").forEach((d,i)=>d.open=open[i]);
+  document.querySelector(`[data-id="${id}"]`)?.focus();});
+</script>
