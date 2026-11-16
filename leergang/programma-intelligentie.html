@@ -81,6 +81,24 @@ dl.begrip dd{margin:0;color:var(--muted);font-size:.95rem}
 .kader{border-radius:10px;padding:12px 14px;display:flex;flex-direction:column;gap:4px;font-size:.95rem}
 .kader.onderzoek{background:var(--ana-soft)} .kader.onderzoek b{color:var(--ana)}
 .kader.mythe{background:var(--cre-soft)} .kader.mythe b{color:var(--cre)}
+.kader.casus{background:var(--pra-soft)} .kader.casus b{color:var(--pra)}
+ul.kijk{margin:0;padding-left:1.1rem;display:flex;flex-direction:column;gap:4px;font-size:.95rem}
+ul.kijk a{color:var(--accent)}
+figure.schema{margin:4px 0;background:var(--bg);border:1px solid var(--line);border-radius:10px;padding:10px;overflow-x:auto}
+figure.schema svg{display:block;width:100%;max-width:440px;height:auto;margin:0 auto}
+.schema text{font-family:var(--body);font-size:11px;text-anchor:middle;fill:var(--fg)}
+.schema .vs{font-size:9.5px;fill:var(--muted)} .schema .b{font-weight:600}
+.schema .l{text-anchor:start} .schema .r{text-anchor:end}
+.schema .vk{fill:var(--accent)} .schema .vk+text{fill:var(--surface)}
+.schema .vk2{fill:var(--surface);stroke:var(--line)}
+.schema .vl,.schema .va,.schema .vg{stroke:var(--muted);fill:none} .schema .vg{stroke:var(--line)}
+.schema .vd{fill:var(--muted)}
+.schema .vgf{stroke:var(--ana);stroke-width:3;fill:none} .schema .vgc{stroke:var(--cre);stroke-width:3;fill:none}
+.schema .dash{stroke-dasharray:6 4} .schema text.gf{fill:var(--ana)} .schema text.gc{fill:var(--cre)}
+.schema .vtri{fill:var(--accent-soft);stroke:var(--line)}
+.schema .vn.ana{fill:var(--ana)} .schema .vn.cre{fill:var(--cre)} .schema .vn.pra{fill:var(--pra)}
+.schema .vbar1{fill:var(--cre)} .schema .vbar2{fill:var(--ana)} .schema text.w{fill:#fff}
+.schema .vq{stroke:var(--line)} .schema .vq.goed{fill:var(--pra-soft)} .schema .vq.mid{fill:var(--surface)} .schema .vq.slecht{fill:var(--cre-soft)}
 .proef{background:var(--accent-soft);border-radius:12px;padding:16px;display:flex;flex-direction:column;gap:6px}
 .les{background:var(--surface);border:1px solid var(--line);border-radius:14px;padding:clamp(18px,4vw,32px);display:flex;flex-direction:column;gap:18px}
 .les p{max-width:65ch}
@@ -130,7 +148,7 @@ ul.bron{margin:0;padding-left:1.1rem;display:flex;flex-direction:column;gap:6px;
 <section id="route">
   <span class="eyebrow">De route</span>
   <h2>Vier niveaus, vierentwintig modules</h2>
-  <p class="muted">Tik op een module voor de kernvraag, de leerstof met kernbegrippen, wat het onderzoek zegt, een veelvoorkomend misverstand en de drie opdrachten. Vink af wat je hebt gedaan; dat onthoudt alleen deze browser.</p>
+  <p class="muted">Tik op een module voor de kernvraag, de leerstof met schema's, een casus, kernbegrippen, wat het onderzoek zegt, een veelvoorkomend misverstand, video's om te kijken en de drie opdrachten. De videolinks openen een zoekopdracht op YouTube, zodat ze blijven werken als een video verhuist. Vink af wat je hebt gedaan; dat onthoudt alleen deze browser.</p>
   <div id="niveaus" style="display:flex;flex-direction:column;gap:40px"></div>
 </section>
 
@@ -473,16 +491,127 @@ const L = {
  m:"Dat een eigen model origineel moet zijn. Goed werk combineert bestaande ideeën op een manier die voor jouw praktijk precies past."}
 };
 
+// Casussen (c = situatie, q = vraag), YouTube-zoekverwijzingen (Y) en schema's (V)
+const C = {
+"1.1":{c:"Een HR-adviseur legt je een rapport voor: kandidaat A heeft IQ 128, kandidaat B 112. Zij wil A aannemen als contractmanager. B heeft tien jaar ervaring met lastige leveranciers, A komt net van de universiteit.",q:"Wat zegt het verschil van 16 punten wel, en wat zegt het niet over wie dit werk beter gaat doen?"},
+"1.2":{c:"Een teamleider zegt over een medewerker: 'Ze is goed in Excel, dus ze kan vast ook goed onderhandelen.' Een andere teamleider zegt: 'Iemand die zo goed rekent, is meestal sociaal onhandig.'",q:"Welke van de twee uitspraken past beter bij de positieve manifold, en waarom zijn ze allebei te stellig?"},
+"1.3":{c:"Kees, 61, senior inkoper, krijgt een nieuw contractbeheersysteem. Hij is trager dan zijn jonge collega's met de software, en voelt zich 'afgeschreven'. In het overleg met de leverancier is hij degene die ziet dat een clausule over indexering later geld gaat kosten.",q:"Welke vorm van intelligentie zet Kees in, en hoe zou je hem met het SOC-model coachen?"},
+"1.4":{c:"In een projectteam heb je drie mensen. Sanne schrijft foutloze juridische analyses. Ahmed komt in elk overleg met een onverwachte oplossing. Petra weet altijd wie je moet bellen om iets voor elkaar te krijgen.",q:"Wie is de Alice, de Barbara en de Celia van dit team? Welke taak geef je elk van hen bij een vastgelopen aanbesteding?"},
+"1.5":{c:"Een cliënt, Mark, zegt na een mislukte presentatie: 'Ik ben gewoon geen spreker.' Zijn leidinggevende had hem eerder geprezen met: 'Jij bent echt een natuurtalent in analyses.'",q:"Hoe kan die eerdere lof meespelen in hoe Mark nu reageert? Formuleer één procesgerichte vraag die je hem stelt."},
+"1.6":{c:"Een slimme projectdirecteur blijft investeren in een leverancier die al drie deadlines miste. 'We hebben er al twee ton in zitten,' zegt hij. Elke nieuwe tegenvaller legt hij uit als pech.",q:"Welke twee denkfouten zie je? Waarom beschermt zijn intelligentie hem er niet tegen?"},
+"2.1":{c:"Een nieuwe contractmanager volgt alle procedures, maar escaleert een conflict via de mail naar de directeur van de leverancier. De relatie verslechtert. Een ervaren collega zegt: 'Dat doe je hier niet, je belt eerst de accountmanager.' Dat staat nergens.",q:"Welke soort stille kennis ontbrak? Hoe kun je zulke kennis overdragen voordat het misgaat?"},
+"2.2":{c:"Lisa, projectleider, werkt in een organisatie waar beslissingen pas na drie overleggen vallen. Zij is snel en ongeduldig. Ze overweegt ontslag te nemen.",q:"Werk de drie opties van Sternberg voor haar uit: wat zou aanpassen, vormen en kiezen concreet betekenen?"},
+"2.3":{c:"Een leverancier opent de onderhandeling met: 'Normaal rekenen we 180 euro per uur, maar voor u kunnen we naar 150.' Jouw eigen marktonderzoek gaf 110 euro aan. Aan het eind van de dag sluit je op 135 en voel je je tevreden.",q:"Waar zat het anker? Wat had je vooraf kunnen doen om er minder last van te hebben?"},
+"2.4":{c:"Een manager scoorde hoog op een EQ-vragenlijst. In vergaderingen onderbreekt hij mensen en ziet hij niet dat zijn team al weken gespannen is.",q:"Hoe kan dit tegelijk waar zijn? Wat zou een vaardigheidstest anders meten dan zijn vragenlijst?"},
+"2.5":{c:"Een cliënt kijkt tijdens het gesprek steeds weg en zit met gekruiste armen. Je collega zegt achteraf: 'Hij had duidelijk geen zin in coaching.' Later blijkt dat hij die ochtend slecht nieuws over zijn moeder had gekregen.",q:"Waar ging het mentaliseren van je collega mis, op welke van de vier dimensies? Welke vraag had het gesprek kunnen openen?"},
+"2.6":{c:"Je bent ervan overtuigd dat je aan iemands handen ziet of hij liegt. Je hebt het 'al honderd keer goed gehad'. Maar je weet eigenlijk niet hoe vaak je het fout had, omdat je dat bijna nooit te horen kreeg.",q:"Voldoet jouw situatie aan de twee voorwaarden van Kahneman en Klein? Hoe zou je een eerlijke feedbacklus kunnen bouwen?"},
+"3.1":{c:"Een bureau biedt een assessment aan voor contractmanagers. In de brochure staat: 'Betrouwbaarheid 0,92, gevalideerd bij 5000 deelnemers.' Er staat niets over wat het voorspelt.",q:"Welke drie vragen stel je aan het bureau voordat je het inkoopt?"},
+"3.2":{c:"Een cliënt van 70 zegt: 'Mijn kleinzoon is veel slimmer dan ik ooit was; hij doet die puzzels in een paar seconden.'",q:"Hoe zou je dit met het Flynn-effect nuanceren, zonder zijn kleinzoon tekort te doen?"},
+"3.3":{c:"Een directeur zegt in een coachtraject: 'Mijn vader kon ook niet plannen. Dat zit in de genen, daar kan ik niks aan doen.'",q:"Wat klopt er aan zijn uitspraak, en wat niet? Hoe breng je dat zonder college te geven?"},
+"3.4":{c:"Een trainingsbureau verkoopt een cursus 'Onderhandelen voor visuele en auditieve leerders'. Deelnemers vullen eerst een test in om hun leerstijl te bepalen.",q:"Welk bewijs vraag je op? Wat zou een betere opbouw van de training zijn?"},
+"3.5":{c:"Een team van hoogopgeleide juristen besluit unaniem dat een leverancier fraudeert, op basis van twee opvallende incidenten. Niemand kijkt hoe vaak zulke incidenten bij andere leveranciers voorkomen.",q:"Welke mindware ontbreekt hier? Welke ene vraag had het gesprek veranderd?"},
+"3.6":{c:"Je geeft collega's altijd verstandig advies bij conflicten. Maar in je eigen conflict met een opdrachtgever reageer je gekwetst en schrijf je een scherpe mail.",q:"Wat zegt Solomons paradox hierover? Probeer het conflict opnieuw te beschrijven in de derde persoon en kijk wat er verandert."},
+"4.1":{c:"In een stuurgroep wil iemand 'de slimste mensen' in het nieuwe contractteam. Na een uur discussie blijkt iedereen iets anders te bedoelen: snel denken, veel kennis, goed met mensen, of creatief.",q:"Welke van de drie filosofische houdingen past bij de discussie? Hoe zou jij het begrip voor deze opdracht definiëren?"},
+"4.2":{c:"Je organisatie wil een AI-systeem contracten laten beoordelen. Het systeem vindt in tests 95 procent van de bekende risicoclausules, maar mist een nieuw soort clausule die een leverancier net heeft bedacht.",q:"Wat zegt dit, volgens Chollet, over het verschil tussen vaardigheid en intelligentie? Welke rol hou jij als mens?"},
+"4.3":{c:"Een bedrijf wil een online cognitieve test inzetten om sollicitanten te filteren. De test is snel en goedkoop. Uit een pilot blijkt dat kandidaten met een migratieachtergrond vaker afvallen.",q:"Welke vragen moet je nu stellen over testbias en over het doel van de selectie?"},
+"4.4":{c:"In een stuurgroep praten twee mensen 80 procent van de tijd. De anderen knikken. Besluiten worden snel genomen, en blijken later vaak niet uitvoerbaar.",q:"Wat zou Woolley voorspellen over de collectieve intelligentie van deze groep? Ontwerp één spelregel voor het volgende overleg."},
+"4.5":{c:"Een cliënt staat voor een grote beslissing. Alle argumenten wijzen naar ja, maar hij zegt: 'Mijn hart zegt nee, en ik weet niet waarom.' Hij is gelovig en vraagt of hij moet bidden of moet rekenen.",q:"Hoe helpen Pascal, Thomas en Kahneman je om dit gesprek open te houden, zonder zijn geloof te passeren of te sturen?"},
+"4.6":{c:"Je presenteert je eigen model aan een groep collega-coaches. Iemand vraagt: 'Hoe weet je dat jouw model beter werkt dan gewoon goed luisteren?'",q:"Welk bewijs kun je verzamelen om die vraag eerlijk te beantwoorden?"}
+};
+const Y = {
+"1.1":[["Crash Course Psychology #23: Controversy of Intelligence","crash course psychology controversy of intelligence"],["De geschiedenis van de IQ-test","history of the IQ test Binet"]],
+"1.2":[["Spearman en de g-factor uitgelegd","Spearman g factor general intelligence explained"]],
+"1.3":[["Vloeibare en gekristalliseerde intelligentie","fluid and crystallized intelligence explained"],["Paul Baltes: selectie, optimalisatie, compensatie","selection optimization compensation Baltes"]],
+"1.4":[["Robert Sternberg over succesvolle intelligentie","Robert Sternberg successful intelligence"]],
+"1.5":[["Carol Dweck, TED: The power of believing that you can improve","Carol Dweck power of believing that you can improve TED"],["Kritische blik op mindset-onderzoek","growth mindset research replication"]],
+"1.6":[["De knuppel-en-balvraag en cognitieve reflectie","bat and ball problem cognitive reflection test"],["Keith Stanovich over rationaliteit en intelligentie","Keith Stanovich rationality intelligence"]],
+"2.1":[["Polanyi en stille kennis","Polanyi tacit knowledge explained"]],
+"2.2":[["Sternberg over adaptieve intelligentie","Robert Sternberg adaptive intelligence lecture"]],
+"2.3":[["Daniel Kahneman, Talks at Google: Thinking, Fast and Slow","Daniel Kahneman Thinking Fast and Slow Talks at Google"],["Het ankereffect in onderhandelingen","anchoring effect negotiation first offer"]],
+"2.4":[["Lisa Feldman Barrett, TED: You aren't at the mercy of your emotions","Lisa Feldman Barrett you aren't at the mercy of your emotions TED"],["Het vaardigheidsmodel van Mayer en Salovey","Mayer Salovey ability model emotional intelligence"]],
+"2.5":[["Peter Fonagy over mentaliseren en epistemisch vertrouwen","Peter Fonagy mentalizing epistemic trust"]],
+"2.6":[["Gary Klein over intuïtie van experts","Gary Klein intuition expertise naturalistic decision making"],["Anders Ericsson over gerichte oefening","Anders Ericsson deliberate practice"]],
+"3.1":[["Het CHC-model uitgelegd","CHC theory of intelligence Cattell Horn Carroll"]],
+"3.2":[["James Flynn, TED: Why our IQ levels are higher than our grandparents'","James Flynn why our IQ levels are higher than our grandparents TED"]],
+"3.3":[["Erfelijkheid: wat het getal betekent","heritability explained misconceptions intelligence"],["Kathryn Paige Harden over The Genetic Lottery","Kathryn Paige Harden genetic lottery talk"]],
+"3.4":[["Veritasium: The Biggest Myth In Education (leerstijlen)","Veritasium biggest myth in education learning styles"],["Howard Gardner over meervoudige intelligentie","Howard Gardner multiple intelligences interview"]],
+"3.5":[["Stanovich over het rationaliteitsquotiënt","Stanovich rationality quotient"]],
+"3.6":[["Ethan Kross over Chatter en zelfafstand","Ethan Kross Chatter self distancing"],["Igor Grossmann over wijs redeneren","Igor Grossmann wise reasoning"]],
+"4.1":[["Wat is intelligentie? Het definitiedebat","what is intelligence definition debate psychology"]],
+"4.2":[["François Chollet over het meten van intelligentie en ARC","Francois Chollet measure of intelligence ARC"]],
+"4.3":[["Buck v. Bell en de geschiedenis van eugenetica","Buck v Bell eugenics history"],["Stephen Jay Gould en The Mismeasure of Man","Stephen Jay Gould Mismeasure of Man"]],
+"4.4":[["Anita Woolley over collectieve intelligentie","Anita Woolley collective intelligence"]],
+"4.5":[["Thomas van Aquino over geloof en rede","Thomas Aquinas faith and reason explained"],["Pascal: le cœur a ses raisons","Pascal Pensées le coeur a ses raisons"]],
+"4.6":[["Sternberg over wijsheid, intelligentie en creativiteit","Sternberg wisdom intelligence creativity synthesized"]]
+};
+const V = {
+"1.2":`<svg viewBox="0 0 340 170" role="img" aria-label="Hiërarchie: g bovenaan, brede vermogens in het midden, smalle vermogens onderaan">
+<rect class="vk" x="140" y="8" width="60" height="30" rx="6"/><text class="vt b w" x="170" y="28">g</text>
+${["Gf","Gc","Gv","Gwm","Gs","Glr"].map((t,i)=>`<line class="vl" x1="170" y1="38" x2="${30+i*56}" y2="72"/><rect class="vk2" x="${8+i*56}" y="72" width="44" height="26" rx="5"/><text class="vt" x="${30+i*56}" y="90">${t}</text>${[0,1,2].map(j=>`<line class="vl" x1="${30+i*56}" y1="98" x2="${16+i*56+j*14}" y2="130"/><circle class="vd" cx="${16+i*56+j*14}" cy="134" r="4"/>`).join("")}`).join("")}
+<text class="vs" x="170" y="160">algemeen · breed · smal (ongeveer 70 smalle vermogens)</text></svg>`,
+"1.3":`<svg viewBox="0 0 340 200" role="img" aria-label="Schematisch verloop: vloeibare intelligentie piekt rond 25 en daalt, gekristalliseerde stijgt tot rond 65 tot 70">
+<line class="va" x1="40" y1="160" x2="320" y2="160"/><line class="va" x1="40" y1="20" x2="40" y2="160"/>
+${[20,30,40,50,60,70,80].map((a,i)=>`<text class="vs" x="${40+i*46.7}" y="176">${a}</text>`).join("")}
+<text class="vs" x="180" y="194">leeftijd</text>
+<path class="vgf" d="M40 70 C 70 40, 90 38, 110 45 S 220 95, 320 135"/>
+<path class="vgc" d="M40 120 C 120 85, 200 50, 250 42 S 300 50, 320 58"/>
+<text class="vt l gf" x="60" y="34">Gf: nieuw redeneren</text><text class="vt l gc" x="190" y="30">Gc: kennis, woordenschat</text>
+<text class="vs" x="180" y="12">schematisch, geen echte meetwaarden</text></svg>`,
+"1.4":`<svg viewBox="0 0 340 200" role="img" aria-label="Driehoek van analytische, creatieve en praktische intelligentie rond succesvolle intelligentie">
+<polygon class="vtri" points="170,22 40,170 300,170"/>
+<circle class="vn ana" cx="170" cy="22" r="14"/><circle class="vn cre" cx="40" cy="170" r="14"/><circle class="vn pra" cx="300" cy="170" r="14"/>
+<text class="vt b" x="170" y="58">analytisch</text><text class="vt b" x="70" y="150">creatief</text><text class="vt b" x="268" y="150">praktisch</text>
+<text class="vt" x="170" y="118">succesvolle</text><text class="vt" x="170" y="134">intelligentie</text></svg>`,
+"2.3":`<svg viewBox="0 0 340 200" role="img" aria-label="Staafdiagram: na anker 10 gemiddelde schatting 25 procent, na anker 65 gemiddelde schatting 45 procent">
+<line class="va" x1="50" y1="160" x2="300" y2="160"/>
+${[0,10,20,30,40,50].map(v=>`<line class="vg" x1="50" y1="${160-v*2.8}" x2="300" y2="${160-v*2.8}"/><text class="vs r" x="44" y="${164-v*2.8}">${v}%</text>`).join("")}
+<rect class="vbar1" x="90" y="${160-25*2.8}" width="60" height="${25*2.8}"/><rect class="vbar2" x="200" y="${160-45*2.8}" width="60" height="${45*2.8}"/>
+<text class="vt b" x="120" y="${154-25*2.8}">25%</text><text class="vt b" x="230" y="${154-45*2.8}">45%</text>
+<text class="vt" x="120" y="178">rad stopt op 10</text><text class="vt" x="230" y="178">rad stopt op 65</text>
+<text class="vs" x="175" y="196">geschat aandeel Afrikaanse landen in de VN (Tversky en Kahneman, 1974)</text></svg>`,
+"2.6":`<svg viewBox="0 0 340 220" role="img" aria-label="Twee bij twee: regelmatige omgeving en snelle feedback tegenover onvoorspelbaar en weinig feedback">
+<text class="vs" x="190" y="14">snelle, duidelijke feedback?</text>
+<text class="vs" x="135" y="30">ja</text><text class="vs" x="255" y="30">nee</text>
+<text class="vs l" x="2" y="30">omgeving regelmatig?</text>
+<text class="vs" x="38" y="82">ja</text><text class="vs" x="38" y="172">nee</text>
+<rect class="vq goed" x="80" y="38" width="115" height="85" rx="6"/><rect class="vq mid" x="200" y="38" width="115" height="85" rx="6"/>
+<rect class="vq mid" x="80" y="128" width="115" height="85" rx="6"/><rect class="vq slecht" x="200" y="128" width="115" height="85" rx="6"/>
+<text class="vt b" x="137" y="72">intuïtie</text><text class="vt b" x="137" y="88">te vertrouwen</text><text class="vs" x="137" y="106">schaken, brandweer</text>
+<text class="vt" x="257" y="80">leren gaat traag</text><text class="vs" x="257" y="98">radiologie, coaching</text>
+<text class="vt" x="137" y="170">weinig patroon</text><text class="vs" x="137" y="188">dobbelen</text>
+<text class="vt b" x="257" y="162">schijnexpertise</text><text class="vs" x="257" y="180">beurs, politiek,</text><text class="vs" x="257" y="194">leugens lezen</text></svg>`,
+"3.2":`<svg viewBox="0 0 340 190" role="img" aria-label="Schematisch: IQ-scores stijgen van 1950 tot rond 1995 en dalen daarna in Noorwegen">
+<line class="va" x1="40" y1="150" x2="320" y2="150"/><line class="va" x1="40" y1="20" x2="40" y2="150"/>
+${[1950,1970,1990,2010].map((j,i)=>`<text class="vs" x="${40+i*93}" y="168">${j}</text>`).join("")}
+<path class="vgf" d="M40 140 L 250 52"/><path class="vgc dash" d="M250 52 L 320 74"/>
+<text class="vt l" x="130" y="128">ongeveer +3 punten per 10 jaar</text><text class="vt l gc" x="232" y="40">daling (Noorwegen)</text>
+<text class="vs" x="180" y="186">schematisch, geen echte meetwaarden</text></svg>`,
+"3.6":`<svg viewBox="0 0 340 150" role="img" aria-label="Solomons paradox: over een vriend redeneer je wijzer dan over jezelf, zelfafstand dicht het gat">
+<rect class="vbar2" x="40" y="30" width="270" height="22"/><text class="vt l w" x="48" y="46">probleem van een vriend</text>
+<rect class="vbar1" x="40" y="62" width="165" height="22"/><text class="vt l w" x="48" y="78">eigen probleem, ik-vorm</text>
+<rect class="vbar2" x="40" y="94" width="258" height="22"/><text class="vt l w" x="48" y="110">eigen probleem, derde persoon</text>
+<text class="vs" x="170" y="140">wijs redeneren (schematisch, naar Grossmann en Kross, 2014)</text></svg>`,
+"4.4":`<svg viewBox="0 0 340 180" role="img" aria-label="Drie factoren die samenhangen met collectieve intelligentie: sociale sensitiviteit, gelijke beurten, aandeel vrouwen">
+${["sociale sensitiviteit","gelijke beurten","aandeel vrouwen*"].map((t,i)=>`<rect class="vk2" x="10" y="${20+i*50}" width="150" height="34" rx="6"/><text class="vt" x="85" y="${42+i*50}">${t}</text><line class="vl pijl" x1="160" y1="${37+i*50}" x2="236" y2="87"/>`).join("")}
+<circle class="vn pra" cx="270" cy="87" r="32"/><text class="vt b w" x="270" y="93">c</text>
+<text class="vs" x="170" y="176">* vooral via sociale sensitiviteit (Woolley e.a., 2010)</text></svg>`
+};
+V["3.1"]=V["1.2"];
+
 const KEY="leerweg-intelligentie-klaar";
 let klaar={}; try{klaar=JSON.parse(localStorage.getItem(KEY)||"{}")}catch(e){}
 const bewaar=()=>{try{localStorage.setItem(KEY,JSON.stringify(klaar))}catch(e){}};
 const esc=s=>s.replace(/[&<>"]/g,c=>({"&":"&amp;","<":"&lt;",">":"&gt;",'"':"&quot;"}[c]));
 const doel=document.getElementById("niveaus");
-function leerstof(id){const x=L[id];if(!x)return"";
+const yt=q=>"https://www.youtube.com/results?search_query="+encodeURIComponent(q);
+function leerstof(id){const x=L[id];if(!x)return"";const c=C[id],v=V[id],y=Y[id]||[];
   return `<div class="stof"><span class="eyebrow">Leerstof</span>${x.u.map(t=>`<p>${esc(t)}</p>`).join("")}
+  ${v?`<figure class="schema">${v}</figure>`:""}
+  ${c?`<div class="kader casus"><b>Casus</b><p>${esc(c.c)}</p><p><i>${esc(c.q)}</i></p></div>`:""}
   <h4>Kernbegrippen</h4><dl class="begrip">${x.k.map(([t,d])=>`<div><dt>${esc(t)}</dt><dd>${esc(d)}</dd></div>`).join("")}</dl>
   <div class="kader onderzoek"><b>Wat het onderzoek zegt</b><p>${esc(x.o)}</p></div>
   <div class="kader mythe"><b>Veelvoorkomend misverstand</b><p>${esc(x.m)}</p></div>
+  ${y.length?`<h4>Kijken</h4><ul class="kijk">${y.map(([t,q])=>`<li><a href="${yt(q)}" target="_blank" rel="noopener">${esc(t)}</a></li>`).join("")}</ul>`:""}
   <h4>Opdrachten</h4></div>`}
 function teken(){
   doel.innerHTML=N.map(n=>{
