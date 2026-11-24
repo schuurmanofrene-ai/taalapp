@@ -133,7 +133,7 @@ const DOMEINEN=[
   wegen:[
    {t:"Leerweg Intelligentie",m:"Robert J. Sternberg",o:"24 modules over analytisch, creatief en praktisch denken, tot wijsheid.",page:"intelligentie.html",key:"leerweg-intelligentie-klaar",v:"Webleerweg",totaal:24},
    {t:"Mentaliseren",m:"Peter Fonagy, Patrick Luyten",o:"Van MBO tot master: begrijpen wat er in jezelf en de ander omgaat.",doc:"ment",v:"Leestekst"},
-   {t:"Emotionele Intelligentie",m:"Salovey, Mayer, Frijda",o:"22 lessen in vier lagen: wat EI is, hoe het gemeten wordt en waar het wringt.",doc:"emo",v:"Leestekst"}]},
+   {t:"Emotionele Intelligentie",m:"Salovey, Mayer, Frijda",o:"22 lessen in vier lagen: wat EI is, hoe het gemeten wordt en waar het wringt. Elke les wordt voor je geschreven zodra je hem start.",doc:"emo",gen:"emo",v:"Leerlijn"}]},
  {id:"lich",naam:"Lichaamstaal",c:"--lich",zin:"Kijken, toetsen en een betere vraag stellen",
   wegen:[
    {t:"Leerweg Navarro",m:"Joe Navarro, Ekman, Vrij, Feldman Barrett",o:"Comfort en ongemak lezen, naast wat het onderzoek wel en niet steunt.",page:"navarro.html",key:"leerweg-navarro-v1",v:"Webleerweg",totaal:27},
@@ -173,13 +173,19 @@ function bouwHub(){
       k.innerHTML=`<div class="meta"><span class="vorm">${esc(w.v)}</span><span>${esc(w.m)}</span></div><h3>${esc(w.t)}</h3><p class="oms">${esc(w.o)}</p>`+
        (w.lessen?`<ul class="lessen">${w.lessen.map(l=>`<li><button class="lesknop" type="button" data-doc="${l[2]}"><span class="nr">${l[0].slice(3)}</span><span>${esc(l[1])}</span><span class="v">${gelezen[l[2]]?"✓":""}</span></button></li>`).join("")}</ul>`:"")+
        `<div class="voet"><span class="voortgang">${vg}</span>${knop}</div>`;
+      if(w.gen){const GL=GEN[w.gen],n=GL.filter(l=>gelezen[w.gen+"-"+l[0]]).length,vol=GL.find(l=>!gelezen[w.gen+"-"+l[0]])||GL[0];
+        k.querySelector(".voortgang").textContent=`${n} van ${GL.length} lessen gelezen`;
+        const ob=k.querySelector(".voet [data-doc]");if(ob){ob.textContent="Leerplan";ob.className="terug"}
+        const dd=document.createElement("details");dd.innerHTML=`<summary class="lesknop" style="display:block">Alle ${GL.length} lessen bekijken</summary><ul class="lessen">${GL.map(l=>`<li><button class="lesknop" type="button" data-gen="${w.gen}-${l[0]}"><span class="nr">${l[0]}</span><span>${esc(l[1])}</span><span class="v">${gelezen[w.gen+"-"+l[0]]?"✓":""}</span></button></li>`).join("")}</ul>`;
+        k.insertBefore(dd,k.querySelector(".voet"));
+        k.querySelector(".voet").insertAdjacentHTML("beforeend",`<button class="btn" type="button" data-gen="${w.gen}-${vol[0]}">Start les ${vol[0]}</button>`);}
       pl.appendChild(k);
     });
     root.appendChild(s);
   });
   const L=lees("leerhub-laatst",null),v=document.getElementById("verder");
   if(L&&L.id){v.hidden=false;v.className="verder";
-    v.innerHTML=`<div><span class="eyebrow">Verder waar je was</span><b>${esc(L.titel||"")}</b></div>`+(L.type==="page"?`<a class="btn" href="${esc(L.id)}" data-page="${esc(L.id)}" data-t="${esc(L.titel)}">Verder</a>`:`<button class="btn" type="button" data-doc="${esc(L.id)}">Verder</button>`);}
+    v.innerHTML=`<div><span class="eyebrow">Verder waar je was</span><b>${esc(L.titel||"")}</b></div>`+(L.type==="page"?`<a class="btn" href="${esc(L.id)}" data-page="${esc(L.id)}" data-t="${esc(L.titel)}">Verder</a>`:`<button class="btn" type="button" ${L.type==="gen"?"data-gen":"data-doc"}="${esc(L.id)}">Verder</button>`);}
 }
 document.addEventListener("click",e=>{
   const p=e.target.closest("[data-page]");if(p){laatst("page",p.dataset.page,p.dataset.t);return}
@@ -230,6 +236,41 @@ function volgendeLezing(){
   location.hash="";
 }
 
+/* Leerlijnen waarvan de lessen in de hub worden geschreven */
+const GEN={emo:[[1,"Wat is een emotie eigenlijk?","Nico Frijda, Amsterdamse hoogleraar, en zijn idee dat emoties geen storing zijn maar een signaal over je belangen, met een neiging tot actie erbij."],[2,"Hoe “EQ” een begrip werd","Twee onderzoekers bedachten de term in 1990; een journalist maakte er in 1995 een wereldwijde bestseller van. Wat ging er verloren in die vertaling?"],[3,"Vier dingen die je met gevoel kunt doen","Opmerken, gebruiken, begrijpen en bijsturen, uitgelegd met alledaagse voorbeelden."],[4,"Het lichaam meldt zich eerst","Hartslag, maag en spierspanning als vroege signalen, en waarom je die niet altijd goed leest."],[5,"Een woord voor wat je voelt","Waarom “ik baal” en “ik voel me gepasseerd” tot heel ander gedrag leiden."],[6,"Salovey en Mayer (1990)","Het oorspronkelijke artikel en het vier-takkenmodel dat eruit groeide: waarnemen, gebruiken, begrijpen, reguleren."],[7,"Drie modellen naast elkaar","EI als vaardigheid (Mayer, Salovey, Caruso), als persoonlijkheidstrek (Petrides) en als gemengd pakket (Goleman, Bar-On)."],[8,"Emotieregulatie","James Gross en zijn procesmodel: je kunt ingrijpen vóór, tijdens en na een emotie. Herwaarderen tegenover onderdrukken."],[9,"Basisemoties of gemaakte emoties?","Paul Ekman en de universele gezichtsuitdrukkingen tegenover Lisa Feldman Barrett, die stelt dat het brein emoties construeert."],[10,"Empathie","Weten wat de ander voelt tegenover meevoelen, en hoe dat aansluit op mentaliseren."],[11,"Alexithymie","Mensen die moeite hebben hun gevoel te herkennen en te benoemen: wat het ons leert over “gewone” EI."],[12,"Hoe meet je een juist gevoel?","De MSCEIT-test en het probleem dat er voor emotievragen geen antwoordsleutel bestaat: telt de meerderheid of de expert?"],[13,"Zelfrapportage en de Big Five","Waarom veel EI-vragenlijsten vooral persoonlijkheid opnieuw meten."],[14,"Het cascademodel (Joseph & Newman, 2010)","Waarnemen gaat vóór begrijpen, begrijpen vóór reguleren. Bovenop persoonlijkheid en IQ voegt vaardigheids-EI weinig toe aan werkprestatie, behalve in banen met veel emotionele arbeid."],[15,"Emotionele arbeid","Arlie Hochschild en het werk van gevoelens tonen die je niet hebt: van stewardess tot coach."],[16,"Werkt herwaarderen echt?","Laboratoriumonderzoek naar regulatiestrategieën en de link met cognitieve herstructurering in CGT."],[17,"Kun je EI trainen, en kun je emotie van een gezicht lezen?","Wat trainingsstudies laten zien, en de grote review van Barrett en collega’s (2019) over gezichtsuitdrukkingen. Navarro en Hughes worden hier gewogen."],[18,"Is EI wel een intelligentie?","Edwin Locke (2005) noemt het begrip ongeldig; Mayer, Roberts en Barsade (2008) verdedigen het. Wie heeft het sterkste argument?"],[19,"Zijn emoties oordelen of lichaamsgevoelens?","Van de Stoïcijnen via William James (1884) naar Robert Solomon en Martha Nussbaum. Wat betekent het voor “emoties sturen” als een emotie zelf al een oordeel is?"],[20,"Denken met je lijf","Antonio Damasio’s somatische markers en de kritiek op het experiment waar de theorie op leunt."],[21,"De donkere kant","Wie emoties goed leest, kan ze ook bespelen. Het werk van Gerben van Kleef (UvA) over emoties als sociale informatie, en de grens tussen invloed en manipulatie."],[22,"Vaardigheid of karakter?","Aristoteles’ juiste woede, op het juiste moment, tegen de juiste persoon: is EI een techniek of een deugd?"]]};
+const emoLaag=n=>n<=5?"Instaplaag (MBO-plus)":n<=11?"Laag 1 (HBO)":n<=17?"Laag 2 (WO)":"Laag 3 (Master)";
+document.addEventListener("click",e=>{const g=e.target.closest("[data-gen]");if(g){e.preventDefault();location.hash="gen-"+g.dataset.gen}});
+function promptEmo(n){const l=GEN.emo.find(x=>x[0]===n),eerder=GEN.emo.filter(x=>x[0]<n).map(x=>x[0]+". "+x[1]).join("; ");
+  return `Je schrijft les ${n} van 22 uit de leerlijn Emotionele Intelligentie voor één vaste lezer: een Nederlandse man van 57, consultant in contractmanagement, coach en cognitief gedragstherapeut met lichaamstaal als specialisatie, katholiek. De leerlijn loopt in vier lagen van MBO-plus tot master. De rode draad: emoties zijn informatie over wat je belangrijk vindt, en emotionele intelligentie is het vermogen die informatie goed te lezen en te gebruiken.
+
+Deze les: "${l[1]}" (${emoLaag(n)}). Inhoud volgens het leerplan: ${l[2]}
+${eerder?"Eerdere lessen in de leerlijn: "+eerder+". Bouw daarop voort zonder ze te herhalen.":"Dit is de eerste les."}
+
+Vorm: een essay van ongeveer 2000 woorden (15 tot 20 minuten lezen) over één onderwerp, op het niveau van deze laag, in helder Nederlands, zonder opdrachten, quizvragen of vragen aan de lezer, zonder emoji. Open met een concreet, herkenbaar voorbeeld. Bewijsstandaard: geef bij belangrijke claims aan hoe sterk het effect is, of het herhaald is en wie het onderzocht, met namen en jaartallen; wees eerlijk waar het bewijs wankelt. Verzin geen bronnen, citaten of cijfers; als je iets niet zeker weet, zeg dat.
+
+Gebruik markdown: begin met "# ${l[1]}", dan een cursieve regel "*Emotionele intelligentie · ${emoLaag(n)} · Les ${n}*", dan het essay met ## tussenkoppen. Eindig met "## Voor vandaag" met drie regels: **Om mee te nemen:** één zin. **Om vandaag te zien:** één ding om op te letten. **In je werk:** een brug naar coaching of contractgesprekken. Sluit af met "## Bronnen" met 3 tot 6 bestaande bronnen.`}
+const PROMPTS={emo:promptEmo};
+function toonGen(prog,n){
+  const GL=GEN[prog],l=GL.find(x=>x[0]===n)||GL[0],id=prog+"-"+l[0];
+  laatst("gen",id,`${TITELS[prog]||"Les"} · les ${l[0]} · ${l[1]}`);
+  const g=document.getElementById("gelezen");g.dataset.id=id;g.setAttribute("aria-pressed",gelezen[id]?"true":"false");g.textContent=gelezen[id]?"Gelezen ✓":"Markeer als gelezen";
+  const i=GL.indexOf(l),nav=document.getElementById("vervolg");
+  nav.innerHTML=(i>0?`<button class="terug" type="button" data-gen="${prog}-${GL[i-1][0]}">&larr; Les ${GL[i-1][0]}</button>`:"<span></span>")+`<button class="terug" type="button" id="herschrijf">Opnieuw schrijven</button>`+(i<GL.length-1?`<button class="terug" type="button" data-gen="${prog}-${GL[i+1][0]}">Les ${GL[i+1][0]} &rarr;</button>`:"");
+  document.getElementById("herschrijf").onclick=()=>schrijfGen(prog,l[0],true);
+  schrijfGen(prog,l[0],false);
+}
+async function schrijfGen(prog,n,opnieuw){
+  const key="leerhub-gen-"+prog+"-"+n,t=document.getElementById("tekst");
+  if(!opnieuw){const c=lees(key,null);if(c&&c.md){render(c.md);return}}
+  t.innerHTML='<p class="leeg">Les '+n+' wordt voor je geschreven. Dat duurt ongeveer een minuut…</p>';
+  const sample=await claude.use("sample");
+  if(location.hash!=="#gen-"+prog+"-"+n)return;
+  if(!sample){t.innerHTML='<p class="leeg">Claude kan hier nu niet meeschrijven. Open de hub in claude.ai en probeer het opnieuw.</p>';return}
+  try{const r=await sample(PROMPTS[prog](n),{modelTier:"default",cache:false,onText:({text})=>{if(text&&location.hash==="#gen-"+prog+"-"+n)render(text)}});
+    if(location.hash==="#gen-"+prog+"-"+n)render(r.text);if(r.text&&!r.truncated)schrijf(key,{md:r.text,t:Date.now()})}
+  catch(e){if(location.hash!=="#gen-"+prog+"-"+n)return;t.innerHTML=`<p class="leeg">${e&&e.code==="not_granted"?"Je hebt deze pagina geen toestemming gegeven om Claude te laten schrijven. Dat kun je aanpassen in het menu Machtigingen van dit artifact.":e&&e.code==="rate_limited"?"Even te veel verzoeken achter elkaar. Probeer het over een paar minuten opnieuw.":"Het schrijven lukte niet. Tik op Opnieuw schrijven."}</p>`}
+}
+
 let LESSEN=null;
 async function laadLessen(){if(LESSEN)return LESSEN;const r=await fetch("lessen.json");LESSEN=await r.json();return LESSEN}
 function render(md){
@@ -242,6 +283,8 @@ function render(md){
 async function toon(){
   const m=location.hash.match(/^#les-([a-z0-9]+)$/);
   const hub=document.getElementById("hub"),lz=document.getElementById("lezer");
+  const gm=location.hash.match(/^#gen-([a-z]+)-(\d+)$/);
+  if(gm&&GEN[gm[1]]){hub.hidden=true;lz.hidden=false;window.scrollTo(0,0);toonGen(gm[1],+gm[2]);return}
   if(location.hash==="#bijbel-vandaag"){hub.hidden=true;lz.hidden=false;window.scrollTo(0,0);document.getElementById("vervolg").innerHTML="";
     const g=document.getElementById("gelezen");g.dataset.id="bijbel-vandaag";g.setAttribute("aria-pressed","false");g.textContent=bijbelModus==="synthese"?"Klaar, terug naar de hub":"Gelezen, naar de volgende lezing";
     startLezing();return}
