@@ -35,6 +35,10 @@ header{display:flex;flex-direction:column;gap:12px}
 .ladder div:nth-child(1){opacity:.55}.ladder div:nth-child(2){opacity:.7}.ladder div:nth-child(3){opacity:.85}
 .verder{background:var(--surface);border:1px solid var(--line);border-radius:10px;padding:16px 18px;display:flex;gap:14px;align-items:center;justify-content:space-between;flex-wrap:wrap}
 .verder>div{min-width:0;display:flex;flex-direction:column;gap:2px}
+.vandaag{--c:var(--gel);background:var(--surface);border:1px solid var(--line);border-left:4px solid var(--gel);border-radius:10px;padding:18px 20px;display:flex;flex-direction:column;gap:12px}
+.vandaag h2{font-size:1.6rem}
+.vknoppen{display:flex;gap:10px;flex-wrap:wrap;align-items:center}
+.vknoppen .klein{font:500 .85rem/1 var(--body);background:transparent;color:var(--muted);border:1px solid var(--line);border-radius:999px;padding:9px 14px;cursor:pointer}
 .domein{display:flex;flex-direction:column;gap:14px}
 .dkop{display:flex;align-items:baseline;gap:12px;border-bottom:1px solid var(--line);padding-bottom:8px}
 .dkop .stip{width:10px;height:10px;border-radius:50%;background:var(--c);flex:none;transform:translateY(-1px)}
@@ -96,6 +100,12 @@ body::before{content:"";position:fixed;inset:0 0 auto;height:env(safe-area-inset
       <div><b>MBO+</b>de kapstok</div><div><b>HBO</b>de kaart</div><div><b>WO</b>het onderzoek</div><div><b>Master</b>een eigen positie</div>
     </div>
   </header>
+  <section class="vandaag" id="vandaag" aria-label="Vandaag">
+    <span class="eyebrow" id="vEyebrow">Vandaag · Bijbel · 21:00</span>
+    <h2 id="vTitel">Je volgende lezing</h2>
+    <p class="lead" id="vSub">Lees het gedeelte in je eigen Bijbel (NBV21) en start daarna hier de overdenking.</p>
+    <div class="vknoppen" id="vKnoppen"></div>
+  </section>
   <div id="verder" hidden></div>
   <main id="domeinen" style="display:flex;flex-direction:column;gap:40px"></main>
   <footer>
@@ -131,7 +141,7 @@ const DOMEINEN=[
  {id:"cgt",naam:"Cognitief gedrag",c:"--cgt",zin:"Gedachten, gevoelens en gedrag in samenhang",
   wegen:[{t:"De Leerschool van Beck",m:"Aaron T. Beck",o:"Tien modules met casussen en schema's, van het cognitieve model tot een eigen werkmodel.",page:"beck.html",v:"Webleerweg"}]},
  {id:"gel",naam:"Geloof in God",c:"--gel",zin:"De Bijbel chronologisch lezen, met overdenking",
-  wegen:[{t:"Bijbel: chronologisch leesplan",m:"NBV21, katholieke canon",o:"Elke avond een lezing en een overdenking. Je volgende lezing staat bovenaan.",doc:"bijbel",v:"Leesplan"}]},
+  wegen:[{t:"Bijbel: chronologisch leesplan",m:"NBV21, katholieke canon",o:"Elke avond een lezing en een overdenking. Start je lezing van vandaag bovenaan in de hub; hier open je het volledige leesplan.",doc:"bijbel",v:"Leesplan"}]},
  {id:"rel",naam:"Relaties en verlangen",c:"--rel",zin:"Erotische intelligentie: verlangen levend houden",
   wegen:[{t:"Erotische intelligentie",m:"Esther Perel, Nagoski, Schnarch",o:"De leergang en de zes lessen van de instaplaag.",doc:"ero",v:"Leergang",
    lessen:[["EI-1-0-01","Wat erotiek is, en wat niet","ei1"],["EI-1-0-02","Waarom veiligheid het verlangen kan doven","ei2"],["EI-2-0-01","Gaspedaal en rem: waarom zin geen knop is","ei3"],["EI-2-0-02","Verlangen dat ontstaat in plaats van opkomt","ei4"],["EI-3-0-01","Jezelf blijven, dicht bij een ander","ei5"],["EI-4-0-01","Aandacht als begin van alles","ei6"]]}]}
@@ -176,6 +186,50 @@ document.addEventListener("click",e=>{
   const d=e.target.closest("[data-doc]");if(d){e.preventDefault();location.hash="les-"+d.dataset.doc}
 });
 
+/* Bijbel: volgende lezing en overdenking vanuit de hub */
+const BOEKEN=[["Exodus",40],["Leviticus",27],["Numeri",36],["Deuteronomium",34],["Jozua",24],["Rechters",21],["Ruth",4],["1 Samuël",31],["2 Samuël",24],["1 Kronieken",29],["Psalmen",150],["1 Koningen",22],["2 Kronieken",36],["Spreuken",31],["Hooglied",8],["Prediker",12],["2 Koningen",25],["Amos",9],["Hosea",14],["Jona",4],["Micha",7],["Jesaja",66],["Joël",4],["Nahum",3],["Sefanja",3],["Habakuk",3],["Obadja",1],["Jeremia",52],["Klaagliederen",5],["Baruch",6],["Ezechiël",48],["Daniël",14],["Tobit",14],["Ezra",10],["Haggai",2],["Zacharia",14],["Ester",10],["Nehemia",13],["Maleachi",3],["Judit",16],["Wijsheid",19],["Sirach",51],["1 Makkabeeën",16],["2 Makkabeeën",15],["Matteüs",28],["Marcus",16],["Lucas",24],["Johannes",21],["Handelingen",28],["Romeinen",16],["1 Korintiërs",16],["2 Korintiërs",13],["Galaten",6],["Efeziërs",6],["Filippenzen",4],["Kolossenzen",4],["1 Tessalonicenzen",5],["2 Tessalonicenzen",3],["1 Timoteüs",6],["2 Timoteüs",4],["Titus",3],["Filemon",1],["Jakobus",5],["Hebreeën",13],["1 Petrus",5],["2 Petrus",3],["Judas",1],["1 Johannes",5],["2 Johannes",1],["3 Johannes",1],["Openbaring",22]];
+const LEZINGEN=[];BOEKEN.forEach(([b,n])=>{for(let c=(b==="Exodus"?9:1);c<=n;c+=4)LEZINGEN.push([b,c,Math.min(c+3,n)])});
+const lezingNaam=l=>l[1]===l[2]?`${l[0]} ${l[1]}`:`${l[0]} ${l[1]}–${l[2]}`;
+let BIJ=lees("leerhub-bijbel",{i:0,hist:[]});
+const isZondag=()=>new Date().getDay()===0;
+let bijbelModus="lezing";
+function toonVandaag(){
+  const l=LEZINGEN[Math.min(BIJ.i,LEZINGEN.length-1)],k=document.getElementById("vKnoppen");
+  document.getElementById("vTitel").textContent=isZondag()?"Zondag: rust en terugblik":lezingNaam(l);
+  document.getElementById("vSub").textContent=isZondag()?"Vandaag lees je niets nieuws. Je krijgt een synthese van wat je deze week las.":"Lees dit gedeelte in je eigen Bijbel (NBV21) en start daarna hier de overdenking. Lezing "+(BIJ.i+1)+" van "+LEZINGEN.length+".";
+  k.innerHTML=(isZondag()?`<button class="btn" type="button" data-bijbel="synthese">Start de synthese van de week</button><button class="klein" type="button" data-bijbel="lezing">Toch een lezing: ${esc(lezingNaam(l))}</button>`:`<button class="btn" type="button" data-bijbel="lezing">Start de overdenking</button>`)+`<button class="klein" type="button" data-doc="bijbel">Leesplan</button><button class="klein" type="button" data-bijbel="terug">Vorige lezing</button><button class="klein" type="button" data-bijbel="vooruit">Lezing overslaan</button>`;
+}
+document.addEventListener("click",e=>{const b=e.target.closest("[data-bijbel]");if(!b)return;const a=b.dataset.bijbel;
+  if(a==="terug"){BIJ.i=Math.max(0,BIJ.i-1);schrijf("leerhub-bijbel",BIJ);toonVandaag();return}
+  if(a==="vooruit"){BIJ.i=Math.min(LEZINGEN.length-1,BIJ.i+1);schrijf("leerhub-bijbel",BIJ);toonVandaag();return}
+  bijbelModus=a;location.hash="bijbel-vandaag";});
+function promptLezing(naam){return `Je schrijft een avondoverdenking voor één vaste lezer: een Nederlandse man van 57, consultant in contractmanagement, coach en cognitief gedragstherapeut met lichaamstaal als specialisatie, katholiek, die de Bijbel chronologisch leest in de NBV21. Niveau: theologie-plus, rustig en beschouwend. Schrijf in het Nederlands, zonder opdrachten en zonder vragen aan de lezer, zonder emoji.
+
+Vandaag leest hij: ${naam}.${new Date().getDay()===1?" Het is maandag: open met één korte alinea die het weekthema aankondigt.":""}
+
+Gebruik markdown. Begin met de kop "# ${naam}" en daaronder precies deze zes secties als ## koppen:
+1. Verhaal en context: wat er gebeurt, waar, wanneer, en waar het in de grote lijn staat.
+2. Uitleg: wat de tekst zegt, met een of twee sleutelwoorden uit het Hebreeuws of Grieks waar dat helpt.
+3. Reflectie: wat de passage laat zien over God en mens, beschouwend, niet moraliserend.
+4. Doorwerking: de brug naar zijn gewone leven: familie, relaties, verantwoordelijkheid, rust. Laat waar het past de jaardraad rentmeesterschap meeklinken: beheren wat niet van jou is.
+5. Kernvers: één vers dat de dag draagt, met vindplaats.
+6. Katholiek perspectief: twee goed gekozen elementen uit kerkvaders, Catechismus, liturgie of lectio divina.
+Noem receptiegeschiedenis alleen als de passage dat draagt. Lengte: ongeveer 900 tot 1200 woorden. Citeer geen lange stukken Bijbeltekst; verwijs met hoofdstuk en vers.`}
+function promptSynthese(lijst){return `Je schrijft een zondagse synthese voor één vaste lezer: een Nederlandse katholieke man van 57, consultant, coach en cognitief gedragstherapeut, die de Bijbel chronologisch leest in de NBV21. Niveau theologie-plus, rustig, zonder opdrachten of vragen aan de lezer, zonder emoji. Deze week las hij: ${lijst.length?lijst.join(", "):"(onbekend; vat dan de lezingen rond "+lezingNaam(LEZINGEN[BIJ.i])+" samen)"}. Gebruik markdown: begin met "# Synthese van de week", daarna ## De lijn van de week, ## Wat God laat zien, ## Rentmeesterschap deze week, ## Om mee te nemen (één vers met vindplaats). Ongeveer 600 tot 800 woorden.`}
+async function startLezing(){
+  const t=document.getElementById("tekst"),l=LEZINGEN[Math.min(BIJ.i,LEZINGEN.length-1)],naam=lezingNaam(l);
+  const syn=bijbelModus==="synthese";
+  t.innerHTML='<p class="leeg">De overdenking wordt geschreven…</p>';
+  const sample=await claude.use("sample");
+  if(!sample){t.innerHTML=`<h1>${esc(syn?"Synthese van de week":naam)}</h1><p>Claude kan hier nu niet meeschrijven. Lees ${esc(syn?"deze week nog eens terug":naam)} in je Bijbel; de overdenking kun je later opnieuw starten vanuit de hub.</p>`;return}
+  try{const r=await sample(syn?promptSynthese(BIJ.hist.slice(-6)):promptLezing(naam),{modelTier:"default",onText:({text})=>{if(text)render(text)}});render(r.text)}
+  catch(e){t.innerHTML=`<p class="leeg">${e&&e.code==="not_granted"?"Je hebt deze pagina geen toestemming gegeven om Claude te laten schrijven. Dat kun je aanpassen in het menu Machtigingen van dit artifact.":e&&e.code==="rate_limited"?"Even te veel verzoeken achter elkaar. Probeer het over een paar minuten opnieuw.":"Het schrijven lukte niet. Ga terug naar de hub en start opnieuw."}</p>`}
+}
+function volgendeLezing(){
+  if(bijbelModus!=="synthese"){BIJ.hist.push(lezingNaam(LEZINGEN[BIJ.i]));BIJ.hist=BIJ.hist.slice(-14);BIJ.i=Math.min(LEZINGEN.length-1,BIJ.i+1);schrijf("leerhub-bijbel",BIJ)}
+  location.hash="";
+}
+
 let LESSEN=null;
 async function laadLessen(){if(LESSEN)return LESSEN;const r=await fetch("lessen.json");LESSEN=await r.json();return LESSEN}
 function render(md){
@@ -188,7 +242,10 @@ function render(md){
 async function toon(){
   const m=location.hash.match(/^#les-([a-z0-9]+)$/);
   const hub=document.getElementById("hub"),lz=document.getElementById("lezer");
-  if(!m){lz.hidden=true;hub.hidden=false;bouwHub();return}
+  if(location.hash==="#bijbel-vandaag"){hub.hidden=true;lz.hidden=false;window.scrollTo(0,0);document.getElementById("vervolg").innerHTML="";
+    const g=document.getElementById("gelezen");g.dataset.id="bijbel-vandaag";g.setAttribute("aria-pressed","false");g.textContent=bijbelModus==="synthese"?"Klaar, terug naar de hub":"Gelezen, naar de volgende lezing";
+    startLezing();return}
+  if(!m){lz.hidden=true;hub.hidden=false;bouwHub();toonVandaag();return}
   const id=m[1];hub.hidden=true;lz.hidden=false;window.scrollTo(0,0);
   laatst("doc",id,TITELS[id]||"Les");
   const g=document.getElementById("gelezen");g.setAttribute("aria-pressed",gelezen[id]?"true":"false");g.textContent=gelezen[id]?"Gelezen ✓":"Markeer als gelezen";g.dataset.id=id;
@@ -200,7 +257,7 @@ async function toon(){
   catch(e){document.getElementById("tekst").innerHTML='<p class="leeg">Deze les kon niet worden geladen. Ververs de pagina en probeer het opnieuw.</p>'}
 }
 document.getElementById("terug").onclick=()=>{location.hash=""};
-document.getElementById("gelezen").onclick=e=>{const id=e.currentTarget.dataset.id;gelezen[id]=!gelezen[id];schrijf("leerhub-gelezen",gelezen);
+document.getElementById("gelezen").onclick=e=>{const id=e.currentTarget.dataset.id;if(id==="bijbel-vandaag"){volgendeLezing();return}gelezen[id]=!gelezen[id];schrijf("leerhub-gelezen",gelezen);
   e.currentTarget.setAttribute("aria-pressed",gelezen[id]?"true":"false");e.currentTarget.textContent=gelezen[id]?"Gelezen ✓":"Markeer als gelezen"};
 window.addEventListener("hashchange",toon);
 toon();
