@@ -142,12 +142,12 @@ const DOMEINEN=[
   wegen:[{t:"De Leerschool van Beck",m:"Aaron T. Beck",o:"Tien modules met casussen en schema's, van het cognitieve model tot een eigen werkmodel.",page:"beck.html",v:"Webleerweg"}]},
  {id:"gel",naam:"Geloof in God",c:"--gel",zin:"De Bijbel chronologisch lezen, met overdenking",
   wegen:[{t:"Bijbel: chronologisch leesplan",m:"NBV21, katholieke canon",o:"Elke avond een lezing en een overdenking. Start je lezing van vandaag bovenaan in de hub; hier open je het volledige leesplan.",doc:"bijbel",v:"Leesplan"}]},
- {id:"rel",naam:"Relaties en verlangen",c:"--rel",zin:"Erotische intelligentie: verlangen levend houden",
-  wegen:[{t:"Erotische intelligentie",m:"Esther Perel, Nagoski, Schnarch",o:"De leergang en de zes lessen van de instaplaag.",doc:"ero",v:"Leergang",
+ {id:"rel",naam:"Seksuele en erotische intelligentie",c:"--rel",zin:"Verlangen, lichaam, hechting en intimiteit",
+  wegen:[{t:"Seksuele en erotische intelligentie",m:"Esther Perel, Nagoski, Schnarch",o:"Van MBO+ tot master: verlangen, gaspedaal en rem, hechting, aandacht en intimiteit. De leergang en de zes lessen van de instaplaag.",doc:"ero",v:"Leergang",
    lessen:[["EI-1-0-01","Wat erotiek is, en wat niet","ei1"],["EI-1-0-02","Waarom veiligheid het verlangen kan doven","ei2"],["EI-2-0-01","Gaspedaal en rem: waarom zin geen knop is","ei3"],["EI-2-0-02","Verlangen dat ontstaat in plaats van opkomt","ei4"],["EI-3-0-01","Jezelf blijven, dicht bij een ander","ei5"],["EI-4-0-01","Aandacht als begin van alles","ei6"]]}]}
 ];
 const VOLGORDE_EI=["ero","ei1","ei2","ei3","ei4","ei5","ei6"];
-const TITELS={ment:"Mentaliseren",emo:"Emotionele Intelligentie",hughes:"Chase Hughes",bijbel:"Bijbel: chronologisch leesplan",ero:"Erotische intelligentie"};
+const TITELS={ment:"Mentaliseren",emo:"Emotionele Intelligentie",hughes:"Chase Hughes",bijbel:"Bijbel: chronologisch leesplan",ero:"Seksuele en erotische intelligentie"};
 DOMEINEN.forEach(d=>d.wegen.forEach(w=>{(w.lessen||[]).forEach(l=>TITELS[l[2]]=l[0]+" · "+l[1]);}));
 
 function lees(k,f){try{const v=localStorage.getItem(k);return v?JSON.parse(v):f}catch(e){return f}}
