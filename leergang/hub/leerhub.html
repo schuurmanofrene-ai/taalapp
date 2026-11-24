@@ -1,0 +1,207 @@
+<title>Levenslange Leerhub</title>
+<meta name="claude:viewport-fit-sides" content="cover">
+<link rel="stylesheet" href="https://fonts.googleapis.com/css2?family=Newsreader:ital,opsz,wght@0,6..72,400;0,6..72,600;1,6..72,400&family=Inter:wght@400;500;600&family=JetBrains+Mono:wght@400;500&display=swap">
+<style>
+/* Layout: één kolom; bovenaan de ladder MBO+ → Master, daaronder de domeinen als planken met leerwegen; lezen gebeurt in een leesweergave op dezelfde pagina */
+:root{
+  --bg:#f2f3f0; --surface:#ffffff; --ink:#1c2321; --muted:#5d6763; --line:#d8ddd8;
+  --accent:#2f6152; --accent-soft:#e2ece7;
+  --fil:#3d6b4f; --int:#2f4fb5; --lich:#9c4a2f; --cgt:#2f5d8a; --gel:#8a6d2a; --rel:#8a3f6b;
+  --display:"Newsreader",Georgia,serif; --body:"Inter",system-ui,-apple-system,"Segoe UI",sans-serif; --mono:"JetBrains Mono",ui-monospace,Menlo,monospace;
+}
+@media (prefers-color-scheme:dark){:root:not([data-theme="light"]){
+  --bg:#121614; --surface:#1a201e; --ink:#e5ebe8; --muted:#9aa6a1; --line:#2c3532;
+  --accent:#7fc2ab; --accent-soft:#1f2f29;
+  --fil:#86b897; --int:#8ea8ff; --lich:#e08d6e; --cgt:#7fa9d6; --gel:#d6b766; --rel:#d993bd; color-scheme:dark}}
+:root[data-theme="dark"]{
+  --bg:#121614; --surface:#1a201e; --ink:#e5ebe8; --muted:#9aa6a1; --line:#2c3532;
+  --accent:#7fc2ab; --accent-soft:#1f2f29;
+  --fil:#86b897; --int:#8ea8ff; --lich:#e08d6e; --cgt:#7fa9d6; --gel:#d6b766; --rel:#d993bd; color-scheme:dark}
+*{box-sizing:border-box}
+body{background:var(--bg);color:var(--ink);font-family:var(--body);font-size:16px;line-height:1.6;
+  padding-left:max(16px,env(safe-area-inset-left,0px));padding-right:max(16px,env(safe-area-inset-right,0px));padding-block:36px 72px}
+.wrap{max-width:880px;margin:0 auto;display:flex;flex-direction:column;gap:44px}
+h1,h2,h3{font-family:var(--display);font-weight:600;line-height:1.15;text-wrap:balance;margin:0}
+h1{font-size:clamp(2.1rem,6vw,3.1rem)}
+h2{font-size:1.5rem}
+h3{font-size:1.15rem}
+p{margin:0}
+.eyebrow{font-family:var(--mono);font-size:.72rem;letter-spacing:.1em;text-transform:uppercase;color:var(--muted)}
+.lead{color:var(--muted);font-size:1.05rem;max-width:62ch}
+header{display:flex;flex-direction:column;gap:12px}
+.ladder{display:grid;grid-template-columns:repeat(4,1fr);gap:6px;margin-top:10px}
+.ladder div{border-top:3px solid var(--accent);padding-top:6px;font-size:.82rem;color:var(--muted)}
+.ladder b{display:block;font-family:var(--mono);font-size:.78rem;color:var(--ink);font-weight:500}
+.ladder div:nth-child(1){opacity:.55}.ladder div:nth-child(2){opacity:.7}.ladder div:nth-child(3){opacity:.85}
+.verder{background:var(--surface);border:1px solid var(--line);border-radius:10px;padding:16px 18px;display:flex;gap:14px;align-items:center;justify-content:space-between;flex-wrap:wrap}
+.verder>div{min-width:0;display:flex;flex-direction:column;gap:2px}
+.domein{display:flex;flex-direction:column;gap:14px}
+.dkop{display:flex;align-items:baseline;gap:12px;border-bottom:1px solid var(--line);padding-bottom:8px}
+.dkop .stip{width:10px;height:10px;border-radius:50%;background:var(--c);flex:none;transform:translateY(-1px)}
+.dkop p{color:var(--muted);font-size:.92rem;margin-left:auto;text-align:right}
+@media (max-width:600px){.dkop{flex-wrap:wrap}.dkop p{margin-left:0;text-align:left;width:100%}}
+.planken{display:grid;grid-template-columns:repeat(auto-fill,minmax(250px,1fr));gap:12px}
+.kaart{background:var(--surface);border:1px solid var(--line);border-radius:10px;padding:16px 18px;display:flex;flex-direction:column;gap:10px;min-width:0}
+.kaart .meta{display:flex;flex-wrap:wrap;gap:6px 10px;font-family:var(--mono);font-size:.72rem;color:var(--muted)}
+.kaart .vorm{color:var(--c)}
+.kaart p.oms{font-size:.93rem;color:var(--muted)}
+.kaart .voet{margin-top:auto;display:flex;align-items:center;justify-content:space-between;gap:10px}
+.voortgang{font-family:var(--mono);font-size:.74rem;color:var(--muted);font-variant-numeric:tabular-nums}
+.btn{font:600 .88rem/1 var(--body);background:var(--c,var(--accent));color:var(--surface);border:0;border-radius:999px;padding:10px 16px;cursor:pointer;text-decoration:none;white-space:nowrap}
+.btn:focus-visible,.lesknop:focus-visible,.terug:focus-visible,.gelezen:focus-visible{outline:2px solid var(--ink);outline-offset:2px}
+.lessen{list-style:none;margin:0;padding:0;display:flex;flex-direction:column;gap:2px;border-top:1px dashed var(--line);padding-top:8px}
+.lesknop{all:unset;cursor:pointer;display:grid;grid-template-columns:3.2rem 1fr auto;gap:8px;align-items:baseline;padding:6px 4px;border-radius:6px;font-size:.9rem;width:100%;box-sizing:border-box}
+.lesknop:hover{background:var(--accent-soft)}
+.lesknop .nr{font-family:var(--mono);font-size:.72rem;color:var(--muted)}
+.lesknop .v{color:var(--c);font-size:.8rem}
+footer{color:var(--muted);font-size:.9rem;border-top:1px solid var(--line);padding-top:18px;display:flex;flex-direction:column;gap:6px;max-width:66ch}
+/* leesweergave */
+#lezer{max-width:760px;margin:0 auto}
+.lbalk{position:sticky;top:env(safe-area-inset-top,0px);z-index:5;background:var(--bg);display:flex;gap:10px;align-items:center;justify-content:space-between;padding:10px 0;border-bottom:1px solid var(--line);margin-bottom:24px}
+body::before{content:"";position:fixed;inset:0 0 auto;height:env(safe-area-inset-top,0px);z-index:10;background:var(--bg)}
+.terug{font:500 .9rem/1 var(--body);background:transparent;color:var(--ink);border:1px solid var(--line);border-radius:999px;padding:9px 14px;cursor:pointer}
+.gelezen{font:500 .85rem/1 var(--body);background:transparent;color:var(--muted);border:1px solid var(--line);border-radius:999px;padding:9px 14px;cursor:pointer}
+.gelezen[aria-pressed="true"]{background:var(--accent);border-color:var(--accent);color:var(--surface)}
+.tekst{font-family:var(--display);font-size:1.14rem;line-height:1.7}
+.tekst>*{max-width:66ch}
+.tekst h1{font-size:clamp(1.8rem,5vw,2.4rem);margin:0 0 .4em}
+.tekst h2{font-size:1.45rem;margin:1.8em 0 .5em}
+.tekst h3{font-size:1.2rem;margin:1.5em 0 .4em}
+.tekst h4{font-size:1.05rem;margin:1.2em 0 .3em}
+.tekst p{margin:0 0 .9em}
+.tekst ul,.tekst ol{padding-left:1.3em;margin:0 0 1em}
+.tekst li{margin-bottom:.3em}
+.tekst blockquote{margin:1.2em 0;border-left:3px solid var(--accent);padding-left:16px;font-style:italic;color:var(--muted)}
+.tekst hr{border:0;border-top:1px solid var(--line);margin:2em 0;max-width:none}
+.tekst a{color:var(--accent);text-underline-offset:3px}
+.tekst code{font-family:var(--mono);font-size:.85em}
+.tekst .tabel{overflow-x:auto;margin:0 0 1.2em;max-width:none;border:1px solid var(--line);border-radius:8px}
+.tekst table{border-collapse:collapse;width:100%;font-family:var(--body);font-size:.9rem;line-height:1.45}
+.tekst th,.tekst td{text-align:left;vertical-align:top;padding:8px 10px;border-bottom:1px solid var(--line)}
+.tekst th{font-size:.74rem;letter-spacing:.06em;text-transform:uppercase;color:var(--muted);background:var(--accent-soft)}
+.tekst tr:last-child td{border-bottom:0}
+.tekst input[type=checkbox]{accent-color:var(--accent);margin-right:6px}
+.tekst li:has(>input[type=checkbox]){list-style:none;margin-left:-1.3em}
+.vervolg{margin-top:36px;border-top:1px solid var(--line);padding-top:18px;display:flex;justify-content:space-between;gap:10px;flex-wrap:wrap}
+.leeg{color:var(--muted)}
+@media (prefers-reduced-motion:no-preference){#lezer .tekst{animation:in .25s ease-out}@keyframes in{from{opacity:.5}to{opacity:1}}}
+</style>
+
+<div id="hub" class="wrap">
+  <header>
+    <span class="eyebrow">Leren als manier van leven</span>
+    <h1>Levenslange Leerhub</h1>
+    <p class="lead">Al je leerwegen op één plek: filosofie, intelligentie en mentaliseren, lichaamstaal, cognitief gedrag, geloof en relaties. Kies een leerweg en begin waar je bent. Er is geen haast en geen eindpunt.</p>
+    <div class="ladder" aria-label="Niveaus van makkelijk naar moeilijk">
+      <div><b>MBO+</b>de kapstok</div><div><b>HBO</b>de kaart</div><div><b>WO</b>het onderzoek</div><div><b>Master</b>een eigen positie</div>
+    </div>
+  </header>
+  <div id="verder" hidden></div>
+  <main id="domeinen" style="display:flex;flex-direction:column;gap:40px"></main>
+  <footer>
+    <span class="eyebrow">Zo groeit het verder</span>
+    <p>Wil je nieuwe lessen of de volgende module? Zeg in een sessie <b>"groeironde"</b> of typ <b>/levende-leergang</b>. Nieuwe lessen komen dan ook hier in de hub.</p>
+    <p>Wat je hebt afgerond onthoudt deze browser. Op een ander apparaat begin je met een lege voortgang.</p>
+  </footer>
+</div>
+
+<div id="lezer" hidden>
+  <div class="lbalk">
+    <button class="terug" id="terug" type="button">&larr; Leerhub</button>
+    <button class="gelezen" id="gelezen" type="button" aria-pressed="false">Markeer als gelezen</button>
+  </div>
+  <article class="tekst" id="tekst"><p class="leeg">De les wordt geladen…</p></article>
+  <nav class="vervolg" id="vervolg"></nav>
+</div>
+
+<script src="https://cdnjs.cloudflare.com/ajax/libs/marked/4.3.0/marked.min.js"></script>
+<script>
+const DOMEINEN=[
+ {id:"fil",naam:"Filosofie",c:"--fil",zin:"Van de Grieken tot nu: denken als manier van leven",
+  wegen:[{t:"Leerweg Filosofie",m:"Socrates, Aristoteles, Epictetus, Hadot",o:"Vier niveaus met lessen, tijdlijn, verdieping en bronteksten.",page:"filosofie.html",key:"leerweg-filosofie-v1",v:"Webleerweg",totaal:32}]},
+ {id:"int",naam:"Intelligentie en mentaliseren",c:"--int",zin:"Slim, verstandig en wijs, en hoe je een ander begrijpt",
+  wegen:[
+   {t:"Leerweg Intelligentie",m:"Robert J. Sternberg",o:"24 modules over analytisch, creatief en praktisch denken, tot wijsheid.",page:"intelligentie.html",key:"leerweg-intelligentie-klaar",v:"Webleerweg",totaal:24},
+   {t:"Mentaliseren",m:"Peter Fonagy, Patrick Luyten",o:"Van MBO tot master: begrijpen wat er in jezelf en de ander omgaat.",doc:"ment",v:"Leestekst"},
+   {t:"Emotionele Intelligentie",m:"Salovey, Mayer, Frijda",o:"22 lessen in vier lagen: wat EI is, hoe het gemeten wordt en waar het wringt.",doc:"emo",v:"Leestekst"}]},
+ {id:"lich",naam:"Lichaamstaal",c:"--lich",zin:"Kijken, toetsen en een betere vraag stellen",
+  wegen:[
+   {t:"Leerweg Navarro",m:"Joe Navarro, Ekman, Vrij, Feldman Barrett",o:"Comfort en ongemak lezen, naast wat het onderzoek wel en niet steunt.",page:"navarro.html",key:"leerweg-navarro-v1",v:"Webleerweg",totaal:27},
+   {t:"Chase Hughes",m:"Chase Hughes",o:"Van baseline en clusters naar 6MX, Ellipsis en de Ops Manual.",doc:"hughes",v:"Leestekst"}]},
+ {id:"cgt",naam:"Cognitief gedrag",c:"--cgt",zin:"Gedachten, gevoelens en gedrag in samenhang",
+  wegen:[{t:"De Leerschool van Beck",m:"Aaron T. Beck",o:"Tien modules met casussen en schema's, van het cognitieve model tot een eigen werkmodel.",page:"beck.html",v:"Webleerweg"}]},
+ {id:"gel",naam:"Geloof in God",c:"--gel",zin:"De Bijbel chronologisch lezen, met overdenking",
+  wegen:[{t:"Bijbel: chronologisch leesplan",m:"NBV21, katholieke canon",o:"Elke avond een lezing en een overdenking. Je volgende lezing staat bovenaan.",doc:"bijbel",v:"Leesplan"}]},
+ {id:"rel",naam:"Relaties en verlangen",c:"--rel",zin:"Erotische intelligentie: verlangen levend houden",
+  wegen:[{t:"Erotische intelligentie",m:"Esther Perel, Nagoski, Schnarch",o:"De leergang en de zes lessen van de instaplaag.",doc:"ero",v:"Leergang",
+   lessen:[["EI-1-0-01","Wat erotiek is, en wat niet","ei1"],["EI-1-0-02","Waarom veiligheid het verlangen kan doven","ei2"],["EI-2-0-01","Gaspedaal en rem: waarom zin geen knop is","ei3"],["EI-2-0-02","Verlangen dat ontstaat in plaats van opkomt","ei4"],["EI-3-0-01","Jezelf blijven, dicht bij een ander","ei5"],["EI-4-0-01","Aandacht als begin van alles","ei6"]]}]}
+];
+const VOLGORDE_EI=["ero","ei1","ei2","ei3","ei4","ei5","ei6"];
+const TITELS={ment:"Mentaliseren",emo:"Emotionele Intelligentie",hughes:"Chase Hughes",bijbel:"Bijbel: chronologisch leesplan",ero:"Erotische intelligentie"};
+DOMEINEN.forEach(d=>d.wegen.forEach(w=>{(w.lessen||[]).forEach(l=>TITELS[l[2]]=l[0]+" · "+l[1]);}));
+
+function lees(k,f){try{const v=localStorage.getItem(k);return v?JSON.parse(v):f}catch(e){return f}}
+function schrijf(k,v){try{localStorage.setItem(k,JSON.stringify(v))}catch(e){}}
+let gelezen=lees("leerhub-gelezen",{});
+function aantalKlaar(key){const o=lees(key,{});return Object.values(o).filter(Boolean).length}
+function laatst(type,id,titel){schrijf("leerhub-laatst",{type,id,titel,t:Date.now()})}
+const esc=s=>String(s).replace(/[&<>"]/g,c=>({"&":"&amp;","<":"&lt;",">":"&gt;",'"':"&quot;"}[c]));
+
+function bouwHub(){
+  const root=document.getElementById("domeinen");root.innerHTML="";
+  DOMEINEN.forEach(d=>{
+    const s=document.createElement("section");s.className="domein";s.style.setProperty("--c",`var(${d.c})`);
+    s.innerHTML=`<div class="dkop"><span class="stip" aria-hidden="true"></span><h2>${esc(d.naam)}</h2><p>${esc(d.zin)}</p></div><div class="planken"></div>`;
+    const pl=s.querySelector(".planken");
+    d.wegen.forEach(w=>{
+      const k=document.createElement("article");k.className="kaart";
+      let vg="";
+      if(w.key){const n=aantalKlaar(w.key);vg=w.totaal?`${n} van ${w.totaal} afgerond`:(n?`${n} afgerond`:"nog niet begonnen")}
+      else if(w.doc){if(w.lessen){const n=w.lessen.filter(l=>gelezen[l[2]]).length;vg=`${n} van ${w.lessen.length} lessen gelezen`}else vg=gelezen[w.doc]?"gelezen":"nog niet gelezen"}
+      else vg="10 modules";
+      const knop=w.page?`<a class="btn" href="${w.page}" data-page="${w.page}" data-t="${esc(w.t)}">Start</a>`:`<button class="btn" type="button" data-doc="${w.doc}">Open</button>`;
+      k.innerHTML=`<div class="meta"><span class="vorm">${esc(w.v)}</span><span>${esc(w.m)}</span></div><h3>${esc(w.t)}</h3><p class="oms">${esc(w.o)}</p>`+
+       (w.lessen?`<ul class="lessen">${w.lessen.map(l=>`<li><button class="lesknop" type="button" data-doc="${l[2]}"><span class="nr">${l[0].slice(3)}</span><span>${esc(l[1])}</span><span class="v">${gelezen[l[2]]?"✓":""}</span></button></li>`).join("")}</ul>`:"")+
+       `<div class="voet"><span class="voortgang">${vg}</span>${knop}</div>`;
+      pl.appendChild(k);
+    });
+    root.appendChild(s);
+  });
+  const L=lees("leerhub-laatst",null),v=document.getElementById("verder");
+  if(L&&L.id){v.hidden=false;v.className="verder";
+    v.innerHTML=`<div><span class="eyebrow">Verder waar je was</span><b>${esc(L.titel||"")}</b></div>`+(L.type==="page"?`<a class="btn" href="${esc(L.id)}" data-page="${esc(L.id)}" data-t="${esc(L.titel)}">Verder</a>`:`<button class="btn" type="button" data-doc="${esc(L.id)}">Verder</button>`);}
+}
+document.addEventListener("click",e=>{
+  const p=e.target.closest("[data-page]");if(p){laatst("page",p.dataset.page,p.dataset.t);return}
+  const d=e.target.closest("[data-doc]");if(d){e.preventDefault();location.hash="les-"+d.dataset.doc}
+});
+
+let LESSEN=null;
+async function laadLessen(){if(LESSEN)return LESSEN;const r=await fetch("lessen.json");LESSEN=await r.json();return LESSEN}
+function render(md){
+  md=md.replace(/</g,"&lt;");
+  const html=marked.parse(md,{gfm:true,breaks:false,mangle:false,headerIds:false});
+  const t=document.getElementById("tekst");t.innerHTML=html;
+  t.querySelectorAll("table").forEach(tb=>{const w=document.createElement("div");w.className="tabel";tb.parentNode.insertBefore(w,tb);w.appendChild(tb)});
+  t.querySelectorAll("a[href^='http']").forEach(a=>{a.target="_blank";a.rel="noopener"});
+}
+async function toon(){
+  const m=location.hash.match(/^#les-([a-z0-9]+)$/);
+  const hub=document.getElementById("hub"),lz=document.getElementById("lezer");
+  if(!m){lz.hidden=true;hub.hidden=false;bouwHub();return}
+  const id=m[1];hub.hidden=true;lz.hidden=false;window.scrollTo(0,0);
+  laatst("doc",id,TITELS[id]||"Les");
+  const g=document.getElementById("gelezen");g.setAttribute("aria-pressed",gelezen[id]?"true":"false");g.textContent=gelezen[id]?"Gelezen ✓":"Markeer als gelezen";g.dataset.id=id;
+  const nav=document.getElementById("vervolg");nav.innerHTML="";
+  const i=VOLGORDE_EI.indexOf(id);
+  if(i>=0){if(i>0)nav.innerHTML+=`<button class="terug" type="button" data-doc="${VOLGORDE_EI[i-1]}">&larr; ${esc(TITELS[VOLGORDE_EI[i-1]])}</button>`;
+    if(i<VOLGORDE_EI.length-1)nav.innerHTML+=`<button class="terug" type="button" data-doc="${VOLGORDE_EI[i+1]}">${esc(TITELS[VOLGORDE_EI[i+1]])} &rarr;</button>`;}
+  try{const L=await laadLessen();if(!L[id])throw 0;render(L[id])}
+  catch(e){document.getElementById("tekst").innerHTML='<p class="leeg">Deze les kon niet worden geladen. Ververs de pagina en probeer het opnieuw.</p>'}
+}
+document.getElementById("terug").onclick=()=>{location.hash=""};
+document.getElementById("gelezen").onclick=e=>{const id=e.currentTarget.dataset.id;gelezen[id]=!gelezen[id];schrijf("leerhub-gelezen",gelezen);
+  e.currentTarget.setAttribute("aria-pressed",gelezen[id]?"true":"false");e.currentTarget.textContent=gelezen[id]?"Gelezen ✓":"Markeer als gelezen"};
+window.addEventListener("hashchange",toon);
+toon();
+</script>
