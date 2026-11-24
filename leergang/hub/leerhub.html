@@ -132,12 +132,12 @@ const DOMEINEN=[
  {id:"int",naam:"Intelligentie en mentaliseren",c:"--int",zin:"Slim, verstandig en wijs, en hoe je een ander begrijpt",
   wegen:[
    {t:"Leerweg Intelligentie",m:"Robert J. Sternberg",o:"24 modules over analytisch, creatief en praktisch denken, tot wijsheid.",page:"intelligentie.html",key:"leerweg-intelligentie-klaar",v:"Webleerweg",totaal:24},
-   {t:"Mentaliseren",m:"Peter Fonagy, Patrick Luyten",o:"Van MBO tot master: begrijpen wat er in jezelf en de ander omgaat.",doc:"ment",v:"Leestekst"},
+   {t:"Mentaliseren",m:"Peter Fonagy, Patrick Luyten",o:"Van MBO tot master: begrijpen wat er in jezelf en de ander omgaat. Bij elke les kun je een verdieping laten schrijven.",doc:"ment",gen:"ment",openLabel:"Lesstof lezen",startLabel:"Verdieping",v:"Leerlijn"},
    {t:"Emotionele Intelligentie",m:"Salovey, Mayer, Frijda",o:"22 lessen in vier lagen: wat EI is, hoe het gemeten wordt en waar het wringt. Elke les wordt voor je geschreven zodra je hem start.",doc:"emo",gen:"emo",v:"Leerlijn"}]},
  {id:"lich",naam:"Lichaamstaal",c:"--lich",zin:"Kijken, toetsen en een betere vraag stellen",
   wegen:[
    {t:"Leerweg Navarro",m:"Joe Navarro, Ekman, Vrij, Feldman Barrett",o:"Comfort en ongemak lezen, naast wat het onderzoek wel en niet steunt.",page:"navarro.html",key:"leerweg-navarro-v1",v:"Webleerweg",totaal:27},
-   {t:"Chase Hughes",m:"Chase Hughes",o:"Van baseline en clusters naar 6MX, Ellipsis en de Ops Manual.",doc:"hughes",v:"Leestekst"}]},
+   {t:"Chase Hughes",m:"Chase Hughes",o:"Van baseline en clusters naar 6MX, Ellipsis en de Ops Manual. Bij elke module kun je een verdieping laten schrijven.",doc:"hughes",gen:"hughes",openLabel:"Lesstof lezen",startLabel:"Verdieping",v:"Leerlijn"}]},
  {id:"cgt",naam:"Cognitief gedrag",c:"--cgt",zin:"Gedachten, gevoelens en gedrag in samenhang",
   wegen:[{t:"De Leerschool van Beck",m:"Aaron T. Beck",o:"Tien modules met casussen en schema's, van het cognitieve model tot een eigen werkmodel.",page:"beck.html",v:"Webleerweg"}]},
  {id:"gel",naam:"Geloof in God",c:"--gel",zin:"De Bijbel chronologisch lezen, met overdenking",
@@ -175,10 +175,10 @@ function bouwHub(){
        `<div class="voet"><span class="voortgang">${vg}</span>${knop}</div>`;
       if(w.gen){const GL=GEN[w.gen],n=GL.filter(l=>gelezen[w.gen+"-"+l[0]]).length,vol=GL.find(l=>!gelezen[w.gen+"-"+l[0]])||GL[0];
         k.querySelector(".voortgang").textContent=`${n} van ${GL.length} lessen gelezen`;
-        const ob=k.querySelector(".voet [data-doc]");if(ob){ob.textContent="Leerplan";ob.className="terug"}
-        const dd=document.createElement("details");dd.innerHTML=`<summary class="lesknop" style="display:block">Alle ${GL.length} lessen bekijken</summary><ul class="lessen">${GL.map(l=>`<li><button class="lesknop" type="button" data-gen="${w.gen}-${l[0]}"><span class="nr">${l[0]}</span><span>${esc(l[1])}</span><span class="v">${gelezen[w.gen+"-"+l[0]]?"✓":""}</span></button></li>`).join("")}</ul>`;
+        const ob=k.querySelector(".voet [data-doc]");if(ob){ob.textContent=w.openLabel||"Leerplan";ob.className="terug"}
+        const dd=document.createElement("details");dd.innerHTML=`<summary class="lesknop" style="display:block">Alle ${GL.length} lessen bekijken</summary><ul class="lessen">${GL.map(l=>`<li><button class="lesknop" type="button" data-gen="${w.gen}-${l[0]}"><span class="nr">${l[3]||l[0]}</span><span>${esc(l[1])}</span><span class="v">${gelezen[w.gen+"-"+l[0]]?"✓":""}</span></button></li>`).join("")}</ul>`;
         k.insertBefore(dd,k.querySelector(".voet"));
-        k.querySelector(".voet").insertAdjacentHTML("beforeend",`<button class="btn" type="button" data-gen="${w.gen}-${vol[0]}">Start les ${vol[0]}</button>`);}
+        k.querySelector(".voet").insertAdjacentHTML("beforeend",`<button class="btn" type="button" data-gen="${w.gen}-${vol[0]}">${w.startLabel||"Start les"} ${vol[3]||vol[0]}</button>`);}
       pl.appendChild(k);
     });
     root.appendChild(s);
@@ -249,24 +249,46 @@ ${eerder?"Eerdere lessen in de leerlijn: "+eerder+". Bouw daarop voort zonder ze
 Vorm: een essay van ongeveer 2000 woorden (15 tot 20 minuten lezen) over één onderwerp, op het niveau van deze laag, in helder Nederlands, zonder opdrachten, quizvragen of vragen aan de lezer, zonder emoji. Open met een concreet, herkenbaar voorbeeld. Bewijsstandaard: geef bij belangrijke claims aan hoe sterk het effect is, of het herhaald is en wie het onderzocht, met namen en jaartallen; wees eerlijk waar het bewijs wankelt. Verzin geen bronnen, citaten of cijfers; als je iets niet zeker weet, zeg dat.
 
 Gebruik markdown: begin met "# ${l[1]}", dan een cursieve regel "*Emotionele intelligentie · ${emoLaag(n)} · Les ${n}*", dan het essay met ## tussenkoppen. Eindig met "## Voor vandaag" met drie regels: **Om mee te nemen:** één zin. **Om vandaag te zien:** één ding om op te letten. **In je werk:** een brug naar coaching of contractgesprekken. Sluit af met "## Bronnen" met 3 tot 6 bestaande bronnen.`}
-const PROMPTS={emo:promptEmo};
+GEN.ment=[[1,"Gedrag is de buitenkant","Les 1.1 – Gedrag is de buitenkant","1.1"],[2,"Wat telt als een mentale toestand?","Les 1.2 – Wat telt als een mentale toestand?","1.2"],[3,"De niet-weten-houding","Les 1.3 – De niet-weten-houding","1.3"],[4,"Mentaliseren gaat aan en uit","Les 1.4 – Mentaliseren gaat aan en uit","1.4"],[5,"De spiraal en epistemisch vertrouwen in het klein","Les 1.5 – De spiraal en epistemisch vertrouwen in het klein","1.5"],[6,"Signalen van goed mentaliseren","Les 1.6 – Signalen van goed mentaliseren","1.6"],[7,"Mentaliseren als koepelbegrip","Les 2.1 – Mentaliseren als koepelbegrip","2.1"],[8,"De vier dimensies in detail","Les 2.2 – De vier dimensies in detail","2.2"],[9,"Psychische equivalentie","Les 2.3 – Psychische equivalentie","2.3"],[10,"De doen-alsof-modus","Les 2.4 – De doen-alsof-modus","2.4"],[11,"De teleologische modus","Les 2.5 – De teleologische modus","2.5"],[12,"De mentaliserende houding van de professional","Les 2.6 – De mentaliserende houding van de professional","2.6"],[13,"De wortels: gehechtheidstheorie","Les 3.1 – De wortels: gehechtheidstheorie","3.1"],[14,"Het Londense ouderschapsonderzoek","Les 3.2 – Het Londense ouderschapsonderzoek","3.2"],[15,"Gemarkeerde spiegeling","Les 3.3 – Gemarkeerde spiegeling","3.3"],[16,"Het vreemde zelf","Les 3.4 – Het vreemde zelf","3.4"],[17,"De ontwikkeling van mentaliseren in stappen","Les 3.5 – De ontwikkeling van mentaliseren in stappen","3.5"],[18,"Gehechtheid, stress en de schakelaar","Les 3.6 – Gehechtheid, stress en de schakelaar","3.6"],[19,"Epistemisch vertrouwen: de mens als lerend wezen","Les 4.1 – Epistemisch vertrouwen: de mens als lerend wezen","4.1"],[20,"Epistemische hypervigilantie en epistemische vrijheid","Les 4.2 – Epistemische hypervigilantie en epistemische vrijheid","4.2"],[21,"De drie communicatiesystemen","Les 4.3 – De drie communicatiesystemen","4.3"],[22,"MBT: de structuur van de behandeling","Les 4.4 – MBT: de structuur van de behandeling","4.4"],[23,"Belichaamd mentaliseren","Les 4.5 – Belichaamd mentaliseren","4.5"],[24,"Mentaliseren in teams en organisaties","Les 4.6 – Mentaliseren in teams en organisaties","4.6"],[25,"Mentaliseren en de cognitieve gedragstherapie","Les 4.7 – Mentaliseren en de cognitieve gedragstherapie","4.7"]];
+GEN.hughes=[[1,"Baseline","Module 1.1 — Baseline","1.1"],[2,"Clusters en context","Module 1.2 — Clusters en context","1.2"],[3,"Kijken met The Behavior Panel","Module 1.3 — Kijken met The Behavior Panel","1.3"],[4,"De Human Needs Map","Module 2.1 — De Human Needs Map","2.1"],[5,"De Decision Map","Module 2.2 — De Decision Map","2.2"],[6,"Taal als venster","Module 2.3 — Taal als venster","2.3"],[7,"Overige 6MX-elementen","Module 2.4 — Overige 6MX-elementen","2.4"],[8,"Het Behavior Compass","Module 2.5 — Het Behavior Compass","2.5"],[9,"De Ellipsis-progressie","Module 3.1 — De Ellipsis-progressie","3.1"],[10,"De uitgebreide Needs Map en profilering","Module 3.2 — De uitgebreide Needs Map en profilering","3.2"],[11,"De Behavioral Table of Elements","Module 3.3 — De Behavioral Table of Elements","3.3"],[12,"Het PCP-model","Module 3.4 — Het PCP-model","3.4"],[13,"Technieken van beïnvloeding","Module 3.5 — Technieken van beïnvloeding","3.5"],[14,"Ethiek","Module 3.6 — Ethiek","3.6"],[15,"Het FATE-model","Module 4.1 — Het FATE-model","4.1"],[16,"Het Six-Axis Model of Influence","Module 4.2 — Het Six-Axis Model of Influence","4.2"],[17,"Gedragsverandering en gewoontes","Module 4.3 — Gedragsverandering en gewoontes","4.3"],[18,"Hoe alles in elkaar grijpt","Module 4.4 — Hoe alles in elkaar grijpt","4.4"],[19,"Kritisch lezen","Module 4.5 — Kritisch lezen","4.5"]];
+const LAAGNAAM={"1":"niveau 1 (MBO)","2":"niveau 2 (HBO)","3":"niveau 3 (WO)","4":"niveau 4 (Master)"};
+const LEERLIJN={ment:{naam:"Mentaliseren",kader:"De leerlijn volgt Peter Fonagy, Anthony Bateman, Patrick Luyten en Elizabeth Allison: mentaliseren als het vermogen om gedrag van jezelf en anderen te begrijpen vanuit gedachten, gevoelens en bedoelingen, met een niet-wetende, nieuwsgierige houding."},
+  hughes:{naam:"Chase Hughes",kader:"De leerlijn volgt de boeken van Chase Hughes (The Behavior Panel, Six-Minute X-Ray, The Ellipsis Manual, The Behavior Operations Manual). Zijn werk komt uit de praktijk van verhoortraining en is weinig wetenschappelijk getoetst: leg zijn modellen steeds naast het onderzoek (onder meer DePaulo, Bond, Vrij, Feldman Barrett) en benoem eerlijk wat standhoudt, wat wankelt en waar beinvloeding overgaat in manipulatie."}};
+function stukLesstof(md,kop){const i=md.indexOf("### "+kop);if(i<0)return"";const rest=md.slice(i+4+kop.length);const j=rest.search(/\n#{2,3} /);return (j<0?rest:rest.slice(0,j)).trim().slice(0,5000)}
+async function promptVerdieping(prog,n){
+  const l=GEN[prog].find(x=>x[0]===n),ll=LEERLIJN[prog];let bron="";
+  try{const L=await laadLessen();bron=stukLesstof(L[prog]||"",l[2])}catch(e){}
+  const laag=LAAGNAAM[l[3][0]]||"";
+  return `Je schrijft een verdiepende les bij les ${l[3]} "${l[1]}" uit de leerlijn ${ll.naam}, ${laag}, voor één vaste lezer: een Nederlandse man van 57, consultant in contractmanagement, coach en cognitief gedragstherapeut met lichaamstaal als specialisatie, katholiek. ${ll.kader}
+
+De lezer heeft de bestaande lesstof hieronder al gelezen. Herhaal die niet, maar ga een laag dieper: de achtergrond en herkomst van het idee, het onderzoek erachter en hoe sterk dat is, een uitgewerkt praktijkvoorbeeld uit coaching, therapie of contractmanagement, een veelvoorkomend misverstand, en hoe dit samenhangt met de andere lessen. Blijf op het niveau van ${laag}.
+
+Bestaande lesstof:
+"""
+${bron||"(niet beschikbaar; baseer je op de titel)"}
+"""
+
+Vorm: een essay van ongeveer 1800 tot 2200 woorden in helder Nederlands, zonder opdrachten, quizvragen of vragen aan de lezer, zonder emoji. Bewijsstandaard: geef bij belangrijke claims aan hoe sterk het effect is, of het herhaald is en wie het onderzocht, met namen en jaartallen. Verzin geen bronnen, citaten of cijfers; als je iets niet zeker weet, zeg dat.
+
+Gebruik markdown: begin met "# ${l[1]}: verdieping", dan een cursieve regel "*${ll.naam} · ${laag} · les ${l[3]}*", dan het essay met ## tussenkoppen. Eindig met "## Voor vandaag" met drie regels: **Om mee te nemen:** één zin. **Om vandaag te zien:** één ding om op te letten. **In je werk:** een brug naar coaching of contractgesprekken. Sluit af met "## Bronnen" met 3 tot 6 bestaande bronnen.`}
+const PROMPTS={emo:async n=>promptEmo(n),ment:n=>promptVerdieping("ment",n),hughes:n=>promptVerdieping("hughes",n)};
 function toonGen(prog,n){
   const GL=GEN[prog],l=GL.find(x=>x[0]===n)||GL[0],id=prog+"-"+l[0];
-  laatst("gen",id,`${TITELS[prog]||"Les"} · les ${l[0]} · ${l[1]}`);
+  laatst("gen",id,`${TITELS[prog]||"Les"} · ${l[3]?"verdieping "+l[3]:"les "+l[0]} · ${l[1]}`);
   const g=document.getElementById("gelezen");g.dataset.id=id;g.setAttribute("aria-pressed",gelezen[id]?"true":"false");g.textContent=gelezen[id]?"Gelezen ✓":"Markeer als gelezen";
   const i=GL.indexOf(l),nav=document.getElementById("vervolg");
-  nav.innerHTML=(i>0?`<button class="terug" type="button" data-gen="${prog}-${GL[i-1][0]}">&larr; Les ${GL[i-1][0]}</button>`:"<span></span>")+`<button class="terug" type="button" id="herschrijf">Opnieuw schrijven</button>`+(i<GL.length-1?`<button class="terug" type="button" data-gen="${prog}-${GL[i+1][0]}">Les ${GL[i+1][0]} &rarr;</button>`:"");
+  nav.innerHTML=(i>0?`<button class="terug" type="button" data-gen="${prog}-${GL[i-1][0]}">&larr; ${GL[i-1][3]||"Les "+GL[i-1][0]}</button>`:"<span></span>")+`<button class="terug" type="button" id="herschrijf">Opnieuw schrijven</button>`+(i<GL.length-1?`<button class="terug" type="button" data-gen="${prog}-${GL[i+1][0]}">${GL[i+1][3]||"Les "+GL[i+1][0]} &rarr;</button>`:"");
   document.getElementById("herschrijf").onclick=()=>schrijfGen(prog,l[0],true);
   schrijfGen(prog,l[0],false);
 }
 async function schrijfGen(prog,n,opnieuw){
   const key="leerhub-gen-"+prog+"-"+n,t=document.getElementById("tekst");
   if(!opnieuw){const c=lees(key,null);if(c&&c.md){render(c.md);return}}
-  t.innerHTML='<p class="leeg">Les '+n+' wordt voor je geschreven. Dat duurt ongeveer een minuut…</p>';
+  t.innerHTML='<p class="leeg">Je les wordt nu geschreven. Dat duurt ongeveer een minuut…</p>';
   const sample=await claude.use("sample");
   if(location.hash!=="#gen-"+prog+"-"+n)return;
   if(!sample){t.innerHTML='<p class="leeg">Claude kan hier nu niet meeschrijven. Open de hub in claude.ai en probeer het opnieuw.</p>';return}
-  try{const r=await sample(PROMPTS[prog](n),{modelTier:"default",cache:false,onText:({text})=>{if(text&&location.hash==="#gen-"+prog+"-"+n)render(text)}});
+  try{const pr=await PROMPTS[prog](n);if(location.hash!=="#gen-"+prog+"-"+n)return;const r=await sample(pr,{modelTier:"default",cache:false,onText:({text})=>{if(text&&location.hash==="#gen-"+prog+"-"+n)render(text)}});
     if(location.hash==="#gen-"+prog+"-"+n)render(r.text);if(r.text&&!r.truncated)schrijf(key,{md:r.text,t:Date.now()})}
   catch(e){if(location.hash!=="#gen-"+prog+"-"+n)return;t.innerHTML=`<p class="leeg">${e&&e.code==="not_granted"?"Je hebt deze pagina geen toestemming gegeven om Claude te laten schrijven. Dat kun je aanpassen in het menu Machtigingen van dit artifact.":e&&e.code==="rate_limited"?"Even te veel verzoeken achter elkaar. Probeer het over een paar minuten opnieuw.":"Het schrijven lukte niet. Tik op Opnieuw schrijven."}</p>`}
 }
