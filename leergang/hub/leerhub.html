@@ -1,0 +1,329 @@
+<title>Levenslange Leerhub</title>
+<meta name="claude:viewport-fit-sides" content="cover">
+<link rel="stylesheet" href="https://fonts.googleapis.com/css2?family=Newsreader:ital,opsz,wght@0,6..72,400;0,6..72,600;1,6..72,400&family=Inter:wght@400;500;600&family=JetBrains+Mono:wght@400;500&display=swap">
+<style>
+/* Layout: één kolom; bovenaan de ladder MBO+ → Master, daaronder de domeinen als planken met leerwegen; lezen gebeurt in een leesweergave op dezelfde pagina */
+:root{
+  --bg:#f2f3f0; --surface:#ffffff; --ink:#1c2321; --muted:#5d6763; --line:#d8ddd8;
+  --accent:#2f6152; --accent-soft:#e2ece7;
+  --fil:#3d6b4f; --int:#2f4fb5; --lich:#9c4a2f; --cgt:#2f5d8a; --gel:#8a6d2a; --rel:#8a3f6b;
+  --display:"Newsreader",Georgia,serif; --body:"Inter",system-ui,-apple-system,"Segoe UI",sans-serif; --mono:"JetBrains Mono",ui-monospace,Menlo,monospace;
+}
+@media (prefers-color-scheme:dark){:root:not([data-theme="light"]){
+  --bg:#121614; --surface:#1a201e; --ink:#e5ebe8; --muted:#9aa6a1; --line:#2c3532;
+  --accent:#7fc2ab; --accent-soft:#1f2f29;
+  --fil:#86b897; --int:#8ea8ff; --lich:#e08d6e; --cgt:#7fa9d6; --gel:#d6b766; --rel:#d993bd; color-scheme:dark}}
+:root[data-theme="dark"]{
+  --bg:#121614; --surface:#1a201e; --ink:#e5ebe8; --muted:#9aa6a1; --line:#2c3532;
+  --accent:#7fc2ab; --accent-soft:#1f2f29;
+  --fil:#86b897; --int:#8ea8ff; --lich:#e08d6e; --cgt:#7fa9d6; --gel:#d6b766; --rel:#d993bd; color-scheme:dark}
+*{box-sizing:border-box}
+body{background:var(--bg);color:var(--ink);font-family:var(--body);font-size:16px;line-height:1.6;
+  padding-left:max(16px,env(safe-area-inset-left,0px));padding-right:max(16px,env(safe-area-inset-right,0px));padding-block:36px 72px}
+.wrap{max-width:880px;margin:0 auto;display:flex;flex-direction:column;gap:44px}
+h1,h2,h3{font-family:var(--display);font-weight:600;line-height:1.15;text-wrap:balance;margin:0}
+h1{font-size:clamp(2.1rem,6vw,3.1rem)}
+h2{font-size:1.5rem}
+h3{font-size:1.15rem}
+p{margin:0}
+.eyebrow{font-family:var(--mono);font-size:.72rem;letter-spacing:.1em;text-transform:uppercase;color:var(--muted)}
+.lead{color:var(--muted);font-size:1.05rem;max-width:62ch}
+header{display:flex;flex-direction:column;gap:12px}
+.ladder{display:grid;grid-template-columns:repeat(4,1fr);gap:6px;margin-top:10px}
+.ladder div{border-top:3px solid var(--accent);padding-top:6px;font-size:.82rem;color:var(--muted)}
+.ladder b{display:block;font-family:var(--mono);font-size:.78rem;color:var(--ink);font-weight:500}
+.ladder div:nth-child(1){opacity:.55}.ladder div:nth-child(2){opacity:.7}.ladder div:nth-child(3){opacity:.85}
+.verder{background:var(--surface);border:1px solid var(--line);border-radius:10px;padding:16px 18px;display:flex;gap:14px;align-items:center;justify-content:space-between;flex-wrap:wrap}
+.verder>div{min-width:0;display:flex;flex-direction:column;gap:2px}
+.vandaag{--c:var(--gel);background:var(--surface);border:1px solid var(--line);border-left:4px solid var(--gel);border-radius:10px;padding:18px 20px;display:flex;flex-direction:column;gap:12px}
+.vandaag h2{font-size:1.6rem}
+.vknoppen{display:flex;gap:10px;flex-wrap:wrap;align-items:center}
+.vknoppen .klein{font:500 .85rem/1 var(--body);background:transparent;color:var(--muted);border:1px solid var(--line);border-radius:999px;padding:9px 14px;cursor:pointer}
+.domein{display:flex;flex-direction:column;gap:14px}
+.dkop{display:flex;align-items:baseline;gap:12px;border-bottom:1px solid var(--line);padding-bottom:8px}
+.dkop .stip{width:10px;height:10px;border-radius:50%;background:var(--c);flex:none;transform:translateY(-1px)}
+.dkop p{color:var(--muted);font-size:.92rem;margin-left:auto;text-align:right}
+@media (max-width:600px){.dkop{flex-wrap:wrap}.dkop p{margin-left:0;text-align:left;width:100%}}
+.planken{display:grid;grid-template-columns:repeat(auto-fill,minmax(250px,1fr));gap:12px}
+.kaart{background:var(--surface);border:1px solid var(--line);border-radius:10px;padding:16px 18px;display:flex;flex-direction:column;gap:10px;min-width:0}
+.kaart .meta{display:flex;flex-wrap:wrap;gap:6px 10px;font-family:var(--mono);font-size:.72rem;color:var(--muted)}
+.kaart .vorm{color:var(--c)}
+.kaart p.oms{font-size:.93rem;color:var(--muted)}
+.kaart .voet{margin-top:auto;display:flex;align-items:center;justify-content:space-between;gap:10px}
+.voortgang{font-family:var(--mono);font-size:.74rem;color:var(--muted);font-variant-numeric:tabular-nums}
+.btn{font:600 .88rem/1 var(--body);background:var(--c,var(--accent));color:var(--surface);border:0;border-radius:999px;padding:10px 16px;cursor:pointer;text-decoration:none;white-space:nowrap}
+.btn:focus-visible,.lesknop:focus-visible,.terug:focus-visible,.gelezen:focus-visible{outline:2px solid var(--ink);outline-offset:2px}
+.lessen{list-style:none;margin:0;padding:0;display:flex;flex-direction:column;gap:2px;border-top:1px dashed var(--line);padding-top:8px}
+.lesknop{all:unset;cursor:pointer;display:grid;grid-template-columns:3.2rem 1fr auto;gap:8px;align-items:baseline;padding:6px 4px;border-radius:6px;font-size:.9rem;width:100%;box-sizing:border-box}
+.lesknop:hover{background:var(--accent-soft)}
+.lesknop .nr{font-family:var(--mono);font-size:.72rem;color:var(--muted)}
+.lesknop .v{color:var(--c);font-size:.8rem}
+footer{color:var(--muted);font-size:.9rem;border-top:1px solid var(--line);padding-top:18px;display:flex;flex-direction:column;gap:6px;max-width:66ch}
+/* leesweergave */
+#lezer{max-width:760px;margin:0 auto}
+.lbalk{position:sticky;top:env(safe-area-inset-top,0px);z-index:5;background:var(--bg);display:flex;gap:10px;align-items:center;justify-content:space-between;padding:10px 0;border-bottom:1px solid var(--line);margin-bottom:24px}
+body::before{content:"";position:fixed;inset:0 0 auto;height:env(safe-area-inset-top,0px);z-index:10;background:var(--bg)}
+.terug{font:500 .9rem/1 var(--body);background:transparent;color:var(--ink);border:1px solid var(--line);border-radius:999px;padding:9px 14px;cursor:pointer}
+.gelezen{font:500 .85rem/1 var(--body);background:transparent;color:var(--muted);border:1px solid var(--line);border-radius:999px;padding:9px 14px;cursor:pointer}
+.gelezen[aria-pressed="true"]{background:var(--accent);border-color:var(--accent);color:var(--surface)}
+.tekst{font-family:var(--display);font-size:1.14rem;line-height:1.7}
+.tekst>*{max-width:66ch}
+.tekst h1{font-size:clamp(1.8rem,5vw,2.4rem);margin:0 0 .4em}
+.tekst h2{font-size:1.45rem;margin:1.8em 0 .5em}
+.tekst h3{font-size:1.2rem;margin:1.5em 0 .4em}
+.tekst h4{font-size:1.05rem;margin:1.2em 0 .3em}
+.tekst p{margin:0 0 .9em}
+.tekst ul,.tekst ol{padding-left:1.3em;margin:0 0 1em}
+.tekst li{margin-bottom:.3em}
+.tekst blockquote{margin:1.2em 0;border-left:3px solid var(--accent);padding-left:16px;font-style:italic;color:var(--muted)}
+.tekst hr{border:0;border-top:1px solid var(--line);margin:2em 0;max-width:none}
+.tekst a{color:var(--accent);text-underline-offset:3px}
+.tekst code{font-family:var(--mono);font-size:.85em}
+.tekst .tabel{overflow-x:auto;margin:0 0 1.2em;max-width:none;border:1px solid var(--line);border-radius:8px}
+.tekst table{border-collapse:collapse;width:100%;font-family:var(--body);font-size:.9rem;line-height:1.45}
+.tekst th,.tekst td{text-align:left;vertical-align:top;padding:8px 10px;border-bottom:1px solid var(--line)}
+.tekst th{font-size:.74rem;letter-spacing:.06em;text-transform:uppercase;color:var(--muted);background:var(--accent-soft)}
+.tekst tr:last-child td{border-bottom:0}
+.tekst input[type=checkbox]{accent-color:var(--accent);margin-right:6px}
+.tekst li:has(>input[type=checkbox]){list-style:none;margin-left:-1.3em}
+.vervolg{margin-top:36px;border-top:1px solid var(--line);padding-top:18px;display:flex;justify-content:space-between;gap:10px;flex-wrap:wrap}
+.leeg{color:var(--muted)}
+@media (prefers-reduced-motion:no-preference){#lezer .tekst{animation:in .25s ease-out}@keyframes in{from{opacity:.5}to{opacity:1}}}
+</style>
+
+<div id="hub" class="wrap">
+  <header>
+    <span class="eyebrow">Leren als manier van leven</span>
+    <h1>Levenslange Leerhub</h1>
+    <p class="lead">Al je leerwegen op één plek: filosofie, intelligentie en mentaliseren, lichaamstaal, cognitief gedrag, geloof en relaties. Kies een leerweg en begin waar je bent. Er is geen haast en geen eindpunt.</p>
+    <div class="ladder" aria-label="Niveaus van makkelijk naar moeilijk">
+      <div><b>MBO+</b>de kapstok</div><div><b>HBO</b>de kaart</div><div><b>WO</b>het onderzoek</div><div><b>Master</b>een eigen positie</div>
+    </div>
+  </header>
+  <section class="vandaag" id="vandaag" aria-label="Vandaag">
+    <span class="eyebrow" id="vEyebrow">Vandaag · Bijbel · 21:00</span>
+    <h2 id="vTitel">Je volgende lezing</h2>
+    <p class="lead" id="vSub">Lees het gedeelte in je eigen Bijbel (NBV21) en start daarna hier de overdenking.</p>
+    <div class="vknoppen" id="vKnoppen"></div>
+  </section>
+  <div id="verder" hidden></div>
+  <main id="domeinen" style="display:flex;flex-direction:column;gap:40px"></main>
+  <footer>
+    <span class="eyebrow">Zo groeit het verder</span>
+    <p>Wil je nieuwe lessen of de volgende module? Zeg in een sessie <b>"groeironde"</b> of typ <b>/levende-leergang</b>. Nieuwe lessen komen dan ook hier in de hub.</p>
+    <p>Wat je hebt afgerond onthoudt deze browser. Op een ander apparaat begin je met een lege voortgang.</p>
+  </footer>
+</div>
+
+<div id="lezer" hidden>
+  <div class="lbalk">
+    <button class="terug" id="terug" type="button">&larr; Leerhub</button>
+    <button class="gelezen" id="gelezen" type="button" aria-pressed="false">Markeer als gelezen</button>
+  </div>
+  <article class="tekst" id="tekst"><p class="leeg">De les wordt geladen…</p></article>
+  <nav class="vervolg" id="vervolg"></nav>
+</div>
+
+<script src="https://cdnjs.cloudflare.com/ajax/libs/marked/4.3.0/marked.min.js"></script>
+<script>
+const DOMEINEN=[
+ {id:"fil",naam:"Filosofie",c:"--fil",zin:"Van de Grieken tot nu: denken als manier van leven",
+  wegen:[{t:"Leerweg Filosofie",m:"Socrates, Aristoteles, Epictetus, Hadot",o:"Vier niveaus met lessen, tijdlijn, verdieping en bronteksten.",page:"filosofie.html",key:"leerweg-filosofie-v1",v:"Webleerweg",totaal:32}]},
+ {id:"int",naam:"Intelligentie en mentaliseren",c:"--int",zin:"Slim, verstandig en wijs, en hoe je een ander begrijpt",
+  wegen:[
+   {t:"Leerweg Intelligentie",m:"Robert J. Sternberg",o:"24 modules over analytisch, creatief en praktisch denken, tot wijsheid.",page:"intelligentie.html",key:"leerweg-intelligentie-klaar",v:"Webleerweg",totaal:24},
+   {t:"Mentaliseren",m:"Peter Fonagy, Patrick Luyten",o:"Van MBO tot master: begrijpen wat er in jezelf en de ander omgaat. Bij elke les kun je een verdieping laten schrijven.",doc:"ment",gen:"ment",openLabel:"Lesstof lezen",startLabel:"Verdieping",v:"Leerlijn"},
+   {t:"Emotionele Intelligentie",m:"Salovey, Mayer, Frijda",o:"22 lessen in vier lagen: wat EI is, hoe het gemeten wordt en waar het wringt. Elke les wordt voor je geschreven zodra je hem start.",doc:"emo",gen:"emo",v:"Leerlijn"}]},
+ {id:"lich",naam:"Lichaamstaal",c:"--lich",zin:"Kijken, toetsen en een betere vraag stellen",
+  wegen:[
+   {t:"Leerweg Navarro",m:"Joe Navarro, Ekman, Vrij, Feldman Barrett",o:"Comfort en ongemak lezen, naast wat het onderzoek wel en niet steunt.",page:"navarro.html",key:"leerweg-navarro-v1",v:"Webleerweg",totaal:27},
+   {t:"Chase Hughes",m:"Chase Hughes",o:"Van baseline en clusters naar 6MX, Ellipsis en de Ops Manual. Bij elke module kun je een verdieping laten schrijven.",doc:"hughes",gen:"hughes",openLabel:"Lesstof lezen",startLabel:"Verdieping",v:"Leerlijn"}]},
+ {id:"cgt",naam:"Cognitief gedrag",c:"--cgt",zin:"Gedachten, gevoelens en gedrag in samenhang",
+  wegen:[{t:"De Leerschool van Beck",m:"Aaron T. Beck",o:"Tien modules met casussen en schema's, van het cognitieve model tot een eigen werkmodel.",page:"beck.html",v:"Webleerweg"}]},
+ {id:"gel",naam:"Geloof in God",c:"--gel",zin:"De Bijbel chronologisch lezen, met overdenking",
+  wegen:[{t:"Bijbel: chronologisch leesplan",m:"NBV21, katholieke canon",o:"Elke avond een lezing en een overdenking. Start je lezing van vandaag bovenaan in de hub; hier open je het volledige leesplan.",doc:"bijbel",v:"Leesplan"}]},
+ {id:"rel",naam:"Seksuele en erotische intelligentie",c:"--rel",zin:"Verlangen, lichaam, hechting en intimiteit",
+  wegen:[{t:"Seksuele en erotische intelligentie",m:"Esther Perel, Nagoski, Schnarch",o:"Van MBO+ tot master: verlangen, gaspedaal en rem, hechting, aandacht en intimiteit. De leergang en de zes lessen van de instaplaag.",doc:"ero",v:"Leergang",
+   lessen:[["EI-1-0-01","Wat erotiek is, en wat niet","ei1"],["EI-1-0-02","Waarom veiligheid het verlangen kan doven","ei2"],["EI-2-0-01","Gaspedaal en rem: waarom zin geen knop is","ei3"],["EI-2-0-02","Verlangen dat ontstaat in plaats van opkomt","ei4"],["EI-3-0-01","Jezelf blijven, dicht bij een ander","ei5"],["EI-4-0-01","Aandacht als begin van alles","ei6"]]}]}
+];
+const VOLGORDE_EI=["ero","ei1","ei2","ei3","ei4","ei5","ei6"];
+const TITELS={ment:"Mentaliseren",emo:"Emotionele Intelligentie",hughes:"Chase Hughes",bijbel:"Bijbel: chronologisch leesplan",ero:"Seksuele en erotische intelligentie"};
+DOMEINEN.forEach(d=>d.wegen.forEach(w=>{(w.lessen||[]).forEach(l=>TITELS[l[2]]=l[0]+" · "+l[1]);}));
+
+function lees(k,f){try{const v=localStorage.getItem(k);return v?JSON.parse(v):f}catch(e){return f}}
+function schrijf(k,v){try{localStorage.setItem(k,JSON.stringify(v))}catch(e){}}
+let gelezen=lees("leerhub-gelezen",{});
+function aantalKlaar(key){const o=lees(key,{});return Object.values(o).filter(Boolean).length}
+function laatst(type,id,titel){schrijf("leerhub-laatst",{type,id,titel,t:Date.now()})}
+const esc=s=>String(s).replace(/[&<>"]/g,c=>({"&":"&amp;","<":"&lt;",">":"&gt;",'"':"&quot;"}[c]));
+
+function bouwHub(){
+  const root=document.getElementById("domeinen");root.innerHTML="";
+  DOMEINEN.forEach(d=>{
+    const s=document.createElement("section");s.className="domein";s.style.setProperty("--c",`var(${d.c})`);
+    s.innerHTML=`<div class="dkop"><span class="stip" aria-hidden="true"></span><h2>${esc(d.naam)}</h2><p>${esc(d.zin)}</p></div><div class="planken"></div>`;
+    const pl=s.querySelector(".planken");
+    d.wegen.forEach(w=>{
+      const k=document.createElement("article");k.className="kaart";
+      let vg="";
+      if(w.key){const n=aantalKlaar(w.key);vg=w.totaal?`${n} van ${w.totaal} afgerond`:(n?`${n} afgerond`:"nog niet begonnen")}
+      else if(w.doc){if(w.lessen){const n=w.lessen.filter(l=>gelezen[l[2]]).length;vg=`${n} van ${w.lessen.length} lessen gelezen`}else vg=gelezen[w.doc]?"gelezen":"nog niet gelezen"}
+      else vg="10 modules";
+      const knop=w.page?`<a class="btn" href="${w.page}" data-page="${w.page}" data-t="${esc(w.t)}">Start</a>`:`<button class="btn" type="button" data-doc="${w.doc}">Open</button>`;
+      k.innerHTML=`<div class="meta"><span class="vorm">${esc(w.v)}</span><span>${esc(w.m)}</span></div><h3>${esc(w.t)}</h3><p class="oms">${esc(w.o)}</p>`+
+       (w.lessen?`<ul class="lessen">${w.lessen.map(l=>`<li><button class="lesknop" type="button" data-doc="${l[2]}"><span class="nr">${l[0].slice(3)}</span><span>${esc(l[1])}</span><span class="v">${gelezen[l[2]]?"✓":""}</span></button></li>`).join("")}</ul>`:"")+
+       `<div class="voet"><span class="voortgang">${vg}</span>${knop}</div>`;
+      if(w.gen){const GL=GEN[w.gen],n=GL.filter(l=>gelezen[w.gen+"-"+l[0]]).length,vol=GL.find(l=>!gelezen[w.gen+"-"+l[0]])||GL[0];
+        k.querySelector(".voortgang").textContent=`${n} van ${GL.length} lessen gelezen`;
+        const ob=k.querySelector(".voet [data-doc]");if(ob){ob.textContent=w.openLabel||"Leerplan";ob.className="terug"}
+        const dd=document.createElement("details");dd.innerHTML=`<summary class="lesknop" style="display:block">Alle ${GL.length} lessen bekijken</summary><ul class="lessen">${GL.map(l=>`<li><button class="lesknop" type="button" data-gen="${w.gen}-${l[0]}"><span class="nr">${l[3]||l[0]}</span><span>${esc(l[1])}</span><span class="v">${gelezen[w.gen+"-"+l[0]]?"✓":""}</span></button></li>`).join("")}</ul>`;
+        k.insertBefore(dd,k.querySelector(".voet"));
+        k.querySelector(".voet").insertAdjacentHTML("beforeend",`<button class="btn" type="button" data-gen="${w.gen}-${vol[0]}">${w.startLabel||"Start les"} ${vol[3]||vol[0]}</button>`);}
+      pl.appendChild(k);
+    });
+    root.appendChild(s);
+  });
+  const L=lees("leerhub-laatst",null),v=document.getElementById("verder");
+  if(L&&L.id){v.hidden=false;v.className="verder";
+    v.innerHTML=`<div><span class="eyebrow">Verder waar je was</span><b>${esc(L.titel||"")}</b></div>`+(L.type==="page"?`<a class="btn" href="${esc(L.id)}" data-page="${esc(L.id)}" data-t="${esc(L.titel)}">Verder</a>`:`<button class="btn" type="button" ${L.type==="gen"?"data-gen":"data-doc"}="${esc(L.id)}">Verder</button>`);}
+}
+document.addEventListener("click",e=>{
+  const p=e.target.closest("[data-page]");if(p){laatst("page",p.dataset.page,p.dataset.t);return}
+  const d=e.target.closest("[data-doc]");if(d){e.preventDefault();location.hash="les-"+d.dataset.doc}
+});
+
+/* Bijbel: volgende lezing en overdenking vanuit de hub */
+const BOEKEN=[["Exodus",40],["Leviticus",27],["Numeri",36],["Deuteronomium",34],["Jozua",24],["Rechters",21],["Ruth",4],["1 Samuël",31],["2 Samuël",24],["1 Kronieken",29],["Psalmen",150],["1 Koningen",22],["2 Kronieken",36],["Spreuken",31],["Hooglied",8],["Prediker",12],["2 Koningen",25],["Amos",9],["Hosea",14],["Jona",4],["Micha",7],["Jesaja",66],["Joël",4],["Nahum",3],["Sefanja",3],["Habakuk",3],["Obadja",1],["Jeremia",52],["Klaagliederen",5],["Baruch",6],["Ezechiël",48],["Daniël",14],["Tobit",14],["Ezra",10],["Haggai",2],["Zacharia",14],["Ester",10],["Nehemia",13],["Maleachi",3],["Judit",16],["Wijsheid",19],["Sirach",51],["1 Makkabeeën",16],["2 Makkabeeën",15],["Matteüs",28],["Marcus",16],["Lucas",24],["Johannes",21],["Handelingen",28],["Romeinen",16],["1 Korintiërs",16],["2 Korintiërs",13],["Galaten",6],["Efeziërs",6],["Filippenzen",4],["Kolossenzen",4],["1 Tessalonicenzen",5],["2 Tessalonicenzen",3],["1 Timoteüs",6],["2 Timoteüs",4],["Titus",3],["Filemon",1],["Jakobus",5],["Hebreeën",13],["1 Petrus",5],["2 Petrus",3],["Judas",1],["1 Johannes",5],["2 Johannes",1],["3 Johannes",1],["Openbaring",22]];
+const LEZINGEN=[];BOEKEN.forEach(([b,n])=>{for(let c=(b==="Exodus"?9:1);c<=n;c+=4)LEZINGEN.push([b,c,Math.min(c+3,n)])});
+const lezingNaam=l=>l[1]===l[2]?`${l[0]} ${l[1]}`:`${l[0]} ${l[1]}–${l[2]}`;
+let BIJ=lees("leerhub-bijbel",{i:0,hist:[]});
+const isZondag=()=>new Date().getDay()===0;
+let bijbelModus="lezing";
+function toonVandaag(){
+  const l=LEZINGEN[Math.min(BIJ.i,LEZINGEN.length-1)],k=document.getElementById("vKnoppen");
+  document.getElementById("vTitel").textContent=isZondag()?"Zondag: rust en terugblik":lezingNaam(l);
+  document.getElementById("vSub").textContent=isZondag()?"Vandaag lees je niets nieuws. Je krijgt een synthese van wat je deze week las.":"Lees dit gedeelte in je eigen Bijbel (NBV21) en start daarna hier de overdenking. Lezing "+(BIJ.i+1)+" van "+LEZINGEN.length+".";
+  k.innerHTML=(isZondag()?`<button class="btn" type="button" data-bijbel="synthese">Start de synthese van de week</button><button class="klein" type="button" data-bijbel="lezing">Toch een lezing: ${esc(lezingNaam(l))}</button>`:`<button class="btn" type="button" data-bijbel="lezing">Start de overdenking</button>`)+`<button class="klein" type="button" data-doc="bijbel">Leesplan</button><button class="klein" type="button" data-bijbel="terug">Vorige lezing</button><button class="klein" type="button" data-bijbel="vooruit">Lezing overslaan</button>`;
+}
+document.addEventListener("click",e=>{const b=e.target.closest("[data-bijbel]");if(!b)return;const a=b.dataset.bijbel;
+  if(a==="terug"){BIJ.i=Math.max(0,BIJ.i-1);schrijf("leerhub-bijbel",BIJ);toonVandaag();return}
+  if(a==="vooruit"){BIJ.i=Math.min(LEZINGEN.length-1,BIJ.i+1);schrijf("leerhub-bijbel",BIJ);toonVandaag();return}
+  bijbelModus=a;location.hash="bijbel-vandaag";});
+function promptLezing(naam){return `Je schrijft een avondoverdenking voor één vaste lezer: een Nederlandse man van 57, consultant in contractmanagement, coach en cognitief gedragstherapeut met lichaamstaal als specialisatie, katholiek, die de Bijbel chronologisch leest in de NBV21. Niveau: theologie-plus, rustig en beschouwend. Schrijf in het Nederlands, zonder opdrachten en zonder vragen aan de lezer, zonder emoji.
+
+Vandaag leest hij: ${naam}.${new Date().getDay()===1?" Het is maandag: open met één korte alinea die het weekthema aankondigt.":""}
+
+Gebruik markdown. Begin met de kop "# ${naam}" en daaronder precies deze zes secties als ## koppen:
+1. Verhaal en context: wat er gebeurt, waar, wanneer, en waar het in de grote lijn staat.
+2. Uitleg: wat de tekst zegt, met een of twee sleutelwoorden uit het Hebreeuws of Grieks waar dat helpt.
+3. Reflectie: wat de passage laat zien over God en mens, beschouwend, niet moraliserend.
+4. Doorwerking: de brug naar zijn gewone leven: familie, relaties, verantwoordelijkheid, rust. Laat waar het past de jaardraad rentmeesterschap meeklinken: beheren wat niet van jou is.
+5. Kernvers: één vers dat de dag draagt, met vindplaats.
+6. Katholiek perspectief: twee goed gekozen elementen uit kerkvaders, Catechismus, liturgie of lectio divina.
+Noem receptiegeschiedenis alleen als de passage dat draagt. Lengte: ongeveer 900 tot 1200 woorden. Citeer geen lange stukken Bijbeltekst; verwijs met hoofdstuk en vers.`}
+function promptSynthese(lijst){return `Je schrijft een zondagse synthese voor één vaste lezer: een Nederlandse katholieke man van 57, consultant, coach en cognitief gedragstherapeut, die de Bijbel chronologisch leest in de NBV21. Niveau theologie-plus, rustig, zonder opdrachten of vragen aan de lezer, zonder emoji. Deze week las hij: ${lijst.length?lijst.join(", "):"(onbekend; vat dan de lezingen rond "+lezingNaam(LEZINGEN[BIJ.i])+" samen)"}. Gebruik markdown: begin met "# Synthese van de week", daarna ## De lijn van de week, ## Wat God laat zien, ## Rentmeesterschap deze week, ## Om mee te nemen (één vers met vindplaats). Ongeveer 600 tot 800 woorden.`}
+async function startLezing(){
+  const t=document.getElementById("tekst"),l=LEZINGEN[Math.min(BIJ.i,LEZINGEN.length-1)],naam=lezingNaam(l);
+  const syn=bijbelModus==="synthese";
+  t.innerHTML='<p class="leeg">De overdenking wordt geschreven…</p>';
+  const sample=await claude.use("sample");
+  if(!sample){t.innerHTML=`<h1>${esc(syn?"Synthese van de week":naam)}</h1><p>Claude kan hier nu niet meeschrijven. Lees ${esc(syn?"deze week nog eens terug":naam)} in je Bijbel; de overdenking kun je later opnieuw starten vanuit de hub.</p>`;return}
+  try{const r=await sample(syn?promptSynthese(BIJ.hist.slice(-6)):promptLezing(naam),{modelTier:"default",onText:({text})=>{if(text)render(text)}});render(r.text)}
+  catch(e){t.innerHTML=`<p class="leeg">${e&&e.code==="not_granted"?"Je hebt deze pagina geen toestemming gegeven om Claude te laten schrijven. Dat kun je aanpassen in het menu Machtigingen van dit artifact.":e&&e.code==="rate_limited"?"Even te veel verzoeken achter elkaar. Probeer het over een paar minuten opnieuw.":"Het schrijven lukte niet. Ga terug naar de hub en start opnieuw."}</p>`}
+}
+function volgendeLezing(){
+  if(bijbelModus!=="synthese"){BIJ.hist.push(lezingNaam(LEZINGEN[BIJ.i]));BIJ.hist=BIJ.hist.slice(-14);BIJ.i=Math.min(LEZINGEN.length-1,BIJ.i+1);schrijf("leerhub-bijbel",BIJ)}
+  location.hash="";
+}
+
+/* Leerlijnen waarvan de lessen in de hub worden geschreven */
+const GEN={emo:[[1,"Wat is een emotie eigenlijk?","Nico Frijda, Amsterdamse hoogleraar, en zijn idee dat emoties geen storing zijn maar een signaal over je belangen, met een neiging tot actie erbij."],[2,"Hoe “EQ” een begrip werd","Twee onderzoekers bedachten de term in 1990; een journalist maakte er in 1995 een wereldwijde bestseller van. Wat ging er verloren in die vertaling?"],[3,"Vier dingen die je met gevoel kunt doen","Opmerken, gebruiken, begrijpen en bijsturen, uitgelegd met alledaagse voorbeelden."],[4,"Het lichaam meldt zich eerst","Hartslag, maag en spierspanning als vroege signalen, en waarom je die niet altijd goed leest."],[5,"Een woord voor wat je voelt","Waarom “ik baal” en “ik voel me gepasseerd” tot heel ander gedrag leiden."],[6,"Salovey en Mayer (1990)","Het oorspronkelijke artikel en het vier-takkenmodel dat eruit groeide: waarnemen, gebruiken, begrijpen, reguleren."],[7,"Drie modellen naast elkaar","EI als vaardigheid (Mayer, Salovey, Caruso), als persoonlijkheidstrek (Petrides) en als gemengd pakket (Goleman, Bar-On)."],[8,"Emotieregulatie","James Gross en zijn procesmodel: je kunt ingrijpen vóór, tijdens en na een emotie. Herwaarderen tegenover onderdrukken."],[9,"Basisemoties of gemaakte emoties?","Paul Ekman en de universele gezichtsuitdrukkingen tegenover Lisa Feldman Barrett, die stelt dat het brein emoties construeert."],[10,"Empathie","Weten wat de ander voelt tegenover meevoelen, en hoe dat aansluit op mentaliseren."],[11,"Alexithymie","Mensen die moeite hebben hun gevoel te herkennen en te benoemen: wat het ons leert over “gewone” EI."],[12,"Hoe meet je een juist gevoel?","De MSCEIT-test en het probleem dat er voor emotievragen geen antwoordsleutel bestaat: telt de meerderheid of de expert?"],[13,"Zelfrapportage en de Big Five","Waarom veel EI-vragenlijsten vooral persoonlijkheid opnieuw meten."],[14,"Het cascademodel (Joseph & Newman, 2010)","Waarnemen gaat vóór begrijpen, begrijpen vóór reguleren. Bovenop persoonlijkheid en IQ voegt vaardigheids-EI weinig toe aan werkprestatie, behalve in banen met veel emotionele arbeid."],[15,"Emotionele arbeid","Arlie Hochschild en het werk van gevoelens tonen die je niet hebt: van stewardess tot coach."],[16,"Werkt herwaarderen echt?","Laboratoriumonderzoek naar regulatiestrategieën en de link met cognitieve herstructurering in CGT."],[17,"Kun je EI trainen, en kun je emotie van een gezicht lezen?","Wat trainingsstudies laten zien, en de grote review van Barrett en collega’s (2019) over gezichtsuitdrukkingen. Navarro en Hughes worden hier gewogen."],[18,"Is EI wel een intelligentie?","Edwin Locke (2005) noemt het begrip ongeldig; Mayer, Roberts en Barsade (2008) verdedigen het. Wie heeft het sterkste argument?"],[19,"Zijn emoties oordelen of lichaamsgevoelens?","Van de Stoïcijnen via William James (1884) naar Robert Solomon en Martha Nussbaum. Wat betekent het voor “emoties sturen” als een emotie zelf al een oordeel is?"],[20,"Denken met je lijf","Antonio Damasio’s somatische markers en de kritiek op het experiment waar de theorie op leunt."],[21,"De donkere kant","Wie emoties goed leest, kan ze ook bespelen. Het werk van Gerben van Kleef (UvA) over emoties als sociale informatie, en de grens tussen invloed en manipulatie."],[22,"Vaardigheid of karakter?","Aristoteles’ juiste woede, op het juiste moment, tegen de juiste persoon: is EI een techniek of een deugd?"]]};
+const emoLaag=n=>n<=5?"Instaplaag (MBO-plus)":n<=11?"Laag 1 (HBO)":n<=17?"Laag 2 (WO)":"Laag 3 (Master)";
+document.addEventListener("click",e=>{const g=e.target.closest("[data-gen]");if(g){e.preventDefault();location.hash="gen-"+g.dataset.gen}});
+function promptEmo(n){const l=GEN.emo.find(x=>x[0]===n),eerder=GEN.emo.filter(x=>x[0]<n).map(x=>x[0]+". "+x[1]).join("; ");
+  return `Je schrijft les ${n} van 22 uit de leerlijn Emotionele Intelligentie voor één vaste lezer: een Nederlandse man van 57, consultant in contractmanagement, coach en cognitief gedragstherapeut met lichaamstaal als specialisatie, katholiek. De leerlijn loopt in vier lagen van MBO-plus tot master. De rode draad: emoties zijn informatie over wat je belangrijk vindt, en emotionele intelligentie is het vermogen die informatie goed te lezen en te gebruiken.
+
+Deze les: "${l[1]}" (${emoLaag(n)}). Inhoud volgens het leerplan: ${l[2]}
+${eerder?"Eerdere lessen in de leerlijn: "+eerder+". Bouw daarop voort zonder ze te herhalen.":"Dit is de eerste les."}
+
+Vorm: een essay van ongeveer 2000 woorden (15 tot 20 minuten lezen) over één onderwerp, op het niveau van deze laag, in helder Nederlands, zonder opdrachten, quizvragen of vragen aan de lezer, zonder emoji. Open met een concreet, herkenbaar voorbeeld. Bewijsstandaard: geef bij belangrijke claims aan hoe sterk het effect is, of het herhaald is en wie het onderzocht, met namen en jaartallen; wees eerlijk waar het bewijs wankelt. Verzin geen bronnen, citaten of cijfers; als je iets niet zeker weet, zeg dat.
+
+Gebruik markdown: begin met "# ${l[1]}", dan een cursieve regel "*Emotionele intelligentie · ${emoLaag(n)} · Les ${n}*", dan het essay met ## tussenkoppen. Eindig met "## Voor vandaag" met drie regels: **Om mee te nemen:** één zin. **Om vandaag te zien:** één ding om op te letten. **In je werk:** een brug naar coaching of contractgesprekken. Sluit af met "## Bronnen" met 3 tot 6 bestaande bronnen.`}
+GEN.ment=[[1,"Gedrag is de buitenkant","Les 1.1 – Gedrag is de buitenkant","1.1"],[2,"Wat telt als een mentale toestand?","Les 1.2 – Wat telt als een mentale toestand?","1.2"],[3,"De niet-weten-houding","Les 1.3 – De niet-weten-houding","1.3"],[4,"Mentaliseren gaat aan en uit","Les 1.4 – Mentaliseren gaat aan en uit","1.4"],[5,"De spiraal en epistemisch vertrouwen in het klein","Les 1.5 – De spiraal en epistemisch vertrouwen in het klein","1.5"],[6,"Signalen van goed mentaliseren","Les 1.6 – Signalen van goed mentaliseren","1.6"],[7,"Mentaliseren als koepelbegrip","Les 2.1 – Mentaliseren als koepelbegrip","2.1"],[8,"De vier dimensies in detail","Les 2.2 – De vier dimensies in detail","2.2"],[9,"Psychische equivalentie","Les 2.3 – Psychische equivalentie","2.3"],[10,"De doen-alsof-modus","Les 2.4 – De doen-alsof-modus","2.4"],[11,"De teleologische modus","Les 2.5 – De teleologische modus","2.5"],[12,"De mentaliserende houding van de professional","Les 2.6 – De mentaliserende houding van de professional","2.6"],[13,"De wortels: gehechtheidstheorie","Les 3.1 – De wortels: gehechtheidstheorie","3.1"],[14,"Het Londense ouderschapsonderzoek","Les 3.2 – Het Londense ouderschapsonderzoek","3.2"],[15,"Gemarkeerde spiegeling","Les 3.3 – Gemarkeerde spiegeling","3.3"],[16,"Het vreemde zelf","Les 3.4 – Het vreemde zelf","3.4"],[17,"De ontwikkeling van mentaliseren in stappen","Les 3.5 – De ontwikkeling van mentaliseren in stappen","3.5"],[18,"Gehechtheid, stress en de schakelaar","Les 3.6 – Gehechtheid, stress en de schakelaar","3.6"],[19,"Epistemisch vertrouwen: de mens als lerend wezen","Les 4.1 – Epistemisch vertrouwen: de mens als lerend wezen","4.1"],[20,"Epistemische hypervigilantie en epistemische vrijheid","Les 4.2 – Epistemische hypervigilantie en epistemische vrijheid","4.2"],[21,"De drie communicatiesystemen","Les 4.3 – De drie communicatiesystemen","4.3"],[22,"MBT: de structuur van de behandeling","Les 4.4 – MBT: de structuur van de behandeling","4.4"],[23,"Belichaamd mentaliseren","Les 4.5 – Belichaamd mentaliseren","4.5"],[24,"Mentaliseren in teams en organisaties","Les 4.6 – Mentaliseren in teams en organisaties","4.6"],[25,"Mentaliseren en de cognitieve gedragstherapie","Les 4.7 – Mentaliseren en de cognitieve gedragstherapie","4.7"]];
+GEN.hughes=[[1,"Baseline","Module 1.1 — Baseline","1.1"],[2,"Clusters en context","Module 1.2 — Clusters en context","1.2"],[3,"Kijken met The Behavior Panel","Module 1.3 — Kijken met The Behavior Panel","1.3"],[4,"De Human Needs Map","Module 2.1 — De Human Needs Map","2.1"],[5,"De Decision Map","Module 2.2 — De Decision Map","2.2"],[6,"Taal als venster","Module 2.3 — Taal als venster","2.3"],[7,"Overige 6MX-elementen","Module 2.4 — Overige 6MX-elementen","2.4"],[8,"Het Behavior Compass","Module 2.5 — Het Behavior Compass","2.5"],[9,"De Ellipsis-progressie","Module 3.1 — De Ellipsis-progressie","3.1"],[10,"De uitgebreide Needs Map en profilering","Module 3.2 — De uitgebreide Needs Map en profilering","3.2"],[11,"De Behavioral Table of Elements","Module 3.3 — De Behavioral Table of Elements","3.3"],[12,"Het PCP-model","Module 3.4 — Het PCP-model","3.4"],[13,"Technieken van beïnvloeding","Module 3.5 — Technieken van beïnvloeding","3.5"],[14,"Ethiek","Module 3.6 — Ethiek","3.6"],[15,"Het FATE-model","Module 4.1 — Het FATE-model","4.1"],[16,"Het Six-Axis Model of Influence","Module 4.2 — Het Six-Axis Model of Influence","4.2"],[17,"Gedragsverandering en gewoontes","Module 4.3 — Gedragsverandering en gewoontes","4.3"],[18,"Hoe alles in elkaar grijpt","Module 4.4 — Hoe alles in elkaar grijpt","4.4"],[19,"Kritisch lezen","Module 4.5 — Kritisch lezen","4.5"]];
+const LAAGNAAM={"1":"niveau 1 (MBO)","2":"niveau 2 (HBO)","3":"niveau 3 (WO)","4":"niveau 4 (Master)"};
+const LEERLIJN={ment:{naam:"Mentaliseren",kader:"De leerlijn volgt Peter Fonagy, Anthony Bateman, Patrick Luyten en Elizabeth Allison: mentaliseren als het vermogen om gedrag van jezelf en anderen te begrijpen vanuit gedachten, gevoelens en bedoelingen, met een niet-wetende, nieuwsgierige houding."},
+  hughes:{naam:"Chase Hughes",kader:"De leerlijn volgt de boeken van Chase Hughes (The Behavior Panel, Six-Minute X-Ray, The Ellipsis Manual, The Behavior Operations Manual). Zijn werk komt uit de praktijk van verhoortraining en is weinig wetenschappelijk getoetst: leg zijn modellen steeds naast het onderzoek (onder meer DePaulo, Bond, Vrij, Feldman Barrett) en benoem eerlijk wat standhoudt, wat wankelt en waar beinvloeding overgaat in manipulatie."}};
+function stukLesstof(md,kop){const i=md.indexOf("### "+kop);if(i<0)return"";const rest=md.slice(i+4+kop.length);const j=rest.search(/\n#{2,3} /);return (j<0?rest:rest.slice(0,j)).trim().slice(0,5000)}
+async function promptVerdieping(prog,n){
+  const l=GEN[prog].find(x=>x[0]===n),ll=LEERLIJN[prog];let bron="";
+  try{const L=await laadLessen();bron=stukLesstof(L[prog]||"",l[2])}catch(e){}
+  const laag=LAAGNAAM[l[3][0]]||"";
+  return `Je schrijft een verdiepende les bij les ${l[3]} "${l[1]}" uit de leerlijn ${ll.naam}, ${laag}, voor één vaste lezer: een Nederlandse man van 57, consultant in contractmanagement, coach en cognitief gedragstherapeut met lichaamstaal als specialisatie, katholiek. ${ll.kader}
+
+De lezer heeft de bestaande lesstof hieronder al gelezen. Herhaal die niet, maar ga een laag dieper: de achtergrond en herkomst van het idee, het onderzoek erachter en hoe sterk dat is, een uitgewerkt praktijkvoorbeeld uit coaching, therapie of contractmanagement, een veelvoorkomend misverstand, en hoe dit samenhangt met de andere lessen. Blijf op het niveau van ${laag}.
+
+Bestaande lesstof:
+"""
+${bron||"(niet beschikbaar; baseer je op de titel)"}
+"""
+
+Vorm: een essay van ongeveer 1800 tot 2200 woorden in helder Nederlands, zonder opdrachten, quizvragen of vragen aan de lezer, zonder emoji. Bewijsstandaard: geef bij belangrijke claims aan hoe sterk het effect is, of het herhaald is en wie het onderzocht, met namen en jaartallen. Verzin geen bronnen, citaten of cijfers; als je iets niet zeker weet, zeg dat.
+
+Gebruik markdown: begin met "# ${l[1]}: verdieping", dan een cursieve regel "*${ll.naam} · ${laag} · les ${l[3]}*", dan het essay met ## tussenkoppen. Eindig met "## Voor vandaag" met drie regels: **Om mee te nemen:** één zin. **Om vandaag te zien:** één ding om op te letten. **In je werk:** een brug naar coaching of contractgesprekken. Sluit af met "## Bronnen" met 3 tot 6 bestaande bronnen.`}
+const PROMPTS={emo:async n=>promptEmo(n),ment:n=>promptVerdieping("ment",n),hughes:n=>promptVerdieping("hughes",n)};
+function toonGen(prog,n){
+  const GL=GEN[prog],l=GL.find(x=>x[0]===n)||GL[0],id=prog+"-"+l[0];
+  laatst("gen",id,`${TITELS[prog]||"Les"} · ${l[3]?"verdieping "+l[3]:"les "+l[0]} · ${l[1]}`);
+  const g=document.getElementById("gelezen");g.dataset.id=id;g.setAttribute("aria-pressed",gelezen[id]?"true":"false");g.textContent=gelezen[id]?"Gelezen ✓":"Markeer als gelezen";
+  const i=GL.indexOf(l),nav=document.getElementById("vervolg");
+  nav.innerHTML=(i>0?`<button class="terug" type="button" data-gen="${prog}-${GL[i-1][0]}">&larr; ${GL[i-1][3]||"Les "+GL[i-1][0]}</button>`:"<span></span>")+`<button class="terug" type="button" id="herschrijf">Opnieuw schrijven</button>`+(i<GL.length-1?`<button class="terug" type="button" data-gen="${prog}-${GL[i+1][0]}">${GL[i+1][3]||"Les "+GL[i+1][0]} &rarr;</button>`:"");
+  document.getElementById("herschrijf").onclick=()=>schrijfGen(prog,l[0],true);
+  schrijfGen(prog,l[0],false);
+}
+async function schrijfGen(prog,n,opnieuw){
+  const key="leerhub-gen-"+prog+"-"+n,t=document.getElementById("tekst");
+  if(!opnieuw){const c=lees(key,null);if(c&&c.md){render(c.md);return}}
+  t.innerHTML='<p class="leeg">Je les wordt nu geschreven. Dat duurt ongeveer een minuut…</p>';
+  const sample=await claude.use("sample");
+  if(location.hash!=="#gen-"+prog+"-"+n)return;
+  if(!sample){t.innerHTML='<p class="leeg">Claude kan hier nu niet meeschrijven. Open de hub in claude.ai en probeer het opnieuw.</p>';return}
+  try{const pr=await PROMPTS[prog](n);if(location.hash!=="#gen-"+prog+"-"+n)return;const r=await sample(pr,{modelTier:"default",cache:false,onText:({text})=>{if(text&&location.hash==="#gen-"+prog+"-"+n)render(text)}});
+    if(location.hash==="#gen-"+prog+"-"+n)render(r.text);if(r.text&&!r.truncated)schrijf(key,{md:r.text,t:Date.now()})}
+  catch(e){if(location.hash!=="#gen-"+prog+"-"+n)return;t.innerHTML=`<p class="leeg">${e&&e.code==="not_granted"?"Je hebt deze pagina geen toestemming gegeven om Claude te laten schrijven. Dat kun je aanpassen in het menu Machtigingen van dit artifact.":e&&e.code==="rate_limited"?"Even te veel verzoeken achter elkaar. Probeer het over een paar minuten opnieuw.":"Het schrijven lukte niet. Tik op Opnieuw schrijven."}</p>`}
+}
+
+let LESSEN=null;
+async function laadLessen(){if(LESSEN)return LESSEN;const r=await fetch("lessen.json");LESSEN=await r.json();return LESSEN}
+function render(md){
+  md=md.replace(/</g,"&lt;");
+  const html=marked.parse(md,{gfm:true,breaks:false,mangle:false,headerIds:false});
+  const t=document.getElementById("tekst");t.innerHTML=html;
+  t.querySelectorAll("table").forEach(tb=>{const w=document.createElement("div");w.className="tabel";tb.parentNode.insertBefore(w,tb);w.appendChild(tb)});
+  t.querySelectorAll("a[href^='http']").forEach(a=>{a.target="_blank";a.rel="noopener"});
+}
+async function toon(){
+  const m=location.hash.match(/^#les-([a-z0-9]+)$/);
+  const hub=document.getElementById("hub"),lz=document.getElementById("lezer");
+  const gm=location.hash.match(/^#gen-([a-z]+)-(\d+)$/);
+  if(gm&&GEN[gm[1]]){hub.hidden=true;lz.hidden=false;window.scrollTo(0,0);toonGen(gm[1],+gm[2]);return}
+  if(location.hash==="#bijbel-vandaag"){hub.hidden=true;lz.hidden=false;window.scrollTo(0,0);document.getElementById("vervolg").innerHTML="";
+    const g=document.getElementById("gelezen");g.dataset.id="bijbel-vandaag";g.setAttribute("aria-pressed","false");g.textContent=bijbelModus==="synthese"?"Klaar, terug naar de hub":"Gelezen, naar de volgende lezing";
+    startLezing();return}
+  if(!m){lz.hidden=true;hub.hidden=false;bouwHub();toonVandaag();return}
+  const id=m[1];hub.hidden=true;lz.hidden=false;window.scrollTo(0,0);
+  laatst("doc",id,TITELS[id]||"Les");
+  const g=document.getElementById("gelezen");g.setAttribute("aria-pressed",gelezen[id]?"true":"false");g.textContent=gelezen[id]?"Gelezen ✓":"Markeer als gelezen";g.dataset.id=id;
+  const nav=document.getElementById("vervolg");nav.innerHTML="";
+  const i=VOLGORDE_EI.indexOf(id);
+  if(i>=0){if(i>0)nav.innerHTML+=`<button class="terug" type="button" data-doc="${VOLGORDE_EI[i-1]}">&larr; ${esc(TITELS[VOLGORDE_EI[i-1]])}</button>`;
+    if(i<VOLGORDE_EI.length-1)nav.innerHTML+=`<button class="terug" type="button" data-doc="${VOLGORDE_EI[i+1]}">${esc(TITELS[VOLGORDE_EI[i+1]])} &rarr;</button>`;}
+  try{const L=await laadLessen();if(!L[id])throw 0;render(L[id])}
+  catch(e){document.getElementById("tekst").innerHTML='<p class="leeg">Deze les kon niet worden geladen. Ververs de pagina en probeer het opnieuw.</p>'}
+}
+document.getElementById("terug").onclick=()=>{location.hash=""};
+document.getElementById("gelezen").onclick=e=>{const id=e.currentTarget.dataset.id;if(id==="bijbel-vandaag"){volgendeLezing();return}gelezen[id]=!gelezen[id];schrijf("leerhub-gelezen",gelezen);
+  e.currentTarget.setAttribute("aria-pressed",gelezen[id]?"true":"false");e.currentTarget.textContent=gelezen[id]?"Gelezen ✓":"Markeer als gelezen"};
+window.addEventListener("hashchange",toon);
+toon();
+</script>

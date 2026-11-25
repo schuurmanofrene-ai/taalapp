@@ -1,0 +1,725 @@
+<!doctype html><html><head><meta charset=utf8><meta name=viewport content="width=device-width,initial-scale=1,viewport-fit=cover"><style>:root{color-scheme:light;box-sizing:border-box;padding-top:env(safe-area-inset-top,0px);padding-bottom:env(safe-area-inset-bottom,0px)}html{scroll-padding-top:env(safe-area-inset-top,0px)}body{margin:0;padding:0;font:14px -apple-system,BlinkMacSystemFont,sans-serif;background:#fff;color:#000}img{max-width:100%}[hidden]:not([hidden=until-found i]){display:none!important}</style></head><body>
+<a href="./" onclick="if(history.length>1){history.back();return false}" style="position:fixed;z-index:50;right:max(12px,env(safe-area-inset-right,0px));bottom:calc(12px + env(safe-area-inset-bottom,0px));font:600 13px/1 system-ui,sans-serif;background:#1f2a3a;color:#fff;padding:10px 14px;border-radius:999px;text-decoration:none;box-shadow:0 2px 8px rgba(0,0,0,.25)">&larr; Leerhub</a>
+
+<title>De Leerschool van Beck</title>
+<meta name="claude:viewport-fit-sides" content="cover">
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link rel="stylesheet" href="https://fonts.googleapis.com/css2?family=Bricolage+Grotesque:opsz,wght@12..96,500;12..96,700&family=Literata:ital,opsz,wght@0,7..72,400;0,7..72,600;1,7..72,400&family=IBM+Plex+Mono:wght@400;500&display=swap">
+<style>
+/* Layout: een leerladder (MBO → Master) als vaste zijbalk, rechts de modules als doorlopend studieboek */
+:root{
+  --bg:#eef1f4; --paper:#fbfcfd; --ink:#17212e; --muted:#566273; --line:#d3dae2;
+  --accent:#2f5d8a; --warm:#b07a1f; --soft:#e2e9f1; --done:#3d7a5c;
+  --display:"Bricolage Grotesque", "Segoe UI", system-ui, sans-serif;
+  --body:"Literata", Georgia, "Times New Roman", serif;
+  --mono:"IBM Plex Mono", ui-monospace, Menlo, monospace;
+}
+@media (prefers-color-scheme: dark){:root:not([data-theme="light"]){
+  --bg:#10161e; --paper:#161e28; --ink:#e4e9ef; --muted:#9aa6b5; --line:#2a3644;
+  --accent:#7fa9d6; --warm:#d9a548; --soft:#1d2836; --done:#6bb38f; color-scheme:dark}}
+:root[data-theme="dark"]{
+  --bg:#10161e; --paper:#161e28; --ink:#e4e9ef; --muted:#9aa6b5; --line:#2a3644;
+  --accent:#7fa9d6; --warm:#d9a548; --soft:#1d2836; --done:#6bb38f; color-scheme:dark}
+
+*{box-sizing:border-box}
+body{background:var(--bg);color:var(--ink);font-family:var(--body);font-size:17px;line-height:1.7;
+  padding-left:max(16px,env(safe-area-inset-left,0px));padding-right:max(16px,env(safe-area-inset-right,0px));padding-block:0 64px}
+.wrap{max-width:1180px;margin:0 auto;display:grid;grid-template-columns:270px minmax(0,1fr);gap:48px;align-items:start}
+@media (max-width:900px){.wrap{grid-template-columns:minmax(0,1fr);gap:24px}}
+
+header.top{max-width:1180px;margin:0 auto;padding-block:56px 40px}
+.eyebrow{font-family:var(--mono);font-size:12px;letter-spacing:.12em;text-transform:uppercase;color:var(--warm)}
+h1{font-family:var(--display);font-weight:700;font-size:clamp(2.2rem,5vw,3.6rem);line-height:1.05;margin:.3em 0 .4em;text-wrap:balance;letter-spacing:-.01em}
+.lede{max-width:66ch;color:var(--muted);font-size:1.08rem;margin:0}
+.lede strong{color:var(--ink);font-weight:600}
+
+/* zijbalk */
+aside{position:sticky;top:calc(env(safe-area-inset-top,0px) + 20px)}
+@media (max-width:900px){aside{position:static}}
+.ladder{background:var(--paper);border:1px solid var(--line);border-radius:6px;padding:20px}
+.ladder h2{font-family:var(--mono);font-size:12px;letter-spacing:.1em;text-transform:uppercase;color:var(--muted);margin:0 0 12px;font-weight:500}
+.progress{height:6px;background:var(--soft);border-radius:3px;overflow:hidden;margin-bottom:6px}
+.progress span{display:block;height:100%;width:0;background:var(--done);transition:width .4s}
+.ptext{font-family:var(--mono);font-size:12px;color:var(--muted);margin-bottom:16px;font-variant-numeric:tabular-nums}
+.ladder ol{list-style:none;margin:0;padding:0;display:flex;flex-direction:column;gap:2px}
+.ladder li a{display:grid;grid-template-columns:64px 1fr;gap:8px;align-items:baseline;padding:7px 8px;border-radius:4px;color:var(--ink);text-decoration:none;font-size:14px;line-height:1.35;font-family:var(--display);font-weight:500}
+.ladder li a:hover,.ladder li a:focus-visible{background:var(--soft);outline:none}
+.ladder .lvl{font-family:var(--mono);font-size:11px;color:var(--accent);letter-spacing:.04em;font-weight:500}
+.ladder .tick{color:var(--done);font-size:13px;visibility:hidden}
+.ladder li.is-done .tick{visibility:visible}
+.ladder .group{font-family:var(--mono);font-size:11px;text-transform:uppercase;letter-spacing:.1em;color:var(--warm);padding:12px 8px 4px}
+
+/* meester */
+.master{display:grid;grid-template-columns:auto minmax(0,1fr);gap:24px;background:var(--paper);border:1px solid var(--line);border-radius:6px;padding:28px;margin-bottom:40px}
+@media (max-width:560px){.master{grid-template-columns:minmax(0,1fr);padding:20px}}
+.monogram{width:84px;height:84px;border-radius:50%;background:var(--accent);color:var(--paper);display:grid;place-items:center;font-family:var(--display);font-weight:700;font-size:30px}
+.master h2{font-family:var(--display);font-size:1.5rem;margin:0 0 6px;line-height:1.2}
+.master p{margin:0 0 .8em;max-width:68ch}
+.master .meta{font-family:var(--mono);font-size:12px;color:var(--muted);letter-spacing:.04em}
+
+/* modules */
+main{min-width:0}
+article.mod{background:var(--paper);border:1px solid var(--line);border-radius:6px;padding:36px 40px 28px;margin-bottom:28px;scroll-margin-top:24px}
+@media (max-width:560px){article.mod{padding:24px 20px}}
+.modhead{display:flex;flex-wrap:wrap;gap:10px 16px;align-items:baseline;margin-bottom:4px}
+.badge{font-family:var(--mono);font-size:11px;letter-spacing:.08em;text-transform:uppercase;padding:3px 8px;border-radius:3px;background:var(--soft);color:var(--accent);font-weight:500}
+.time{font-family:var(--mono);font-size:12px;color:var(--muted)}
+article h3{font-family:var(--display);font-weight:700;font-size:clamp(1.5rem,3vw,2rem);line-height:1.15;margin:.2em 0 .6em;text-wrap:balance}
+article h4{font-family:var(--display);font-weight:500;font-size:1.12rem;margin:1.6em 0 .4em;color:var(--accent)}
+article p,article li{max-width:68ch}
+article ul,article ol{padding-left:1.3em}
+article li{margin-bottom:.35em}
+.kern{border-left:3px solid var(--warm);padding:4px 0 4px 18px;margin:18px 0;font-style:italic;font-size:1.08rem;max-width:64ch}
+.praktijk{background:var(--soft);border-radius:4px;padding:18px 22px;margin:22px 0}
+.praktijk .lab{font-family:var(--mono);font-size:11px;letter-spacing:.1em;text-transform:uppercase;color:var(--warm);display:block;margin-bottom:6px}
+.praktijk p:last-child{margin-bottom:0}
+dl.terms{display:grid;grid-template-columns:minmax(140px,auto) minmax(0,1fr);gap:8px 20px;margin:12px 0;font-size:.95rem}
+@media (max-width:560px){dl.terms{grid-template-columns:minmax(0,1fr);gap:2px}dl.terms dd{margin-bottom:10px}}
+dl.terms dt{font-family:var(--display);font-weight:500}
+dl.terms dd{margin:0;color:var(--muted)}
+.tablewrap{overflow-x:auto;margin:14px 0;border:1px solid var(--line);border-radius:4px}
+table{border-collapse:collapse;width:100%;font-size:.93rem;min-width:560px}
+th,td{text-align:left;padding:10px 14px;border-bottom:1px solid var(--line);vertical-align:top}
+th{font-family:var(--mono);font-size:11px;letter-spacing:.08em;text-transform:uppercase;color:var(--muted);font-weight:500;background:var(--soft)}
+tr:last-child td{border-bottom:0}
+td:first-child{font-family:var(--display);font-weight:500;white-space:nowrap}
+.bron{font-family:var(--mono);font-size:12.5px;color:var(--muted);border-top:1px dashed var(--line);padding-top:14px;margin-top:22px;line-height:1.6}
+.bron b{color:var(--ink);font-weight:500}
+.foot{display:flex;justify-content:flex-end;margin-top:18px}
+button.mark{font-family:var(--mono);font-size:12px;letter-spacing:.05em;border:1px solid var(--line);background:transparent;color:var(--ink);padding:8px 14px;border-radius:4px;cursor:pointer}
+button.mark:hover{border-color:var(--accent)}
+button.mark:focus-visible{outline:2px solid var(--accent);outline-offset:2px}
+button.mark[aria-pressed="true"]{background:var(--done);border-color:var(--done);color:var(--paper)}
+.diagram{margin:20px 0;overflow-x:auto}
+.diagram svg{display:block;max-width:100%;height:auto;min-width:420px}
+.diagram figcaption{font-family:var(--mono);font-size:12px;color:var(--muted);margin-top:6px}
+.levelsep{font-family:var(--display);font-weight:700;font-size:13px;letter-spacing:.14em;text-transform:uppercase;color:var(--warm);margin:44px 0 14px;display:flex;align-items:center;gap:14px}
+.levelsep::after{content:"";flex:1;height:1px;background:var(--line)}
+.verdieping{border-top:1px solid var(--line);margin-top:28px;padding-top:6px}
+.vlab{font-family:var(--mono);font-size:11px;letter-spacing:.14em;text-transform:uppercase;color:var(--warm);margin-top:14px}
+.verdieping h4:first-of-type{margin-top:.6em}
+.casus{background:var(--paper);border:1px solid var(--accent);border-radius:6px;padding:20px 24px;margin:26px 0}
+.casus h4{margin-top:.2em;color:var(--ink)}
+.clab{font-family:var(--mono);font-size:11px;letter-spacing:.1em;text-transform:uppercase;color:var(--accent)}
+.analyse{border-top:1px dashed var(--line);margin-top:12px;padding-top:12px}
+.analyse span{font-family:var(--mono);font-size:11px;letter-spacing:.1em;text-transform:uppercase;color:var(--warm);display:block;margin-bottom:4px}
+.analyse p:last-child,.casus p:last-child{margin-bottom:0}
+.kijken{margin-top:26px}
+.kijken ul{list-style:none;padding:0;margin:10px 0;display:grid;grid-template-columns:repeat(auto-fill,minmax(250px,1fr));gap:10px}
+.kijken li{margin:0;max-width:none}
+.kijken li a{display:grid;grid-template-columns:34px minmax(0,1fr);gap:12px;align-items:start;padding:12px 14px;border:1px solid var(--line);border-radius:4px;text-decoration:none;color:var(--ink);height:100%;background:var(--paper)}
+.kijken li a:hover,.kijken li a:focus-visible{border-color:var(--accent);outline:none}
+.play{width:34px;height:24px;border-radius:5px;background:var(--warm);position:relative;margin-top:2px}
+.play::after{content:"";position:absolute;left:13px;top:6px;border-left:10px solid var(--paper);border-top:6px solid transparent;border-bottom:6px solid transparent}
+.vt b{display:block;font-family:var(--display);font-weight:500;font-size:.95rem;line-height:1.3}
+.vt small{display:block;font-family:var(--mono);font-size:11.5px;color:var(--muted);line-height:1.45;margin-top:4px}
+.kijken .more{font-family:var(--mono);font-size:12px;color:var(--accent)}
+.timeline{background:var(--paper);border:1px solid var(--line);border-radius:6px;padding:20px 24px;margin:-20px 0 40px}
+.timeline ol{list-style:none;margin:0;padding:0;display:grid;grid-template-columns:repeat(auto-fit,minmax(150px,1fr));gap:14px 18px;position:relative}
+.timeline li{border-top:2px solid var(--accent);padding-top:8px;font-size:.88rem;line-height:1.4}
+.timeline b{display:block;font-family:var(--mono);font-weight:500;color:var(--warm);font-size:12px;margin-bottom:2px}
+.timeline figcaption{font-family:var(--mono);font-size:12px;color:var(--muted);margin-top:14px}
+@media (prefers-reduced-motion:reduce){*{transition:none!important;scroll-behavior:auto!important}}
+html{scroll-behavior:smooth}
+</style>
+
+<header class="top">
+  <div class="eyebrow">Leergang cognitief gedrag · van MBO tot Master</div>
+  <h1>De Leerschool van Beck</h1>
+  <p class="lede">Een doorlopend studieboek in tien modules, elk met een uitgebreide verdieping, een casus, schema's en video's, opgebouwd zoals Aaron T. Beck zijn vak zelf opbouwde: eerst het eenvoudige model, daarna de lagen eronder, en tot slot de wetenschap en de kritiek erop. <strong>Er zitten geen toetsvragen in.</strong> Ook geen opdrachten: je leest alleen, in je eigen tempo, met voorbeelden uit het werk van een consultant, coach en specialist in lichaamstaal.</p>
+</header>
+
+<div class="wrap">
+  <aside>
+    <nav class="ladder" aria-label="Leerladder">
+      <h2>Inhoud</h2>
+      <ol id="toc">
+        <li class="group">MBO</li>
+        <li data-id="m1"><a href="#m1"><span class="lvl">MBO 1</span><span>Het cognitieve model</span></a></li>
+        <li data-id="m2"><a href="#m2"><span class="lvl">MBO 2</span><span>Automatische gedachten</span></a></li>
+        <li class="group">MBO Plus</li>
+        <li data-id="m3"><a href="#m3"><span class="lvl">MBO+ 3</span><span>Denkfouten herkennen</span></a></li>
+        <li class="group">HBO</li>
+        <li data-id="m4"><a href="#m4"><span class="lvl">HBO 4</span><span>Regels en kernovertuigingen</span></a></li>
+        <li data-id="m5"><a href="#m5"><span class="lvl">HBO 5</span><span>Het lichaam in het model</span></a></li>
+        <li data-id="m6"><a href="#m6"><span class="lvl">HBO 6</span><span>Gedrag dat gedachten bevestigt</span></a></li>
+        <li class="group">WO</li>
+        <li data-id="m7"><a href="#m7"><span class="lvl">WO 7</span><span>Schema's en de wetenschap</span></a></li>
+        <li data-id="m8"><a href="#m8"><span class="lvl">WO 8</span><span>De derde generatie</span></a></li>
+        <li class="group">Master</li>
+        <li data-id="m9"><a href="#m9"><span class="lvl">MA 9</span><span>Kritiek en grenzen</span></a></li>
+        <li data-id="m10"><a href="#m10"><span class="lvl">MA 10</span><span>Een geïntegreerd werkmodel</span></a></li>
+      </ol>
+    </nav>
+  </aside>
+
+  <main>
+    <section class="master" aria-label="De leermeester">
+      <div class="monogram" aria-hidden="true">ATB</div>
+      <div>
+        <div class="meta">Aaron Temkin Beck · 1921–2021 · psychiater, University of Pennsylvania</div>
+        <h2>Waarom Beck je leermeester is</h2>
+        <p>Beck was psychoanalytisch opgeleid en wilde eind jaren vijftig bewijzen dat depressie voortkomt uit naar binnen gerichte woede. Zijn eigen onderzoek liet iets anders zien. Zijn depressieve patiënten hadden een stroom snelle, negatieve gedachten over zichzelf, hun wereld en hun toekomst. Die gedachten kwamen ongevraagd op en de patiënten namen ze voor waar aan. Beck liet zijn theorie vallen en volgde de data. Daaruit groeide de cognitieve therapie, de meest onderzochte vorm van psychotherapie ter wereld.</p>
+        <p>Dat maakt hem de beste leermeester voor deze leergang. Hij leerde zijn vak door eerlijk te kijken, toetste zijn ideeën en paste ze aan als het bewijs dat vroeg. Zijn dochter Judith Beck zette het werk voort en schreef het standaardleerboek. Waar deze leergang verder gaat dan Beck, zoals bij de derde generatie en de kritiek, wordt dat steeds genoemd.</p>
+      </div>
+    </section>
+    <figure class="timeline"><ol><li><b>1921</b><span>Geboren in Providence, Rhode Island</span></li><li><b>1953</b><span>Afgestudeerd als psychiater, psychoanalytische opleiding</span></li><li><b>1961</b><span>Beck Depression Inventory verschijnt</span></li><li><b>1967</b><span>Boek over depressie: de cognitieve triade</span></li><li><b>1979</b><span>Behandelboek <i>Cognitive Therapy of Depression</i></span></li><li><b>1994</b><span>Beck Institute opgericht met Judith Beck</span></li><li><b>2006</b><span>Lasker-prijs voor klinisch onderzoek</span></li><li><b>2021</b><span>Overleden op 100-jarige leeftijd</span></li></ol><figcaption>Een eeuw Beck: van psychoanalyticus tot grondlegger van de cognitieve therapie.</figcaption></figure>
+
+
+    <div class="levelsep">MBO · het fundament</div>
+
+    <article class="mod" id="m1">
+      <div class="modhead"><span class="badge">MBO · Module 1</span></div>
+      <h3>Het cognitieve model: niet de situatie, maar je uitleg ervan</h3>
+      <p>De kern van Becks werk past in één zin. Wat je voelt en doet hangt niet direct af van wat er gebeurt, maar van hoe je het op dat moment uitlegt. Twee mensen krijgen dezelfde mail van een opdrachtgever, "Kunnen we morgen even bellen?". De één denkt "Ze willen het contract openbreken" en voelt spanning. De ander denkt "Fijn, dan kunnen we de planning afstemmen" en voelt rust. De mail is gelijk. De uitleg verschilt, en dus ook het gevoel, het lichaam en het gedrag.</p>
+      <p class="kern">Situatie → gedachte → gevoel, lichamelijke reactie en gedrag. De gedachte is de schakel die je kunt onderzoeken en veranderen.</p>
+
+      <figure class="diagram">
+        <svg viewBox="0 0 640 270" role="img" aria-label="Het vijf-gebiedenmodel: situatie leidt tot gedachten, die verbonden zijn met gevoel, lichaam en gedrag, die elkaar onderling beïnvloeden">
+          <defs><marker id="ar" viewBox="0 0 10 10" refX="9" refY="5" markerWidth="7" markerHeight="7" orient="auto"><path d="M0,0 L10,5 L0,10 z" fill="var(--muted)"/></marker></defs>
+          <rect x="10" y="105" width="130" height="60" rx="4" fill="var(--soft)" stroke="var(--line)"/>
+          <text x="75" y="132" text-anchor="middle" font-family="var(--display)" font-size="15" fill="var(--ink)" font-weight="700">Situatie</text>
+          <text x="75" y="152" text-anchor="middle" font-family="var(--mono)" font-size="11" fill="var(--muted)">de mail</text>
+          <rect x="200" y="105" width="140" height="60" rx="4" fill="var(--accent)"/>
+          <text x="270" y="132" text-anchor="middle" font-family="var(--display)" font-size="15" fill="var(--paper)" font-weight="700">Gedachte</text>
+          <text x="270" y="152" text-anchor="middle" font-family="var(--mono)" font-size="11" fill="var(--paper)">"het gaat mis"</text>
+          <rect x="430" y="20" width="190" height="56" rx="4" fill="var(--paper)" stroke="var(--line)"/>
+          <text x="525" y="44" text-anchor="middle" font-family="var(--display)" font-size="14" fill="var(--ink)" font-weight="700">Gevoel</text>
+          <text x="525" y="63" text-anchor="middle" font-family="var(--mono)" font-size="11" fill="var(--muted)">spanning, onrust</text>
+          <rect x="430" y="107" width="190" height="56" rx="4" fill="var(--paper)" stroke="var(--line)"/>
+          <text x="525" y="131" text-anchor="middle" font-family="var(--display)" font-size="14" fill="var(--ink)" font-weight="700">Lichaam</text>
+          <text x="525" y="150" text-anchor="middle" font-family="var(--mono)" font-size="11" fill="var(--muted)">kaak strak, adem hoog</text>
+          <rect x="430" y="194" width="190" height="56" rx="4" fill="var(--paper)" stroke="var(--line)"/>
+          <text x="525" y="218" text-anchor="middle" font-family="var(--display)" font-size="14" fill="var(--ink)" font-weight="700">Gedrag</text>
+          <text x="525" y="237" text-anchor="middle" font-family="var(--mono)" font-size="11" fill="var(--muted)">defensief voorbereiden</text>
+          <line x1="140" y1="135" x2="196" y2="135" stroke="var(--muted)" stroke-width="1.5" marker-end="url(#ar)"/>
+          <line x1="340" y1="125" x2="426" y2="52" stroke="var(--muted)" stroke-width="1.5" marker-end="url(#ar)"/>
+          <line x1="340" y1="135" x2="426" y2="135" stroke="var(--muted)" stroke-width="1.5" marker-end="url(#ar)"/>
+          <line x1="340" y1="145" x2="426" y2="218" stroke="var(--muted)" stroke-width="1.5" marker-end="url(#ar)"/>
+          <path d="M622 50 C 640 90, 640 180, 622 220" fill="none" stroke="var(--warm)" stroke-width="1.5" stroke-dasharray="4 4"/>
+        </svg>
+        <figcaption>Het vijf-gebiedenmodel (Padesky &amp; Greenberger, gebouwd op Beck). De gestippelde lijn: gevoel, lichaam en gedrag versterken elkaar en de gedachte.</figcaption>
+      </figure>
+
+      <h4>Wat Beck hier anders deed</h4>
+      <p>Vóór Beck zocht de psychologie de oorzaak van klachten vooral diep in het verleden (psychoanalyse) of alleen in zichtbaar gedrag (behaviorisme). Beck koos een middenweg: kijk naar wat iemand nu denkt, want dat is bereikbaar, bewust te maken en toetsbaar. Albert Ellis kwam rond dezelfde tijd met een verwant model, het ABC-schema (Activating event, Belief, Consequence). In Nederland ken je dat als het G-schema: Gebeurtenis, Gedachten, Gevoelens, Gedrag, Gevolg.</p>
+
+      <div class="praktijk"><span class="lab">Zo zie je het in de praktijk</span>
+        <p>Bij contractonderhandelingen zie je dit model live. Een tegenpartij die "onredelijk" reageert, reageert meestal redelijk op haar eigen uitleg van de situatie. Wie die uitleg achterhaalt, krijgt meer los dan wie op het gedrag reageert.</p>
+      </div>
+
+      <dl class="terms">
+        <dt>Cognitie</dt><dd>Alles wat zich in het denken afspeelt: interpretaties, verwachtingen, herinneringen, beelden.</dd>
+        <dt>Cognitief model</dt><dd>Het idee dat interpretaties tussen situatie en reactie in staan.</dd>
+        <dt>G-schema</dt><dd>De Nederlandse werkvorm van het ABC-model van Ellis.</dd>
+      </dl>
+      <section class="casus" aria-label="Casus"><div class="clab">Casus · fictief, ontleend aan de praktijk</div><h4>Mark en de mail van de opdrachtgever</h4><p>Mark is contractmanager bij een bouwbedrijf. Op vrijdagmiddag krijgt hij een mail van de grootste opdrachtgever: "Kunnen we maandag de meerwerkposten doorlopen?" Hij voelt zijn maag samentrekken. Het hele weekend loopt hij scenario's door, zet zondagavond een verdedigend document op en komt maandag gespannen binnen. Het gesprek blijkt te gaan over het versnellen van de betaling.</p><div class="analyse"><span>Hoe Beck ernaar kijkt</span><p>De situatie (een neutrale mail) leverde via een automatische gedachte ("ze gaan de meerwerkposten afwijzen") een reeks reacties op: maagkramp (lichaam), onrust (gevoel), piekeren en een verdedigend document (gedrag). De gedachte werd nooit getoetst, omdat ze als feit voelde. Het verdedigende document is bovendien een vorm van veiligheidsgedrag (module 6): achteraf kan Mark denken dat het goed afliep "omdat hij voorbereid was".</p></div></section>
+      <figure class="diagram"><svg viewBox="0 0 640 200" role="img" aria-label="Twee lagen: de uitgesproken zin en de automatische gedachte eronder"><defs><marker id="a2" viewBox="0 0 10 10" refX="9" refY="5" markerWidth="7" markerHeight="7" orient="auto"><path d="M0,0 L10,5 L0,10 z" fill="var(--muted)"/></marker></defs><text x="20" y="22" font-family="var(--mono)" fill="var(--muted)" font-size="11">WAT HOORBAAR IS</text><rect x="20" y="32" width="600" height="46" rx="4" fill="var(--soft)" stroke="var(--line)"/><text x="36" y="60" font-family="var(--body)" font-size="14" fill="var(--ink)">"Goed, dan kijken we maandag naar de planning."</text><text x="20" y="112" font-family="var(--mono)" fill="var(--muted)" font-size="11">WAT TEGELIJK DOOR HET HOOFD GAAT</text><rect x="20" y="122" width="600" height="60" rx="4" fill="var(--accent)"/><text x="36" y="148" font-family="var(--body)" font-style="italic" font-size="14" fill="var(--paper)">"Ze vertrouwen me niet." · beeld: de directeur die zijn hoofd schudt</text><text x="36" y="168" font-family="var(--mono)" font-size="10.5" fill="var(--paper)">snel · telegrafisch · voelt als feit · zichtbaar in het lichaam</text></svg><figcaption>Twee gedachtestromen tegelijk: wat iemand zegt, en de snelle automatische stroom eronder.</figcaption></figure>
+      <section class="casus" aria-label="Casus"><div class="clab">Casus · fictief, ontleend aan de praktijk</div><h4>Esra in het coachgesprek</h4><p>Esra is teamleider en zit bij een coach. Ze vertelt rustig over een herstructurering. Als de coach het woord "beoordeling" noemt, valt Esra even stil, haar schouders gaan omhoog en ze wrijft over haar duim. De coach benoemt dat: "Er leek net iets te gebeuren toen ik over de beoordeling begon." Esra zegt na een pauze: "Ik zag ineens mijn vorige baas voor me, die zei dat ik het niet aankon."</p><div class="analyse"><span>Hoe Beck ernaar kijkt</span><p>Hier was de automatische cognitie geen zin maar een <em>beeld</em>, met daaraan gekoppeld de gedachte "ik kan het niet aan". Het lichaam gaf het moment van activatie aan, nog voordat Esra het zelf kon verwoorden. De coach interpreteerde het signaal niet, maar benoemde het en liet de betekenis bij Esra. Dat is precies hoe een lichaamssignaal een ingang wordt naar het cognitieve gesprek.</p></div></section>
+      <figure class="diagram"><svg viewBox="0 0 640 210" role="img" aria-label="Vergelijking van een depressieve en een veerkrachtige attributiestijl op drie dimensies"><text x="20" y="20" font-family="var(--mono)" fill="var(--muted)" font-size="11">ZELFDE TEGENSLAG · TWEE VERKLARINGEN</text><text x="20" y="62" font-family="var(--display)" font-weight="700" fill="var(--ink)" font-size="13">Wie?</text><text x="20" y="114" font-family="var(--display)" font-weight="700" fill="var(--ink)" font-size="13">Hoe lang?</text><text x="20" y="166" font-family="var(--display)" font-weight="700" fill="var(--ink)" font-size="13">Hoe breed?</text><rect x="130" y="42" width="235" height="38" rx="4" fill="var(--soft)" stroke="var(--line)"/><text x="145" y="66" font-family="var(--body)" font-size="12.5" fill="var(--ink)">Intern: "het ligt aan mij"</text><rect x="130" y="94" width="235" height="38" rx="4" fill="var(--soft)" stroke="var(--line)"/><text x="145" y="118" font-family="var(--body)" font-size="12.5" fill="var(--ink)">Stabiel: "dit blijft zo"</text><rect x="130" y="146" width="235" height="38" rx="4" fill="var(--soft)" stroke="var(--line)"/><text x="145" y="170" font-family="var(--body)" font-size="12.5" fill="var(--ink)">Globaal: "ik kan niets"</text><rect x="385" y="42" width="235" height="38" rx="4" fill="var(--paper)" stroke="var(--accent)"/><text x="400" y="66" font-family="var(--body)" font-size="12.5" fill="var(--ink)">Extern: "de timing zat tegen"</text><rect x="385" y="94" width="235" height="38" rx="4" fill="var(--paper)" stroke="var(--accent)"/><text x="400" y="118" font-family="var(--body)" font-size="12.5" fill="var(--ink)">Tijdelijk: "deze keer"</text><rect x="385" y="146" width="235" height="38" rx="4" fill="var(--paper)" stroke="var(--accent)"/><text x="400" y="170" font-family="var(--body)" font-size="12.5" fill="var(--ink)">Specifiek: "dit ene dossier"</text><text x="247" y="200" text-anchor="middle" font-family="var(--mono)" fill="var(--muted)" font-size="10.5">depressieve stijl</text><text x="502" y="200" text-anchor="middle" font-family="var(--mono)" fill="var(--muted)" font-size="10.5">veerkrachtige stijl</text></svg><figcaption>Attributiestijl volgens Abramson, Seligman en Teasdale (1978).</figcaption></figure>
+      <section class="casus" aria-label="Casus"><div class="clab">Casus · fictief, ontleend aan de praktijk</div><h4>Het verloren aanbestedingstraject</h4><p>Een adviesbureau verliest een grote aanbesteding. In het evaluatieoverleg zegt de projectleider: "We verliezen die grote trajecten altijd, we zijn gewoon te klein." Een collega zegt: "Het lag aan mijn deel van de offerte, dat was te zwak." De directeur zegt: "Die opdrachtgever had al lang gekozen, dit was doorgestoken kaart."</p><div class="analyse"><span>Hoe Beck ernaar kijkt</span><p>Drie mensen, drie denkfouten. De projectleider <em>overgeneraliseert</em> en <em>etiketteert</em> ("altijd", "te klein"). De collega <em>personaliseert</em>: één onderdeel wordt de oorzaak van alles. De directeur doet aan <em>gedachtelezen</em> en externaliseert volledig. Geen van de drie verklaringen is getoetst. Een evenwichtige analyse zou kijken naar wat er feitelijk bekend is, zoals de beoordeling per gunningscriterium. Groepen nemen in zo'n gesprek vaak ongemerkt de verklaring over van de persoon met de meeste status.</p></div></section>
+      <figure class="diagram"><svg viewBox="0 0 640 190" role="img" aria-label="Eén kernovertuiging leidt tot overgave, vermijding of overcompensatie"><defs><marker id="a4" viewBox="0 0 10 10" refX="9" refY="5" markerWidth="7" markerHeight="7" orient="auto"><path d="M0,0 L10,5 L0,10 z" fill="var(--muted)"/></marker></defs><rect x="225" y="10" width="190" height="52" rx="4" fill="var(--accent)" stroke="var(--line)"/><text x="320" y="33" text-anchor="middle" font-family="var(--display)" font-weight="700" fill="var(--paper)" font-size="13">Kernovertuiging</text><text x="320" y="49" text-anchor="middle" font-family="var(--mono)" fill="var(--paper)" font-size="10.5">"Ik ben zwak"</text><rect x="20" y="122" width="180" height="56" rx="4" fill="var(--paper)" stroke="var(--line)"/><text x="110" y="147" text-anchor="middle" font-family="var(--display)" font-weight="700" fill="var(--ink)" font-size="13">Overgave</text><text x="110" y="163" text-anchor="middle" font-family="var(--mono)" fill="var(--muted)" font-size="10.5">steeds toegeven</text><rect x="230" y="122" width="180" height="56" rx="4" fill="var(--paper)" stroke="var(--line)"/><text x="320" y="147" text-anchor="middle" font-family="var(--display)" font-weight="700" fill="var(--ink)" font-size="13">Vermijding</text><text x="320" y="163" text-anchor="middle" font-family="var(--mono)" fill="var(--muted)" font-size="10.5">conflict ontlopen</text><rect x="440" y="122" width="180" height="56" rx="4" fill="var(--paper)" stroke="var(--line)"/><text x="530" y="147" text-anchor="middle" font-family="var(--display)" font-weight="700" fill="var(--ink)" font-size="13">Overcompensatie</text><text x="530" y="163" text-anchor="middle" font-family="var(--mono)" fill="var(--muted)" font-size="10.5">dominant optreden</text><line x1="280" y1="62" x2="120" y2="118" stroke="var(--muted)" stroke-width="1.5" marker-end="url(#a4)"/><line x1="320" y1="62" x2="320" y2="118" stroke="var(--muted)" stroke-width="1.5" marker-end="url(#a4)"/><line x1="360" y1="62" x2="520" y2="118" stroke="var(--muted)" stroke-width="1.5" marker-end="url(#a4)"/></svg><figcaption>Eén kernovertuiging, drie heel verschillende gedragsstrategieën (naar Young).</figcaption></figure>
+      <section class="casus" aria-label="Casus"><div class="clab">Casus · fictief, ontleend aan de praktijk</div><h4>Twee onderhandelaars, één overtuiging</h4><p>In een geschil over een onderhoudscontract zitten twee inkopers van dezelfde organisatie aan tafel. Peter geeft bij elk tegenargument meteen toe en doet daarna excuses tegenover zijn manager. Lisa wordt juist scherp, eist een volledige herberekening en weigert elk compromis, ook op punten die financieel weinig uitmaken. Na afloop vertellen beiden in een coachgesprek iets vergelijkbaars: "Als ik het verkeerd doe, zien ze dat ik het eigenlijk niet kan."</p><div class="analyse"><span>Hoe Beck ernaar kijkt</span><p>Achter twee tegengestelde stijlen zit dezelfde regel ("als ik een fout maak, word ik ontmaskerd") en vermoedelijk dezelfde kernovertuiging van onbekwaamheid. Peter kiest overgave, Lisa overcompensatie. Wie alleen naar het gedrag kijkt, ziet een zwakke en een sterke onderhandelaar. Wie naar de cognitieve lagen kijkt, ziet twee mensen die zich op verschillende manieren beschermen tegen hetzelfde.</p></div></section>
+      <figure class="diagram"><svg viewBox="0 0 640 250" role="img" aria-label="Paniekcirkel: trigger, dreiging, ongerustheid, sensaties, catastrofale interpretatie, terug naar dreiging"><defs><marker id="a5" viewBox="0 0 10 10" refX="9" refY="5" markerWidth="7" markerHeight="7" orient="auto"><path d="M0,0 L10,5 L0,10 z" fill="var(--muted)"/></marker></defs><rect x="245" y="6" width="150" height="48" rx="4" fill="var(--paper)" stroke="var(--line)"/><text x="320" y="27" text-anchor="middle" font-family="var(--display)" font-weight="700" fill="var(--ink)" font-size="13">Trigger</text><text x="320" y="43" text-anchor="middle" font-family="var(--mono)" fill="var(--muted)" font-size="10.5">koffie, drukte</text><rect x="445" y="76" width="150" height="48" rx="4" fill="var(--paper)" stroke="var(--line)"/><text x="520" y="97" text-anchor="middle" font-family="var(--display)" font-weight="700" fill="var(--ink)" font-size="13">Dreiging</text><text x="520" y="113" text-anchor="middle" font-family="var(--mono)" fill="var(--muted)" font-size="10.5">"er klopt iets niet"</text><rect x="395" y="191" width="150" height="48" rx="4" fill="var(--paper)" stroke="var(--line)"/><text x="470" y="212" text-anchor="middle" font-family="var(--display)" font-weight="700" fill="var(--ink)" font-size="13">Ongerustheid</text><text x="470" y="228" text-anchor="middle" font-family="var(--mono)" fill="var(--muted)" font-size="10.5">spanning stijgt</text><rect x="95" y="191" width="150" height="48" rx="4" fill="var(--paper)" stroke="var(--line)"/><text x="170" y="212" text-anchor="middle" font-family="var(--display)" font-weight="700" fill="var(--ink)" font-size="13">Sensaties</text><text x="170" y="228" text-anchor="middle" font-family="var(--mono)" fill="var(--muted)" font-size="10.5">hartkloppingen</text><rect x="45" y="76" width="150" height="48" rx="4" fill="var(--accent)" stroke="var(--line)"/><text x="120" y="97" text-anchor="middle" font-family="var(--display)" font-weight="700" fill="var(--paper)" font-size="13">Catastrofe</text><text x="120" y="113" text-anchor="middle" font-family="var(--mono)" fill="var(--paper)" font-size="10.5">"hartaanval!"</text><line x1="395" y1="40" x2="470" y2="76" stroke="var(--muted)" stroke-width="1.5" marker-end="url(#a5)"/><line x1="520" y1="124" x2="490" y2="190" stroke="var(--muted)" stroke-width="1.5" marker-end="url(#a5)"/><line x1="395" y1="215" x2="245" y2="215" stroke="var(--muted)" stroke-width="1.5" marker-end="url(#a5)"/><line x1="150" y1="191" x2="125" y2="124" stroke="var(--muted)" stroke-width="1.5" marker-end="url(#a5)"/><line x1="195" y1="100" x2="445" y2="100" stroke="var(--muted)" stroke-width="1.5" marker-end="url(#a5)"/></svg><figcaption>Het cognitieve model van paniek (Clark, 1986). De cirkel versnelt doordat sensaties als gevaar worden uitgelegd.</figcaption></figure>
+      <section class="casus" aria-label="Casus"><div class="clab">Casus · fictief, ontleend aan de praktijk</div><h4>Het zweet van de leverancier</h4><p>Tijdens een heronderhandeling ziet een contractmanager dat de accountmanager van de leverancier zweet, vaak slikt en zijn handen ineenvouwt. Ze concludeert dat hij iets verbergt over de leveringsproblemen en zet de druk op. Later blijkt dat de man die ochtend griepverschijnselen had en zich zorgen maakte over een reorganisatie bij zijn eigen werkgever.</p><div class="analyse"><span>Hoe Beck ernaar kijkt</span><p>De signalen waren echt: er was spanning. De conclusie ("hij verbergt iets") was een sprong van signaal naar oorzaak, ofwel gedachtelezen. Het onderzoek van Bond en DePaulo laat zien dat zo'n sprong weinig betrouwbaar is. Een cognitief werkende professional houdt drie dingen uit elkaar: wat zie ik (zweten, slikken), wat zou het kunnen betekenen (meerdere hypothesen) en wat weet ik pas als ik het navraag. Haar eigen interpretatie leidde bovendien tot gedrag (meer druk) dat de spanning verder verhoogde.</p></div></section>
+      <figure class="diagram"><svg viewBox="0 0 640 240" role="img" aria-label="Vermijdingscirkel: overtuiging, angst, vermijden, geen nieuwe ervaring, terug naar overtuiging"><defs><marker id="a6" viewBox="0 0 10 10" refX="9" refY="5" markerWidth="7" markerHeight="7" orient="auto"><path d="M0,0 L10,5 L0,10 z" fill="var(--muted)"/></marker></defs><rect x="245" y="10" width="150" height="48" rx="4" fill="var(--accent)" stroke="var(--line)"/><text x="320" y="31" text-anchor="middle" font-family="var(--display)" font-weight="700" fill="var(--paper)" font-size="13">Overtuiging</text><text x="320" y="47" text-anchor="middle" font-family="var(--mono)" fill="var(--paper)" font-size="10.5">"ik ga af"</text><rect x="470" y="95" width="150" height="48" rx="4" fill="var(--paper)" stroke="var(--line)"/><text x="545" y="116" text-anchor="middle" font-family="var(--display)" font-weight="700" fill="var(--ink)" font-size="13">Angst</text><text x="545" y="132" text-anchor="middle" font-family="var(--mono)" fill="var(--muted)" font-size="10.5">spanning, blozen</text><rect x="245" y="180" width="150" height="48" rx="4" fill="var(--paper)" stroke="var(--line)"/><text x="320" y="201" text-anchor="middle" font-family="var(--display)" font-weight="700" fill="var(--ink)" font-size="13">Vermijden</text><text x="320" y="217" text-anchor="middle" font-family="var(--mono)" fill="var(--muted)" font-size="10.5">niet spreken</text><rect x="20" y="95" width="150" height="48" rx="4" fill="var(--paper)" stroke="var(--line)"/><text x="95" y="116" text-anchor="middle" font-family="var(--display)" font-weight="700" fill="var(--ink)" font-size="13">Geen nieuwe ervaring</text><text x="95" y="132" text-anchor="middle" font-family="var(--mono)" fill="var(--muted)" font-size="10.5">overtuiging blijft</text><line x1="395" y1="40" x2="470" y2="100" stroke="var(--muted)" stroke-width="1.5" marker-end="url(#a6)"/><line x1="520" y1="143" x2="395" y2="195" stroke="var(--muted)" stroke-width="1.5" marker-end="url(#a6)"/><line x1="245" y1="205" x2="120" y2="145" stroke="var(--muted)" stroke-width="1.5" marker-end="url(#a6)"/><line x1="120" y1="95" x2="245" y2="45" stroke="var(--muted)" stroke-width="1.5" marker-end="url(#a6)"/><text x="320" y="128" text-anchor="middle" font-family="var(--mono)" fill="var(--muted)" font-size="10.5">korte termijn: opluchting</text><text x="320" y="144" text-anchor="middle" font-family="var(--mono)" fill="var(--muted)" font-size="10.5">lange termijn: angst blijft</text></svg><figcaption>De vermijdingscirkel: wat op korte termijn helpt, houdt de overtuiging op lange termijn in stand.</figcaption></figure>
+      <section class="casus" aria-label="Casus"><div class="clab">Casus · fictief, ontleend aan de praktijk</div><h4>De jurist die alles dubbel controleert</h4><p>Sandra is bedrijfsjurist. Elk contract laat ze door twee collega's nalezen, ook eenvoudige standaardovereenkomsten. Ze werkt vaak tot laat en voelt zich uitgeput. In een gesprek vertelt ze dat er in tien jaar nog nooit een serieuze fout uit haar werk is voortgekomen. Ze voegt eraan toe: "Maar dat komt doordat ik alles laat checken."</p><div class="analyse"><span>Hoe Beck ernaar kijkt</span><p>Dit is veiligheidsgedrag in zuivere vorm. De overtuiging ("zonder controle maak ik fouten met grote gevolgen") kan nooit worden weerlegd, omdat elk goed resultaat aan de controle wordt toegeschreven. In therapie zou een gedragsexperiment de controle stapsgewijs afbouwen bij laag-risico-contracten, met een vooraf uitgesproken voorspelling. Zo ontstaat de verwachtingsschending die volgens Craske de kern van nieuw leren is.</p></div></section>
+      <figure class="diagram"><svg viewBox="0 0 640 250" role="img" aria-label="Driehoek met zelf, wereld en toekomst"><defs><marker id="a7" viewBox="0 0 10 10" refX="9" refY="5" markerWidth="7" markerHeight="7" orient="auto"><path d="M0,0 L10,5 L0,10 z" fill="var(--muted)"/></marker></defs><polygon points="320,30 110,210 530,210" fill="var(--soft)" stroke="var(--line)"/><rect x="245" y="8" width="150" height="48" rx="4" fill="var(--accent)" stroke="var(--line)"/><text x="320" y="29" text-anchor="middle" font-family="var(--display)" font-weight="700" fill="var(--paper)" font-size="13">Zelf</text><text x="320" y="45" text-anchor="middle" font-family="var(--mono)" fill="var(--paper)" font-size="10.5">"ik ben waardeloos"</text><rect x="30" y="190" width="170" height="48" rx="4" fill="var(--paper)" stroke="var(--line)"/><text x="115" y="211" text-anchor="middle" font-family="var(--display)" font-weight="700" fill="var(--ink)" font-size="13">Wereld</text><text x="115" y="227" text-anchor="middle" font-family="var(--mono)" fill="var(--muted)" font-size="10.5">"niemand helpt me"</text><rect x="440" y="190" width="170" height="48" rx="4" fill="var(--paper)" stroke="var(--line)"/><text x="525" y="211" text-anchor="middle" font-family="var(--display)" font-weight="700" fill="var(--ink)" font-size="13">Toekomst</text><text x="525" y="227" text-anchor="middle" font-family="var(--mono)" fill="var(--muted)" font-size="10.5">"het wordt nooit beter"</text><text x="320" y="150" text-anchor="middle" font-family="var(--mono)" fill="var(--muted)" font-size="11">depressie</text></svg><figcaption>De cognitieve triade van Beck: een negatief beeld van zelf, wereld en toekomst.</figcaption></figure>
+      <section class="casus" aria-label="Casus"><div class="clab">Casus · fictief, ontleend aan de praktijk</div><h4>Ahmed na de reorganisatie</h4><p>Ahmed werkte twintig jaar naar tevredenheid als inkoopmanager. Hij stond bekend als iemand die alles zelf regelde en nooit hulp vroeg. Na een reorganisatie wordt zijn afdeling samengevoegd en krijgt hij een jongere leidinggevende die zijn werk overneemt. Binnen drie maanden slaapt hij slecht, trekt hij zich terug en zegt hij thuis: "Ik heb niets meer te bieden, en het wordt alleen maar erger."</p><div class="analyse"><span>Hoe Beck ernaar kijkt</span><p>Hier zie je het diathese-stressmodel en Becks persoonlijkheidsdimensies. Ahmed scoort vermoedelijk hoog op <em>autonomie</em>: zijn zelfwaarde rust op zelfstandigheid en prestatie. De reorganisatie raakt precies die kwetsbaarheid. Zijn uitspraak bevat de hele cognitieve triade: zelf ("niets te bieden"), wereld (impliciet: geen plek meer) en toekomst ("alleen maar erger"). Becks hopeloosheidsonderzoek laat zien waarom vooral dat laatste element serieus genomen moet worden en reden is voor professionele hulp.</p></div></section>
+      <figure class="diagram"><svg viewBox="0 0 640 285" role="img" aria-label="Zeshoek van ACT-processen rond psychologische flexibiliteit"><line x1="320" y1="140" x2="320" y2="35" stroke="var(--line)" stroke-width="1.5"/><line x1="320" y1="140" x2="460" y2="87" stroke="var(--line)" stroke-width="1.5"/><line x1="320" y1="140" x2="460" y2="192" stroke="var(--line)" stroke-width="1.5"/><line x1="320" y1="140" x2="320" y2="245" stroke="var(--line)" stroke-width="1.5"/><line x1="320" y1="140" x2="179" y2="192" stroke="var(--line)" stroke-width="1.5"/><line x1="320" y1="140" x2="179" y2="87" stroke="var(--line)" stroke-width="1.5"/><rect x="252" y="13" width="136" height="44" rx="4" fill="var(--paper)" stroke="var(--line)"/><text x="320" y="32" text-anchor="middle" font-family="var(--display)" font-weight="700" fill="var(--ink)" font-size="13">Acceptatie</text><text x="320" y="48" text-anchor="middle" font-family="var(--mono)" fill="var(--muted)" font-size="10.5">ruimte maken</text><rect x="392" y="65" width="136" height="44" rx="4" fill="var(--paper)" stroke="var(--line)"/><text x="460" y="84" text-anchor="middle" font-family="var(--display)" font-weight="700" fill="var(--ink)" font-size="13">Defusie</text><text x="460" y="100" text-anchor="middle" font-family="var(--mono)" fill="var(--muted)" font-size="10.5">afstand tot gedachten</text><rect x="392" y="170" width="136" height="44" rx="4" fill="var(--paper)" stroke="var(--line)"/><text x="460" y="189" text-anchor="middle" font-family="var(--display)" font-weight="700" fill="var(--ink)" font-size="13">Hier en nu</text><text x="460" y="205" text-anchor="middle" font-family="var(--mono)" fill="var(--muted)" font-size="10.5">aandacht</text><rect x="252" y="223" width="136" height="44" rx="4" fill="var(--paper)" stroke="var(--line)"/><text x="320" y="242" text-anchor="middle" font-family="var(--display)" font-weight="700" fill="var(--ink)" font-size="13">Zelf als context</text><text x="320" y="258" text-anchor="middle" font-family="var(--mono)" fill="var(--muted)" font-size="10.5">waarnemer</text><rect x="111" y="170" width="136" height="44" rx="4" fill="var(--paper)" stroke="var(--line)"/><text x="179" y="189" text-anchor="middle" font-family="var(--display)" font-weight="700" fill="var(--ink)" font-size="13">Waarden</text><text x="179" y="205" text-anchor="middle" font-family="var(--mono)" fill="var(--muted)" font-size="10.5">kompas</text><rect x="111" y="65" width="136" height="44" rx="4" fill="var(--paper)" stroke="var(--line)"/><text x="179" y="84" text-anchor="middle" font-family="var(--display)" font-weight="700" fill="var(--ink)" font-size="13">Toegewijd handelen</text><text x="179" y="100" text-anchor="middle" font-family="var(--mono)" fill="var(--muted)" font-size="10.5">doen wat telt</text><circle cx="320" cy="140" r="56" fill="var(--accent)"/><text x="320" y="138" text-anchor="middle" font-family="var(--display)" font-weight="700" font-size="11" fill="var(--paper)">Psychologische</text><text x="320" y="154" text-anchor="middle" font-family="var(--display)" font-weight="700" font-size="12" fill="var(--paper)">flexibiliteit</text></svg><figcaption>De zes processen van ACT rond psychologische flexibiliteit (Hayes).</figcaption></figure>
+      <section class="casus" aria-label="Casus"><div class="clab">Casus · fictief, ontleend aan de praktijk</div><h4>De manager en de innerlijke criticus</h4><p>Jeroen is directeur van een middelgrote organisatie. Voor elke presentatie aan de raad van commissarissen hoort hij een stem: "Ze gaan zien dat je hier niet thuishoort." Hij heeft eerder met een cognitief therapeut bewijs voor en tegen die gedachte verzameld. Hij weet rationeel dat ze niet klopt, maar het gevoel blijft.</p><div class="analyse"><span>Hoe Beck ernaar kijkt</span><p>Dit is een klassiek moment waarop de derde generatie iets toevoegt. In Becks benadering zou het werk doorgaan op kernovertuigingen. Vanuit ACT zou de gedachte niet meer worden bestreden, maar herkend (&ldquo;daar is de je-hoort-hier-niet-gedachte weer&rdquo;) terwijl Jeroen presenteert vanuit wat hij belangrijk vindt. Vanuit schematherapie zou de stem worden gezien als een <em>straffende oudermodus</em>, met aandacht voor waar die vandaan komt. Vanuit compassiegerichte therapie zou het kalmeringssysteem worden versterkt. Vier routes, elk met een eigen logica.</p></div></section>
+      <section class="casus" aria-label="Casus"><div class="clab">Casus · fictief, ontleend aan de praktijk</div><h4>De coach die het model te ver doortrekt</h4><p>Een cliënt vertelt haar coach dat ze zich somber en machteloos voelt sinds haar werkgever haar uren eenzijdig heeft verlaagd, terwijl haar huur stijgt. De coach, enthousiast over cognitieve technieken, gaat met haar op zoek naar denkfouten in de gedachte "ik kom financieel in de problemen". Na twee sessies voelt de cliënt zich slechter: nu lijkt het alsof het probleem in haar hoofd zit.</p><div class="analyse"><span>Hoe Beck ernaar kijkt</span><p>Dit illustreert de kritiek uit deze module. De gedachte was geen vertekening maar een redelijk realistische inschatting (vergelijk het onderzoek naar depressief realisme). Becks eigen onderscheid tussen geldige en ongeldige gedachten (module 2) was hier de sleutel geweest: bij een juiste gedachte past probleemoplossing, juridisch advies of steun, niet herstructureren. Bovendien raakte de werkrelatie beschadigd, wat volgens Wampold en Imel zwaarder weegt dan welke techniek ook.</p></div></section>
+      <figure class="diagram"><svg viewBox="0 0 640 245" role="img" aria-label="Driehoek van doelen, taken en band rond de werkrelatie"><defs><marker id="a0" viewBox="0 0 10 10" refX="9" refY="5" markerWidth="7" markerHeight="7" orient="auto"><path d="M0,0 L10,5 L0,10 z" fill="var(--muted)"/></marker></defs><polygon points="320,40 140,200 500,200" fill="none" stroke="var(--line)" stroke-width="1.5"/><rect x="245" y="14" width="150" height="50" rx="4" fill="var(--paper)" stroke="var(--line)"/><text x="320" y="36" text-anchor="middle" font-family="var(--display)" font-weight="700" fill="var(--ink)" font-size="13">Doelen</text><text x="320" y="52" text-anchor="middle" font-family="var(--mono)" fill="var(--muted)" font-size="10.5">waar werken we naartoe</text><rect x="60" y="180" width="160" height="50" rx="4" fill="var(--paper)" stroke="var(--line)"/><text x="140" y="202" text-anchor="middle" font-family="var(--display)" font-weight="700" fill="var(--ink)" font-size="13">Taken</text><text x="140" y="218" text-anchor="middle" font-family="var(--mono)" fill="var(--muted)" font-size="10.5">hoe pakken we het aan</text><rect x="420" y="180" width="160" height="50" rx="4" fill="var(--paper)" stroke="var(--line)"/><text x="500" y="202" text-anchor="middle" font-family="var(--display)" font-weight="700" fill="var(--ink)" font-size="13">Band</text><text x="500" y="218" text-anchor="middle" font-family="var(--mono)" fill="var(--muted)" font-size="10.5">vertrouwen en respect</text><circle cx="320" cy="145" r="40" fill="var(--accent)"/><text x="320" y="142" text-anchor="middle" font-family="var(--display)" font-weight="700" font-size="12" fill="var(--paper)">Werk-</text><text x="320" y="157" text-anchor="middle" font-family="var(--display)" font-weight="700" font-size="12" fill="var(--paper)">relatie</text></svg><figcaption>De werkrelatie volgens Bordin (1979). Het model geldt voor therapie, coaching en zakelijke samenwerking.</figcaption></figure>
+      <section class="casus" aria-label="Casus"><div class="clab">Casus · fictief, ontleend aan de praktijk</div><h4>Een vastgelopen samenwerkingscontract</h4><p>Een gemeente en een zorgaanbieder hebben een meerjarig contract. Na twee jaar escaleert elk overleg. De gemeente stuurt steeds strengere rapportage-eisen, de aanbieder reageert met juridische brieven. Een consultant wordt ingehuurd. In de eerste gesprekken valt op hoe beide partijen over de ander praten: "Zij willen alleen maar geld" en "Zij willen ons controleren, ze vertrouwen ons niet." Bij de gezamenlijke sessie zitten beide delegaties met de armen over elkaar, aan weerszijden van een lange tafel.</p><div class="analyse"><span>Hoe Beck ernaar kijkt</span><p>Alle drie de schalen van het werkmodel zijn zichtbaar. Op <strong>organisatieniveau</strong> zijn collectieve schema's ontstaan (wantrouwen) die elke nieuwe actie kleuren. Op <strong>relatieniveau</strong> is er gedachtelezen in beide richtingen, en een zichzelf vervullende cirkel: controle wekt verzet op, verzet rechtvaardigt meer controle. Het <strong>lichamelijke</strong> beeld (gesloten houding, fysieke afstand) bevestigt de breuk. In Bordins termen is de band beschadigd en is er geen overeenstemming meer over de taken. Een cognitieve aanpak zou eerst de wederzijdse interpretaties zichtbaar maken en toetsen, voordat er over contractclausules wordt gesproken.</p></div></section>
+      <section class="verdieping" aria-label="Verdieping"><div class="vlab">Verdieping</div>
+<h4>De filosofische wortels: de Stoa</h4>
+<p>Het idee dat niet de gebeurtenis maar de opvatting erover ons raakt, is bijna tweeduizend jaar oud. De Stoïcijnse filosoof Epictetus schreef in zijn <i>Handboekje</i> dat mensen niet verontrust worden door de dingen zelf, maar door hun opvattingen over de dingen. Zowel Beck als Ellis noemden de Stoa uitdrukkelijk als inspiratie. Ook Marcus Aurelius beschreef in zijn <i>Overpeinzingen</i> hoe je een indruk kunt scheiden van het oordeel dat je eraan toevoegt. Cognitieve therapie is in die zin een wetenschappelijke uitwerking van een oude filosofische praktijk.</p>
+<h4>De cognitieve revolutie</h4>
+<p>In de eerste helft van de twintigste eeuw domineerde het behaviorisme (Watson, Skinner). Wat zich in het hoofd afspeelde gold als onwetenschappelijk, want onzichtbaar. In de jaren vijftig en zestig kantelde dat. George Miller onderzocht de grenzen van het werkgeheugen, Noam Chomsky liet zien dat taal niet alleen met conditionering te verklaren is, en Ulric Neisser gaf het nieuwe vak in 1967 zijn naam met het boek <i>Cognitive Psychology</i>. Beck werkte in dezelfde jaren. Zijn model paste in een bredere beweging die de geest weer als onderzoeksobject zag, nu met experimentele methoden.</p>
+<h4>Geen lineaire keten, maar een cirkel</h4>
+<p>Het schema situatie → gedachte → reactie is een vereenvoudiging. Beck zag zelf een wederkerig systeem. Een somber gevoel maakt sombere herinneringen toegankelijker, wat weer sombere gedachten oplevert. Vermijdend gedrag zorgt voor minder positieve ervaringen, wat de gedachte "het lukt me toch niet" bevestigt. Ook biologie (erfelijke kwetsbaarheid, slaap, ziekte) en omgeving (armoede, conflict, verlies) spelen mee. Het cognitieve model zegt dus niet dat gedachten de enige oorzaak zijn. Het zegt dat gedachten een schakel zijn die goed bereikbaar is voor verandering.</p>
+<h4>Kenmerken van cognitieve therapie volgens Beck</h4>
+<ul>
+<li><strong>Collaboratief.</strong> Therapeut en cliënt werken als team. De therapeut is geen expert die vertelt hoe het zit.</li>
+<li><strong>Gestructureerd en tijdgebonden.</strong> Sessies hebben een vaste opbouw: stemming peilen, brug naar de vorige sessie, agenda opstellen, werken aan de agendapunten, samenvatten. Een behandeling voor depressie of angst duurt vaak twaalf tot twintig sessies.</li>
+<li><strong>Gericht op het hier en nu.</strong> Het verleden komt aan bod wanneer het helpt om huidige patronen te begrijpen, niet als doel op zich.</li>
+<li><strong>Psycho-educatief.</strong> De cliënt leert het model zelf kennen. Het einddoel is dat de cliënt zijn eigen therapeut wordt.</li>
+<li><strong>Probleem- en doelgericht.</strong> Er wordt gewerkt aan concrete, benoemde doelen.</li>
+</ul>
+<h4>Gedachte, gevoel en gedrag goed onderscheiden</h4>
+<p>In het dagelijkse spraakgebruik lopen deze drie door elkaar. "Ik voel dat hij mij niet serieus neemt" is in cognitieve termen geen gevoel maar een gedachte. Het gevoel erbij is bijvoorbeeld gekwetstheid of boosheid. Een vuistregel uit de praktijk: een emotie is meestal in één woord te benoemen (angst, verdriet, boosheid, schaamte, schuld, vreugde). Zodra er een hele zin nodig is, gaat het waarschijnlijk om een gedachte. Dit onderscheid is de basis van alle verdere technieken.</p>
+</section>
+      <section class="verdieping" aria-label="Verdieping"><div class="vlab">Verdieping</div>
+<h4>Hoe Beck de automatische gedachten ontdekte</h4>
+<p>Beck beschreef later een sleutelmoment. Een patiënt sprak tijdens een analytische sessie boos over hem. Toen Beck vroeg wat ze voelde, zei ze dat ze zich schuldig voelde. Dat paste niet bij de psychoanalytische verwachting dat woede direct tot opluchting zou leiden. Bij doorvragen bleek dat er naast haar uitgesproken verhaal een tweede, stille gedachtestroom liep: "Ik heb iets verkeerds gezegd. Hij zal me afwijzen." Die tweede stroom verklaarde het schuldgevoel. Beck begon daarna bij al zijn patiënten naar deze stroom te vragen en vond hem steeds terug.</p>
+<h4>Voorbewust, niet onbewust</h4>
+<p>Een belangrijk verschil met de psychoanalyse: automatische gedachten zijn niet verdrongen of diep verborgen. Ze zijn <em>voorbewust</em>. Met wat aandacht en oefening kan bijna iedereen ze opmerken. Daardoor is cognitieve therapie praktisch uitvoerbaar. Er is geen jarenlange analyse nodig om bij het materiaal te komen.</p>
+<h4>Soorten automatische gedachten</h4>
+<ul>
+<li><strong>Interpretaties</strong> van wat er gebeurt: "Hij is geïrriteerd."</li>
+<li><strong>Voorspellingen</strong>: "Dit gaat mis."</li>
+<li><strong>Evaluaties van jezelf</strong>: "Dat was dom van me."</li>
+<li><strong>Beelden</strong>: een korte voorstelling van een scène. Onderzoek van Ann Hackmann en collega's laat zien dat beelden vaak een sterkere emotionele lading hebben dan woorden. Bij sociale angst zien mensen zichzelf bijvoorbeeld van buitenaf, rood en stotterend, ook als ze dat in werkelijkheid niet zijn.</li>
+</ul>
+<h4>Geldigheid en nut zijn twee verschillende dingen</h4>
+<p>Judith Beck maakt een belangrijk onderscheid. Een automatische gedachte kan onjuist zijn ("Iedereen vond mijn presentatie slecht", terwijl de evaluaties positief waren). Ze kan ook juist zijn maar de conclusie vertekend ("Ik maakte een fout in het rapport, dus ik ben ongeschikt"). En ze kan juist zijn maar niet helpend ("Er is een kans dat dit project mislukt"). Bij de eerste soort helpt het toetsen van bewijs. Bij de tweede helpt het onderzoeken van de conclusie. Bij de derde helpt probleemoplossing of de vraag wat het oplevert om er steeds aan te denken.</p>
+<h4>Hoe therapeuten gedachten onderzoeken</h4>
+<p>In de therapie onderzoekt de therapeut gedachten met de <em>Socratische dialoog</em>, een begeleide ontdekkingstocht. Christine Padesky beschreef in 1993 dat het doel niet is de cliënt te overtuigen, maar de cliënt zelf informatie te laten vinden die nog buiten beeld lag. Gangbare invalshoeken zijn:</p>
+<ul>
+<li>Het bewijs voor en tegen de gedachte op een rij zetten.</li>
+<li>Alternatieve verklaringen zoeken voor dezelfde gebeurtenis.</li>
+<li><em>Decatastroferen</em>: wat is het ergste, het beste en het meest waarschijnlijke scenario, en hoe zou iemand het ergste overleven?</li>
+<li>Perspectief wisselen: wat zou je zeggen tegen een goede vriend met dezelfde gedachte?</li>
+<li>Gevolgen bekijken: wat levert het op om zo te denken, en wat kost het?</li>
+</ul>
+<p>Het resultaat is zelden een "positieve gedachte". Het doel is een <em>evenwichtige</em> gedachte, die meer van de werkelijkheid omvat. Beck waarschuwde expliciet tegen positief denken als vervanging van negatief denken. Beide zijn een vertekening.</p>
+<h4>Meten van intensiteit</h4>
+<p>Het werken met getallen (0–100) komt uit de gedragstherapie. Joseph Wolpe introduceerde de <em>Subjective Units of Distress</em> (SUD). Het voordeel is dat kleine verschuivingen zichtbaar worden. Een gedachte die van 90% naar 60% geloofwaardigheid zakt, is al een betekenisvolle verandering, ook al is ze niet verdwenen.</p>
+</section>
+      <section class="verdieping" aria-label="Verdieping"><div class="vlab">Verdieping</div>
+<h4>Becks oorspronkelijke lijst</h4>
+<p>In zijn artikel uit 1963 beschreef Beck zes vertekeningen die hij bij depressieve patiënten zag: <em>willekeurige gevolgtrekking</em> (een conclusie zonder bewijs), <em>selectieve abstractie</em> (één detail uit de context halen), <em>overgeneralisatie</em>, <em>uitvergroten en verkleinen</em>, <em>personaliseren</em> en <em>dichotoom denken</em> (alles-of-niets). Burns maakte er later een toegankelijkere lijst van tien van. De lijst in de tabel hierboven combineert beide.</p>
+<h4>Verwantschap met de cognitieve biases</h4>
+<p>Los van Beck bracht de experimentele psychologie een eigen reeks denkfouten in kaart. Ze overlappen veel:</p>
+<dl class="terms">
+<dt>Bevestigingsbias</dt><dd>Informatie zoeken en onthouden die een bestaande overtuiging bevestigt. Dit verklaart waarom kernovertuigingen zo stabiel zijn.</dd>
+<dt>Negativiteitsbias</dt><dd>Negatieve informatie weegt zwaarder dan positieve van dezelfde grootte. Baumeister en collega's vatten dit in 2001 samen als "Bad is stronger than good".</dd>
+<dt>Beschikbaarheidsheuristiek</dt><dd>Tversky en Kahneman (1973): hoe makkelijker iets in je opkomt, hoe waarschijnlijker het lijkt. Een recent conflict maakt een nieuw conflict waarschijnlijker in je inschatting.</dd>
+<dt>Fundamentele attributiefout</dt><dd>Lee Ross (1977): gedrag van anderen toeschrijven aan hun karakter en de situatie onderschatten. De basis van etiketteren.</dd>
+<dt>Achteraf-bias</dt><dd>Na afloop lijkt de uitkomst voorspelbaar ("ik had het moeten zien"). Een bron van schuldgevoel en zelfverwijt.</dd>
+</dl>
+<h4>Attributiestijl: hoe je successen en tegenslagen verklaart</h4>
+<p>Martin Seligman onderzocht aangeleerde hulpeloosheid. Abramson, Seligman en Teasdale (1978) lieten zien dat het niet de tegenslag zelf is die tot hulpeloosheid leidt, maar de verklaring ervoor. Een depressieve attributiestijl verklaart tegenslag als <strong>intern</strong> (het ligt aan mij), <strong>stabiel</strong> (het blijft zo) en <strong>globaal</strong> (het geldt voor alles). Successen worden juist extern, tijdelijk en specifiek verklaard ("geluk gehad"). Deze stijl is een samenhangend patroon van meerdere denkfouten tegelijk.</p>
+<h4>Thema per klacht</h4>
+<p>Denkfouten komen bij iedereen voor. Bij psychische klachten kleuren ze in één richting:</p>
+<ul>
+<li><strong>Bij angst</strong>: overschatten van gevaar en onderschatten van eigen hanteren (catastroferen, voorspellen).</li>
+<li><strong>Bij depressie</strong>: verlies en tekortschieten (filteren, positief diskwalificeren, personaliseren).</li>
+<li><strong>Bij boosheid</strong>: onrecht en opzet bij anderen (gedachtelezen, moet-denken over anderen, etiketteren).</li>
+<li><strong>Bij perfectionisme</strong>: strenge normen (alles-of-niets, moet-denken over jezelf).</li>
+</ul>
+<h4>Denkfouten in groepen en organisaties</h4>
+<p>Ook groepen hebben vaste vertekeningen. Irving Janis beschreef in 1972 <em>groepsdenken</em>: in hechte groepen onder druk verdwijnt kritiek, omdat eensgezindheid belangrijker wordt dan juistheid. Barry Staw beschreef in 1976 <em>escalatie van commitment</em>: blijven investeren in een verliesgevend project omdat er al zoveel in zit (de <em>sunk cost</em>-redenering). In contractmanagement zie je dat bij partijen die vasthouden aan een samenwerking die al lang niet meer werkt, omdat stoppen voelt als toegeven dat het een fout was.</p>
+</section>
+      <section class="verdieping" aria-label="Verdieping"><div class="vlab">Verdieping</div>
+<h4>Hoe overtuigingen ontstaan</h4>
+<p>Volgens Beck ontstaan kernovertuigingen vroeg, uit de wisselwerking tussen aangeboren temperament en ervaringen. Een gevoelig kind dat vaak kritiek krijgt, kan concluderen "ik ben niet goed genoeg". Dat is in die context een begrijpelijke conclusie. Het probleem ontstaat pas als de overtuiging ook later wordt toegepast, in situaties waar ze niet meer klopt. Een kernovertuiging is dus geen fout van de persoon, maar een ooit logische les die te breed is gaan gelden.</p>
+<h4>Drie vormen van tussenliggende overtuigingen</h4>
+<dl class="terms">
+<dt>Attitudes</dt><dd>Algemene opvattingen: "Het is verschrikkelijk om incompetent te zijn."</dd>
+<dt>Regels</dt><dd>Eisen aan jezelf of anderen: "Ik moet altijd goed voorbereid zijn."</dd>
+<dt>Aannames</dt><dd>Als-dan-verbanden: "Als ik me volledig voorbereid, merkt niemand dat ik tekortschiet." En de keerzijde: "Als ik niet voorbereid ben, val ik door de mand."</dd>
+</dl>
+<p>De als-dan-vorm is het meest bruikbaar om mee te werken, omdat er een voorspelling in zit die getoetst kan worden.</p>
+<h4>Compensatiestrategieën</h4>
+<p>Mensen ontwikkelen gedragsstrategieën om met een pijnlijke kernovertuiging om te gaan. Jeffrey Young onderscheidde later drie basisvormen:</p>
+<ul>
+<li><strong>Overgave</strong>: leven alsof de overtuiging waar is. Iemand met "ik ben niet belangrijk" kiest steeds voor anderen.</li>
+<li><strong>Vermijding</strong>: situaties uit de weg gaan die de overtuiging kunnen activeren.</li>
+<li><strong>Overcompensatie</strong>: het tegendeel laten zien. Iemand met "ik ben zwak" gedraagt zich dominant en onkwetsbaar.</li>
+</ul>
+<p>Voor een buitenstaander kunnen twee mensen met dezelfde kernovertuiging dus totaal verschillend gedrag laten zien. Dat is een belangrijke les voor wie gedrag observeert: het gedrag is niet de overtuiging.</p>
+<h4>Overtuigingen over anderen en de wereld</h4>
+<p>Kernovertuigingen gaan niet alleen over jezelf. Er zijn ook overtuigingen over anderen ("mensen gebruiken je") en over de wereld ("de wereld is gevaarlijk"). Samen vormen ze een innerlijk model van hoe het leven werkt. In de cognitieve triade van module 7 komt dit terug.</p>
+<h4>Het conceptualisatiediagram van Judith Beck</h4>
+<p>Judith Beck ontwikkelde een diagram dat alle lagen verbindt. Bovenaan staan relevante jeugdervaringen. Daaronder de kernovertuiging, dan de tussenliggende overtuigingen, dan de compensatiestrategieën. Onderaan staan drie concrete situaties, telkens met de automatische gedachte, de betekenis ervan, de emotie en het gedrag. Zo wordt zichtbaar hoe een diepe overtuiging in heel verschillende situaties steeds hetzelfde soort reactie oplevert.</p>
+<h4>Hoe overtuigingen in therapie veranderen</h4>
+<p>Overtuigingen veranderen langzamer dan automatische gedachten. Therapeuten gebruiken onder meer:</p>
+<ul>
+<li><strong>Het continuüm.</strong> In plaats van "mislukt of geslaagd" wordt een schaal van 0 tot 100 gemaakt, met concrete voorbeelden van mensen op verschillende punten. Zo verliest het zwart-witdenken zijn grip.</li>
+<li><strong>Het positieve logboek.</strong> Over langere tijd worden ervaringen verzameld die niet bij de oude overtuiging passen. Dit werkt tegen de bevestigingsbias in.</li>
+<li><strong>Historisch toetsen.</strong> De levensloop wordt doorgelopen om te zien welke ervaringen de overtuiging ondersteunen en welke niet.</li>
+<li><strong>Een nieuwe overtuiging opbouwen.</strong> Padesky benadrukte dat het niet genoeg is de oude overtuiging te verzwakken. Er moet ook een alternatieve overtuiging groeien, bijvoorbeeld "ik ben op de meeste punten capabel genoeg".</li>
+</ul>
+</section>
+      <section class="verdieping" aria-label="Verdieping"><div class="vlab">Verdieping</div>
+<h4>Beoordelingstheorie van emotie</h4>
+<p>Becks idee dat interpretatie emotie bepaalt, heeft een parallel in de emotiepsychologie. Magda Arnold (1960) en Richard Lazarus introduceerden het begrip <em>appraisal</em>: beoordeling. Lazarus en Folkman (1984) onderscheiden twee stappen. Bij de <strong>primaire beoordeling</strong> schat iemand in of een situatie bedreigend, uitdagend of onbelangrijk is. Bij de <strong>secundaire beoordeling</strong> schat iemand in of de eigen middelen voldoende zijn om ermee om te gaan. Stress ontstaat als de dreiging groter lijkt dan de middelen. Dezelfde onderhandeling kan voor de één een bedreiging zijn en voor de ander een uitdaging. Lichamelijk lijken die twee op elkaar, maar ze voelen heel anders aan.</p>
+<h4>Het stresssysteem</h4>
+<p>Bij een dreigende interpretatie reageert het lichaam via twee routes. De snelle route is het sympathische zenuwstelsel: adrenaline, hogere hartslag, snellere ademhaling, gespannen spieren. De tragere route is de HPA-as (hypothalamus, hypofyse, bijnieren), die cortisol aanmaakt. Op korte termijn maakt dat iemand alert en energiek. Bij langdurige activatie leidt het tot vermoeidheid, slaapproblemen en een verminderd vermogen om flexibel te denken. Dat laatste is belangrijk: onder chronische stress nemen precies de denkfouten uit module 3 toe.</p>
+<h4>De tweefactortheorie</h4>
+<p>Schachter en Singer (1962) stelden dat een emotie bestaat uit lichamelijke opwinding plus een cognitief label. Hun bekende experiment, waarin proefpersonen adrenaline kregen, is later deels bekritiseerd en niet altijd gerepliceerd. Het idee erachter leeft voort: dezelfde lichamelijke opwinding kan als angst, opwinding of boosheid worden ervaren, afhankelijk van de uitleg. Barretts theorie van geconstrueerde emotie bouwt hierop voort.</p>
+<h4>Het paniekmodel in detail</h4>
+<p>Clarks model van paniek is het helderste voorbeeld van lichaam en cognitie in één cirkel:</p>
+<ol>
+<li>Een trigger, intern of extern (koffie, inspanning, een drukke ruimte).</li>
+<li>Waargenomen dreiging.</li>
+<li>Ongerustheid.</li>
+<li>Lichamelijke sensaties (hartkloppingen, duizeligheid, benauwdheid).</li>
+<li>Catastrofale interpretatie van die sensaties ("ik krijg een hartaanval", "ik word gek").</li>
+<li>Meer dreiging, meer sensaties, en de cirkel versnelt.</li>
+</ol>
+<p>Mensen met hoge <em>angstgevoeligheid</em> (Reiss) zijn extra vatbaar, omdat ze lichamelijke sensaties op zichzelf al als gevaarlijk zien. De behandeling bestaat uit het opwekken van de sensaties in een veilige setting, zodat de catastrofale interpretatie door ervaring wordt weerlegd.</p>
+<h4>Interoceptie</h4>
+<p>Interoceptie is het waarnemen van de toestand van je eigen lichaam: hartslag, ademhaling, maag, spanning. Mensen verschillen sterk in hoe nauwkeurig ze dat doen. Onderzoek van Hugo Critchley en Sarah Garfinkel laat zien dat interoceptie samenhangt met emotiebeleving en angst. Wie zijn lichaam slecht leest, mist vroege signalen. Wie het overmatig scant, ziet gevaar in normale schommelingen.</p>
+<h4>Wat lichaamstaal wel en niet onthult</h4>
+<p>Paul Ekman ontwikkelde met Wallace Friesen het <em>Facial Action Coding System</em> (FACS), dat elke gezichtsbeweging beschrijft in spiereenheden. Dit is een waardevol onderzoeksinstrument. Bij leugendetectie ligt het anders. Een grote meta-analyse van Bond en DePaulo (2006) vond dat mensen leugens gemiddeld maar in ongeveer 54% van de gevallen herkennen, nauwelijks beter dan gokken. Ook getrainde professionals scoren zelden veel hoger. Micro-expressies komen voor, maar zijn zeldzaam en geen betrouwbare leugendetector. Dit betekent niet dat lichaamstaal niets zegt. Het betekent dat lichaamstaal vooral iets zegt over <em>dat</em> er een emotionele verschuiving is, en veel minder over <em>waarom</em>.</p>
+<h4>Lichaam en depressie</h4>
+<p>Onderzoek van Johannes Michalak en collega's (2009) liet zien dat depressieve mensen een herkenbaar looppatroon hebben: trager, minder armzwaai, meer voorovergebogen en minder verticale beweging. In vervolgonderzoek beïnvloedde een aangepast looppatroon ook wat mensen zich herinnerden. Dit sluit aan bij de bredere <em>embodied cognition</em>-gedachte (Lawrence Barsalou): denken is niet los te zien van het lichaam waarin het plaatsvindt. De effecten zijn wel bescheiden.</p>
+<h4>Een kanttekening bij de polyvagaaltheorie</h4>
+<p>In coachings- en therapiekringen is de polyvagaaltheorie van Stephen Porges populair. Ze beschrijft drie lagen van het zenuwstelsel die veiligheid, mobilisatie en bevriezing regelen. Het praktische idee, dat een gevoel van veiligheid voorwaarde is voor open contact, is herkenbaar. De neuro-anatomische onderbouwing wordt door fysiologen zoals Paul Grossman echter stevig bekritiseerd. Het is verstandig de theorie als metafoor te gebruiken en niet als bewezen neurologie.</p>
+</section>
+      <section class="verdieping" aria-label="Verdieping"><div class="vlab">Verdieping</div>
+<h4>Instandhoudingscirkels</h4>
+<p>Moderne cognitieve modellen beschrijven klachten vooral als <em>instandhoudingscirkels</em>: patronen die zichzelf voeden. Vijf veelvoorkomende vormen:</p>
+<dl class="terms">
+<dt>Vermijding</dt><dd>De gevreesde situatie wordt ontweken. Op korte termijn neemt de spanning af, op lange termijn blijft de angst bestaan of groeit hij.</dd>
+<dt>Veiligheidsgedrag</dt><dd>De situatie wordt aangegaan, maar met een beschermende handeling. Het succes wordt aan die handeling toegeschreven.</dd>
+<dt>Zelfgerichte aandacht</dt><dd>Clark en Wells (1995): bij sociale angst richten mensen hun aandacht naar binnen en vormen een negatief beeld van hoe ze overkomen. Ze zien de reacties van anderen daardoor juist minder goed.</dd>
+<dt>Selectieve aandacht</dt><dd>De aandacht gaat automatisch naar wat de overtuiging bevestigt.</dd>
+<dt>Piekeren en malen</dt><dd>Susan Nolen-Hoeksema (1991) liet zien dat herhaald nadenken over de oorzaken en gevolgen van somberheid de somberheid verlengt. Het voelt als probleemoplossing, maar het lost niets op.</dd>
+</dl>
+<h4>De selffulfilling prophecy</h4>
+<p>Socioloog Robert Merton beschreef in 1948 de zichzelf vervullende voorspelling: een onjuiste verwachting leidt tot gedrag dat de verwachting alsnog waar maakt. Iemand die verwacht afgewezen te worden, gedraagt zich afstandelijk en wordt daardoor minder hartelijk benaderd. De overtuiging lijkt bevestigd. Rosenthal en Jacobson (1968) beschreven het <em>Pygmalion-effect</em>: verwachtingen van leraren beïnvloedden de prestaties van leerlingen. De omvang van dat effect is later bijgesteld, maar het mechanisme is goed gedocumenteerd. In onderhandelingen werkt het net zo: wie wantrouwen verwacht, gedraagt zich zo dat wantrouwen ontstaat.</p>
+<h4>Waarom exposure werkt</h4>
+<p>Lange tijd was de verklaring <em>gewenning</em> (habituatie): bij langdurige blootstelling zakt de angst vanzelf. Michelle Craske en collega's (2014) stelden een ander mechanisme voor: <em>inhibitoir leren</em>. De oude angstassociatie verdwijnt niet, maar er wordt een nieuwe, concurrerende associatie geleerd: "deze situatie is veilig". Cruciaal daarbij is <em>verwachtingsschending</em>. Hoe groter het verschil tussen wat iemand vreesde en wat er werkelijk gebeurde, hoe sterker het nieuwe leren. Dit sluit precies aan bij Becks idee van het gedragsexperiment.</p>
+<h4>Twee soorten gedragsexperimenten</h4>
+<p>Bennett-Levy en collega's onderscheiden twee soorten:</p>
+<ul>
+<li><strong>Hypothesetoetsend.</strong> Er is een duidelijke voorspelling ("als ik mijn mening geef, wordt die weggewuifd"), die met een experiment wordt getoetst.</li>
+<li><strong>Ontdekkend.</strong> Er is nog geen duidelijke voorspelling. Het experiment is bedoeld om te zien wat er gebeurt ("wat gebeurt er als ik eens niets voorbereid?").</li>
+</ul>
+<p>Ook observatie-experimenten tellen mee: kijken hoe anderen reageren als iemand anders iets doet wat de cliënt vreest, of korte enquêtes onder vertrouwde mensen.</p>
+<h4>De achtergrond van gedragsactivatie</h4>
+<p>Peter Lewinsohn beschreef in de jaren zeventig depressie als een tekort aan positieve bekrachtiging. Wie minder plezierige en zinvolle ervaringen heeft, trekt zich terug, en wie zich terugtrekt, krijgt nog minder positieve ervaringen. Beck nam dit in 1979 op in zijn behandeling met het <em>activiteitenschema</em>, waarbij cliënten activiteiten bijhouden en beoordelen op <strong>plezier</strong> en <strong>beheersing</strong> (het gevoel iets te kunnen). Juist dat tweede, beheersing, wordt vaak over het hoofd gezien: een kleine taak afronden kan een depressieve stemming sterker beïnvloeden dan iets leuks doen.</p>
+</section>
+      <section class="verdieping" aria-label="Verdieping"><div class="vlab">Verdieping</div>
+<h4>De ontstaansgeschiedenis van Becks onderzoek</h4>
+<p>Beck begon eind jaren vijftig met het onderzoeken van dromen van depressieve patiënten. Volgens de psychoanalyse zouden die dromen een behoefte aan lijden laten zien (masochisme). De dromen bevatten inderdaad veel thema's van verlies en afwijzing. Maar in laboratoriumtaken reageerden depressieve patiënten juist positief op succes, wat niet past bij een behoefte om te lijden. Beck concludeerde dat de dromen geen verborgen wens toonden, maar een negatief zelfbeeld. Dat was het begin van het cognitieve model.</p>
+<h4>Meetinstrumenten</h4>
+<p>Beck was ook een bouwer van meetinstrumenten. De <em>Beck Depression Inventory</em> (BDI, 1961; herzien als BDI-II in 1996) is wereldwijd een van de meest gebruikte vragenlijsten voor depressie. Later volgden de <em>Beck Anxiety Inventory</em> en de <em>Beck Hopelessness Scale</em> (1974). Dat laatste instrument leverde een belangrijke klinische bevinding op: hopeloosheid voorspelde suïcide beter dan de ernst van de depressie zelf. Daarmee werd een cognitie (de verwachting over de toekomst) een van de belangrijkste risicofactoren in de psychiatrie.</p>
+<h4>De eerste grote studies</h4>
+<p>In 1977 publiceerden Rush, Beck en collega's een studie waarin cognitieve therapie het minstens even goed deed als het antidepressivum imipramine. Dat was de eerste keer dat een psychotherapie in zo'n vergelijking standhield. In 1979 verscheen het behandelboek <i>Cognitive Therapy of Depression</i>, waarin de therapie stap voor stap werd beschreven. Daardoor kon ze door anderen worden onderwezen en onderzocht. Dit draaiboekmodel werd de standaard voor psychotherapieonderzoek.</p>
+<h4>Sociotropie en autonomie</h4>
+<p>In 1983 beschreef Beck twee persoonlijkheidsdimensies die kwetsbaar maken voor depressie. <strong>Sociotropie</strong>: een sterke afhankelijkheid van relaties en goedkeuring. Mensen met hoge sociotropie raken vooral uit balans door afwijzing of verlies. <strong>Autonomie</strong>: een sterke behoefte aan onafhankelijkheid en prestatie. Mensen met hoge autonomie raken vooral uit balans door falen of controleverlies. Dit is een uitwerking van het diathese-stressmodel: de kwetsbaarheid en de stressor moeten bij elkaar passen.</p>
+<h4>Van schema's naar modi</h4>
+<p>In 1996 breidde Beck zijn theorie uit met het begrip <em>modus</em>. Een modus is een samenhangend pakket van cognitieve, emotionele, motivationele, gedrags- en lichamelijke schema's die samen worden geactiveerd. Een "gevaarmodus" omvat bijvoorbeeld de gedachte aan gevaar, angst, de neiging te vluchten en de lichamelijke stressreactie. Hiermee probeerde Beck te verklaren waarom reacties soms zo totaal en moeilijk te sturen zijn.</p>
+<h4>Bias in informatieverwerking</h4>
+<p>Experimenteel onderzoek bevestigde veel van Becks klinische observaties:</p>
+<ul>
+<li><strong>Aandachtsbias.</strong> MacLeod, Mathews en Tata (1986) lieten met de <em>dot-probe-taak</em> zien dat angstige mensen hun aandacht sneller naar bedreigende woorden richten.</li>
+<li><strong>Interpretatiebias.</strong> Ambigue situaties worden bij angst vaker als bedreigend uitgelegd.</li>
+<li><strong>Geheugenbias.</strong> Bij depressie worden negatieve herinneringen makkelijker opgehaald (stemmingscongruent geheugen).</li>
+</ul>
+<h4>De neurowetenschappelijke kant</h4>
+<p>In 2011 publiceerden Disner, Beevers, Haigh en Beck een overzicht in <i>Nature Reviews Neuroscience</i> over de hersenmechanismen achter het cognitieve model van depressie. Kort samengevat: bij depressie reageren gebieden die emotionele prikkels verwerken, zoals de amygdala, sterker op negatieve informatie (bottom-up). Tegelijk zijn delen van de prefrontale cortex, die normaal regulerend werken, minder actief (top-down). Het cognitieve model kreeg zo een neurobiologische onderbouwing, al blijft het verband tussen hersenactiviteit en ervaren gedachten complex.</p>
+<h4>Nuances in het bewijs</h4>
+<p>Pim Cuijpers, een Nederlandse onderzoeker die een van de grootste databases van psychotherapiestudies beheert, liet zien dat de effecten van psychotherapie bij depressie, waaronder CGT, waarschijnlijk wat overschat zijn. Oorzaken zijn publicatiebias (negatieve studies worden minder vaak gepubliceerd) en een beperkte kwaliteit van sommige studies. CGT blijft effectief, maar de effecten zijn bescheidener dan vroege studies suggereerden. In Nederland staat CGT in de zorgstandaarden voor depressie en angststoornissen als behandeling van eerste keus.</p>
+</section>
+      <section class="verdieping" aria-label="Verdieping"><div class="vlab">Verdieping</div>
+<h4>ACT in detail: psychologische flexibiliteit</h4>
+<p>Acceptance and Commitment Therapy rust op de <em>relationele frametheorie</em>, een gedragsanalytische theorie over taal. De kern: door taal kunnen mensen pijn ervaren door alleen aan iets te denken, en raken ze verstrikt in hun eigen woorden. Het doel van ACT is <strong>psychologische flexibiliteit</strong>, beschreven in zes processen (de "hexaflex"):</p>
+<dl class="terms">
+<dt>Acceptatie</dt><dd>Ruimte maken voor onaangename gevoelens in plaats van ze te bestrijden.</dd>
+<dt>Defusie</dt><dd>Afstand nemen van gedachten: een gedachte zien als woorden, niet als werkelijkheid.</dd>
+<dt>Contact met het moment</dt><dd>Aandacht voor wat er nu gebeurt.</dd>
+<dt>Zelf als context</dt><dd>Het perspectief van de waarnemer die gedachten en gevoelens heeft, maar er niet mee samenvalt.</dd>
+<dt>Waarden</dt><dd>Wat iemand werkelijk belangrijk vindt, als kompas.</dd>
+<dt>Toegewijd handelen</dt><dd>Gedrag in lijn met die waarden, ook als het ongemak oplevert.</dd>
+</dl>
+<h4>Schematherapie in detail</h4>
+<p>Jeffrey Young was een leerling van Beck. Hij merkte dat standaard cognitieve therapie bij chronische en persoonlijkheidsproblematiek minder goed werkte. Hij beschreef achttien <em>vroege onaangepaste schema's</em> in vijf domeinen, die ontstaan als basisbehoeften in de jeugd onvoldoende vervuld zijn. Voorbeelden zijn verlating, wantrouwen, emotionele verwaarlozing, mislukking en meedogenloze normen.</p>
+<p>Later werd het <em>modusmodel</em> centraal. Modi zijn emotionele toestanden die op een bepaald moment de overhand hebben: kindmodi (zoals het kwetsbare of het boze kind), kritische oudermodi (de innerlijke criticus), copingmodi (zoals de afstandelijke beschermer) en de gezonde volwassene. Een kenmerkende techniek is <em>beperkte herouderschap</em>: de therapeut biedt binnen professionele grenzen een deel van wat vroeger ontbrak. Daarnaast worden <em>imaginatie met rescripting</em> (een herinnering opnieuw beleven en een andere afloop geven) en stoelendialogen gebruikt.</p>
+<p>Nederland speelde een grote rol in het onderzoek. Giesen-Bloo, Arntz en collega's (2006) lieten in een gerandomiseerde studie zien dat schematherapie bij borderline-persoonlijkheidsstoornis tot meer herstel leidde dan transference-focused psychotherapy. Arnoud Arntz is wereldwijd een van de leidende onderzoekers in dit veld.</p>
+<h4>Metacognitieve therapie in detail</h4>
+<p>Adrian Wells stelt dat het probleem niet zit in de inhoud van gedachten, maar in een patroon dat hij het <em>cognitief-attentioneel syndroom</em> noemt. Dat bestaat uit piekeren en malen, voortdurend letten op dreiging, en coping die averechts werkt (zoals gedachten onderdrukken). Dit patroon wordt in stand gehouden door twee soorten metacognitieve overtuigingen:</p>
+<ul>
+<li><strong>Positieve</strong>: "Piekeren helpt me voorbereid te zijn."</li>
+<li><strong>Negatieve</strong>: "Mijn piekeren is oncontroleerbaar en gevaarlijk."</li>
+</ul>
+<p>De behandeling werkt niet aan de vraag of een zorg terecht is. Ze werkt aan het besef dat piekeren een keuze is die je kunt uitstellen, en traint de aandacht met technieken als de <em>Attention Training Technique</em> en <em>losgekoppelde aandachtigheid</em> (detached mindfulness).</p>
+<h4>MBCT en terugvalpreventie</h4>
+<p>Teasdale, Segal en Williams (2000) lieten zien dat mindfulness-based cognitive therapy het risico op terugval halveerde bij mensen met drie of meer eerdere depressies. Een grote meta-analyse op basis van individuele patiëntgegevens (Kuyken en collega's, 2016) bevestigde dat MBCT terugval vermindert. De gedachte erachter: na herstel blijft een verhoogde gevoeligheid bestaan, waarbij een kleine stemmingsdaling oude denkpatronen weer kan activeren. Mindfulness leert die patronen vroeg op te merken zonder erin mee te gaan.</p>
+<h4>Compassiegerichte therapie</h4>
+<p>Paul Gilbert ontwikkelde compassion-focused therapy voor mensen met veel schaamte en zelfkritiek. Hij beschrijft drie emotieregulatiesystemen: het <strong>dreigingssysteem</strong> (bescherming, angst, boosheid), het <strong>aandrijvingssysteem</strong> (presteren, verwerven) en het <strong>kalmeringssysteem</strong> (veiligheid, verbondenheid, rust). Bij veel cliënten is het dreigingssysteem overactief en het kalmeringssysteem onderontwikkeld. Rationeel weten dat een gedachte niet klopt, helpt dan weinig zolang het gevoel van veiligheid ontbreekt.</p>
+<h4>Mentaliseren in detail</h4>
+<p>Fonagy en Bateman beschrijven drie manieren van niet-mentaliseren, die optreden als de spanning oploopt:</p>
+<dl class="terms">
+<dt>Psychische equivalentie</dt><dd>Wat ik denk of voel, is werkelijkheid. "Ik voel me afgewezen, dus je wijst me af."</dd>
+<dt>Doen-alsof-modus</dt><dd>Praten over gevoelens zonder dat er werkelijk contact met de ervaring is. Intellectualiseren.</dd>
+<dt>Teleologische modus</dt><dd>Alleen wat zichtbaar gebeurt, telt. "Als je echt om me gaf, zou je dit doen."</dd>
+</dl>
+<p>Een kernbegrip is <em>epistemisch vertrouwen</em>: het vertrouwen dat informatie van een ander betrouwbaar en relevant is voor jou. Zonder dat vertrouwen komt geen enkele uitleg binnen, hoe juist ook. Dit verklaart waarom de relatie voorwaarde is voor leren.</p>
+<h4>Naar procesgericht werken</h4>
+<p>Stefan Hofmann en Steven Hayes, vertegenwoordigers van de tweede en derde generatie, stelden in 2019 samen voor om af te stappen van vaste protocollen per diagnose. In plaats daarvan zou het accent moeten liggen op de onderliggende <em>processen</em> die verandering veroorzaken, zoals vermijding, piekeren of zelfkritiek. Dit heet <em>process-based therapy</em>. Daarmee komen de generaties weer dichter bij elkaar.</p>
+</section>
+      <section class="verdieping" aria-label="Verdieping"><div class="vlab">Verdieping</div>
+<h4>De ontmantelingsstudie van Jacobson</h4>
+<p>Neil Jacobson en collega's (1996) vergeleken drie varianten van Becks therapie bij depressie: alleen gedragsactivatie, gedragsactivatie met werken aan automatische gedachten, en de volledige therapie inclusief werken aan kernovertuigingen. De drie varianten bleken ongeveer even effectief, ook bij de follow-up. Dimidjian en collega's (2006) vonden daarna dat gedragsactivatie bij ernstig depressieve patiënten zelfs beter presteerde dan cognitieve therapie en vergelijkbaar met medicatie. Dit leidde tot de vraag of het cognitieve deel wel de werkzame factor is.</p>
+<h4>Bewijs dat wél voor Beck pleit</h4>
+<p>Tang en DeRubeis (1999) ontdekten het verschijnsel <em>sudden gains</em>: plotselinge grote verbeteringen tussen twee sessies. Ze vonden dat in de sessie vlak voor zo'n sprong vaak duidelijke cognitieve verandering plaatsvond. Cliënten met een sudden gain hielden hun winst bovendien vaker vast. Dit ondersteunt het idee dat cognitieve verandering een rol speelt, al bewijst het nog geen oorzakelijk verband. Het debat laat zien hoe moeilijk het is werkingsmechanismen van therapie aan te tonen.</p>
+<h4>Het allegiance-effect</h4>
+<p>Lester Luborsky en collega's (1999) toonden aan dat de voorkeur van de onderzoeker voor een bepaalde therapie (<em>allegiance</em>) een groot deel van de verschillen tussen therapieën in studies verklaart. Studies uitgevoerd door aanhangers van CGT vinden vaker dat CGT beter is, en omgekeerd. Dit is geen bewuste fraude, maar een subtiele invloed op opzet, uitvoering en interpretatie. Het onderstreept het belang van onafhankelijke replicatie.</p>
+<h4>De therapeut als factor</h4>
+<p>Onderzoek naar therapeuteffecten (onder andere Baldwin, Wampold en Imel, 2007) laat zien dat sommige therapeuten structureel betere resultaten halen dan andere, ongeacht de methode. Het verschil zit vooral in het vermogen om een werkrelatie op te bouwen met uiteenlopende cliënten, ook met moeilijke, en om breuken in die relatie te herstellen.</p>
+<h4>Culturele grenzen</h4>
+<p>Joseph Henrich en collega's (2010) wezen erop dat het meeste psychologische onderzoek is gedaan met mensen uit <em>WEIRD</em>-samenlevingen: Western, Educated, Industrialized, Rich, Democratic. Wat als "realistisch" of "rationeel" denken geldt, is deels cultureel bepaald. In collectivistische culturen wordt het eigen zelf bijvoorbeeld meer in relatie tot de groep gezien, wat invloed heeft op wat als personaliseren of als gepaste verantwoordelijkheid geldt. Cultureel aangepaste versies van CGT werken doorgaans beter dan onaangepaste.</p>
+<h4>De filosofische kritiek: wie bepaalt wat realistisch is?</h4>
+<p>Cognitieve therapie gaat uit van een toetsbare werkelijkheid waartegen gedachten kunnen worden afgezet. Constructivistische psychologen zoals Michael Mahoney stelden dat mensen hun werkelijkheid altijd mede construeren, en dat er niet één juiste interpretatie is. Een radicale versie van die kritiek zegt dat cognitieve therapie het risico loopt mensen aan te passen aan omstandigheden die eigenlijk veranderd moeten worden, zoals onrechtvaardige werkomstandigheden. De meeste hedendaagse cognitieve therapeuten nemen een tussenpositie in: ze spreken van <em>helpende</em> en <em>evenwichtige</em> gedachten in plaats van <em>juiste</em> gedachten, en erkennen dat soms de situatie verandering nodig heeft in plaats van het denken.</p>
+<h4>Verwantschap met de filosofie</h4>
+<p>Interessant is hoe de debatten in dit vak oude filosofische vragen herhalen. Het rationalisme (de rede kan de werkelijkheid kennen) staat tegenover het constructivisme (we maken onze werkelijkheid). De Stoa zag het beheersen van oordelen als weg naar innerlijke vrijheid. Het boeddhisme, dat via mindfulness de derde generatie beïnvloedde, ziet het niet-vastgrijpen aan gedachten als weg. Becks therapie en de derde generatie kunnen zo ook gelezen worden als twee filosofische tradities die elkaar in de spreekkamer ontmoeten.</p>
+</section>
+      <section class="verdieping" aria-label="Verdieping"><div class="vlab">Verdieping</div>
+<h4>Casusconceptualisatie in drie niveaus</h4>
+<p>Kuyken, Padesky en Dudley beschrijven conceptualisatie als een "smeltkroes" waarin de ervaring van de cliënt, theorie en onderzoek samenkomen. Ze onderscheiden drie niveaus die geleidelijk dieper gaan:</p>
+<ol>
+<li><strong>Beschrijvend.</strong> Wat zijn de problemen, in de woorden van de cliënt, en hoe zien ze eruit in termen van gedachten, gevoelens, lichaam en gedrag?</li>
+<li><strong>Verklarend in doorsnede.</strong> Welke triggers en instandhoudende factoren houden het probleem nu in stand?</li>
+<li><strong>Verklarend in de lengte.</strong> Hoe hangt dit samen met overtuigingen en ervaringen uit de levensloop?</li>
+</ol>
+<p>Een bijzonder kenmerk van hun benadering is de nadruk op <strong>krachten</strong>. Een conceptualisatie beschrijft niet alleen wat er misgaat, maar ook welke vaardigheden, waarden en hulpbronnen iemand al heeft. Dat vergroot de veerkracht en maakt het model minder eenzijdig.</p>
+<h4>De werkrelatie volgens Bordin</h4>
+<p>Edward Bordin (1979) beschreef de werkrelatie, de <em>working alliance</em>, in drie elementen: overeenstemming over de <strong>doelen</strong>, overeenstemming over de <strong>taken</strong> om die doelen te bereiken, en een <strong>band</strong> van vertrouwen en respect. Dit model is niet aan één therapievorm gebonden en werkt ook in coaching en zakelijke samenwerking. Een contractrelatie die vastloopt, mist vaak overeenstemming over één van deze drie, ook als het contract zelf helder is.</p>
+<h4>Breuken en herstel</h4>
+<p>Jeremy Safran en Christopher Muran onderzochten breuken in de werkrelatie. Ze onderscheiden <em>terugtrekkende</em> breuken (de cliënt wordt stil, gaat mee zonder echt mee te doen) en <em>confronterende</em> breuken (de cliënt uit kritiek of boosheid). Het herstellen van zo'n breuk, door die open en zonder verdediging te bespreken, blijkt een van de krachtigste momenten in een behandeling. Lichaamstaal speelt hier een grote rol, omdat terugtrekkende breuken vaak eerst non-verbaal zichtbaar worden: minder oogcontact, een vlakkere stem, een lichaam dat zich afwendt.</p>
+<h4>Cognitieve gedragscoaching</h4>
+<p>Cognitieve principes zijn vertaald naar coaching, onder anderen door Stephen Palmer en Anthony Grant. Grant (2003) vond in een gecontroleerde studie dat cognitief-gedragsmatige coaching het bereiken van doelen en het welzijn verbeterde bij een niet-klinische groep. Het verschil met therapie zit in het vertrekpunt: in coaching gaat het om groei en prestatie bij mensen die in principe goed functioneren, niet om het behandelen van klachten. De technieken lijken op elkaar, het doel en de diepgang verschillen.</p>
+<h4>Cognitie in onderhandeling</h4>
+<p>Fisher en Ury maakten in <i>Getting to Yes</i> (1981) het onderscheid tussen <strong>posities</strong> (wat iemand zegt te willen) en <strong>belangen</strong> (waarom). Vanuit Beck kan daar een derde laag onder worden gelegd: de <strong>overtuigingen</strong> die bepalen welke belangen iemand voelt en hoe hij de ander ziet. Een partij die gelooft "als ik toegeef, word ik uitgebuit" verdedigt een positie die zakelijk weinig oplevert, omdat ze een dieper belang beschermt: niet kwetsbaar zijn. Daniel Shapiro (Harvard) beschreef in <i>Negotiating the Nonnegotiable</i> (2016) hoe identiteit en emotie conflicten verankeren op een manier die met puur zakelijke argumenten niet te doorbreken is.</p>
+<h4>Beroepsmatige kaders in Nederland</h4>
+<p>In Nederland is de Vereniging voor Gedragstherapie en Cognitieve Therapie (VGCt) de beroepsvereniging. Zij registreert cognitief gedragstherapeuten op basis van opleiding, supervisie en praktijkervaring. Het werken met diagnoses en behandelingen valt onder de wet BIG en de beroepscodes van onder meer het NIP. Coaching valt daarbuiten, wat betekent dat een coach die cognitieve principes gebruikt, zorgvuldig de grens bewaakt naar behandeling en zo nodig doorverwijst.</p>
+<h4>Het lange leren van een professional</h4>
+<p>Onderzoek naar expertise in psychotherapie (onder andere Tony Rousmaniere en Scott Miller) laat zien dat ervaring alleen een professional niet vanzelf beter maakt. Wat wel samenhangt met betere resultaten, is gerichte reflectie op het eigen werk, feedback van cliënten en supervisie gedurende de hele loopbaan. Beck zelf bleef tot op hoge leeftijd onderzoek doen en zijn model aanpassen. Op zijn negentigste werkte hij nog aan een nieuwe therapievorm voor mensen met ernstige psychiatrische problemen. Hij is in die zin een voorbeeld van wat levenslang leren in dit vak betekent.</p>
+</section>
+      <section class="kijken" aria-label="Kijken"><div class="vlab">Kijken op YouTube</div><ul><li><a href="https://www.youtube.com/watch?v=xrX43cCW6uE" target="_blank" rel="noopener"><span class="play" aria-hidden="true"></span><span class="vt"><b>Aaron Beck on Cognitive Therapy</b><small>Geanimeerd interview met Beck zelf · Engels</small></span></a></li><li><a href="https://www.youtube.com/watch?v=IlmaA5nToYM" target="_blank" rel="noopener"><span class="play" aria-hidden="true"></span><span class="vt"><b>What is Cognitive Behavior Therapy (CBT)?</b><small>Judith Beck legt de basis uit · Beck Institute · Engels</small></span></a></li><li><a href="https://www.youtube.com/watch?v=nfdHkaGq35k" target="_blank" rel="noopener"><span class="play" aria-hidden="true"></span><span class="vt"><b>Historical Roots of CBT</b><small>Judith Beck over wie haar vader beïnvloedde · Engels</small></span></a></li></ul><a class="more" href="https://www.youtube.com/results?search_query=cognitief+model+Beck+uitleg" target="_blank" rel="noopener">Meer video's over dit onderwerp op YouTube →</a></section>
+      <section class="kijken" aria-label="Kijken"><div class="vlab">Kijken op YouTube</div><ul><li><a href="https://www.youtube.com/watch?v=lssxGBuOgYs" target="_blank" rel="noopener"><span class="play" aria-hidden="true"></span><span class="vt"><b>Dr. Aaron Beck's Transition from Psychoanalysis to Cognitive Theory</b><small>Beck vertelt hoe hij de automatische gedachten ontdekte · Engels</small></span></a></li><li><a href="https://www.youtube.com/watch?v=mU0Z5NkUQk0" target="_blank" rel="noopener"><span class="play" aria-hidden="true"></span><span class="vt"><b>Automatic Thoughts: Using the "Testing Your Thoughts" worksheet</b><small>Judith Beck over het onderzoeken van gedachten · Engels</small></span></a></li><li><a href="https://www.youtube.com/watch?v=ANd8sMsT9vg" target="_blank" rel="noopener"><span class="play" aria-hidden="true"></span><span class="vt"><b>"Yes, but..." Socratic Dialogue Fix</b><small>Christine Padesky over de Socratische dialoog · Engels</small></span></a></li></ul><a class="more" href="https://www.youtube.com/results?search_query=automatic+thoughts+CBT" target="_blank" rel="noopener">Meer video's over dit onderwerp op YouTube →</a></section>
+      <section class="kijken" aria-label="Kijken"><div class="vlab">Kijken op YouTube</div><ul><li><a href="https://www.youtube.com/watch?v=CjVQJdIrDJ0" target="_blank" rel="noopener"><span class="play" aria-hidden="true"></span><span class="vt"><b>Thinking, Fast and Slow (Talks at Google)</b><small>Daniel Kahneman over Systeem 1 en Systeem 2 · Engels</small></span></a></li><li><a href="https://www.youtube.com/watch?v=_dAPW9j3UW4" target="_blank" rel="noopener"><span class="play" aria-hidden="true"></span><span class="vt"><b>Cognitive Restructuring in CBT</b><small>Aaron Beck over het herstructureren van gedachten · Engels</small></span></a></li></ul><a class="more" href="https://www.youtube.com/results?search_query=cognitive+distortions+explained" target="_blank" rel="noopener">Meer video's over dit onderwerp op YouTube →</a></section>
+      <section class="kijken" aria-label="Kijken"><div class="vlab">Kijken op YouTube</div><ul><li><a href="https://www.youtube.com/watch?v=xitheqH8Wxk" target="_blank" rel="noopener"><span class="play" aria-hidden="true"></span><span class="vt"><b>How do we test this thought?</b><small>Christine Padesky over het niveau van een gedachte en de passende interventie · Engels</small></span></a></li><li><a href="https://www.youtube.com/watch?v=iQUANbPWu0o" target="_blank" rel="noopener"><span class="play" aria-hidden="true"></span><span class="vt"><b>Hoe ontstaan schema's?</b><small>Korte animatie over het ontstaan van schema's · Nederlands</small></span></a></li></ul><a class="more" href="https://www.youtube.com/results?search_query=core+beliefs+CBT+Judith+Beck" target="_blank" rel="noopener">Meer video's over dit onderwerp op YouTube →</a></section>
+      <section class="kijken" aria-label="Kijken"><div class="vlab">Kijken op YouTube</div><ul><li><a href="https://www.youtube.com/watch?v=0gks6ceq4eQ" target="_blank" rel="noopener"><span class="play" aria-hidden="true"></span><span class="vt"><b>You aren't at the mercy of your emotions</b><small>Lisa Feldman Barrett, TED, over hoe het brein emoties construeert · Engels</small></span></a></li><li><a href="https://www.youtube.com/watch?v=J9i-9_QuetA" target="_blank" rel="noopener"><span class="play" aria-hidden="true"></span><span class="vt"><b>Dr. Paul Ekman on Expression and Gesture</b><small>Ekman over gezichtsuitdrukkingen, emotie en misleiding · Engels</small></span></a></li><li><a href="https://www.youtube.com/watch?v=-cdtqBkuxvQ" target="_blank" rel="noopener"><span class="play" aria-hidden="true"></span><span class="vt"><b>Your body language may shape who you are</b><small>Amy Cuddy, TED. Kijk dit naast module 9: de hormoonclaims bleken bij herhaling niet stand te houden · Engels</small></span></a></li></ul><a class="more" href="https://www.youtube.com/results?search_query=interoception+emotion+appraisal" target="_blank" rel="noopener">Meer video's over dit onderwerp op YouTube →</a></section>
+      <section class="kijken" aria-label="Kijken"><div class="vlab">Kijken op YouTube</div><ul><li><a href="https://www.youtube.com/watch?v=siKu_SutPYY" target="_blank" rel="noopener"><span class="play" aria-hidden="true"></span><span class="vt"><b>Behavioral Experiments in Cognitive Therapy</b><small>Aaron Beck over gedragsexperimenten · Engels</small></span></a></li><li><a href="https://www.youtube.com/watch?v=YbCSgon47UM" target="_blank" rel="noopener"><span class="play" aria-hidden="true"></span><span class="vt"><b>Padesky on CBT for Social Anxiety</b><small>Christine Padesky over sociale angst en veiligheidsgedrag · Engels</small></span></a></li></ul><a class="more" href="https://www.youtube.com/results?search_query=safety+behaviours+behavioural+experiments+CBT" target="_blank" rel="noopener">Meer video's over dit onderwerp op YouTube →</a></section>
+      <section class="kijken" aria-label="Kijken"><div class="vlab">Kijken op YouTube</div><ul><li><a href="https://www.youtube.com/watch?v=POYXzA-gS4U" target="_blank" rel="noopener"><span class="play" aria-hidden="true"></span><span class="vt"><b>A Conversation with Aaron T. Beck</b><small>Interview, Annual Review of Clinical Psychology · Engels</small></span></a></li><li><a href="https://www.youtube.com/watch?v=GscrsPw313c" target="_blank" rel="noopener"><span class="play" aria-hidden="true"></span><span class="vt"><b>Origins of Cognitive Therapy</b><small>Beck bij de Lasker-prijs (2006) over het begin van zijn werk · Engels</small></span></a></li><li><a href="https://www.youtube.com/watch?v=rAAFVtar-oo" target="_blank" rel="noopener"><span class="play" aria-hidden="true"></span><span class="vt"><b>Cognitive and Behavioral Techniques in the Treatment of Depression</b><small>Aaron en Judith Beck samen in een workshop · Engels</small></span></a></li></ul><a class="more" href="https://www.youtube.com/results?search_query=Aaron+Beck+depression+research" target="_blank" rel="noopener">Meer video's over dit onderwerp op YouTube →</a></section>
+      <section class="kijken" aria-label="Kijken"><div class="vlab">Kijken op YouTube</div><ul><li><a href="https://www.youtube.com/watch?v=o79_gmO5ppg" target="_blank" rel="noopener"><span class="play" aria-hidden="true"></span><span class="vt"><b>Psychological flexibility: How love turns pain into purpose</b><small>Steven Hayes, TEDx · Engels</small></span></a></li><li><a href="https://www.youtube.com/watch?v=rCp1l16GCXI" target="_blank" rel="noopener"><span class="play" aria-hidden="true"></span><span class="vt"><b>The Struggle Switch</b><small>Russ Harris, korte animatie over acceptatie · Engels</small></span></a></li><li><a href="https://www.youtube.com/watch?v=mdknWwShC6o" target="_blank" rel="noopener"><span class="play" aria-hidden="true"></span><span class="vt"><b>Schema therapy: an introduction</b><small>Inleidende film over schematherapie · Engels</small></span></a></li><li><a href="https://www.youtube.com/watch?v=2DfGPM0g9Js" target="_blank" rel="noopener"><span class="play" aria-hidden="true"></span><span class="vt"><b>Peter Fonagy: Mentalisation Based Theory</b><small>Fonagy over de geschiedenis van mentaliseren · Engels</small></span></a></li></ul><a class="more" href="https://www.youtube.com/results?search_query=ACT+acceptance+commitment+therapy+uitleg" target="_blank" rel="noopener">Meer video's over dit onderwerp op YouTube →</a></section>
+      <section class="kijken" aria-label="Kijken"><div class="vlab">Kijken op YouTube</div><ul><li><a href="https://www.youtube.com/watch?v=r47bvI4LxSk" target="_blank" rel="noopener"><span class="play" aria-hidden="true"></span><span class="vt"><b>What Makes Psychotherapy Work: The Humanistic Elements</b><small>Bruce Wampold over gemeenschappelijke factoren · Engels</small></span></a></li><li><a href="https://www.youtube.com/watch?v=I_dQtoagR2k" target="_blank" rel="noopener"><span class="play" aria-hidden="true"></span><span class="vt"><b>From strong evidence to what makes psychotherapy work</b><small>Wampold met Belgische experts over werkzame factoren · Engels</small></span></a></li></ul><a class="more" href="https://www.youtube.com/results?search_query=common+factors+psychotherapy+Wampold" target="_blank" rel="noopener">Meer video's over dit onderwerp op YouTube →</a></section>
+      <section class="kijken" aria-label="Kijken"><div class="vlab">Kijken op YouTube</div><ul><li><a href="https://www.youtube.com/watch?v=jE5Lk7LLCF0" target="_blank" rel="noopener"><span class="play" aria-hidden="true"></span><span class="vt"><b>CBT in 2024</b><small>Judith Beck over hoe CGT zich de afgelopen decennia ontwikkelde · Engels</small></span></a></li><li><a href="https://www.youtube.com/watch?v=OlaHnCCi8kE" target="_blank" rel="noopener"><span class="play" aria-hidden="true"></span><span class="vt"><b>Mentalization Based Therapy (MBT)</b><small>Anthony Bateman en Peter Fonagy in gesprek · Engels</small></span></a></li></ul><a class="more" href="https://www.youtube.com/results?search_query=working+alliance+Bordin+therapeutic+relationship" target="_blank" rel="noopener">Meer video's over dit onderwerp op YouTube →</a></section>
+      <div class="bron"><b>Bronnen</b> · Judith S. Beck, <i>Cognitive Behavior Therapy: Basics and Beyond</i> (3e druk, 2020), hfst. 1–3 · Greenberger &amp; Padesky, <i>Mind Over Mood</i> (2e druk, 2015)</div>
+    </article>
+
+    <article class="mod" id="m2">
+      <div class="modhead"><span class="badge">MBO · Module 2</span></div>
+      <h3>Automatische gedachten: de stem die je niet hoort praten</h3>
+      <p>Beck ontdekte dat zijn patiënten naast hun hardop gesproken verhaal een tweede stroom gedachten hadden. Die stroom gaat snel, is kort, voelt vanzelfsprekend en wordt zelden bevraagd. Hij noemde ze <em>automatische gedachten</em>. Ze komen niet als zin ("Ik verwacht dat deze klant mij zal afwijzen") maar als flits: "Daar gaan we weer." Soms zijn het niet eens woorden maar beelden: een kort plaatje van de vergadering die uit de hand loopt.</p>
+      <h4>Vier kenmerken</h4>
+      <ul>
+        <li><strong>Snel.</strong> Ze verschijnen binnen een fractie van een seconde na de situatie.</li>
+        <li><strong>Plausibel.</strong> Ze voelen als feit, niet als mening.</li>
+        <li><strong>Telegrafisch.</strong> Kort, vaak half af, soms een beeld.</li>
+        <li><strong>Herkenbaar aan het gevoel.</strong> Een plotselinge verandering in stemming of lichaam is het signaal dat er net een automatische gedachte langskwam.</li>
+      </ul>
+      <p class="kern">Beck leerde zijn patiënten de emotie als alarmbel te gebruiken: waar het gevoel omslaat, zit een gedachte die het onderzoeken waard is.</p>
+      <h4>Registreren voordat je verandert</h4>
+      <p>De eerste stap in cognitieve therapie is nooit "denk positiever". De eerste stap is opmerken. Beck liet patiënten een dagboek bijhouden in kolommen: situatie, gevoel (met een intensiteit van 0 tot 100), automatische gedachte en hoe sterk ze die geloofden. Pas later kwam er een kolom bij voor een evenwichtiger gedachte. Wie meteen wil veranderen, slaat het leren kijken over.</p>
+      <div class="tablewrap"><table>
+        <thead><tr><th>Situatie</th><th>Gevoel (0–100)</th><th>Automatische gedachte</th><th>Geloof (%)</th></tr></thead>
+        <tbody>
+          <tr><td>Klant leest contract zwijgend door</td><td>Onrust 70</td><td>"Hij vindt het waardeloos."</td><td>80%</td></tr>
+          <tr><td>Coachee kijkt weg bij een vraag</td><td>Twijfel 40</td><td>"Ik ga te snel."</td><td>60%</td></tr>
+          <tr><td>Collega reageert niet op voorstel</td><td>Irritatie 55</td><td>"Mijn werk telt hier niet."</td><td>70%</td></tr>
+        </tbody>
+      </table></div>
+      <div class="praktijk"><span class="lab">Zo zie je het in de praktijk</span>
+        <p>Als specialist in lichaamstaal heb je een voorsprong: jij ziet het moment van omslag bij een ander vaak eerder dan die persoon het zelf merkt. Een korte verstrakking rond de mond, een adem die stokt. Dat is het moment waarop bij de ander een automatische gedachte langskwam. Je ziet het signaal, niet de inhoud. De inhoud ontdek je pas samen.</p>
+      </div>
+      <div class="bron"><b>Bronnen</b> · A.T. Beck, <i>Cognitive Therapy and the Emotional Disorders</i> (1976), hfst. 2 · Bögels &amp; Van Oppen, <i>Cognitieve therapie: theorie en praktijk</i> (Bohn Stafleu van Loghum)</div>
+    </article>
+
+    <div class="levelsep">MBO Plus · patronen zien</div>
+
+    <article class="mod" id="m3">
+      <div class="modhead"><span class="badge">MBO+ · Module 3</span></div>
+      <h3>Denkfouten: de vaste routes van het verstand</h3>
+      <p>Beck zag dat automatische gedachten niet willekeurig zijn. Ze volgen vaste patronen, die hij <em>cognitieve vertekeningen</em> noemde. Zijn leerling David Burns maakte er in 1980 de bekende lijst van. Het woord "fout" is wat streng: het zijn snelle vuistregels die vaak handig zijn, maar onder spanning doorslaan.</p>
+      <div class="tablewrap"><table>
+        <thead><tr><th>Denkfout</th><th>Wat er gebeurt</th><th>Voorbeeld uit het werkveld</th></tr></thead>
+        <tbody>
+          <tr><td>Alles-of-niets</td><td>Alleen twee smaken: perfect of mislukt.</td><td>"Eén clausule is afgewezen, dus de onderhandeling is mislukt."</td></tr>
+          <tr><td>Overgeneraliseren</td><td>Eén keer wordt altijd.</td><td>"Leveranciers houden zich nooit aan hun SLA."</td></tr>
+          <tr><td>Gedachtelezen</td><td>Weten wat de ander denkt zonder bewijs.</td><td>"Ze kijkt op haar telefoon, ze vindt me saai."</td></tr>
+          <tr><td>Voorspellen</td><td>De afloop staat al vast, meestal negatief.</td><td>"Dit wordt sowieso een conflict."</td></tr>
+          <tr><td>Catastroferen</td><td>Het ergste is het meest waarschijnlijke.</td><td>"Als deze deadline mislukt, ben ik de klant kwijt."</td></tr>
+          <tr><td>Filteren</td><td>Alleen het negatieve tellen.</td><td>Na twaalf positieve evaluaties onthouden wat die ene kritiek zei.</td></tr>
+          <tr><td>Positief diskwalificeren</td><td>Goede dingen tellen niet mee.</td><td>"Ze zijn tevreden, maar dat zeggen ze gewoon."</td></tr>
+          <tr><td>Emotioneel redeneren</td><td>Ik voel het, dus het is waar.</td><td>"Ik voel me onzeker, dus mijn advies deugt niet."</td></tr>
+          <tr><td>Moet-denken</td><td>Strenge regels voor jezelf of anderen.</td><td>"Een goede consultant moet alle antwoorden hebben."</td></tr>
+          <tr><td>Etiketteren</td><td>Een gedrag wordt een identiteit.</td><td>"Hij is gewoon een lastige partij."</td></tr>
+          <tr><td>Personaliseren</td><td>Jezelf als oorzaak zien van wat anderen doen.</td><td>"De sfeer was slecht door mij."</td></tr>
+        </tbody>
+      </table></div>
+      <p class="kern">Een denkfout benoemen is geen oordeel over de denker. Het geeft een naam aan een gewoonte, en wat een naam heeft, kun je herkennen als het weer gebeurt.</p>
+      <h4>Waarom de hersenen dit doen</h4>
+      <p>Op dit niveau mag je de link leggen met het werk van Daniel Kahneman. Hij onderscheidt een snel, intuïtief systeem (Systeem 1) en een traag, bewust systeem (Systeem 2). Denkfouten zijn grotendeels Systeem 1 onder druk: snel, efficiënt, en precies daardoor vatbaar voor kortere routes. Beck en Kahneman kwamen uit verschillende werelden, maar hun conclusies sluiten op elkaar aan.</p>
+      <div class="praktijk"><span class="lab">Zo zie je het in de praktijk</span>
+        <p>Gedachtelezen is het risico van jouw eigen specialisme. Wie goed lichaamstaal leest, loopt het gevaar om van een signaal ("ze kijkt weg") meteen een betekenis te maken ("ze is het oneens"). Een signaal is een hypothese, geen conclusie. Dat onderscheid houdt jou scherp en je cliënten veilig.</p>
+      </div>
+      <div class="bron"><b>Bronnen</b> · David D. Burns, <i>Feeling Good</i> (1980) · Daniel Kahneman, <i>Ons feilbare denken</i> (2011)</div>
+    </article>
+
+    <div class="levelsep">HBO · de lagen eronder</div>
+
+    <article class="mod" id="m4">
+      <div class="modhead"><span class="badge">HBO · Module 4</span></div>
+      <h3>Regels, aannames en kernovertuigingen</h3>
+      <p>Automatische gedachten zijn de bovenste laag. Beck beschreef daaronder twee diepere lagen. Ze zijn minder zichtbaar, stabieler, en sturen welke automatische gedachten opkomen.</p>
+      <figure class="diagram">
+        <svg viewBox="0 0 640 230" role="img" aria-label="Drie lagen van cognitie: automatische gedachten bovenaan, tussenliggende overtuigingen in het midden, kernovertuigingen onderaan">
+          <rect x="20" y="16" width="600" height="56" rx="4" fill="var(--paper)" stroke="var(--line)"/>
+          <text x="40" y="40" font-family="var(--display)" font-size="15" font-weight="700" fill="var(--ink)">Automatische gedachten</text>
+          <text x="40" y="60" font-family="var(--mono)" font-size="11.5" fill="var(--muted)">"Hij vindt mijn voorstel zwak."   · situatiegebonden, snel</text>
+          <rect x="60" y="86" width="520" height="56" rx="4" fill="var(--soft)" stroke="var(--line)"/>
+          <text x="80" y="110" font-family="var(--display)" font-size="15" font-weight="700" fill="var(--ink)">Tussenliggende overtuigingen</text>
+          <text x="80" y="130" font-family="var(--mono)" font-size="11.5" fill="var(--muted)">"Als ik fouten maak, verlies ik respect." · regels, aannames</text>
+          <rect x="110" y="156" width="420" height="56" rx="4" fill="var(--accent)"/>
+          <text x="130" y="180" font-family="var(--display)" font-size="15" font-weight="700" fill="var(--paper)">Kernovertuiging</text>
+          <text x="130" y="200" font-family="var(--mono)" font-size="11.5" fill="var(--paper)">"Ik ben niet goed genoeg." · algemeen, stabiel</text>
+        </svg>
+        <figcaption>Hoe dieper de laag, hoe breder ze geldt en hoe langer ze bestaat.</figcaption>
+      </figure>
+      <h4>Tussenliggende overtuigingen</h4>
+      <p>Dit zijn regels en "als-dan"-aannames waarmee iemand leert omgaan met een pijnlijke kernovertuiging. Wie diep vanbinnen denkt "ik ben niet goed genoeg", ontwikkelt vaak een regel als "ik moet alles perfect doen". Zolang die regel werkt, voelt alles goed. Gaat het een keer mis, dan wordt de kernovertuiging weer bevestigd. Daarom zijn hardwerkende, perfectionistische professionals vaak kwetsbaarder dan ze lijken.</p>
+      <h4>Kernovertuigingen</h4>
+      <p>Judith Beck vat de meeste kernovertuigingen samen in drie families:</p>
+      <ul>
+        <li><strong>Hulpeloosheid:</strong> "Ik ben zwak, ik kan het niet, ik heb geen controle."</li>
+        <li><strong>Onbeminnelijkheid:</strong> "Ik ben niet de moeite waard, ik word afgewezen."</li>
+        <li><strong>Waardeloosheid:</strong> "Ik ben slecht, ik deug niet."</li>
+      </ul>
+      <h4>De pijltjestechniek</h4>
+      <p>Hoe kom je van een automatische gedachte bij een kernovertuiging? Beck en zijn opvolgers gebruiken de <em>pijltjestechniek</em> (downward arrow). De therapeut neemt de gedachte even voor waar aan en onderzoekt wat die zou betekenen. "Stel dat hij het voorstel inderdaad zwak vindt, wat zegt dat dan over jou?" Laag na laag komt zo de regel en daarna de kernovertuiging bloot. De techniek werkt alleen met zorg, in een veilige relatie, en in het tempo van de cliënt.</p>
+      <p class="kern">Werk aan de bovenste laag geeft snel verlichting. Werk aan de onderste laag geeft blijvende verandering, maar vraagt meer tijd en meer vertrouwen.</p>
+      <div class="praktijk"><span class="lab">Zo zie je het in de praktijk</span>
+        <p>In coaching zie je tussenliggende overtuigingen vaak terug als werkstijl. De manager die nooit delegeert ("als ik het uit handen geef, gaat het mis"), de onderhandelaar die nooit toegeeft ("als ik toegeef, ben ik zwak"). In contractmanagement verklaart dit waarom sommige partijen star vasthouden aan een clausule die er zakelijk weinig toe doet: de clausule beschermt een overtuiging, geen belang.</p>
+      </div>
+      <div class="bron"><b>Bronnen</b> · Judith S. Beck, <i>Cognitive Behavior Therapy: Basics and Beyond</i>, hfst. 13–14 over overtuigingen · Christine Padesky, "Schema change processes in cognitive therapy" (1994), <i>Clinical Psychology &amp; Psychotherapy</i></div>
+    </article>
+
+    <article class="mod" id="m5">
+      <div class="modhead"><span class="badge">HBO · Module 5</span></div>
+      <h3>Het lichaam in het model: jouw specialisme</h3>
+      <p>Beck schreef vooral over gedachten, maar hij zag het lichaam nooit als bijzaak. In zijn werk over angst (met Gary Emery, 1985) beschrijft hij hoe een gevaarsinterpretatie direct het lichaam activeert: hartslag, ademhaling, spierspanning. En andersom: wie lichamelijke sensaties verkeerd uitlegt ("mijn hart slaat over, ik krijg een hartaanval"), kan een paniekaanval op gang brengen. David M. Clark werkte dat in 1986 uit tot het cognitieve model van paniek.</p>
+      <h4>Drie verbindingen tussen lichaam en cognitie</h4>
+      <ol>
+        <li><strong>Gedachte → lichaam.</strong> Een dreigende interpretatie zet het stresssysteem aan. Dit is het bekende deel.</li>
+        <li><strong>Lichaam → gedachte.</strong> Lichamelijke sensaties worden zelf geïnterpreteerd. Spanning in de borst kan gelezen worden als "ik ben bang" of als "ik ben er klaar voor". Dezelfde sensatie, andere uitleg.</li>
+        <li><strong>Lichaam als signaal.</strong> Houding, mimiek en adem laten zien dat er cognitief iets verschuift, ook als iemand dat niet uitspreekt. Beck noemde gedachten die met sterke emotie gepaard gaan <em>hot cognitions</em>. Juist die zijn vaak in het lichaam te zien.</li>
+      </ol>
+      <p class="kern">Het lichaam vertelt je dát er iets gebeurt. De woorden vertellen je wát er gebeurt. Een goede behandelaar gebruikt allebei.</p>
+      <h4>Wat de wetenschap wel en niet zegt</h4>
+      <p>Hier is voorzichtigheid geboden, juist voor een specialist. Paul Ekman toonde aan dat een aantal basisemoties in gezichtsuitdrukkingen redelijk herkenbaar is over culturen heen. Lisa Feldman Barrett laat daarentegen zien dat dezelfde emotie per persoon en situatie heel verschillend kan uitpakken, en dat een gezicht zonder context veel minder zegt dan vaak wordt aangenomen. Beide posities hebben bewijs. De werkhouding die daaruit volgt: lees veranderingen ten opzichte van iemands eigen basislijn, en lees clusters van signalen in hun context, niet losse gebaren.</p>
+      <div class="praktijk"><span class="lab">Zo zie je het in de praktijk</span>
+        <p>Jouw kracht ligt in verbinding 3. Je ziet de hot cognition aankomen. Een cognitief werkende coach benoemt die observatie neutraal ("ik zie dat er iets verandert als we het over de deadline hebben") en nodigt uit om de gedachte erbij te vinden. Zo wordt lichaamstaal geen oordeel, maar een ingang naar het cognitieve gesprek.</p>
+      </div>
+      <div class="bron"><b>Bronnen</b> · A.T. Beck &amp; G. Emery, <i>Anxiety Disorders and Phobias</i> (1985) · D.M. Clark, "A cognitive approach to panic" (1986), <i>Behaviour Research and Therapy</i> · L.F. Barrett, <i>How Emotions Are Made</i> (2017) · P. Ekman, <i>Emotions Revealed</i> (2003)</div>
+    </article>
+
+    <article class="mod" id="m6">
+      <div class="modhead"><span class="badge">HBO · Module 6</span></div>
+      <h3>Gedrag dat gedachten bevestigt</h3>
+      <p>Waarom verdwijnen onjuiste overtuigingen niet vanzelf, als de werkelijkheid ze steeds tegenspreekt? Becks antwoord, later verder uitgewerkt door Paul Salkovskis: omdat mensen gedrag vertonen dat voorkomt dat ze de tegenspraak ooit opmerken.</p>
+      <h4>Vermijding en veiligheidsgedrag</h4>
+      <p>Wie gelooft "als ik spreek in een vergadering, ga ik af", spreekt niet. Dan blijkt nooit dat het meevalt. Wie wel spreekt maar zich tot op de komma voorbereidt, denkt achteraf "het ging alleen goed door die voorbereiding". Dat noemt Salkovskis <em>veiligheidsgedrag</em>: gedrag dat bedoeld is om de ramp te voorkomen, maar ook het leren tegenhoudt. De overtuiging blijft zo onaangetast.</p>
+      <h4>Gedragsexperimenten</h4>
+      <p>Daarom is cognitieve therapie nooit alleen praten. Beck noemde zijn patiënten "medeonderzoekers". Samen stellen therapeut en cliënt een voorspelling op ("als ik in het overleg zonder aantekeningen praat, hapert mijn stem en lacht iemand"), voeren een experiment uit en vergelijken de uitkomst met de voorspelling. Beck sprak van <em>collaboratief empirisme</em>: samen, en op basis van ervaring. Een overtuiging die door eigen ervaring is weerlegd, verandert dieper dan een overtuiging die alleen in een gesprek is besproken.</p>
+      <p class="kern">Je praat iemand niet uit een overtuiging. Je helpt iemand een ervaring op te doen die de overtuiging niet kan verklaren.</p>
+      <h4>Gedragsactivatie</h4>
+      <p>Bij depressie draaide Beck de volgorde soms om. Eerst activiteit, dan pas gedachtewerk. Wie niets meer doet, krijgt geen positieve ervaringen en bevestigt daarmee "het heeft toch geen zin". Later onderzoek (Jacobson en collega's, 1996; Dimidjian en collega's, 2006) liet zien dat dit gedragsdeel bij depressie op zichzelf al veel van het effect verklaart. Beck nam die bevinding serieus.</p>
+      <div class="praktijk"><span class="lab">Zo zie je het in de praktijk</span>
+        <p>Veiligheidsgedrag zie je in organisaties als overcontrole: dubbele goedkeuringsrondes, eindeloze voorbehouden in contracten, mails waarin iedereen in de cc staat. Soms is dat verstandig risicobeheer. Soms beschermt het een overtuiging ("als er iets misgaat, krijg ik de schuld"). Het verschil herkennen helpt je adviseren waar de echte winst zit.</p>
+      </div>
+      <div class="bron"><b>Bronnen</b> · P.M. Salkovskis, "The importance of behaviour in the maintenance of anxiety and panic" (1991), <i>Behavioural Psychotherapy</i> · Bennett-Levy e.a., <i>Oxford Guide to Behavioural Experiments in Cognitive Therapy</i> (2004)</div>
+    </article>
+
+    <div class="levelsep">WO · theorie en bewijs</div>
+
+    <article class="mod" id="m7">
+      <div class="modhead"><span class="badge">WO · Module 7</span></div>
+      <h3>Schema's, de cognitieve triade en de wetenschap erachter</h3>
+      <h4>De cognitieve triade</h4>
+      <p>In zijn vroege depressieonderzoek (1963, 1967) beschreef Beck drie vaste thema's in het denken van depressieve mensen: een negatief beeld van <strong>zichzelf</strong>, van <strong>de wereld</strong> en van <strong>de toekomst</strong>. Dit werd de cognitieve triade. Later werkte hij dit uit tot een specificiteitshypothese: elke stoornis heeft een eigen cognitief thema. Bij depressie verlies, bij angst gevaar, bij woede onrecht, bij paranoia kwade opzet van anderen.</p>
+      <h4>Schema's</h4>
+      <p>Beck leende het begrip <em>schema</em> uit de cognitieve psychologie (Bartlett, Piaget). Een schema is een opgeslagen kennisstructuur die bepaalt wat je opmerkt, hoe je het uitlegt en wat je onthoudt. Kernovertuigingen zijn de inhoud van een schema. Het schema zelf is het filter. Schema's kunnen jarenlang slapen en worden geactiveerd door een situatie die erop lijkt. Dit verklaart waarom iemand jaren goed functioneert en na een reorganisatie of afwijzing ineens instort: het oude schema is wakker gemaakt. Dit heet het <em>diathese-stressmodel</em>.</p>
+      <h4>Aanpalende leertheorie</h4>
+      <p>Cognitieve gedragstherapie is een samenvoeging van twee stromen. De gedragstherapie bracht klassieke conditionering (Pavlov), operante conditionering (Skinner) en exposure. Albert Bandura voegde in de jaren zeventig toe dat mensen leren door te observeren en dat hun verwachting van eigen kunnen (<em>self-efficacy</em>) gedrag voorspelt. Beck bracht het denken in het model. Samen vormen ze wat we nu CGT noemen.</p>
+      <h4>Wat het bewijs laat zien</h4>
+      <p>Hofmann en collega's (2012) brachten 269 meta-analyses samen. CGT bleek goed onderbouwd voor angststoornissen, somatoforme klachten, boulimia, woedeproblemen en algemene stress, en effectief bij depressie. De effecten zijn het sterkst bij angst. Bij depressie is CGT ongeveer even werkzaam als medicatie, met een lager terugvalrisico na afloop van de behandeling (Hollon en collega's, 2005).</p>
+      <p class="kern">Becks sterkste nalatenschap is misschien niet het model, maar de houding: elke bewering over de psyche moet zich laten toetsen.</p>
+      <div class="praktijk"><span class="lab">Zo zie je het in de praktijk</span>
+        <p>Het schema-idee geeft je als consultant taal voor wat vaak "cultuur" wordt genoemd. Een organisatie die ooit door een groot contractconflict is getroffen, kan een collectief schema ontwikkelen ("partners zijn niet te vertrouwen"), dat elke nieuwe samenwerking kleurt. Het herkennen van zo'n patroon is een interventie op zichzelf.</p>
+      </div>
+      <div class="bron"><b>Bronnen</b> · A.T. Beck, <i>Depression: Clinical, Experimental, and Theoretical Aspects</i> (1967) · Hofmann e.a., "The efficacy of cognitive behavioral therapy: a review of meta-analyses" (2012), <i>Cognitive Therapy and Research</i> 36 · A. Bandura, "Self-efficacy" (1977), <i>Psychological Review</i></div>
+    </article>
+
+    <article class="mod" id="m8">
+      <div class="modhead"><span class="badge">WO · Module 8</span></div>
+      <h3>De derde generatie: van inhoud naar verhouding</h3>
+      <p>Becks therapie richt zich op de <em>inhoud</em> van gedachten: klopt deze gedachte? Vanaf de jaren negentig ontstonden benaderingen die zich vooral richten op de <em>verhouding</em> tot gedachten: hoe ga je ermee om, ongeacht of ze kloppen? Dit heet de derde generatie gedragstherapie. De eerste generatie was gedragstherapie, de tweede Becks cognitieve therapie.</p>
+      <div class="tablewrap"><table>
+        <thead><tr><th>Benadering</th><th>Grondlegger</th><th>Kerngedachte</th><th>Verhouding tot Beck</th></tr></thead>
+        <tbody>
+          <tr><td>Schematherapie</td><td>Jeffrey Young</td><td>Vroege onaangepaste schema's en "modi" uit onvervulde basisbehoeften.</td><td>Verdieping: werkt aan Becks onderste laag, met meer aandacht voor jeugd en emotie.</td></tr>
+          <tr><td>ACT</td><td>Steven Hayes</td><td>Gedachten niet bestrijden maar ruimte geven; handelen vanuit waarden.</td><td>Breuk: de inhoud van gedachten is minder belangrijk dan hoe vast je eraan zit.</td></tr>
+          <tr><td>MBCT</td><td>Segal, Williams, Teasdale</td><td>Mindfulness om terugval in depressie te voorkomen.</td><td>Aanvulling: afstand nemen van gedachten (decentreren).</td></tr>
+          <tr><td>Metacognitieve therapie</td><td>Adrian Wells</td><td>Het probleem is piekeren over gedachten, niet de gedachten zelf.</td><td>Verschuiving: werkt op overtuigingen óver denken.</td></tr>
+          <tr><td>Mentaliseren (MBT)</td><td>Peter Fonagy, Anthony Bateman</td><td>Het vermogen om gedrag te begrijpen vanuit mentale toestanden van jezelf en anderen.</td><td>Ander vertrekpunt (psychodynamisch), maar verwant: kijken naar de geest achter gedrag.</td></tr>
+        </tbody>
+      </table></div>
+      <h4>Wat Beck zelf vond</h4>
+      <p>Beck zag de derde generatie niet als vervanging. In zijn latere werk, met name het herstelgerichte model (<em>Recovery-Oriented Cognitive Therapy</em>, CT-R) dat hij op hoge leeftijd ontwikkelde voor mensen met ernstige psychiatrische problemen, verschoof zijn aandacht zelf naar waarden, betekenis en verlangens. Wat iemand wil bereiken, werd daar het vertrekpunt. Daarmee raakte hij dichter bij ACT dan zijn vroege werk deed vermoeden.</p>
+      <h4>Decentreren als gemeenschappelijke kern</h4>
+      <p>Al deze benaderingen delen één vaardigheid: een gedachte zien als een gedachte, niet als de werkelijkheid. In het Engels heet dat <em>decentering</em> of <em>defusion</em>. Ook bij Beck zat dit al: wie een gedachte opschrijft in een kolom, kijkt er al van een afstand naar.</p>
+      <p class="kern">"Ik ben een mislukking" is een oordeel. "Ik merk dat ik de gedachte heb dat ik een mislukking ben" is een waarneming. In die kleine verschuiving zit veel ruimte.</p>
+      <div class="praktijk"><span class="lab">Zo zie je het in de praktijk</span>
+        <p>Mentaliseren past naadloos bij lichaamstaal. Wie goed mentaliseert, leest een gebaar niet als feit maar als venster op een innerlijke toestand die je niet zeker kunt kennen. Fonagy noemt dat een houding van nieuwsgierigheid en "niet-weten". Dat is precies de houding die jouw twee specialismen bij elkaar brengt.</p>
+      </div>
+      <div class="bron"><b>Bronnen</b> · Young, Klosko &amp; Weishaar, <i>Schematherapie</i> (2003; Ned. vert.) · Hayes, Strosahl &amp; Wilson, <i>Acceptance and Commitment Therapy</i> (2e druk, 2012) · Adrian Wells, <i>Metacognitive Therapy for Anxiety and Depression</i> (2009) · Bateman &amp; Fonagy, <i>Mentalization-Based Treatment</i> · Beck, Grant e.a., <i>Recovery-Oriented Cognitive Therapy for Serious Mental Health Conditions</i> (2021)</div>
+    </article>
+
+    <div class="levelsep">Master · kritisch en integratief</div>
+
+    <article class="mod" id="m9">
+      <div class="modhead"><span class="badge">Master · Module 9</span></div>
+      <h3>Kritiek en grenzen: Beck eerlijk lezen</h3>
+      <p>Een goede leermeester wil dat je verder kijkt dan hij. Op masterniveau lees je Beck dus ook kritisch. Vier debatten zijn het kennen waard.</p>
+      <h4>1. Werkt het via de gedachten?</h4>
+      <p>De theorie zegt dat CGT werkt door gedachten te veranderen. Longmore en Worrell (2007) vroegen of dat bewezen is. Hun conclusie: niet overtuigend. In ontmantelingsstudies, waarin onderdelen van de therapie werden weggelaten, presteerde de versie zonder cognitieve technieken vaak even goed. Gedachten veranderen wel tijdens CGT, maar soms pas ná de klachtvermindering. Dat maakt het oorzakelijke verband onzeker.</p>
+      <h4>2. Algemene of specifieke factoren?</h4>
+      <p>Bruce Wampold en Zac Imel stellen dat de verschillen tussen goed opgezette therapieën klein zijn. Een groot deel van het effect komt van gemeenschappelijke factoren: de werkrelatie, een geloofwaardige uitleg van het probleem, verwachting van verbetering, en de therapeut zelf. Dit heet het <em>Dodo-vonnis</em> (naar Alice in Wonderland: "iedereen heeft gewonnen"). Voorstanders van CGT wijzen erop dat specifieke technieken bij bepaalde stoornissen, zoals exposure bij angst, wel duidelijk verschil maken. Het debat is niet beslecht.</p>
+      <h4>3. Is negatief denken altijd vertekend?</h4>
+      <p>Al in 1979 vonden Alloy en Abramson dat licht depressieve mensen hun invloed soms realistischer inschatten dan niet-depressieve mensen. Dit heet <em>depressief realisme</em>. Latere replicaties laten een gemengd beeld zien, maar het punt blijft staan: niet elke negatieve gedachte is een denkfout. Soms is de situatie echt zwaar, en dan is het werk eerder probleemoplossing of acceptatie dan herstructureren.</p>
+      <h4>4. Replicatie in de lichaamsliteratuur</h4>
+      <p>Twee bekende bevindingen over lichaam en geest hielden bij herhaling minder goed stand. De gezichtsfeedbackstudie (Strack e.a., 1988: een pen tussen de tanden maakt cartoons grappiger) werd in 2016 in zeventien labs niet gerepliceerd. Een latere meta-analyse (Coles e.a., 2019) vond wel een klein effect. Bij <em>power posing</em> (Carney, Cuddy &amp; Yap, 2010) bleken de hormoneffecten niet te repliceren (Ranehill e.a., 2015); een klein effect op hoe krachtig mensen zich voelen bleef mogelijk overeind. Voor jou als specialist is dit wezenlijk: het lichaam beïnvloedt beleving, maar de effecten zijn kleiner en contextafhankelijker dan populaire boeken beweren.</p>
+      <p class="kern">Kritisch denken over je eigen vak is geen ontrouw aan je leermeester. Het is precies wat Beck deed toen hij zijn psychoanalytische opleiding losliet.</p>
+      <h4>Een nieuwer kader: voorspellend brein</h4>
+      <p>Theorieën over <em>predictive processing</em> (Karl Friston, Andy Clark, Lisa Feldman Barrett) beschrijven het brein als een voorspellingsmachine die voortdurend verwachtingen toetst aan zintuiglijke informatie, ook informatie uit het eigen lichaam (interoceptie). Becks schema's kun je in dat kader lezen als sterke voorspellingen die binnenkomende informatie kleuren. Dit is geen vervanging van Beck, maar een manier om zijn klinische inzichten te verbinden met de huidige neurowetenschap. Het is een actief onderzoeksveld, met nog veel open vragen.</p>
+      <div class="bron"><b>Bronnen</b> · Longmore &amp; Worrell, "Do we need to challenge thoughts in cognitive behavior therapy?" (2007), <i>Clinical Psychology Review</i> 27 · Wampold &amp; Imel, <i>The Great Psychotherapy Debate</i> (2e druk, 2015) · Wagenmakers e.a., registered replication report facial feedback (2016), <i>Perspectives on Psychological Science</i> · Andy Clark, <i>The Experience Machine</i> (2023)</div>
+    </article>
+
+    <article class="mod" id="m10">
+      <div class="modhead"><span class="badge">Master · Module 10</span></div>
+      <h3>Een geïntegreerd werkmodel: Beck, lichaam en organisatie samen</h3>
+      <p>Op masterniveau werkt een professional niet meer vanuit één model, maar vanuit een onderbouwd geheel waarvan helder is wat op bewijs rust en wat op ervaring. Hieronder staat hoe Becks inzichten samenkomen met lichaamstaal en organisatiewerk.</p>
+      <h4>Vijf werkprincipes</h4>
+      <ol>
+        <li><strong>Casusconceptualisatie eerst.</strong> Judith Beck en Willem Kuyken benadrukken dat elke interventie voortkomt uit een gedeeld beeld van hoe het probleem in elkaar zit. Bij een team of onderhandeling werkt dat hetzelfde: eerst samen het patroon in kaart brengen, dan pas ingrijpen.</li>
+        <li><strong>Het lichaam als ingang, de woorden als bevestiging.</strong> Een waargenomen non-verbale verschuiving opent het gesprek, ze sluit het niet af. Een observatie werkt als uitnodiging.</li>
+        <li><strong>Collaboratief empirisme in elke rol.</strong> In coaching, therapie en contractmanagement werkt hetzelfde principe: aannames worden toetsbare voorspellingen, en de ervaring doet het werk.</li>
+        <li><strong>Inhoud én verhouding.</strong> Soms helpt het om een gedachte te toetsen (Beck). Soms helpt het om er ruimte omheen te maken (ACT, mindfulness). De situatie bepaalt welke route past, niet de gewoonte.</li>
+        <li><strong>De relatie draagt alles.</strong> Wat de kritiek uit module 9 ook laat zien: zonder werkrelatie werkt geen techniek. Beck zelf stond bekend om zijn warmte en zijn oprechte nieuwsgierigheid naar de ander.</li>
+      </ol>
+      <h4>De drie schalen</h4>
+      <div class="tablewrap"><table>
+        <thead><tr><th>Schaal</th><th>Cognitieve laag</th><th>Lichamelijk signaal</th><th>Gedragspatroon</th></tr></thead>
+        <tbody>
+          <tr><td>Individu (therapie)</td><td>Kernovertuiging, schema</td><td>Spanning, adem, blik bij hot cognitions</td><td>Vermijding, veiligheidsgedrag</td></tr>
+          <tr><td>Relatie (coaching)</td><td>Aannames over de ander, gedachtelezen</td><td>Afstemming of juist breuk in houding en tempo</td><td>Terugtrekken, overnemen, pleasen</td></tr>
+          <tr><td>Organisatie (contract)</td><td>Collectieve schema's: "partners zijn niet te vertrouwen"</td><td>Sfeer in de ruimte, wie spreekt en wie zwijgt</td><td>Overcontrole, juridisering, escalatie</td></tr>
+        </tbody>
+      </table></div>
+      <h4>Ethiek en grenzen</h4>
+      <p>Wie gedachten en lichaamstaal leert lezen, krijgt invloed. Dat vraagt om heldere grenzen. In coaching en consultancy werk je niet met stoornissen, en dieper schemawerk hoort bij een behandelcontext met de juiste kwalificaties en supervisie. Lichaamstaal gebruik je om beter te begrijpen, nooit om te manipuleren of om iemand iets toe te schrijven wat hij of zij niet zelf herkent. Becks model is altijd samen met de cliënt opgebouwd, nooit over de cliënt heen.</p>
+      <p class="kern">Becks laatste les: een goed model is nooit af. Het groeit met elke cliënt, elk onderzoek en elke keer dat je ziet dat het anders zit dan je dacht.</p>
+      <div class="bron"><b>Bronnen</b> · Kuyken, Padesky &amp; Dudley, <i>Collaborative Case Conceptualization</i> (2009) · Beck Institute for Cognitive Behavior Therapy, beckinstitute.org</div>
+    </article>
+  </main>
+</div>
+
+
+</body></html>

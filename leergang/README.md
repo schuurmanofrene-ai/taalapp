@@ -10,6 +10,12 @@ cognitief gedrag en geloof in God, van MBO+ tot master.
   in een Claude Code-sessie op deze repo. Claude leest dan je voortgang, schrijft nieuwe lessen
   en herschrijft zijn eigen werkregels op basis van wat je data laten zien.
 
+## De leerhub
+
+Alle leerwegen staan in één artifact: https://claude.ai/artifact/SXafa17EafrLyUowTjrHgq
+(bron: `hub/leerhub.html`, met de leerwegen als losse pagina's en de lesteksten in `hub/lessen.json`).
+Publiceer wijzigingen opnieuw naar die URL.
+
 ## Zo loopt een ronde
 
 1. Je leest lessen op de kaart, beantwoordt de vragen en beoordeelt de les.
