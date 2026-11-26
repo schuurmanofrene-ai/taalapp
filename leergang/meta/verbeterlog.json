@@ -40,6 +40,28 @@
         "fil-1-02",
         "lich-1-02"
       ]
+    },
+    {
+      "generatie": 3,
+      "datum": "2026-11-25",
+      "titel": "Een nieuw thuis in de Leerhub",
+      "observaties": [
+        "De kaart-artifact (71Anb4...) bestaat niet meer; de database met voortgang en wensen was niet bereikbaar. Er is dus geen leerdata uit G2 te oogsten.",
+        "Hypothese G2 (lessen van ±14 minuten met openingsscène zijn boeiender dan ±8 minuten): onbeslist, nog steeds nul beoordelingen.",
+        "Nevenhypothese G1 (werkbrug in de secties maakt boeiender): onbeslist, geen data.",
+        "Eigen verzoeken van René (24 november 2026): alles vanuit één plek starten, en programma's die je niet kunt opstarten zijn een gemis. Een leerplan zonder geschreven les telde voor hem als 'kan ik niet starten'.",
+        "Er stonden al zeven open lessen; werkregel 9 (maximaal acht open) laat deze ronde één nieuwe les toe."
+      ],
+      "veranderingen": [
+        "De Levende Leergang staat nu in de Leerhub, met vragen, beoordeling en een plek voor wensen. Voortgang gaat naar de database van de hub, zodat de volgende ronde weer kan oogsten.",
+        "Eén nieuwe les over Job, aansluitend bij het Bijbelleesplan (Job 40 tot 42 staan daar nog open)",
+        "Werkregel 9 aangescherpt (bovengrens gaat voor het aantal), werkregels 10 en 11 toegevoegd (startbaar vanuit de hub; aansluiten bij wat hij al leest)",
+        "Skill bijgewerkt: de hub is nu de plek voor lessen, voortgang en wensen"
+      ],
+      "hypothese": "Een les die aansluit bij wat René op dat moment in een ander programma leest (gel-1-02 bij zijn Bijbellezing over Job) wordt eerder afgerond en hoger beoordeeld op boeiend dan de andere open lessen. Meting: volgorde van afronden en boeiend-score van gel-1-02 tegenover het gemiddelde van de andere open lessen.",
+      "nieuweLessen": [
+        "gel-1-02"
+      ]
     }
   ]
 }

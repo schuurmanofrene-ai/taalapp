@@ -40,6 +40,29 @@ header{display:flex;flex-direction:column;gap:12px}
 .vknoppen{display:flex;gap:10px;flex-wrap:wrap;align-items:center}
 .vknoppen .klein{font:500 .85rem/1 var(--body);background:transparent;color:var(--muted);border:1px solid var(--line);border-radius:999px;padding:9px 14px;cursor:pointer}
 .domein{display:flex;flex-direction:column;gap:14px}
+.llnotitie{background:var(--accent-soft);border-radius:10px;padding:14px 16px;font-size:.95rem;max-width:70ch}
+.llwens{display:flex;flex-direction:column;gap:8px;max-width:70ch}
+textarea{width:100%;font:inherit;font-size:1rem;color:var(--ink);background:var(--surface);border:1px solid var(--line);border-radius:8px;padding:10px 12px;box-sizing:border-box}
+textarea:focus-visible,.optie:focus-visible,.schaal button:focus-visible{outline:2px solid var(--accent);outline-offset:2px}
+.tekst .llmeta,.llmeta{font-family:var(--body);font-size:.85rem;color:var(--muted)}
+.vraag{font-family:var(--body);font-size:1rem;line-height:1.55;background:var(--surface);border:1px solid var(--line);border-radius:10px;padding:14px 16px;margin:0 0 14px;display:flex;flex-direction:column;gap:10px;max-width:66ch}
+.vraag .vtekst{font-weight:600;margin:0}
+.opties{display:flex;flex-direction:column;gap:6px}
+.optie{text-align:left;font:inherit;color:var(--ink);background:var(--bg);border:1px solid var(--line);border-radius:8px;padding:10px 12px;cursor:pointer}
+.optie:hover:not([disabled]){border-color:var(--accent)}
+.optie[disabled]{cursor:default;opacity:.75}
+.optie.juist{border-color:var(--accent);background:var(--accent-soft);opacity:1}
+.optie.fout{border-color:var(--lich);opacity:1;text-decoration:line-through}
+.vraag .uitleg{margin:0;font-size:.95rem}
+.fb p{font-size:.95rem;margin:0 0 .6em;color:var(--ink)}
+.llvv{background:var(--accent-soft);border-radius:10px;padding:4px 18px 10px;margin:1.6em 0;max-width:66ch}
+.llvv h2{margin-top:.8em}
+.schaal{font-family:var(--body);display:flex;flex-wrap:wrap;align-items:center;justify-content:space-between;gap:8px;margin:0 0 12px;max-width:66ch}
+.schaal span{font-weight:600;font-size:1rem;display:flex;flex-direction:column}
+.schaal small{font-weight:400;font-size:.8rem;color:var(--muted)}
+.schaal div{display:flex;gap:6px}
+.schaal button{font:600 .95rem/1 var(--body);width:40px;height:40px;border-radius:50%;border:1px solid var(--line);background:var(--surface);color:var(--ink);cursor:pointer}
+.schaal button[aria-pressed="true"]{background:var(--accent);border-color:var(--accent);color:var(--surface)}
 .dkop{display:flex;align-items:baseline;gap:12px;border-bottom:1px solid var(--line);padding-bottom:8px}
 .dkop .stip{width:10px;height:10px;border-radius:50%;background:var(--c);flex:none;transform:translateY(-1px)}
 .dkop p{color:var(--muted);font-size:.92rem;margin-left:auto;text-align:right}
@@ -107,6 +130,12 @@ body::before{content:"";position:fixed;inset:0 0 auto;height:env(safe-area-inset
     <div class="vknoppen" id="vKnoppen"></div>
   </section>
   <div id="verder" hidden></div>
+  <section class="domein" id="levend" style="--c:var(--accent)">
+    <div class="dkop"><span class="stip" aria-hidden="true"></span><h2>Levende Leergang</h2><p>Lessen met vragen, die na elke groeisessie meegroeien</p></div>
+    <p class="llnotitie" id="llNotitie"></p>
+    <div class="planken" id="llLijst"><p class="leeg">De lessen worden geladen…</p></div>
+    <div class="llwens"><label for="llWens" class="eyebrow">Wens voor de volgende groeisessie</label><textarea id="llWens" rows="2" placeholder="Waar wil je meer over leren, of wat kan beter?"></textarea><div class="vknoppen"><button class="klein" type="button" id="llWensKnop">Wens bewaren</button><span class="llmeta" id="llWensStatus"></span></div></div>
+  </section>
   <main id="domeinen" style="display:flex;flex-direction:column;gap:40px"></main>
   <footer>
     <span class="eyebrow">Zo groeit het verder</span>
@@ -185,7 +214,7 @@ function bouwHub(){
   });
   const L=lees("leerhub-laatst",null),v=document.getElementById("verder");
   if(L&&L.id){v.hidden=false;v.className="verder";
-    v.innerHTML=`<div><span class="eyebrow">Verder waar je was</span><b>${esc(L.titel||"")}</b></div>`+(L.type==="page"?`<a class="btn" href="${esc(L.id)}" data-page="${esc(L.id)}" data-t="${esc(L.titel)}">Verder</a>`:`<button class="btn" type="button" ${L.type==="gen"?"data-gen":"data-doc"}="${esc(L.id)}">Verder</button>`);}
+    v.innerHTML=`<div><span class="eyebrow">Verder waar je was</span><b>${esc(L.titel||"")}</b></div>`+(L.type==="page"?`<a class="btn" href="${esc(L.id)}" data-page="${esc(L.id)}" data-t="${esc(L.titel)}">Verder</a>`:`<button class="btn" type="button" ${L.type==="gen"?"data-gen":L.type==="ll"?"data-ll":"data-doc"}="${esc(L.id)}">Verder</button>`);}
 }
 document.addEventListener("click",e=>{
   const p=e.target.closest("[data-page]");if(p){laatst("page",p.dataset.page,p.dataset.t);return}
@@ -293,6 +322,96 @@ async function schrijfGen(prog,n,opnieuw){
   catch(e){if(location.hash!=="#gen-"+prog+"-"+n)return;t.innerHTML=`<p class="leeg">${e&&e.code==="not_granted"?"Je hebt deze pagina geen toestemming gegeven om Claude te laten schrijven. Dat kun je aanpassen in het menu Machtigingen van dit artifact.":e&&e.code==="rate_limited"?"Even te veel verzoeken achter elkaar. Probeer het over een paar minuten opnieuw.":"Het schrijven lukte niet. Tik op Opnieuw schrijven."}</p>`}
 }
 
+/* Levende Leergang: lessen met vragen, beoordeling en wensen; voortgang naar de database voor de groeironde */
+let LL=null,LLDB_KLAAR=false,LLDB=null;
+let LLV=lees("leerhub-ll-voortgang",{});
+const DOMNAAM={filosofie:"Filosofie",mentaliseren:"Mentaliseren",lichaamstaal:"Lichaamstaal",cgt:"Cognitief gedrag",geloof:"Geloof"};
+const NIV={1:"MBO+",2:"HBO",3:"WO",4:"Master"};
+async function laadLL(){if(LL)return LL;const r=await fetch("leergang.json");LL=await r.json();return LL}
+async function llDb(){if(!LLDB_KLAAR){LLDB_KLAAR=true;try{LLDB=await claude.use("db")}catch(e){LLDB=null}}return LLDB}
+let llOogst=null;
+function laadVoortgang(){if(llOogst)return llOogst;llOogst=(async()=>{const db=await llDb();if(!db)return;
+  try{const s=await db.collection("voortgang").get();s.docs.forEach(d=>{if(d.exists)LLV[d.id]=d.data()});schrijf("leerhub-ll-voortgang",LLV)}catch(e){}})();return llOogst}
+const alinea=t=>String(t||"").split(/\n\n+/).map(p=>`<p>${esc(p)}</p>`).join("");
+async function bouwLevend(){
+  const box=document.getElementById("llLijst");if(!box)return;
+  let d;try{d=await laadLL()}catch(e){box.innerHTML='<p class="leeg">De lessen konden niet worden geladen. Ververs de pagina.</p>';return}
+  document.getElementById("llNotitie").textContent=d.profiel&&d.profiel.notitie||"";
+  const teken=()=>{box.innerHTML=d.lessen.map(l=>{const v=LLV[l.id];
+    const st=v&&v.afgerond?`Afgerond${v.score&&v.score.totaal?` · ${v.score.goed} van ${v.score.totaal} goed`:""}`:"Nog niet gemaakt";
+    return `<article class="kaart" style="--c:var(${{filosofie:"--fil",mentaliseren:"--int",lichaamstaal:"--lich",cgt:"--cgt",geloof:"--gel"}[l.domein]||"--accent"})"><div class="meta"><span class="vorm">${esc(DOMNAAM[l.domein]||l.domein)}</span><span>${NIV[l.niveau]||""} · ±${l.leestijd} min</span></div><h3>${esc(l.titel)}</h3><p class="oms">${esc(l.kern)}</p><div class="voet"><span class="voortgang">${st}</span><button class="btn" type="button" data-ll="${esc(l.id)}">${v&&v.afgerond?"Terugkijken":"Start"}</button></div></article>`}).join("")};
+  teken();laadVoortgang().then(teken);
+}
+document.addEventListener("click",e=>{const b=e.target.closest("[data-ll]");if(b){e.preventDefault();location.hash="ll-"+b.dataset.ll}});
+let llStaat=null,llLes=null;
+function llConceptBewaar(){if(llLes)schrijf("leerhub-ll-concept-"+llLes.id,llStaat)}
+function vraagHtml(v,key){
+  if(v.soort==="open"){const fb=llStaat.claude[key];
+    return `<div class="vraag" data-key="${key}"><p class="vtekst">${esc(v.vraag)}</p><textarea id="ta-${key}" data-open="${key}" rows="6" placeholder="Schrijf hier je antwoord, met een voorbeeld uit je eigen werk of leven.">${esc(llStaat.open[key]||"")}</textarea><div class="vknoppen"><button class="klein" type="button" data-fb="${key}">Vraag Claude om feedback</button></div><div class="fb" id="fb-${key}">${fb?alinea(fb):""}</div></div>`}
+  const g=llStaat.keuzes[key],klaar=g!==undefined;
+  return `<div class="vraag" data-key="${key}"><p class="vtekst">${esc(v.vraag)}</p><div class="opties">${v.opties.map((o,i)=>`<button type="button" class="optie${klaar&&i===v.juist?" juist":""}${klaar&&i===g&&i!==v.juist?" fout":""}" data-kies="${key}" data-i="${i}"${klaar?" disabled":""}>${esc(o)}</button>`).join("")}</div>${klaar?`<p class="uitleg"><b>${g===v.juist?"Goed.":"Niet helemaal."}</b> ${esc(v.uitleg||"")}</p>`:""}</div>`}
+function schaalHtml(naam,label,hint){const w=llStaat.beoordeling[naam];
+  return `<div class="schaal"><span>${label}<small>${hint}</small></span><div>${[1,2,3,4,5].map(n=>`<button type="button" data-schaal="${naam}" data-v="${n}" aria-pressed="${w===n}">${n}</button>`).join("")}</div></div>`}
+async function toonLL(id){
+  const t=document.getElementById("tekst");t.innerHTML='<p class="leeg">De les wordt geladen…</p>';
+  let d;try{d=await laadLL()}catch(e){t.innerHTML='<p class="leeg">De les kon niet worden geladen. Ververs de pagina.</p>';return}
+  const l=d.lessen.find(x=>x.id===id);if(!l){t.innerHTML='<p class="leeg">Deze les bestaat niet (meer).</p>';return}
+  llLes=l;laatst("ll",id,l.titel);
+  const v=LLV[id];llStaat=lees("leerhub-ll-concept-"+id,null)||(v?{keuzes:{...v.keuzes},open:{...v.open},claude:{...(v.claude||{})},beoordeling:{...(v.beoordeling||{})},opmerking:v.opmerking||""}:{keuzes:{},open:{},claude:{},beoordeling:{},opmerking:""});
+  const vv=l.voorVandaag||{},ids=new Set(d.lessen.map(x=>x.id));
+  t.innerHTML=`<h1>${esc(l.titel)}</h1><p class="llmeta">${esc(DOMNAAM[l.domein]||"")} · ${NIV[l.niveau]||""} · ongeveer ${l.leestijd} minuten</p><blockquote>${esc(l.kern)}</blockquote>`+
+   ((l.herhaling||[]).length?`<h2>Even ophalen</h2><p class="llmeta">Uit eerdere lessen, om het vast te houden.</p>${l.herhaling.map((h,i)=>vraagHtml(h,"h"+i)).join("")}`:"")+
+   l.secties.map(s=>`<h2>${esc(s.kop)}</h2>${alinea(s.tekst)}`).join("")+
+   `<h2>Vragen</h2>${l.vragen.map((q,i)=>vraagHtml(q,"v"+i)).join("")}`+
+   `<div class="llvv"><h2>Voor vandaag</h2><p><b>Om mee te nemen:</b> ${esc(vv.zin)}</p><p><b>Om vandaag te zien:</b> ${esc(vv.kijkpunt)}</p><p><b>In je werk:</b> ${esc(vv.werkbrug)}</p></div>`+
+   `<h2>Hoe was deze les?</h2>${schaalHtml("helder","Helder","1 = onduidelijk, 5 = heel helder")}${schaalHtml("moeilijk","Moeilijk","1 = te makkelijk, 3 = precies goed, 5 = te moeilijk")}${schaalHtml("boeiend","Boeiend","1 = saai, 5 = heel boeiend")}<textarea id="ll-opm" rows="3" placeholder="Opmerking voor de volgende ronde (mag leeg blijven)">${esc(llStaat.opmerking||"")}</textarea>`+
+   `<div class="vknoppen" style="margin:14px 0"><button class="btn" type="button" id="llAfronden">${v&&v.afgerond?"Opnieuw opslaan":"Les afronden"}</button><span class="llmeta" id="llStatus">${v&&v.afgerond?"Je hebt deze les al afgerond.":""}</span></div>`+
+   ((l.verbanden||[]).filter(x=>ids.has(x)).length?`<h2>Verder in dit spoor</h2><div class="vknoppen">${l.verbanden.filter(x=>ids.has(x)).map(x=>`<button class="klein" type="button" data-ll="${esc(x)}">${esc(d.lessen.find(y=>y.id===x).titel)}</button>`).join("")}</div>`:"")+
+   ((l.bronnen||[]).length?`<h2>Bronnen</h2><ul>${l.bronnen.map(b=>`<li>${esc(b)}</li>`).join("")}</ul>`:"");
+  laadVoortgang();
+}
+function llVraag(key){const i=+key.slice(1);return key[0]==="h"?llLes.herhaling[i]:llLes.vragen[i]}
+document.addEventListener("click",async e=>{
+  if(!llLes||!location.hash.startsWith("#ll-"))return;
+  const k=e.target.closest("[data-kies]");
+  if(k){const key=k.dataset.kies;if(llStaat.keuzes[key]!==undefined)return;llStaat.keuzes[key]=+k.dataset.i;llConceptBewaar();
+    const blok=k.closest(".vraag");blok.outerHTML=vraagHtml(llVraag(key),key);return}
+  const s=e.target.closest("[data-schaal]");
+  if(s){llStaat.beoordeling[s.dataset.schaal]=+s.dataset.v;llConceptBewaar();s.parentNode.querySelectorAll("button").forEach(b=>b.setAttribute("aria-pressed",b===s?"true":"false"));return}
+  const f=e.target.closest("[data-fb]");
+  if(f){const key=f.dataset.fb,ant=(llStaat.open[key]||"").trim(),out=document.getElementById("fb-"+key);
+    if(!ant){out.innerHTML='<p class="llmeta">Schrijf eerst je antwoord, dan kijkt Claude mee.</p>';return}
+    out.innerHTML='<p class="llmeta">Claude leest je antwoord…</p>';
+    const sample=await claude.use("sample");if(!sample){out.innerHTML='<p class="llmeta">Claude kan hier nu niet meelezen. Je antwoord is wel bewaard.</p>';return}
+    const q=llVraag(key);
+    try{const r=await sample(`Je geeft korte, warme feedback op het antwoord van één vaste lezer: René, 57, consultant in contractmanagement, coach en cognitief gedragstherapeut met lichaamstaal als specialisatie. Les: "${llLes.titel}". Kern van de les: ${llLes.kern}\n\nVraag: ${q.vraag}\n\nZijn antwoord:\n"""\n${ant}\n"""\n\nSchrijf 120 tot 180 woorden in het Nederlands, in de jij-vorm, zonder cijfer of oordeel als 'goed' of 'fout', zonder emoji. Benoem concreet wat sterk is in zijn antwoord, en geef één gedachte die het een niveau dieper brengt: een verband met een ander idee of domein, of een nuance. Sluit niet af met een vraag.`,{modelTier:"default",cache:false,onText:({text})=>{if(text)out.innerHTML=alinea(text)}});
+      out.innerHTML=alinea(r.text);llStaat.claude[key]=r.text;llConceptBewaar()}
+    catch(err){out.innerHTML=`<p class="llmeta">${err&&err.code==="not_granted"?"Je hebt deze pagina geen toestemming gegeven om Claude te laten meelezen.":"Feedback lukte nu niet. Probeer het later opnieuw."}</p>`}
+    return}
+  if(e.target.id==="llAfronden"){
+    const kv=llLes.vragen.map((q,i)=>[q,"v"+i]).filter(([q])=>q.soort==="keuze");
+    const doc={lesId:llLes.id,versie:llLes.versie||1,afgerond:true,datum:new Date().toISOString(),
+      score:{goed:kv.filter(([q,k])=>llStaat.keuzes[k]===q.juist).length,totaal:kv.length},
+      keuzes:llStaat.keuzes,open:llStaat.open,claude:llStaat.claude,beoordeling:llStaat.beoordeling,opmerking:llStaat.opmerking||""};
+    const st=document.getElementById("llStatus");st.textContent="Bezig met opslaan…";
+    LLV[llLes.id]=doc;schrijf("leerhub-ll-voortgang",LLV);
+    const db=await llDb();
+    if(!db){st.textContent="Opgeslagen in deze browser. De database is hier niet bereikbaar, dus de groeironde ziet dit nog niet.";return}
+    try{await db.collection("voortgang").doc(llLes.id).set(doc);st.textContent="Afgerond en opgeslagen. De volgende groeironde bouwt hierop voort."}
+    catch(err){st.textContent="Opgeslagen in deze browser, maar niet in de database"+(err&&err.code?` (${err.code})`:"")+". Probeer later nog eens."}
+  }
+});
+document.addEventListener("input",e=>{
+  if(!llLes||!location.hash.startsWith("#ll-"))return;
+  if(e.target.dataset&&e.target.dataset.open){llStaat.open[e.target.dataset.open]=e.target.value;llConceptBewaar()}
+  if(e.target.id==="ll-opm"){llStaat.opmerking=e.target.value;llConceptBewaar()}
+});
+async function stuurWens(){const ta=document.getElementById("llWens"),st=document.getElementById("llWensStatus"),tekst=ta.value.trim();
+  if(!tekst){st.textContent="Schrijf eerst wat je graag wilt leren.";return}
+  const db=await llDb();if(!db){st.textContent="De database is hier niet bereikbaar. Zeg het anders in een groeisessie.";return}
+  try{await db.collection("verzoeken").add({tekst,datum:new Date().toISOString(),status:"nieuw"});ta.value="";st.textContent="Je wens is bewaard voor de volgende groeisessie."}
+  catch(err){st.textContent="Bewaren lukte niet"+(err&&err.code?` (${err.code})`:"")+"."}}
+
 let LESSEN=null;
 async function laadLessen(){if(LESSEN)return LESSEN;const r=await fetch("lessen.json");LESSEN=await r.json();return LESSEN}
 function render(md){
@@ -305,12 +424,16 @@ function render(md){
 async function toon(){
   const m=location.hash.match(/^#les-([a-z0-9]+)$/);
   const hub=document.getElementById("hub"),lz=document.getElementById("lezer");
+  document.getElementById("gelezen").hidden=false;
+  const lm=location.hash.match(/^#ll-([a-z]+-[1-4]-\d{2})$/);
+  if(lm){hub.hidden=true;lz.hidden=false;window.scrollTo(0,0);document.getElementById("gelezen").hidden=true;document.getElementById("vervolg").innerHTML="";toonLL(lm[1]);return}
+  llLes=null;
   const gm=location.hash.match(/^#gen-([a-z]+)-(\d+)$/);
   if(gm&&GEN[gm[1]]){hub.hidden=true;lz.hidden=false;window.scrollTo(0,0);toonGen(gm[1],+gm[2]);return}
   if(location.hash==="#bijbel-vandaag"){hub.hidden=true;lz.hidden=false;window.scrollTo(0,0);document.getElementById("vervolg").innerHTML="";
     const g=document.getElementById("gelezen");g.dataset.id="bijbel-vandaag";g.setAttribute("aria-pressed","false");g.textContent=bijbelModus==="synthese"?"Klaar, terug naar de hub":"Gelezen, naar de volgende lezing";
     startLezing();return}
-  if(!m){lz.hidden=true;hub.hidden=false;bouwHub();toonVandaag();return}
+  if(!m){lz.hidden=true;hub.hidden=false;bouwHub();toonVandaag();bouwLevend();return}
   const id=m[1];hub.hidden=true;lz.hidden=false;window.scrollTo(0,0);
   laatst("doc",id,TITELS[id]||"Les");
   const g=document.getElementById("gelezen");g.setAttribute("aria-pressed",gelezen[id]?"true":"false");g.textContent=gelezen[id]?"Gelezen ✓":"Markeer als gelezen";g.dataset.id=id;
@@ -321,6 +444,7 @@ async function toon(){
   try{const L=await laadLessen();if(!L[id])throw 0;render(L[id])}
   catch(e){document.getElementById("tekst").innerHTML='<p class="leeg">Deze les kon niet worden geladen. Ververs de pagina en probeer het opnieuw.</p>'}
 }
+document.getElementById("llWensKnop").onclick=stuurWens;
 document.getElementById("terug").onclick=()=>{location.hash=""};
 document.getElementById("gelezen").onclick=e=>{const id=e.currentTarget.dataset.id;if(id==="bijbel-vandaag"){volgendeLezing();return}gelezen[id]=!gelezen[id];schrijf("leerhub-gelezen",gelezen);
   e.currentTarget.setAttribute("aria-pressed",gelezen[id]?"true":"false");e.currentTarget.textContent=gelezen[id]?"Gelezen ✓":"Markeer als gelezen"};
