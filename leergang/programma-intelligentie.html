@@ -1,0 +1,627 @@
+<title>Leerweg Intelligentie</title>
+<meta name="claude:viewport-fit-sides" content="cover">
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link rel="stylesheet" href="https://fonts.googleapis.com/css2?family=Fraunces:opsz,wght@9..144,400;9..144,600;9..144,700&family=Bricolage+Grotesque:wght@400;500;600&display=swap">
+<style>
+/* Layout: één smalle leeskolom; vier niveaus als een opgaande ladder, elk met uitklapbare modules.
+   Drie vaste kleuren voor Sternbergs drie denkwijzen: analytisch, creatief, praktisch. */
+:root{
+  --bg:#f3f6fc; --surface:#ffffff; --fg:#1b2333; --muted:#5a6478; --line:#d9e0ee;
+  --accent:#2f4fb5; --accent-soft:#e3e9fb;
+  --ana:#2f6fb5; --cre:#a24ea8; --pra:#2d8a63;
+  --ana-soft:#e2edf9; --cre-soft:#f4e6f5; --pra-soft:#e1f2ea;
+  --display:"Fraunces", Georgia, "Times New Roman", serif;
+  --body:"Bricolage Grotesque", system-ui, -apple-system, "Segoe UI", sans-serif;
+}
+@media (prefers-color-scheme: dark){ :root:not([data-theme="light"]){
+  --bg:#11151f; --surface:#191f2c; --fg:#e6eaf3; --muted:#9aa4b8; --line:#2b3346;
+  --accent:#8ea8ff; --accent-soft:#232c45;
+  --ana:#7fb2f0; --cre:#d79ade; --pra:#6fcfa3;
+  --ana-soft:#1c2a3d; --cre-soft:#2f2033; --pra-soft:#18302a; color-scheme:dark }}
+:root[data-theme="dark"]{
+  --bg:#11151f; --surface:#191f2c; --fg:#e6eaf3; --muted:#9aa4b8; --line:#2b3346;
+  --accent:#8ea8ff; --accent-soft:#232c45;
+  --ana:#7fb2f0; --cre:#d79ade; --pra:#6fcfa3;
+  --ana-soft:#1c2a3d; --cre-soft:#2f2033; --pra-soft:#18302a; color-scheme:dark }
+*{box-sizing:border-box}
+body{background:var(--bg);color:var(--fg);font-family:var(--body);font-size:17px;line-height:1.6;
+  padding-left:max(16px,env(safe-area-inset-left,0px));padding-right:max(16px,env(safe-area-inset-right,0px));padding-block:32px 64px}
+.wrap{max-width:720px;margin:0 auto;display:flex;flex-direction:column;gap:56px}
+h1,h2,h3{font-family:var(--display);line-height:1.15;text-wrap:balance;margin:0}
+h1{font-size:clamp(2.1rem,6vw,3rem);font-weight:700}
+h2{font-size:1.65rem;font-weight:600}
+h3{font-size:1.15rem;font-weight:600}
+p{margin:0}
+.eyebrow{font-size:.78rem;letter-spacing:.09em;text-transform:uppercase;color:var(--muted);font-weight:600}
+section{display:flex;flex-direction:column;gap:16px}
+.lead{font-size:1.12rem;color:var(--fg)}
+.muted{color:var(--muted)}
+.meester{display:grid;grid-template-columns:auto 1fr;gap:20px;align-items:start;background:var(--surface);border:1px solid var(--line);border-radius:14px;padding:22px}
+.meester>div{min-width:0;display:flex;flex-direction:column;gap:10px}
+.mono{width:64px;height:64px;border-radius:50%;background:var(--accent-soft);color:var(--accent);display:grid;place-items:center;font-family:var(--display);font-size:1.5rem;font-weight:700}
+.lenzen{display:grid;grid-template-columns:repeat(3,1fr);gap:12px}
+.lens{border-radius:12px;padding:16px;display:flex;flex-direction:column;gap:6px;min-width:0}
+.lens b{font-family:var(--display);font-size:1.05rem}
+.lens.ana{background:var(--ana-soft)} .lens.ana b{color:var(--ana)}
+.lens.cre{background:var(--cre-soft)} .lens.cre b{color:var(--cre)}
+.lens.pra{background:var(--pra-soft)} .lens.pra b{color:var(--pra)}
+@media (max-width:620px){.lenzen{grid-template-columns:1fr}.meester{grid-template-columns:1fr}}
+.niveau{border-left:3px solid var(--line);padding-left:20px;display:flex;flex-direction:column;gap:14px}
+.niveau .kop{display:flex;flex-direction:column;gap:4px}
+.voortgang{font-size:.85rem;color:var(--muted);font-variant-numeric:tabular-nums}
+details{background:var(--surface);border:1px solid var(--line);border-radius:12px}
+details[open]{border-color:var(--accent)}
+summary{list-style:none;cursor:pointer;padding:14px 16px;display:grid;grid-template-columns:2.2rem 1fr auto;gap:10px;align-items:baseline}
+summary::-webkit-details-marker{display:none}
+summary:focus-visible{outline:2px solid var(--accent);outline-offset:2px;border-radius:12px}
+.nr{font-family:var(--display);color:var(--muted);font-variant-numeric:tabular-nums}
+.st{min-width:0}
+.st strong{display:block;font-weight:600}
+.st span{font-size:.9rem;color:var(--muted)}
+.vink{font-size:.8rem;color:var(--pra);font-weight:600;white-space:nowrap}
+.inhoud{padding:0 16px 18px 16px;display:flex;flex-direction:column;gap:12px}
+.rij{display:grid;grid-template-columns:7.5rem 1fr;gap:10px;font-size:.95rem}
+.rij>*{min-width:0}
+.rij dt{color:var(--muted);font-size:.82rem;text-transform:uppercase;letter-spacing:.06em;padding-top:3px}
+.rij dd{margin:0}
+@media (max-width:480px){.rij{grid-template-columns:1fr;gap:2px}}
+.drie{display:flex;flex-direction:column;gap:8px;margin:0;padding:0;list-style:none}
+.drie li{border-radius:8px;padding:8px 12px;font-size:.95rem}
+.drie .a{background:var(--ana-soft)} .drie .c{background:var(--cre-soft)} .drie .p{background:var(--pra-soft)}
+.drie em{font-style:normal;font-weight:600;margin-right:6px}
+.drie .a em{color:var(--ana)} .drie .c em{color:var(--cre)} .drie .p em{color:var(--pra)}
+label.klaar{display:flex;gap:8px;align-items:center;font-size:.9rem;color:var(--muted);cursor:pointer}
+.stof{display:flex;flex-direction:column;gap:12px;border-top:1px solid var(--line);padding-top:14px}
+.stof p{max-width:65ch}
+.stof h4{font-family:var(--display);font-size:1.05rem;margin:6px 0 0}
+dl.begrip{margin:0;display:flex;flex-direction:column;gap:8px}
+dl.begrip div{display:flex;flex-direction:column;gap:2px}
+dl.begrip dt{font-weight:600}
+dl.begrip dd{margin:0;color:var(--muted);font-size:.95rem}
+.kader{border-radius:10px;padding:12px 14px;display:flex;flex-direction:column;gap:4px;font-size:.95rem}
+.kader.onderzoek{background:var(--ana-soft)} .kader.onderzoek b{color:var(--ana)}
+.kader.mythe{background:var(--cre-soft)} .kader.mythe b{color:var(--cre)}
+.kader.casus{background:var(--pra-soft)} .kader.casus b{color:var(--pra)}
+ul.kijk{margin:0;padding-left:1.1rem;display:flex;flex-direction:column;gap:4px;font-size:.95rem}
+ul.kijk a{color:var(--accent)}
+figure.schema{margin:4px 0;background:var(--bg);border:1px solid var(--line);border-radius:10px;padding:10px;overflow-x:auto}
+figure.schema svg{display:block;width:100%;max-width:440px;height:auto;margin:0 auto}
+.schema text{font-family:var(--body);font-size:11px;text-anchor:middle;fill:var(--fg)}
+.schema .vs{font-size:9.5px;fill:var(--muted)} .schema .b{font-weight:600}
+.schema .l{text-anchor:start} .schema .r{text-anchor:end}
+.schema .vk{fill:var(--accent)} .schema .vk+text{fill:var(--surface)}
+.schema .vk2{fill:var(--surface);stroke:var(--line)}
+.schema .vl,.schema .va,.schema .vg{stroke:var(--muted);fill:none} .schema .vg{stroke:var(--line)}
+.schema .vd{fill:var(--muted)}
+.schema .vgf{stroke:var(--ana);stroke-width:3;fill:none} .schema .vgc{stroke:var(--cre);stroke-width:3;fill:none}
+.schema .dash{stroke-dasharray:6 4} .schema text.gf{fill:var(--ana)} .schema text.gc{fill:var(--cre)}
+.schema .vtri{fill:var(--accent-soft);stroke:var(--line)}
+.schema .vn.ana{fill:var(--ana)} .schema .vn.cre{fill:var(--cre)} .schema .vn.pra{fill:var(--pra)}
+.schema .vbar1{fill:var(--cre)} .schema .vbar2{fill:var(--ana)} .schema text.w{fill:#fff}
+.schema .vq{stroke:var(--line)} .schema .vq.goed{fill:var(--pra-soft)} .schema .vq.mid{fill:var(--surface)} .schema .vq.slecht{fill:var(--cre-soft)}
+.les{background:var(--surface);border:1px solid var(--line);border-radius:14px;padding:clamp(18px,4vw,32px);display:flex;flex-direction:column;gap:18px}
+.les p{max-width:65ch}
+.les h3{margin-top:6px}
+.vv{border-top:1px solid var(--line);padding-top:16px;display:flex;flex-direction:column;gap:8px}
+.vv .zin{font-family:var(--display);font-size:1.25rem;font-style:italic}
+table{border-collapse:collapse;width:100%;font-size:.95rem}
+.tabel{overflow-x:auto}
+th,td{text-align:left;padding:8px 10px;border-bottom:1px solid var(--line);vertical-align:top}
+th{font-size:.8rem;text-transform:uppercase;letter-spacing:.06em;color:var(--muted);font-weight:600}
+ul.bron{margin:0;padding-left:1.1rem;display:flex;flex-direction:column;gap:6px;font-size:.95rem}
+@media (prefers-reduced-motion:no-preference){details[open] .inhoud{animation:in .25s ease-out}@keyframes in{from{opacity:.4;transform:translateY(-3px)}to{opacity:1;transform:none}}}
+</style>
+
+<div class="wrap">
+
+<header style="display:flex;flex-direction:column;gap:14px">
+  <span class="eyebrow">Levende Leergang · domein intelligentie en mentaliseren</span>
+  <h1>Leerweg Intelligentie</h1>
+  <p class="lead">Een programma van vier niveaus, van MBO+ tot master, met één leermeester die je de hele weg begeleidt en een kamer vol gastdocenten die hem tegenspreken. Vierentwintig modules om te lezen, zonder vragen of toetsen en zonder haast. Reken op een module per twee tot vier weken.</p>
+</header>
+
+<section>
+  <span class="eyebrow">Je leermeester</span>
+  <div class="meester">
+    <div class="mono" aria-hidden="true">RS</div>
+    <div>
+      <h2>Robert J. Sternberg</h2>
+      <p>Er bestaat geen objectief beste leraar over intelligentie. Wel een die het beste past bij jou. Sternberg (geboren 1949, hoogleraar aan Cornell, oud-voorzitter van de American Psychological Association) heeft vijftig jaar onderzoek gedaan naar precies de drie dingen die jij in je werk nodig hebt: slim analyseren, creatief bedenken en praktisch handelen tussen echte mensen. Later voegde hij daar wijsheid aan toe: intelligentie die het gemeenschappelijk goed dient.</p>
+      <p>Hij is ook een leraar met een eigen verhaal. Als kind kreeg hij last van toetsangst en scoorde hij slecht op IQ-tests. Zijn juf in groep 6 verwachtte meer van hem, en hij werd een topleerling. Op de universiteit kreeg hij een zes voor inleiding psychologie, met het advies een ander vak te kiezen. Dat verhaal vertelt hij zelf, als bewijs dat een testscore een momentopname is en geen vonnis.</p>
+      <p class="muted">Waar Sternberg een blinde vlek heeft, laat het programma anderen aan het woord: de psychometrici die zeggen dat hij de algemene factor g onderschat, en de onderzoekers die zijn eigen theorie kritisch toetsten.</p>
+    </div>
+  </div>
+</section>
+
+<section>
+  <span class="eyebrow">Hoe hij denkt</span>
+  <h2>Drie lenzen die steeds terugkomen</h2>
+  <p>Sternberg kijkt naar elk vraagstuk op drie manieren. Je komt ze in de hele leerweg tegen, in de theorie, in de casussen en in de verbinding met je werk.</p>
+  <div class="lenzen">
+    <div class="lens ana"><b>Analytisch</b><span>Ontleden, vergelijken en beoordelen: klopt het argument?</span></div>
+    <div class="lens cre"><b>Creatief</b><span>Nieuwe verbanden en ideeën: hoe kan het ook anders?</span></div>
+    <div class="lens pra"><b>Praktisch</b><span>Toepassen tussen echte mensen: wat doe je ermee in een gesprek?</span></div>
+  </div>
+</section>
+
+<section id="route">
+  <span class="eyebrow">De route</span>
+  <h2>Vier niveaus, vierentwintig modules</h2>
+  <p class="muted">Tik op een module om te lezen: uitleg, schema's, een voorbeeld uit de praktijk, kernbegrippen, wat het onderzoek zegt, een veelvoorkomend misverstand en video's om te kijken. De videolinks openen een zoekopdracht op YouTube, zodat ze blijven werken als een video verhuist. Vink aan wat je gelezen hebt; dat onthoudt alleen deze browser.</p>
+  <div id="niveaus" style="display:flex;flex-direction:column;gap:40px"></div>
+</section>
+
+<section id="les1">
+  <span class="eyebrow">Module 1.1 volledig uitgewerkt</span>
+  <article class="les">
+    <h2>Het verhaal van de toets</h2>
+    <p class="muted">Leestijd ongeveer 12 minuten · niveau MBO+</p>
+
+    <p>Je zit tegenover een kandidaat-leverancier. Op papier scoort zijn team hoog: certificaten, assessments, een keurige capaciteitsmatrix. Toch knaagt er iets. In het gesprek beantwoordt de projectleider elke vraag correct, maar hij ziet niet dat jouw collega van inkoop al tien minuten wil ingrijpen. Is deze man intelligent? Ja, volgens de toets. En toch weet jij dat dit contract over een half jaar gaat schuren.</p>
+
+    <h3>Waarom de eerste toets werd gemaakt</h3>
+    <p>In 1904 vroeg de Franse overheid aan psycholoog Alfred Binet om een manier te vinden waarop scholen konden zien welke kinderen extra hulp nodig hadden. Samen met Théodore Simon maakte hij in 1905 de eerste bruikbare intelligentietest. Het doel was dus helpen, niet sorteren. Binet waarschuwde zelf tegen het idee dat intelligentie een vaste hoeveelheid is. Hij noemde dat een "brute pessimisme" en schreef dat je intelligentie kunt ontwikkelen met oefening en goed onderwijs.</p>
+
+    <h3>Hoe een hulpmiddel een etiket werd</h3>
+    <p>De Duitse psycholoog William Stern bedacht in 1912 het intelligentiequotiënt: mentale leeftijd gedeeld door werkelijke leeftijd, maal honderd. In Amerika maakte Lewis Terman er in 1916 de Stanford-Binet van, en daarna werden tests op grote schaal gebruikt om rekruten, immigranten en schoolkinderen in te delen. Precies het gebruik waar Binet voor gewaarschuwd had. De psycholoog Edwin Boring vatte de verwarring in 1923 droog samen: intelligentie is wat de test meet. Die zin is half een grap en half een eerlijke bekentenis. Niemand had eerst precies gedefinieerd wat er gemeten werd.</p>
+
+    <h3>Wat een IQ-score wél zegt</h3>
+    <p>Dit is het moment om eerlijk te zijn, want hier corrigeert onderzoek een veelgehoorde intuïtie. IQ-scores zijn geen onzin. Ze voorspellen redelijk goed hoe iemand het op school doet en, iets zwakker, hoe snel iemand een complex vak leert. Ze zijn ook behoorlijk stabiel over het leven. Wie zegt dat IQ niets betekent, zit ernaast. Maar een gemiddelde voorspelling over een grote groep zegt weinig over die ene persoon tegenover je. En de toets meet vooral analytisch redeneren met duidelijke vragen en één juist antwoord. In het echte leven zijn de vragen zelden duidelijk, en zijn er vaak meer goede antwoorden.</p>
+
+    <h3>Waar Sternberg begint</h3>
+    <p>Sternberg zegt: de toets meet iets echts, maar te weinig. Een projectleider die elke vraag goed beantwoordt en de spanning aan tafel mist, laat analytisch vermogen zien zonder praktische intelligentie. Dat is geen tekort aan slimheid in het algemeen; het is een ander soort slim dat ontbreekt. Over die drie soorten gaat module 1.4. Voor nu is één ding genoeg: een score is een momentopname van één vermogen, gemeten op één manier.</p>
+
+
+    <div class="vv">
+      <span class="eyebrow">Voor vandaag</span>
+      <p class="zin">Een score is een foto van één vermogen, op één moment.</p>
+      <p><b>Om vandaag te zien:</b> merk op wanneer jij iemand indeelt als "slim" of "niet zo slim". Waar baseer je dat op?</p>
+      <p><b>In je werk:</b> vraag bij de volgende leveranciersselectie naast de certificaten ook naar een situatie waarin het team een onduidelijk probleem moest oplossen.</p>
+    </div>
+    <p class="muted" style="font-size:.9rem">Bronnen: Binet (1909), <i>Les idées modernes sur les enfants</i>; Boring (1923), "Intelligence as the tests test it", <i>New Republic</i>; Sternberg (1996), <i>Successful Intelligence</i>; Deary (2020), <i>Intelligence: A Very Short Introduction</i>, 2e druk.</p>
+  </article>
+</section>
+
+<section>
+  <span class="eyebrow">De lerarenkamer</span>
+  <h2>Wie er naast Sternberg spreekt</h2>
+  <div class="tabel">
+  <table>
+    <thead><tr><th>Gastdocent</th><th>Brengt in</th><th>Waar hij of zij Sternberg tegenspreekt of aanvult</th></tr></thead>
+    <tbody>
+      <tr><td>Alfred Binet</td><td>De eerste test</td><td>Deelt zijn idee dat intelligentie te ontwikkelen is</td></tr>
+      <tr><td>Charles Spearman, John Carroll</td><td>De algemene factor g, het CHC-model</td><td>Zien g als kern; Sternberg vindt g te smal</td></tr>
+      <tr><td>Ian Deary</td><td>Het grootste levenslooponderzoek naar IQ</td><td>Laat zien hoeveel IQ wél voorspelt</td></tr>
+      <tr><td>James Flynn</td><td>Stijgende scores over generaties</td><td>Omgeving doet ertoe, ook voor g</td></tr>
+      <tr><td>Howard Gardner</td><td>Meervoudige intelligentie</td><td>Breder dan Sternberg, maar zwakker onderbouwd</td></tr>
+      <tr><td>Daniel Kahneman, Gary Klein</td><td>Snel en traag denken, intuïtie van experts</td><td>Wanneer je je onderbuik kunt vertrouwen</td></tr>
+      <tr><td>Keith Stanovich</td><td>Rationaliteit naast intelligentie</td><td>Slimme mensen kunnen dom handelen; meetbaar</td></tr>
+      <tr><td>Carol Dweck</td><td>Mindset</td><td>Populair idee met kleinere effecten dan gedacht</td></tr>
+      <tr><td>Peter Fonagy</td><td>Mentaliseren</td><td>Sociale intelligentie vanuit hechting</td></tr>
+      <tr><td>Igor Grossmann</td><td>Wijsheid als meetbaar gedrag</td><td>Toetst Sternbergs wijsheidsidee in experimenten</td></tr>
+      <tr><td>François Chollet</td><td>Intelligentie en kunstmatige intelligentie</td><td>Intelligentie als efficiënt nieuwe vaardigheden leren</td></tr>
+      <tr><td>Augustinus, Thomas van Aquino, Pascal</td><td>Verstand, inzicht en het hart</td><td>Een oudere vraag: waartoe dient het verstand?</td></tr>
+    </tbody>
+  </table>
+  </div>
+</section>
+
+<section>
+  <span class="eyebrow">Zo gebruik je dit</span>
+  <h2>Het ritme</h2>
+  <p>Lees een module in je eigen tempo, kijk een video als je zin hebt, en draag de zin van Voor vandaag een week mee. Er zijn geen vragen, toetsen of cijfers. Wil je de volgende module als volledig uitgeschreven les, zeg dan in een sessie <b>"groeironde"</b> of typ <b>/levende-leergang</b>. Na niveau 4 stopt het niet: dan kiezen we samen een onderwerp om verder in te duiken.</p>
+</section>
+
+<section>
+  <span class="eyebrow">Om zelf verder te lezen</span>
+  <h2>Kernboeken, van makkelijk naar moeilijk</h2>
+  <ul class="bron">
+    <li>Ian Deary, <i>Intelligence: A Very Short Introduction</i> (2020). Kort, eerlijk, ideaal begin.</li>
+    <li>Robert Sternberg, <i>Successful Intelligence</i> (1996). Het hart van zijn theorie, voor een breed publiek.</li>
+    <li>Daniel Kahneman, <i>Ons feilbare denken</i> (2011). Systeem 1 en 2.</li>
+    <li>Keith Stanovich, <i>What Intelligence Tests Miss</i> (2009). Rationaliteit naast IQ.</li>
+    <li>Robert Sternberg, <i>Adaptive Intelligence</i> (2021). Intelligentie voor het gemeenschappelijk goed.</li>
+    <li>Sternberg en Kaufman (red.), <i>The Cambridge Handbook of Intelligence</i> (2e druk, 2020). Naslag voor WO en master.</li>
+  </ul>
+</section>
+
+</div>
+
+<script>
+const N = [
+ {nr:1,naam:"MBO+",titel:"Wat is intelligentie eigenlijk?",doel:"Je kent de belangrijkste ideeën over intelligentie en kunt een IQ-score in eigen woorden duiden.",
+  mods:[
+  {t:"Het verhaal van de toets",v:"Waarom is de IQ-test bedacht, en wat meet hij wel en niet?",g:"Alfred Binet",b:"Binet-Simon (1905), IQ, Boring (1923)",w:"Leveranciersselectie: kijk verder dan certificaten.",les:true},
+  {t:"Eén vermogen of vele?",v:"Waarom hangen scores op heel verschillende tests met elkaar samen?",g:"Charles Spearman",b:"g-factor, positieve samenhang",w:"Teamsamenstelling bij complexe contracten."},
+  {t:"Vloeibaar en gekristalliseerd",v:"Wat neemt af met de jaren, en wat groeit juist door?",g:"Raymond Cattell, John Horn",b:"Gf en Gc, woordenschat piekt rond 65 à 70 jaar",w:"Jouw ervaring als vermogen, niet als achterstand."},
+  {t:"Drie soorten slim",v:"Wat zijn analytische, creatieve en praktische intelligentie?",g:"Robert Sternberg",b:"Triarchische theorie (1985)",w:"Coaching: maak een sterkteprofiel in drie kleuren."},
+  {t:"Mindset, eerlijk bekeken",v:"Helpt geloven dat je kunt groeien echt?",g:"Carol Dweck",b:"Groeimindset; meta-analyse Sisk e.a. (2018): kleine effecten",w:"Feedback geven op inzet en strategie."},
+  {t:"Slim is niet hetzelfde als verstandig",v:"Hoe kunnen intelligente mensen domme beslissingen nemen?",g:"Keith Stanovich",b:"Dysrationalia",w:"Contractbesluiten onder tijdsdruk."}
+  ]},
+ {nr:2,naam:"HBO",titel:"Intelligentie in de praktijk",doel:"Je past theorieën over intelligentie toe in coaching, onderhandeling en contractmanagement.",
+  mods:[
+  {t:"Stille kennis",v:"Wat weten ervaren professionals zonder dat ze het kunnen uitleggen?",g:"Sternberg en Wagner",b:"Tacit knowledge, praktische intelligentie",w:"Overdracht van contractkennis bij wisselingen."},
+  {t:"Aanpassen, vormen of kiezen",v:"Wat doe je als je omgeving niet bij je past?",g:"Robert Sternberg",b:"Succesvolle intelligentie",w:"Coaching bij loopbaanvragen."},
+  {t:"Snel en traag denken",v:"Wanneer misleidt je eerste indruk je?",g:"Daniel Kahneman",b:"Systeem 1 en 2, ankereffect, framing",w:"Onderhandelen over prijs en voorwaarden."},
+  {t:"Emotionele intelligentie kritisch",v:"Is EQ een vermogen, een persoonlijkheid of een verkooppraatje?",g:"Mayer, Salovey en Caruso",b:"Vaardigheidsmodel (MSCEIT) tegenover populaire modellen",w:"Lichaamstaal: zien wat je voelt bij een ander."},
+  {t:"Mentaliseren als sociale intelligentie",v:"Hoe begrijp je wat er in een ander omgaat, zonder te gokken?",g:"Peter Fonagy",b:"Mentaliseren, niet-weten",w:"Brug naar je lichaamstaalspecialisatie."},
+  {t:"Wanneer intuïtie te vertrouwen is",v:"Wanneer weet een expert het echt, en wanneer denkt hij het alleen?",g:"Kahneman en Klein",b:"Voorwaarden: een regelmatige omgeving en snelle feedback (2009)",w:"Kalibratie van je eigen expertise."}
+  ]},
+ {nr:3,naam:"WO",titel:"Het debat",doel:"Je leest onderzoek kritisch, kent de grote meningsverschillen en kunt ze zelf wegen.",
+  mods:[
+  {t:"Hoe meet je een geest?",v:"Wat betekenen betrouwbaarheid, validiteit en factoranalyse?",g:"John Carroll",b:"CHC-model (1993), psychometrie",w:"Assessments in selectie beoordelen."},
+  {t:"Het Flynn-effect",v:"Waarom stegen IQ-scores een eeuw lang, en waarom dalen ze nu soms?",g:"James Flynn",b:"Flynn (1984, 2007); Bratsberg en Rogeberg (2018)",w:"Omgeving vormt denken."},
+  {t:"Erfelijkheid zonder misverstand",v:"Wat zegt een erfelijkheidspercentage wel en niet?",g:"Eric Turkheimer",b:"Erfelijkheid als populatiegetal, gen-omgeving",w:"Coaching bij 'zo ben ik nu eenmaal'."},
+  {t:"Meervoudige intelligentie onder vuur",v:"Waarom is een populaire theorie wetenschappelijk omstreden?",g:"Howard Gardner",b:"Gardner (1983), kritiek Waterhouse (2006), de leerstijlenmythe",w:"Trainingsaanbod kritisch inkopen."},
+  {t:"Rationaliteit meten",v:"Is goed denken een apart vermogen naast intelligentie?",g:"Keith Stanovich",b:"Rationaliteitsquotiënt (2016), mindware",w:"Besluitvorming in contractbeheer."},
+  {t:"Wijsheid als onderzoeksobject",v:"Kun je wijsheid meten en oefenen?",g:"Igor Grossmann",b:"Sternbergs balanstheorie; Solomons paradox (Grossmann en Kross, 2014)",w:"Coaching: afstand nemen van je eigen probleem."}
+  ]},
+ {nr:4,naam:"Master",titel:"Een eigen positie",doel:"Je verbindt intelligentie met filosofie, technologie, ethiek en geloof en formuleert je eigen model.",
+  mods:[
+  {t:"Wat bedoelen we eigenlijk?",v:"Is intelligentie een ding, een eigenschap of een oordeel?",g:"Legg en Hutter, Boring",b:"Begripsanalyse, operationalisme",w:"Helder taalgebruik in rapportages."},
+  {t:"Kunstmatige intelligentie als spiegel",v:"Wat leren taalmodellen ons over menselijke intelligentie?",g:"François Chollet",b:"On the Measure of Intelligence (2019)",w:"AI in contractmanagement verantwoord inzetten."},
+  {t:"Intelligentie, macht en ethiek",v:"Hoe is het begrip misbruikt, en wat is de les?",g:"Stephen Jay Gould en zijn critici",b:"Eugenetica, The Mismeasure of Man, Sternberg (2021)",w:"Selectie en eerlijkheid."},
+  {t:"Collectieve intelligentie",v:"Kan een team slimmer zijn dan zijn leden?",g:"Anita Woolley",b:"c-factor (2010), kritiek Credé en Howardson (2017)",w:"Contractoverleg en stuurgroepen."},
+  {t:"Verstand, inzicht en het hart",v:"Wat zegt de christelijke traditie over intelligentie en wijsheid?",g:"Augustinus, Thomas van Aquino, Pascal",b:"Ratio en intellectus, Spreuken, 'le cœur a ses raisons'",w:"Zingeving in coaching, met respect voor elke levensovertuiging."},
+  {t:"Alles samen: een eigen kijk",v:"Hoe passen de inzichten uit deze leerweg samen tot één samenhangend beeld van intelligentie?",g:"Alle gastdocenten",b:"Synthese",w:"Je eigen methode als consultant en coach."}
+  ]}
+];
+// Leerstof per module: u = uitleg (alinea's), k = kernbegrippen [term, definitie], o = wat het onderzoek zegt, m = misverstand
+const L = {
+"1.1":{u:[],
+ k:[["Mentale leeftijd","Het niveau waarop een kind presteert, vergeleken met wat kinderen van verschillende leeftijden gemiddeld kunnen. Binets oorspronkelijke maat."],
+    ["Deviatie-IQ","De moderne IQ-score (David Wechsler, 1939): je plaats ten opzichte van leeftijdgenoten. Het gemiddelde is 100; ongeveer twee derde van de mensen scoort tussen 85 en 115."],
+    ["Normering","Een test wordt afgenomen bij een grote, representatieve groep. Jouw score betekent alleen iets in vergelijking met die groep, op dat moment."]],
+ o:"IQ-scores hangen op groepsniveau samen met schoolprestaties (correlatie rond 0,5) en met opleidingsniveau en inkomen later in het leven. Ze zijn redelijk stabiel: in het Schotse onderzoek van Ian Deary hing de score op 11 jaar nog duidelijk samen met de score van dezelfde mensen op 77 jaar (correlatie rond 0,6).",
+ m:"Twee tegengestelde misverstanden: dat IQ niets betekent, en dat het alles over iemand zegt. Beide zijn onjuist. Het is een goede voorspeller voor groepen en een grove voorspeller voor één persoon."},
+"1.2":{u:[
+ "In 1904 zag de Britse psycholoog Charles Spearman iets opvallends. Kinderen die goed waren in het ene schoolvak, waren gemiddeld ook beter in andere vakken, zelfs in vakken die weinig met elkaar te maken leken te hebben, zoals muziek en Latijn. Die algemene samenhang heet de positieve manifold. Het is een van de best gerepliceerde bevindingen uit de hele psychologie.",
+ "Om die samenhang te verklaren, ontwikkelde Spearman de factoranalyse: een rekenmethode die zoekt naar een gemeenschappelijke bron achter veel metingen. Hij vond één algemene factor, die hij g noemde, plus voor elke test een specifiek deel, s. Wie hoog scoort op g, heeft een voorsprong op bijna elke denktaak, maar niet op elke taak even veel.",
+ "Al snel kwam er tegenspraak. Louis Thurstone vond in 1938 zeven primaire vermogens, zoals verbaal begrip, ruimtelijk inzicht en rekenen. Maar die zeven bleken ook weer met elkaar samen te hangen. Zo ontstond het moderne compromis: een hiërarchie met g bovenaan en bredere vermogens daaronder. Wat g zelf is, blijft een open vraag. De Amsterdamse psycholoog Han van der Maas liet in 2006 zien dat de samenhang ook kan ontstaan doordat vaardigheden elkaar tijdens de ontwikkeling versterken. Dan is er geen enkele oorzaak in het hoofd, maar een netwerk."],
+ k:[["Positieve manifold","Het verschijnsel dat scores op alle soorten denktaken positief met elkaar samenhangen."],
+    ["Factoranalyse","Statistische methode die zoekt naar een klein aantal onderliggende factoren achter veel metingen."],
+    ["Mutualisme","Het idee van Van der Maas dat cognitieve vaardigheden elkaar wederzijds versterken, waardoor g ontstaat als netwerkeffect."]],
+ o:"In een brede testbatterij verklaart g meestal zo'n 40 tot 50 procent van de verschillen tussen mensen. Dat is veel, maar het betekent ook dat de helft of meer van de verschillen iets anders is.",
+ m:"Dat g betekent dat slimme mensen overal goed in zijn. De samenhang is gemiddeld en matig. Individuele profielen kunnen heel ongelijk zijn: iemand kan sterk verbaal en zwak ruimtelijk zijn."},
+"1.3":{u:[
+ "Raymond Cattell en zijn student John Horn maakten in de jaren zestig een onderscheid dat voor jou op je 57e direct relevant is. Vloeibare intelligentie (Gf) is redeneren met nieuwe problemen: patronen zien, iets uitpuzzelen waar je geen kennis voor hebt, veel tegelijk in je werkgeheugen houden. Gekristalliseerde intelligentie (Gc) is wat je hebt opgebouwd: woordenschat, kennis van je vak, begrip van hoe de wereld werkt.",
+ "Die twee volgen een ander verloop over het leven. Verwerkingssnelheid en vloeibaar redeneren pieken rond je twintigste en dalen daarna langzaam. Gekristalliseerde kennis blijft groeien. In een groot onderzoek van Joshua Hartshorne en Laura Germine (2015) lag de piek van woordenschat pas rond eind zestig, begin zeventig. Ook het lezen van emoties bij anderen piekte pas rond middelbare leeftijd.",
+ "Paul en Margret Baltes beschreven hoe ouder worden goed gaat: selectie, optimalisatie en compensatie (SOC). Hun favoriete voorbeeld was de pianist Arthur Rubinstein, die op hoge leeftijd nog concerten gaf. Hij speelde minder stukken (selectie), oefende die vaker (optimalisatie) en speelde vlak voor snelle passages bewust langzamer, zodat de snelle delen sneller leken (compensatie)."],
+ k:[["Vloeibare intelligentie (Gf)","Het vermogen om nieuwe problemen op te lossen zonder te leunen op eerder geleerde kennis."],
+    ["Gekristalliseerde intelligentie (Gc)","Opgebouwde kennis en vaardigheden, vooral taal en vakkennis."],
+    ["SOC-model","Selectie, optimalisatie en compensatie: de strategie waarmee mensen ondanks verlies van snelheid goed blijven presteren."]],
+ o:"Commerciële hersentrainingsapps maken je vooral beter in de app zelf. Een grote review (Simons e.a., 2016) vond weinig bewijs dat dat doorwerkt naar dagelijks denken. Lichaamsbeweging, goede slaap en blijvend nieuwe dingen leren hebben een betere onderbouwing, al zijn de effecten bescheiden.",
+ m:"Dat je na je vijftigste in alles achteruitgaat. Snelheid neemt af, maar kennis, oordeelsvermogen en het lezen van mensen kunnen nog jaren groeien. De verschillen tussen mensen van dezelfde leeftijd zijn bovendien groot."},
+"1.4":{u:[
+ "In 1985 publiceerde Sternberg Beyond IQ, met zijn triarchische theorie. Hij legt het zelf uit met drie studenten. Alice had topscores op toetsen en was de ster van de klas, maar had moeite met eigen onderzoeksideeën. Barbara had middelmatige scores, maar kwam steeds met originele ideeën. Celia scoorde nergens uitzonderlijk, maar wist precies hoe ze zich in een nieuwe omgeving moest bewegen. Zij kreeg later de meeste baanaanbiedingen.",
+ "Analytische intelligentie is wat Alice had: analyseren, vergelijken, beoordelen en kritiek geven. Creatieve intelligentie is wat Barbara had: omgaan met iets nieuws en ideeën bedenken die origineel en bruikbaar zijn. Praktische intelligentie is wat Celia had: weten wat je in een concrete situatie moet doen, vaak op basis van kennis die nergens staat opgeschreven.",
+ "Volgens Sternberg meten de meeste toetsen vooral het analytische deel. Daardoor beloont het onderwijs Alice en mist het Barbara en Celia. Zijn Rainbow Project (2006) voegde creatieve en praktische taken toe aan een toelatingstoets voor de universiteit. Die voorspelden studiecijfers beter dan de toets alleen, en de verschillen tussen etnische groepen werden kleiner."],
+ k:[["Analytische intelligentie","Problemen ontleden, oplossingen beoordelen, redeneren binnen een gegeven kader."],
+    ["Creatieve intelligentie","Nieuwe en passende ideeën bedenken, omgaan met onbekende situaties."],
+    ["Praktische intelligentie","Kennis en vaardigheid toepassen in de dagelijkse context, inclusief ongeschreven regels."]],
+ o:"De theorie is invloedrijk maar omstreden. Linda Gottfredson (2003) betoogde dat het bewijs voor praktische intelligentie als iets los van g zwak is en dat veel studies klein waren. Het Rainbow Project had meetproblemen en werd niet op grote schaal herhaald. Het idee dat toetsen te smal zijn, wordt breed gedeeld; dat er precies drie losse vermogens zijn, niet.",
+ m:"Dat je een analytisch, creatief of praktisch type bent. Het zijn drie vermogens die iedereen in wisselende mate heeft en die je allemaal kunt ontwikkelen. Ze zijn geen persoonlijkheidstypes."},
+"1.5":{u:[
+ "Carol Dweck onderscheidt twee overtuigingen over je eigen vermogens. In een vaste mindset geloof je dat intelligentie een gegeven is: je hebt het of niet. In een groeimindset geloof je dat je vermogens kunt ontwikkelen door inzet, goede strategieën en hulp van anderen.",
+ "Een bekend experiment is dat van Claudia Mueller en Dweck (1998). Kinderen kregen na een makkelijke opgave lof. De ene groep hoorde: je bent slim. De andere groep: je hebt hard gewerkt. Na een moeilijke opgave kozen de slim-kinderen vaker voor een makkelijke vervolgtaak, gaven sneller op en overdreven later hun scores tegenover anderen.",
+ "Dweck waarschuwt zelf voor een valse groeimindset: alleen inzet prijzen, ook als iets niet werkt. Inzet zonder betere strategie leidt nergens toe. Goede feedback benoemt wat iemand deed, welke aanpak werkte en wat hij een volgende keer anders kan proberen."],
+ k:[["Vaste mindset","De overtuiging dat je vermogens vastliggen."],
+    ["Groeimindset","De overtuiging dat je vermogens zich door inzet, strategie en hulp kunnen ontwikkelen."],
+    ["Procesgerichte feedback","Feedback op aanpak en strategie, niet op talent of persoon."]],
+ o:"Een grote meta-analyse (Sisk e.a., 2018) vond dat het verband tussen mindset en prestaties zwak is, en dat mindset-trainingen gemiddeld een heel klein effect hebben. Een groot Amerikaans onderzoek (Yeager e.a., 2019) vond wel een klein maar echt effect bij laag presterende leerlingen, vooral op scholen waar de cultuur meewerkte. Eerlijke conclusie: het helpt soms een beetje, vooral bij wie het hardst vastzit.",
+ m:"Dat je alles kunt als je er maar in gelooft. Een groeimindset is een startpunt, geen motor. Zonder goede strategie, feedback en oefening verandert er weinig."},
+"1.6":{u:[
+ "Een knuppel en een bal kosten samen 1,10 euro. De knuppel kost 1 euro meer dan de bal. Hoeveel kost de bal? Bijna iedereen denkt eerst: 10 cent. Het juiste antwoord is 5 cent. Shane Frederick (2005) legde deze en twee andere vragen voor aan duizenden studenten. Ook op topuniversiteiten gaf een groot deel het intuïtieve, foute antwoord.",
+ "Keith Stanovich bedacht in 1993 het woord dysrationalia: niet rationeel kunnen denken of handelen ondanks voldoende intelligentie. Volgens hem meet een IQ-test of je goed kunt redeneren als de opdracht duidelijk is. Hij meet niet of je uit jezelf stilstaat om je eerste ingeving te controleren. Dat tweede is een denkhouding, geen rekenkracht.",
+ "Voor jouw werk is myside bias het belangrijkst: bewijs beoordelen in het voordeel van wat je al vond. Stanovich, West en Toplak (2013) vonden dat deze neiging nauwelijks samenhangt met intelligentie. Slimme mensen zijn er dus niet beter tegen beschermd. Ze zijn soms zelfs beter in het verzinnen van goede argumenten voor wat ze toch al dachten."],
+ k:[["Dysrationalia","Onvermogen om rationeel te denken of te handelen ondanks voldoende intelligentie."],
+    ["Cognitieve reflectietoets","Drie vragen waarbij je een intuïtief fout antwoord moet onderdrukken (Frederick, 2005)."],
+    ["Myside bias","Bewijs en argumenten beoordelen in het voordeel van je eigen standpunt."]],
+ o:"De samenhang tussen IQ en het vermijden van denkfouten verschilt per denkfout. Bij sommige fouten, zoals het negeren van basiskansen, helpt intelligentie wat. Bij myside bias helpt ze nauwelijks.",
+ m:"Dat slimme mensen minder bevooroordeeld zijn. Voor sommige denkfouten klopt dat een beetje, voor de belangrijkste in discussies en onderhandelingen niet."},
+"2.1":{u:[
+ "De filosoof Michael Polanyi schreef in 1966: we weten meer dan we kunnen zeggen. Je herkent een gezicht uit duizenden, maar je kunt niet uitleggen hoe. Zo is het ook met vakmanschap. Een ervaren contractmanager voelt dat een leverancier gaat schuiven, nog voordat er iets op papier staat. Dat is stille kennis (tacit knowledge).",
+ "Richard Wagner en Robert Sternberg maakten in de jaren tachtig een toets voor stille kennis bij managers. Ze legden realistische werksituaties voor met een rij mogelijke reacties. Deelnemers gaven aan hoe goed elke reactie was. Hun antwoorden werden vergeleken met die van ervaren, succesvolle managers. Volgens Wagner en Sternberg voorspelden de scores werkprestaties en hingen ze weinig samen met IQ.",
+ "Ze onderscheiden drie soorten stille kennis: jezelf managen (wanneer werk je het best, hoe ga je met stress om), anderen managen (wie moet je eerst bellen, hoe breng je slecht nieuws) en taken managen (welke klus kan wachten). Stille kennis leer je niet uit boeken. Je leert haar door ervaring, maar alleen als je op die ervaring reflecteert. Verhalen van ervaren collega's zijn de snelste overdracht."],
+ k:[["Stille kennis","Handelingskennis die je gebruikt maar moeilijk onder woorden brengt."],
+    ["Situational judgment test","Toets met realistische werksituaties waarin je reacties beoordeelt."],
+    ["Procedurele kennis","Weten hoe je iets doet, in tegenstelling tot weten dat iets zo is."]],
+ o:"Situational judgment tests voorspellen werkprestaties redelijk (McDaniel e.a., 2007). Maar critici laten zien dat ze deels overlappen met g en persoonlijkheid. Dat stille kennis volledig los staat van algemene intelligentie, is dus te sterk gezegd.",
+ m:"Dat ervaring vanzelf stille kennis oplevert. Twintig jaar ervaring kan ook één jaar ervaring zijn, twintig keer herhaald. Reflectie en feedback maken het verschil."},
+"2.2":{u:[
+ "Sternberg definieert succesvolle intelligentie als het vermogen om te bereiken wat je in je leven belangrijk vindt, binnen je sociale en culturele context. Je doet dat door je sterke kanten te benutten en je zwakke kanten te verbeteren of te compenseren. En je gebruikt daarvoor een mengsel van analytisch, creatief en praktisch denken.",
+ "Het hart van de theorie is wat je met je omgeving doet. Je kunt je aanpassen: jezelf veranderen zodat je beter past. Je kunt de omgeving vormen: de situatie veranderen zodat die beter bij jou past. En je kunt kiezen: een andere omgeving zoeken als aanpassen en vormen niet lukken. Aanpassen is meestal de eerste reactie. Vormen vraagt meer moed. Kiezen voelt vaak als falen, maar kan de wijste stap zijn.",
+ "Dit model werkt goed als coachkader. Een cliënt die vastzit in zijn baan stelt meestal maar één vraag: hoe pas ik me aan? Door alle drie de opties op tafel te leggen, wordt het gesprek breder. Wat heb je al aangepast? Wat zou je kunnen vormen? En als je zou kiezen, wat kies je dan?"],
+ k:[["Succesvolle intelligentie","Je eigen doelen bereiken in je context, door sterktes te benutten en zwaktes te compenseren."],
+    ["Aanpassen, vormen, kiezen","De drie manieren om je verhouding met je omgeving te verbeteren."],
+    ["Compenseren","Een zwakte opvangen door een sterkte of hulpmiddel, in plaats van haar weg te werken."]],
+ o:"Dit is eerder een praktisch kader dan een getoetste theorie. Het sluit aan bij onderzoek naar persoon-omgevingsfit: mensen die passen bij hun werk zijn tevredener en blijven langer (Kristof-Brown e.a., 2005).",
+ m:"Dat intelligentie volgens Sternberg betekent dat je overal succesvol wordt. Succes is hier persoonlijk gedefinieerd: wat jij belangrijk vindt, niet wat de maatschappij als succes ziet."},
+"2.3":{u:[
+ "Daniel Kahneman, winnaar van de Nobelprijs voor economie in 2002, beschrijft twee manieren van denken. Systeem 1 is snel, automatisch en kost geen moeite: je herkent een boos gezicht of weet dat 2 + 2 = 4. Systeem 2 is traag en kost inspanning: je rekent 17 × 24 uit of leest een ingewikkelde contractclausule. Kahneman benadrukt dat dit metaforen zijn, geen plekken in het brein.",
+ "Systeem 1 werkt met vuistregels. Die zijn meestal goed genoeg, maar maken voorspelbare fouten. De bekendste voor jouw vak is het ankereffect. Amos Tversky en Kahneman (1974) lieten mensen een rad van fortuin draaien dat op 10 of 65 bleef staan. Daarna schatten ze het percentage Afrikaanse landen in de Verenigde Naties. Wie 10 had gezien, schatte gemiddeld 25 procent; wie 65 had gezien, 45 procent. Een getal dat er niets mee te maken heeft, stuurde het oordeel.",
+ "In onderhandelingen werkt dat net zo. Northcraft en Neale (1987) gaven ervaren makelaars dezelfde woning met verschillende vraagprijzen. Hun taxaties schoven mee met de vraagprijs, terwijl ze ontkenden dat die hen beïnvloedde. Galinsky en Mussweiler (2001) vonden dat de partij die het eerste bod doet, vaak beter uitkomt. Een tegenmiddel: denk bewust aan argumenten die tegen het anker in gaan."],
+ k:[["Systeem 1 en 2","Snel, intuïtief denken tegenover traag, bewust denken."],
+    ["Heuristiek","Vuistregel die snel een redelijk antwoord geeft, met voorspelbare fouten."],
+    ["Ankereffect","Een eerder getal trekt een schatting naar zich toe, ook als het irrelevant is."]],
+ o:"Het ankereffect is robuust en vaak herhaald. Andere delen van Kahnemans boek houden minder goed stand. Zijn hoofdstuk over priming bevatte studies die bij herhaling niet uitkwamen. Kahneman gaf dat zelf ruiterlijk toe.",
+ m:"Dat systeem 2 altijd beter is. Bij ervaren professionals in een voorspelbare omgeving is systeem 1 juist snel en accuraat. Zie module 2.6."},
+"2.4":{u:[
+ "Peter Salovey en John Mayer introduceerden emotionele intelligentie in 1990 als een echt vermogen, met vier onderdelen. Emoties waarnemen: in gezichten, stemmen en bij jezelf. Emoties gebruiken: een stemming inzetten voor een taak. Emoties begrijpen: weten hoe emoties ontstaan en in elkaar overgaan. En emoties reguleren: ze bij jezelf en anderen kunnen bijsturen.",
+ "Daniel Goleman maakte het begrip in 1995 wereldberoemd. Zijn versie is breder: hij rekent er ook motivatie, zelfvertrouwen en sociale vaardigheden toe. Zulke brede modellen heten gemengde modellen. Ze worden meestal gemeten met zelfrapportage: mensen vullen in hoe goed ze zelf denken dat ze zijn. Dat meet vooral hoe je jezelf ziet, en overlapt sterk met persoonlijkheid.",
+ "Het vaardigheidsmodel meet met opgaven die goed of fout kunnen zijn, zoals de MSCEIT: welke emotie zie je in dit gezicht, welke reactie zou het best werken? Voor een lichaamstaalspecialist is het eerste onderdeel, emoties waarnemen, het meest direct. Maar het derde, emoties begrijpen, blijkt in onderzoek het sterkst samen te hangen met andere uitkomsten."],
+ k:[["Vaardigheidsmodel","EI als vermogen, gemeten met opgaven met betere en slechtere antwoorden."],
+    ["Gemengd model","EI als brede verzameling eigenschappen, meestal gemeten met zelfrapportage."],
+    ["MSCEIT","Mayer-Salovey-Caruso Emotional Intelligence Test, de bekendste vaardigheidstest."]],
+ o:"Een meta-analyse (Joseph en Newman, 2010) vond dat vaardigheids-EI werkprestaties bescheiden voorspelt, vooral in werk met veel emotionele arbeid. Gemengde modellen voorspellen ook iets, maar vooral doordat ze persoonlijkheid en zelfbeeld meten.",
+ m:"Dat EQ belangrijker is dan IQ en tot 80 procent van succes verklaart. Daar is geen onderzoek voor. EI voegt iets toe, maar bescheiden."},
+"2.5":{u:[
+ "In les ment-1-01 leerde je wat mentaliseren is. Hier gaan we een stap verder, naar vier dimensies die Patrick Luyten en Peter Fonagy beschrijven. Zelf tegenover ander: kun je beide? Automatisch tegenover gecontroleerd: kun je schakelen? Cognitief tegenover affectief: begrijp je het met je hoofd én voel je het mee? En extern tegenover intern: lees je uiterlijke signalen én denk je na over de binnenwereld?",
+ "Die laatste dimensie is voor jou als lichaamstaalspecialist de belangrijkste. Wie sterk op extern leunt, leest gezicht en houding scherp, maar trekt te snel conclusies over wat iemand denkt. Wie sterk op intern leunt, maakt mooie theorieën over iemands binnenwereld, maar mist wat er zichtbaar gebeurt. Goed mentaliseren verbindt de twee: ik zie dit, en ik vraag me af wat het betekent.",
+ "Fonagy en Elizabeth Allison voegden er in 2014 het begrip epistemisch vertrouwen aan toe: het vertrouwen dat wat een ander je vertelt, relevant en betrouwbaar is voor jou. Dat vertrouwen ontstaat als je je begrepen voelt. Voor coaching is dit de kern: een cliënt neemt pas iets van je aan als hij merkt dat jij hem echt probeert te begrijpen."],
+ k:[["Vier dimensies","Zelf-ander, automatisch-gecontroleerd, cognitief-affectief, extern-intern."],
+    ["Epistemisch vertrouwen","Openheid om kennis van een ander aan te nemen, gebaseerd op het gevoel begrepen te worden."],
+    ["Hypermentaliseren","Te veel en te zeker interpreteren wat er in een ander omgaat."]],
+ o:"Mentalisatiebevorderende therapie (MBT) is effectief gebleken bij borderline persoonlijkheidsstoornis in gerandomiseerde studies. Voor coaching en werk is het onderzoek beperkter, maar het concept wordt veel gebruikt in teams en leiderschap.",
+ m:"Dat wie goed lichaamstaal leest, automatisch goed mentaliseert. Scherp zien is iets anders dan goed begrijpen. Zonder bescheiden nieuwsgierigheid wordt scherp zien juist een valkuil."},
+"2.6":{u:[
+ "Daniel Kahneman wantrouwde intuïtie; Gary Klein bestudeerde brandweercommandanten die op hun gevoel levens redden. In 2009 schreven ze samen een artikel met de mooie ondertitel 'A failure to disagree'. Hun conclusie: intuïtie van experts is te vertrouwen onder twee voorwaarden. De omgeving moet regelmatig genoeg zijn, met signalen die echt iets voorspellen. En de expert moet genoeg kans hebben gehad om die signalen te leren, met snelle en duidelijke feedback.",
+ "Schakers en brandweerlieden voldoen aan die voorwaarden. Beleggers en politieke voorspellers vaak niet. Philip Tetlock volgde twintig jaar lang honderden experts. Hun langetermijnvoorspellingen waren nauwelijks beter dan toeval, terwijl ze er wel heel zeker van waren.",
+ "Anders Ericsson toonde aan dat topprestaties ontstaan door gerichte oefening (deliberate practice): oefenen aan de rand van je kunnen, met een duidelijk doel en directe feedback. Maar een meta-analyse (Macnamara e.a., 2014) vond dat oefening in beroepen maar een klein deel van de verschillen verklaart. Oefening is nodig, maar niet genoeg. Voor het lezen van lichaamstaal is de les hard: feedback is meestal traag of afwezig. Je hoort zelden of je inschatting klopte. Dat is precies de omgeving waarin schijnexpertise ontstaat."],
+ k:[["Valide omgeving","Een omgeving met regelmatige patronen waarin signalen werkelijk iets voorspellen."],
+    ["Gerichte oefening","Oefening aan de grens van je kunnen, met doel en directe feedback (Ericsson)."],
+    ["Kalibratie","De mate waarin je zekerheid overeenkomt met hoe vaak je gelijk hebt."]],
+ o:"In een meta-analyse van 206 studies (Bond en DePaulo, 2006) herkenden mensen leugens gemiddeld in 54 procent van de gevallen, nauwelijks boven toeval. Professionals zoals politiemensen deden het niet veel beter, maar waren wel zekerder.",
+ m:"Dat tienduizend uur oefening van iedereen een expert maakt. Die regel komt uit een populair boek, niet uit Ericssons eigen werk. Hij zei zelf dat het aantal per vak verschilt, en dat het om de kwaliteit van de oefening gaat."},
+"3.1":{u:[
+ "John Carroll heranalyseerde in 1993 ruim 460 datasets uit zeventig jaar intelligentieonderzoek. Hij vond een structuur in drie lagen. Bovenaan staat g. Daaronder een stuk of acht brede vermogens, zoals vloeibaar redeneren, gekristalliseerde kennis, visuele verwerking, werkgeheugen, verwerkingssnelheid en langetermijngeheugen. Daaronder zo'n zeventig smalle vermogens. Samen met het werk van Cattell en Horn heet dit het CHC-model. Het is nu het kader achter de meeste moderne IQ-tests.",
+ "Om een test te beoordelen, gebruik je twee begrippen. Betrouwbaarheid: geeft de test bij herhaling ongeveer dezelfde uitkomst? Validiteit: meet de test wat hij zegt te meten, en voorspelt hij waar je hem voor gebruikt? Een test kan betrouwbaar zijn zonder valide te zijn: een weegschaal die altijd twee kilo te veel aangeeft, is consequent maar verkeerd.",
+ "Lang gold de meta-analyse van Schmidt en Hunter (1998) als standaard: algemene cognitieve vaardigheid zou de beste voorspeller van werkprestaties zijn, met een correlatie van ongeveer 0,5. Paul Sackett en collega's herberekenden dat in 2022 en kwamen lager uit, rond 0,3. In hun analyse voorspelde een gestructureerd interview even goed of beter. Dat laat zien hoe wetenschap zichzelf corrigeert."],
+ k:[["CHC-model","Cattell-Horn-Carroll: hiërarchie van g, brede en smalle vermogens."],
+    ["Betrouwbaarheid","De consistentie van een meting bij herhaling."],
+    ["Predictieve validiteit","Hoe goed een test iets in de toekomst voorspelt, zoals werkprestaties."]],
+ o:"Een correlatie van 0,3 betekent dat de test ongeveer 9 procent van de verschillen in werkprestaties verklaart. Nuttig bij grote aantallen sollicitanten, maar met veel uitzonderingen per persoon.",
+ m:"Dat een betrouwbare test automatisch een goede test is. Betrouwbaarheid is nodig, maar zegt niets over of je het goede meet."},
+"3.2":{u:[
+ "In de jaren tachtig zag de Nieuw-Zeelandse filosoof James Flynn iets vreemds. Testmakers moesten hun IQ-tests steeds opnieuw normeren, omdat elke generatie hoger scoorde. In veel westerse landen stegen de scores in de twintigste eeuw met ongeveer drie punten per tien jaar. Nederlandse dienstplichtigen scoorden tussen 1952 en 1982 zelfs twintig punten hoger op Raven-matrices.",
+ "Die stijging kan niet genetisch zijn; daarvoor ging het te snel. Mogelijke verklaringen zijn betere voeding en gezondheid, langer en ander onderwijs, kleinere gezinnen en een complexere, visuelere omgeving. Flynn zelf dacht aan een andere manier van kijken: moderne mensen zijn gewend om in abstracte categorieën te denken. De Russische psycholoog Alexander Luria vroeg in de jaren dertig aan ongeletterde boeren wat een hond en een konijn gemeen hebben. Het antwoord was dan vaak praktisch: de hond jaagt op het konijn. Niet: het zijn allebei zoogdieren.",
+ "Sinds de jaren negentig dalen de scores in sommige landen weer, zoals in Noorwegen en Denemarken. Bratsberg en Rogeberg (2018) vergeleken broers in Noorse dienstplichtgegevens. Ook binnen hetzelfde gezin scoorden jongere broers lager. Dat wijst op veranderingen in de omgeving, niet op veranderingen in wie er kinderen krijgt."],
+ k:[["Flynn-effect","De stijging van IQ-scores over generaties in de twintigste eeuw."],
+    ["Omgekeerd Flynn-effect","De daling van scores in sommige landen sinds de jaren negentig."],
+    ["Herormering","Het opnieuw vaststellen van wat een gemiddelde score is."]],
+ o:"Een meta-analyse (Pietschnig en Voracek, 2015) bevestigt de stijging wereldwijd, maar met afnemend tempo. De oorzaken zijn nog steeds niet zeker. Waarschijnlijk werken meerdere factoren samen.",
+ m:"Dat we nu twintig punten slimmer zijn dan onze grootouders. De scores stegen vooral op abstracte redeneertaken, niet evenveel op woordenschat of rekenen. Wat er precies veranderde, is een andere manier van denken, niet per se meer verstand."},
+"3.3":{u:[
+ "Erfelijkheid is een van de meest misbegrepen getallen uit de psychologie. Het is het deel van de verschillen tussen mensen in een bepaalde populatie, in een bepaalde omgeving, dat samenhangt met genetische verschillen. Het zegt niets over één persoon. Een erfelijkheid van 50 procent betekent niet dat de helft van jouw intelligentie uit je genen komt.",
+ "Tweelingonderzoek laat zien dat de erfelijkheid van IQ stijgt met de leeftijd: rond 20 procent bij jonge kinderen, en 60 tot 80 procent bij volwassenen. Dat heet het Wilson-effect. Een verklaring is dat mensen naarmate ze ouder worden steeds meer omgevingen kiezen die bij hun aanleg passen, en die aanleg daardoor versterken.",
+ "Hoge erfelijkheid betekent niet dat iets onveranderlijk is. Lichaamslengte is voor ongeveer 80 procent erfelijk, en toch zijn Nederlanders in anderhalve eeuw zo'n twintig centimeter langer geworden, door betere voeding. Eric Turkheimer formuleerde in 2000 drie wetten van gedragsgenetica. De eerste: alle menselijke eigenschappen zijn deels erfelijk. Zijn waarschuwing: dat zegt nog weinig over hoe ze ontstaan of hoe je ze kunt veranderen."],
+ k:[["Erfelijkheid","Het deel van de variatie in een populatie dat samenhangt met genetische variatie."],
+    ["Wilson-effect","De toename van erfelijkheid van IQ met de leeftijd."],
+    ["Gen-omgevingscorrelatie","Mensen zoeken of krijgen omgevingen die bij hun aanleg passen."]],
+ o:"Polygene scores, opgebouwd uit duizenden genetische varianten, voorspellen tot nu toe ongeveer tien procent van de verschillen in cognitieve prestaties of minder. Er is een groot verschil tussen wat tweelingonderzoek schat en wat DNA direct verklaart.",
+ m:"Dat erfelijk hetzelfde is als onveranderlijk of voorbestemd. Voor coaching is de les: 'zo ben ik nu eenmaal' is geen wetenschappelijke conclusie."},
+"3.4":{u:[
+ "Howard Gardner publiceerde in 1983 Frames of Mind. Hij stelde dat er niet één intelligentie is, maar meerdere: taalkundig, logisch-mathematisch, ruimtelijk, muzikaal, lichamelijk-kinesthetisch, interpersoonlijk en intrapersoonlijk. Later voegde hij de naturalistische intelligentie toe. Hij gebruikte acht criteria, zoals: kan het vermogen apart uitvallen bij hersenletsel, en zijn er mensen die er uitzonderlijk goed in zijn terwijl ze op andere gebieden zwak zijn?",
+ "Het idee werd razend populair in het onderwijs. Het voelt rechtvaardig: iedereen is ergens slim in. Maar onderzoekers waren kritischer. Lynn Waterhouse (2006) concludeerde dat er nauwelijks empirisch bewijs is voor losse intelligenties. Testen voor de verschillende intelligenties hangen meestal juist met elkaar samen, net als bij g. Veel critici zien Gardners lijst als een lijst van talenten, niet als losse intelligenties.",
+ "Uit Gardners theorie groeide in de praktijk het idee van leerstijlen: je leert het best als de stof past bij je stijl, bijvoorbeeld visueel of auditief. Gardner heeft zelf afstand genomen van die vertaling. Pashler e.a. (2008) zochten naar bewijs dat lesgeven in iemands voorkeursstijl beter werkt, en vonden het niet."],
+ k:[["Meervoudige intelligentie","Gardners theorie van acht relatief onafhankelijke intelligenties."],
+    ["Leerstijlen","Het idee dat mensen beter leren in hun voorkeurskanaal; niet onderbouwd."],
+    ["Meshing-hypothese","De specifieke claim dat afstemmen op leerstijl betere resultaten geeft."]],
+ o:"Meervoudige intelligentie heeft weinig empirische steun als theorie van losse vermogens. Als pleidooi voor het waarderen van verschillende talenten heeft het waarde. Leerstijlen staan op de lijst van hardnekkige onderwijsmythes.",
+ m:"Dat Gardner en leerstijlen hetzelfde zijn. Gardner zei zelf dat dat een misverstand is."},
+"3.5":{u:[
+ "Stanovich werkte zijn ideeën over rationaliteit uit tot een model met drie lagen. De autonome geest werkt automatisch, vergelijkbaar met Kahnemans systeem 1. De algoritmische geest is je rekenkracht: werkgeheugen, redeneren, wat een IQ-test meet. De reflectieve geest bepaalt of je die rekenkracht inzet: ben je bereid je eerste antwoord te controleren, ander bewijs te zoeken en van mening te veranderen?",
+ "Daarnaast heb je mindware nodig: de denkgereedschappen die je hebt geleerd. Denk aan kansrekening, het meenemen van basiskansen, het herkennen van verzonken kosten (sunk cost) en wetenschappelijk denken. Wie die gereedschappen mist, maakt fouten, hoe slim hij ook is. Er bestaat ook besmette mindware: denkgewoonten die je juist verder van de waarheid brengen, zoals het geloof dat alles met alles verbonden is of dat toevalligheden altijd een bedoeling hebben.",
+ "In 2016 publiceerden Stanovich, West en Toplak The Rationality Quotient, met een uitgebreide test voor rationeel denken (CART). Die meet onder meer kansredeneren, wetenschappelijk redeneren, het vermijden van framing-effecten en een open, actief denkende houding. De scores overlappen met IQ, maar zijn niet hetzelfde. Volgens Stanovich zou een samenleving die rationaliteit net zo serieus nam als IQ, betere beslissingen nemen."],
+ k:[["Reflectieve geest","De laag die bepaalt of en hoe je je denkvermogen inzet."],
+    ["Mindware","Geleerde regels, strategieën en kennis voor goed denken."],
+    ["Verzonken kosten","Doorgaan omdat je al veel hebt geïnvesteerd, terwijl dat niets zegt over de toekomst."]],
+ o:"De CART is goed onderbouwd, maar duurt uren en wordt nog weinig in de praktijk gebruikt. Of rationaliteitstraining blijvend werkt, is minder zeker. Er is bewijs dat het leren van statistisch denken doorwerkt (Nisbett, 1993), maar vaak alleen als mensen het vak herkennen in nieuwe situaties.",
+ m:"Dat rationeel betekent: zonder emotie. Rationeel denken gaat over goede overtuigingen en goede keuzes voor je doelen. Emoties geven daarbij juist belangrijke informatie."},
+"3.6":{u:[
+ "Wijsheid is lang een filosofisch onderwerp geweest. Sinds de jaren tachtig is het ook een onderzoeksonderwerp. Paul Baltes en Ursula Staudinger van het Berlijnse wijsheidsparadigma vroegen mensen om hardop na te denken over lastige levensdilemma's. Een voorbeeld: een vijftienjarig meisje wil meteen gaan trouwen; wat zou je haar zeggen? Antwoorden werden beoordeeld op vijf criteria: kennis van het leven, kennis van hoe je met problemen omgaat, oog voor context en levensloop, besef dat waarden verschillen, en erkenning van onzekerheid.",
+ "Sternbergs balanstheorie (1998) ziet wijsheid als het gebruik van intelligentie en ervaring voor het gemeenschappelijk goed. Je weegt je eigen belangen, die van anderen en die van de bredere gemeenschap tegen elkaar af, op korte en op lange termijn. Een slimme onderhandelaar maximaliseert zijn eigen winst; een wijze onderhandelaar zoekt een uitkomst die ook over vijf jaar nog goed is voor iedereen.",
+ "Igor Grossmann ontdekte iets dat elke coach herkent. Mensen redeneren wijzer over de problemen van een vriend dan over hun eigen problemen. Dat noemde hij Solomons paradox, naar de wijze koning die zijn eigen leven niet op orde kreeg. Het goede nieuws: als mensen over hun eigen probleem in de derde persoon nadenken (wat moet René nu doen?), redeneren ze net zo wijs als over dat van een ander."],
+ k:[["Berlijns wijsheidsparadigma","Wijsheid als expertkennis over de fundamentele vragen van het leven."],
+    ["Balanstheorie","Wijsheid als het afwegen van belangen voor het gemeenschappelijk goed (Sternberg)."],
+    ["Solomons paradox","We redeneren wijzer over andermans problemen dan over onze eigen problemen."]],
+ o:"Grossmann en Kross (2014) toonden het effect van zelfafstand in experimenten. Ethan Kross vond ook dat in gedachten tegen jezelf praten met je eigen naam stress vermindert. Wijs redeneren hangt nauwelijks samen met IQ, maar sterk met de situatie: dezelfde persoon kan in de ene situatie wijs zijn en in de andere niet.",
+ m:"Dat wijsheid vanzelf komt met de jaren. Ouderen scoren gemiddeld iets hoger op sommige onderdelen, maar veel ouderen niet. Ervaring helpt alleen als je erop reflecteert."},
+"4.1":{u:[
+ "In 1921 vroeg een tijdschrift aan veertien vooraanstaande psychologen wat intelligentie is. Ze gaven veertien verschillende antwoorden. In 1986 herhaalden Sternberg en Douglas Detterman de vraag aan twee dozijn experts. Ook toen was er weinig overeenstemming. Shane Legg en Marcus Hutter verzamelden in 2007 ruim zeventig definities en vatten ze samen: intelligentie is het vermogen van een wezen om doelen te bereiken in veel verschillende omgevingen.",
+ "Er zijn drie filosofische houdingen tegenover zo'n begrip. Het operationalisme zegt: intelligentie is wat de test meet (Boring, 1923). Het essentialisme zegt: er is een echt vermogen in het hoofd, en tests proberen dat te vangen. En een derde houding, geïnspireerd door Wittgenstein, ziet intelligentie als een familiebegrip: allerlei vermogens die op elkaar lijken zoals familieleden, zonder dat er één kenmerk is dat ze allemaal delen.",
+ "Een APA-werkgroep onder leiding van Ulric Neisser formuleerde in 1996 een veelgebruikte omschrijving: het vermogen om complexe ideeën te begrijpen, je effectief aan te passen aan de omgeving, van ervaring te leren, verschillende vormen van redeneren te gebruiken en obstakels te overwinnen door na te denken. Let op wat erin staat en wat ontbreekt: geen emotie, geen samenwerking, geen moreel oordeel."],
+ k:[["Operationalisme","Een begrip betekent precies de handelingen waarmee je het meet."],
+    ["Essentialisme","Achter een begrip zit één wezenlijke eigenschap."],
+    ["Familiegelijkenis","Wittgensteins idee dat begrippen overlappende kenmerken hebben zonder één gemeenschappelijke kern."]],
+ o:"Het gebrek aan één definitie heeft het meten niet tegengehouden. Tests voorspellen vrij goed, ook zonder dat we precies weten wat ze meten. Dat is een filosofisch ongemak dat ook in andere wetenschappen voorkomt, zoals bij het begrip leven in de biologie.",
+ m:"Dat de vraag naar een definitie academisch gepraat is. Wat je intelligentie noemt, bepaalt wie je selecteert, hoe je onderwijs inricht en hoe je met mensen praat."},
+"4.2":{u:[
+ "François Chollet, AI-onderzoeker bij Google, schreef in 2019 een invloedrijk artikel: On the Measure of Intelligence. Zijn punt: we verwarren vaardigheid met intelligentie. Een computer die beter schaakt dan een wereldkampioen, is vaardig in schaken. Maar dat zegt weinig over intelligentie als hij daar miljoenen partijen voor nodig had en niets anders kan. Intelligentie is volgens Chollet hoe efficiënt je nieuwe vaardigheden leert, gegeven wat je al wist en hoeveel ervaring je kreeg.",
+ "Om dat te meten, maakte hij ARC: puzzels met gekleurde rasters waarin je uit een paar voorbeelden een regel moet afleiden. Mensen vinden de meeste puzzels makkelijk. Computers vonden ze jarenlang heel moeilijk. Sinds 2024 hebben nieuwe AI-systemen grote sprongen gemaakt, waarna Chollet in 2025 een moeilijkere versie uitbracht. Dit is een levend debat: elke keer als een systeem een test haalt, vragen we ons af of het de test was of de intelligentie.",
+ "De Moravec-paradox laat zien hoe vreemd dit is. Wat voor mensen moeilijk is, zoals rekenen en schaken, is voor computers vaak makkelijk. Wat voor mensen makkelijk is, zoals een kamer in lopen en meteen zien wat er aan de hand is, is voor computers moeilijk. Menselijke intelligentie is belichaamd, sociaal en gevoed door emotie: we weten wat ertoe doet, omdat we een lichaam en een leven hebben."],
+ k:[["Vaardigheid en intelligentie","Wat je kunt, tegenover hoe efficiënt je iets nieuws leert."],
+    ["ARC","Abstraction and Reasoning Corpus: puzzels die generalisatie meten."],
+    ["Moravec-paradox","Wat moeilijk is voor mensen is vaak makkelijk voor computers, en omgekeerd."]],
+ o:"Er is geen overeenstemming over hoe ver huidige AI-systemen van menselijke intelligentie af staan. Het onderzoek gaat in 2026 snel. Wees daarom voorzichtig met stellige uitspraken in beide richtingen, ook met die van mij.",
+ m:"Dat AI ofwel echt denkt zoals wij, ofwel alleen woorden voorspelt. Beide uitspraken zijn te eenvoudig. Het nuttiger gesprek gaat over welke vermogens een systeem wel en niet laat zien."},
+"4.3":{u:[
+ "De geschiedenis van intelligentietesten heeft een donkere kant. Henry Goddard testte in 1913 immigranten op Ellis Island en concludeerde dat een groot deel zwakbegaafd was. Tests werden afgenomen in het Engels bij mensen die net van de boot kwamen. In 1927 bekrachtigde het Amerikaanse Hooggerechtshof in Buck v. Bell gedwongen sterilisatie van mensen die als zwakbegaafd waren bestempeld. Rechter Oliver Wendell Holmes schreef: drie generaties imbecielen is genoeg. Tienduizenden mensen werden gesteriliseerd.",
+ "Stephen Jay Gould schreef in 1981 The Mismeasure of Man, een felle kritiek op hoe wetenschappers hun vooroordelen in metingen stopten. Het boek werd een klassieker. Maar het kreeg zelf ook kritiek. Gould beweerde onder meer dat de negentiende-eeuwse onderzoeker Samuel Morton schedels bevooroordeeld had gemeten. Een team dat die schedels in 2011 opnieuw mat, vond dat Mortons metingen grotendeels klopten; zijn conclusies waren racistisch, maar zijn metingen niet. De les is ongemakkelijk: ook critici van vooroordelen hebben vooroordelen.",
+ "Sternberg pleit in Adaptive Intelligence (2021) voor een ander uitgangspunt. Volgens hem moet je intelligentie beoordelen op de vraag of het mensen helpt zich aan te passen aan de echte problemen van hun tijd, zoals klimaatverandering en pandemieën. Een samenleving vol hoge IQ's die die problemen niet oplost, is volgens hem niet intelligent."],
+ k:[["Eugenetica","De beweging die de menselijke soort wilde verbeteren door voortplanting te sturen."],
+    ["Adaptieve intelligentie","Sternbergs idee van intelligentie als bijdragen aan het gemeenschappelijk goed en overleven."],
+    ["Testbias","Een test die systematisch anders meet voor verschillende groepen."]],
+ o:"Moderne tests worden statistisch gecontroleerd op bias per vraag. Toch blijven er verschillen in gemiddelde scores tussen groepen, waarvan de oorzaken fel betwist worden. Wetenschappers zijn het er wel over eens dat groepsgemiddelden niets zeggen over één individu.",
+ m:"Dat intelligentietesten op zich slecht zijn. Binet bedoelde ze om te helpen. Het probleem ontstaat als een meting een vonnis wordt over iemands waarde."},
+"4.4":{u:[
+ "Anita Woolley en collega's lieten in 2010 groepjes van twee tot vijf mensen allerlei taken doen: puzzels, brainstormen, onderhandelen, morele afwegingen. Net als bij individuen vonden ze een algemene factor: groepen die goed waren in de ene taak, waren ook beter in de andere. Ze noemden dat de c-factor, de collectieve intelligentie van een groep.",
+ "Het verrassende: de c-factor hing nauwelijks samen met het gemiddelde of hoogste IQ in de groep. Hij hing wel samen met drie andere dingen. Ten eerste de sociale sensitiviteit van de leden, gemeten met de Reading the Mind in the Eyes-test: emoties lezen uit alleen de ogen. Ten tweede hoe gelijk de beurten in het gesprek verdeeld waren. En ten derde het aandeel vrouwen, maar dat liep vooral via sociale sensitiviteit. Voor een lichaamstaalspecialist is dat opvallend: het lezen van ogen bleek belangrijker dan het IQ.",
+ "Al eerder beschreef Irving Janis in 1972 het tegenovergestelde: groepsdenken. Een hechte groep onder druk onderdrukt twijfel en maakt rampzalige beslissingen, zoals bij de mislukte invasie in de Varkensbaai. Een slimme groep is dus geen verzameling slimme mensen, maar een groep waarin iedereen aan het woord komt en tegenspraak veilig is."],
+ k:[["c-factor","Algemene factor van collectieve intelligentie van een groep."],
+    ["Sociale sensitiviteit","Het vermogen om emoties en mentale toestanden van anderen te herkennen."],
+    ["Groepsdenken","De neiging van hechte groepen om eensgezindheid boven kritisch denken te stellen."]],
+ o:"Het bewijs is gemengd. Credé en Howardson (2017) vonden bij heranalyse weinig steun voor één c-factor. Een grotere meta-analyse (Riedl e.a., 2021) met ruim vijfduizend mensen vond de factor wel terug. Het debat is open, maar het belang van beurtverdeling en sociale gevoeligheid wordt breed gesteund.",
+ m:"Dat je de slimste mensen bij elkaar moet zetten voor het slimste team. Hoe ze samenwerken, telt minstens zo zwaar."},
+"4.5":{u:[
+ "Lang voor de psychologie dachten filosofen en theologen al na over het verstand. Aristoteles onderscheidde het redenerende verstand (dianoia) van het directe inzicht (nous). Thomas van Aquino nam dat over: ratio is stap voor stap redeneren; intellectus is in één keer zien hoe iets zit. Het Latijnse intellegere komt van intus legere: van binnen lezen. Voor Thomas is redeneren de weg en inzicht het doel.",
+ "In de christelijke traditie staat verstand niet tegenover geloof. Augustinus schreef: geloof opdat je begrijpt. Anselmus omschreef theologie als geloof dat zoekt naar begrip. Het boek Spreuken zegt: het ontzag voor de HEER is het begin van wijsheid. Wijsheid is in die traditie meer dan slimheid: het is weten waartoe je leeft en daarnaar handelen. Thomas noemde wijsheid ook een gave van de Geest, naast de deugd die je kunt oefenen.",
+ "Blaise Pascal, wiskundige en natuurkundige, schreef: het hart heeft zijn redenen die de rede niet kent. Daarmee bedoelde hij geen sentiment, maar een direct weten dat aan bewijs voorafgaat, zoals het weten dat je niet droomt. Hier raken geloof en psychologie elkaar: Kahnemans systeem 1 en Pascals hart beschrijven allebei een kennen dat sneller is dan redeneren. En hier schuren ze: de psychologie toont dat zulk direct weten vaak fout zit; de traditie zegt dat sommige diepe waarheden alleen zo te kennen zijn. Andere stemmen, zoals Spinoza of de boeddhistische traditie, geven weer andere antwoorden."],
+ k:[["Ratio en intellectus","Stapsgewijs redeneren tegenover direct inzicht (Thomas van Aquino)."],
+    ["Fides quaerens intellectum","Geloof dat zoekt naar begrip (Anselmus)."],
+    ["Sapientia","Wijsheid: kennis van de hoogste oorzaken en het juiste doel van het leven."]],
+ o:"Psychologisch onderzoek naar religie en intelligentie vindt op groepsniveau een kleine negatieve samenhang tussen IQ en religiositeit (Zuckerman e.a., 2013). Die samenhang is klein, verschilt per land en zegt niets over individuen of over de waarheid van geloof. Onderzoek naar wijsheid vindt juist dat zingeving en nederigheid, die in religieuze tradities centraal staan, samenhangen met wijs redeneren.",
+ m:"Dat geloof en verstand altijd tegenover elkaar staan. Voor Thomas konden ware rede en waar geloof elkaar nooit tegenspreken. Ook wie dat niet gelooft, kan van die eeuwenlange denktraditie leren."},
+"4.6":{u:[
+ "Na drieëntwintig modules ligt er een rijk maar rommelig landschap. Binet, Spearman en Carroll laten zien dat er iets algemeens is dat tests vangen. Sternberg, Gardner en Woolley laten zien dat dat niet alles is. Kahneman en Stanovich laten zien dat slim en verstandig niet hetzelfde zijn. Fonagy laat zien dat het begrijpen van anderen een eigen vermogen is. En Thomas en Pascal herinneren eraan dat de vraag waartoe het verstand dient, ouder is dan de psychologie.",
+ "Een samenhangend beeld van intelligentie bestaat uit zes onderdelen. Een omschrijving die tegen kritiek bestand is. De vermogens die erbij horen en hoe ze samenhangen. Wat ervan kan groeien en hoe. Hoe je het ziet in gedrag, gesprek en lichaamstaal, en wat je níet kunt zien. Waar het beeld ophoudt te werken. En de ethiek: hoe voorkom je dat het een etiket wordt?",
+ "Voor iemand die met mensen werkt, komt het beeld uit deze leerweg ongeveer hierop neer. Intelligentie is het vermogen om te leren, te begrijpen en goed te handelen in situaties die ertoe doen. Een deel ervan is algemeen en goed meetbaar. Een groot deel zit in kennis, ervaring, het lezen van mensen en de bereidheid om je eigen eerste indruk te controleren. En wijsheid is wat je ermee doet: het afwegen van belangen, ook die van anderen, op korte en lange termijn."],
+ k:[["Synthese","Losse inzichten verbinden tot een nieuw geheel."],
+    ["Integratie","Theorieën uit verschillende tradities naast elkaar zetten zonder hun verschillen weg te poetsen."],
+    ["Falsifieerbaarheid","Een model is pas sterk als je kunt zeggen welke waarneming het zou weerleggen."]],
+ o:"Er is geen theorie die alle onderzoekers delen. Het CHC-model is de standaard voor meten, Sternbergs werk voor toepassen, en het wijsheidsonderzoek voor goed handelen. Ze sluiten elkaar niet uit; ze beantwoorden verschillende vragen.",
+ m:"Dat een eigen model origineel moet zijn. Goed werk combineert bestaande ideeën op een manier die voor jouw praktijk precies past."}
+};
+
+// Casussen (c = situatie, q = vraag), YouTube-zoekverwijzingen (Y) en schema's (V)
+const C = {
+"1.1":{c:"Een HR-adviseur legt je een rapport voor: kandidaat A heeft IQ 128, kandidaat B 112. Zij wil A aannemen als contractmanager. B heeft tien jaar ervaring met lastige leveranciers, A komt net van de universiteit."},
+"1.2":{c:"Een teamleider zegt over een medewerker: 'Ze is goed in Excel, dus ze kan vast ook goed onderhandelen.' Een andere teamleider zegt: 'Iemand die zo goed rekent, is meestal sociaal onhandig.'"},
+"1.3":{c:"Kees, 61, senior inkoper, krijgt een nieuw contractbeheersysteem. Hij is trager dan zijn jonge collega's met de software, en voelt zich 'afgeschreven'. In het overleg met de leverancier is hij degene die ziet dat een clausule over indexering later geld gaat kosten."},
+"1.4":{c:"In een projectteam heb je drie mensen. Sanne schrijft foutloze juridische analyses. Ahmed komt in elk overleg met een onverwachte oplossing. Petra weet altijd wie je moet bellen om iets voor elkaar te krijgen."},
+"1.5":{c:"Een cliënt, Mark, zegt na een mislukte presentatie: 'Ik ben gewoon geen spreker.' Zijn leidinggevende had hem eerder geprezen met: 'Jij bent echt een natuurtalent in analyses.'"},
+"1.6":{c:"Een slimme projectdirecteur blijft investeren in een leverancier die al drie deadlines miste. 'We hebben er al twee ton in zitten,' zegt hij. Elke nieuwe tegenvaller legt hij uit als pech."},
+"2.1":{c:"Een nieuwe contractmanager volgt alle procedures, maar escaleert een conflict via de mail naar de directeur van de leverancier. De relatie verslechtert. Een ervaren collega zegt: 'Dat doe je hier niet, je belt eerst de accountmanager.' Dat staat nergens."},
+"2.2":{c:"Lisa, projectleider, werkt in een organisatie waar beslissingen pas na drie overleggen vallen. Zij is snel en ongeduldig. Ze overweegt ontslag te nemen."},
+"2.3":{c:"Een leverancier opent de onderhandeling met: 'Normaal rekenen we 180 euro per uur, maar voor u kunnen we naar 150.' Jouw eigen marktonderzoek gaf 110 euro aan. Aan het eind van de dag sluit je op 135 en voel je je tevreden."},
+"2.4":{c:"Een manager scoorde hoog op een EQ-vragenlijst. In vergaderingen onderbreekt hij mensen en ziet hij niet dat zijn team al weken gespannen is."},
+"2.5":{c:"Een cliënt kijkt tijdens het gesprek steeds weg en zit met gekruiste armen. Je collega zegt achteraf: 'Hij had duidelijk geen zin in coaching.' Later blijkt dat hij die ochtend slecht nieuws over zijn moeder had gekregen."},
+"2.6":{c:"Je bent ervan overtuigd dat je aan iemands handen ziet of hij liegt. Je hebt het 'al honderd keer goed gehad'. Maar je weet eigenlijk niet hoe vaak je het fout had, omdat je dat bijna nooit te horen kreeg."},
+"3.1":{c:"Een bureau biedt een assessment aan voor contractmanagers. In de brochure staat: 'Betrouwbaarheid 0,92, gevalideerd bij 5000 deelnemers.' Er staat niets over wat het voorspelt."},
+"3.2":{c:"Een cliënt van 70 zegt: 'Mijn kleinzoon is veel slimmer dan ik ooit was; hij doet die puzzels in een paar seconden.'"},
+"3.3":{c:"Een directeur zegt in een coachtraject: 'Mijn vader kon ook niet plannen. Dat zit in de genen, daar kan ik niks aan doen.'"},
+"3.4":{c:"Een trainingsbureau verkoopt een cursus 'Onderhandelen voor visuele en auditieve leerders'. Deelnemers vullen eerst een test in om hun leerstijl te bepalen."},
+"3.5":{c:"Een team van hoogopgeleide juristen besluit unaniem dat een leverancier fraudeert, op basis van twee opvallende incidenten. Niemand kijkt hoe vaak zulke incidenten bij andere leveranciers voorkomen."},
+"3.6":{c:"Je geeft collega's altijd verstandig advies bij conflicten. Maar in je eigen conflict met een opdrachtgever reageer je gekwetst en schrijf je een scherpe mail."},
+"4.1":{c:"In een stuurgroep wil iemand 'de slimste mensen' in het nieuwe contractteam. Na een uur discussie blijkt iedereen iets anders te bedoelen: snel denken, veel kennis, goed met mensen, of creatief."},
+"4.2":{c:"Je organisatie wil een AI-systeem contracten laten beoordelen. Het systeem vindt in tests 95 procent van de bekende risicoclausules, maar mist een nieuw soort clausule die een leverancier net heeft bedacht."},
+"4.3":{c:"Een bedrijf wil een online cognitieve test inzetten om sollicitanten te filteren. De test is snel en goedkoop. Uit een pilot blijkt dat kandidaten met een migratieachtergrond vaker afvallen."},
+"4.4":{c:"In een stuurgroep praten twee mensen 80 procent van de tijd. De anderen knikken. Besluiten worden snel genomen, en blijken later vaak niet uitvoerbaar."},
+"4.5":{c:"Een cliënt staat voor een grote beslissing. Alle argumenten wijzen naar ja, maar hij zegt: 'Mijn hart zegt nee, en ik weet niet waarom.' Hij is gelovig en vraagt of hij moet bidden of moet rekenen."},
+"4.6":{c:"Je vertelt een groep collega-coaches hoe jij naar intelligentie kijkt. Iemand vraagt of dat beter werkt dan gewoon goed luisteren. Het eerlijke antwoord: goed luisteren is al een vorm van intelligentie. Wat de theorie toevoegt, is taal voor wat je ziet, en bescheidenheid over wat je niet kunt zien."}
+};
+const Y = {
+"1.1":[["Crash Course Psychology #23: Controversy of Intelligence","crash course psychology controversy of intelligence"],["De geschiedenis van de IQ-test","history of the IQ test Binet"]],
+"1.2":[["Spearman en de g-factor uitgelegd","Spearman g factor general intelligence explained"]],
+"1.3":[["Vloeibare en gekristalliseerde intelligentie","fluid and crystallized intelligence explained"],["Paul Baltes: selectie, optimalisatie, compensatie","selection optimization compensation Baltes"]],
+"1.4":[["Robert Sternberg over succesvolle intelligentie","Robert Sternberg successful intelligence"]],
+"1.5":[["Carol Dweck, TED: The power of believing that you can improve","Carol Dweck power of believing that you can improve TED"],["Kritische blik op mindset-onderzoek","growth mindset research replication"]],
+"1.6":[["De knuppel-en-balvraag en cognitieve reflectie","bat and ball problem cognitive reflection test"],["Keith Stanovich over rationaliteit en intelligentie","Keith Stanovich rationality intelligence"]],
+"2.1":[["Polanyi en stille kennis","Polanyi tacit knowledge explained"]],
+"2.2":[["Sternberg over adaptieve intelligentie","Robert Sternberg adaptive intelligence lecture"]],
+"2.3":[["Daniel Kahneman, Talks at Google: Thinking, Fast and Slow","Daniel Kahneman Thinking Fast and Slow Talks at Google"],["Het ankereffect in onderhandelingen","anchoring effect negotiation first offer"]],
+"2.4":[["Lisa Feldman Barrett, TED: You aren't at the mercy of your emotions","Lisa Feldman Barrett you aren't at the mercy of your emotions TED"],["Het vaardigheidsmodel van Mayer en Salovey","Mayer Salovey ability model emotional intelligence"]],
+"2.5":[["Peter Fonagy over mentaliseren en epistemisch vertrouwen","Peter Fonagy mentalizing epistemic trust"]],
+"2.6":[["Gary Klein over intuïtie van experts","Gary Klein intuition expertise naturalistic decision making"],["Anders Ericsson over gerichte oefening","Anders Ericsson deliberate practice"]],
+"3.1":[["Het CHC-model uitgelegd","CHC theory of intelligence Cattell Horn Carroll"]],
+"3.2":[["James Flynn, TED: Why our IQ levels are higher than our grandparents'","James Flynn why our IQ levels are higher than our grandparents TED"]],
+"3.3":[["Erfelijkheid: wat het getal betekent","heritability explained misconceptions intelligence"],["Kathryn Paige Harden over The Genetic Lottery","Kathryn Paige Harden genetic lottery talk"]],
+"3.4":[["Veritasium: The Biggest Myth In Education (leerstijlen)","Veritasium biggest myth in education learning styles"],["Howard Gardner over meervoudige intelligentie","Howard Gardner multiple intelligences interview"]],
+"3.5":[["Stanovich over het rationaliteitsquotiënt","Stanovich rationality quotient"]],
+"3.6":[["Ethan Kross over Chatter en zelfafstand","Ethan Kross Chatter self distancing"],["Igor Grossmann over wijs redeneren","Igor Grossmann wise reasoning"]],
+"4.1":[["Wat is intelligentie? Het definitiedebat","what is intelligence definition debate psychology"]],
+"4.2":[["François Chollet over het meten van intelligentie en ARC","Francois Chollet measure of intelligence ARC"]],
+"4.3":[["Buck v. Bell en de geschiedenis van eugenetica","Buck v Bell eugenics history"],["Stephen Jay Gould en The Mismeasure of Man","Stephen Jay Gould Mismeasure of Man"]],
+"4.4":[["Anita Woolley over collectieve intelligentie","Anita Woolley collective intelligence"]],
+"4.5":[["Thomas van Aquino over geloof en rede","Thomas Aquinas faith and reason explained"],["Pascal: le cœur a ses raisons","Pascal Pensées le coeur a ses raisons"]],
+"4.6":[["Sternberg over wijsheid, intelligentie en creativiteit","Sternberg wisdom intelligence creativity synthesized"]]
+};
+const V = {
+"1.2":`<svg viewBox="0 0 340 170" role="img" aria-label="Hiërarchie: g bovenaan, brede vermogens in het midden, smalle vermogens onderaan">
+<rect class="vk" x="140" y="8" width="60" height="30" rx="6"/><text class="vt b w" x="170" y="28">g</text>
+${["Gf","Gc","Gv","Gwm","Gs","Glr"].map((t,i)=>`<line class="vl" x1="170" y1="38" x2="${30+i*56}" y2="72"/><rect class="vk2" x="${8+i*56}" y="72" width="44" height="26" rx="5"/><text class="vt" x="${30+i*56}" y="90">${t}</text>${[0,1,2].map(j=>`<line class="vl" x1="${30+i*56}" y1="98" x2="${16+i*56+j*14}" y2="130"/><circle class="vd" cx="${16+i*56+j*14}" cy="134" r="4"/>`).join("")}`).join("")}
+<text class="vs" x="170" y="160">algemeen · breed · smal (ongeveer 70 smalle vermogens)</text></svg>`,
+"1.3":`<svg viewBox="0 0 340 200" role="img" aria-label="Schematisch verloop: vloeibare intelligentie piekt rond 25 en daalt, gekristalliseerde stijgt tot rond 65 tot 70">
+<line class="va" x1="40" y1="160" x2="320" y2="160"/><line class="va" x1="40" y1="20" x2="40" y2="160"/>
+${[20,30,40,50,60,70,80].map((a,i)=>`<text class="vs" x="${40+i*46.7}" y="176">${a}</text>`).join("")}
+<text class="vs" x="180" y="194">leeftijd</text>
+<path class="vgf" d="M40 70 C 70 40, 90 38, 110 45 S 220 95, 320 135"/>
+<path class="vgc" d="M40 120 C 120 85, 200 50, 250 42 S 300 50, 320 58"/>
+<text class="vt l gf" x="60" y="34">Gf: nieuw redeneren</text><text class="vt l gc" x="190" y="30">Gc: kennis, woordenschat</text>
+<text class="vs" x="180" y="12">schematisch, geen echte meetwaarden</text></svg>`,
+"1.4":`<svg viewBox="0 0 340 200" role="img" aria-label="Driehoek van analytische, creatieve en praktische intelligentie rond succesvolle intelligentie">
+<polygon class="vtri" points="170,22 40,170 300,170"/>
+<circle class="vn ana" cx="170" cy="22" r="14"/><circle class="vn cre" cx="40" cy="170" r="14"/><circle class="vn pra" cx="300" cy="170" r="14"/>
+<text class="vt b" x="170" y="58">analytisch</text><text class="vt b" x="70" y="150">creatief</text><text class="vt b" x="268" y="150">praktisch</text>
+<text class="vt" x="170" y="118">succesvolle</text><text class="vt" x="170" y="134">intelligentie</text></svg>`,
+"2.3":`<svg viewBox="0 0 340 200" role="img" aria-label="Staafdiagram: na anker 10 gemiddelde schatting 25 procent, na anker 65 gemiddelde schatting 45 procent">
+<line class="va" x1="50" y1="160" x2="300" y2="160"/>
+${[0,10,20,30,40,50].map(v=>`<line class="vg" x1="50" y1="${160-v*2.8}" x2="300" y2="${160-v*2.8}"/><text class="vs r" x="44" y="${164-v*2.8}">${v}%</text>`).join("")}
+<rect class="vbar1" x="90" y="${160-25*2.8}" width="60" height="${25*2.8}"/><rect class="vbar2" x="200" y="${160-45*2.8}" width="60" height="${45*2.8}"/>
+<text class="vt b" x="120" y="${154-25*2.8}">25%</text><text class="vt b" x="230" y="${154-45*2.8}">45%</text>
+<text class="vt" x="120" y="178">rad stopt op 10</text><text class="vt" x="230" y="178">rad stopt op 65</text>
+<text class="vs" x="175" y="196">geschat aandeel Afrikaanse landen in de VN (Tversky en Kahneman, 1974)</text></svg>`,
+"2.6":`<svg viewBox="0 0 340 220" role="img" aria-label="Twee bij twee: regelmatige omgeving en snelle feedback tegenover onvoorspelbaar en weinig feedback">
+<text class="vs" x="190" y="14">snelle, duidelijke feedback?</text>
+<text class="vs" x="135" y="30">ja</text><text class="vs" x="255" y="30">nee</text>
+<text class="vs l" x="2" y="30">omgeving regelmatig?</text>
+<text class="vs" x="38" y="82">ja</text><text class="vs" x="38" y="172">nee</text>
+<rect class="vq goed" x="80" y="38" width="115" height="85" rx="6"/><rect class="vq mid" x="200" y="38" width="115" height="85" rx="6"/>
+<rect class="vq mid" x="80" y="128" width="115" height="85" rx="6"/><rect class="vq slecht" x="200" y="128" width="115" height="85" rx="6"/>
+<text class="vt b" x="137" y="72">intuïtie</text><text class="vt b" x="137" y="88">te vertrouwen</text><text class="vs" x="137" y="106">schaken, brandweer</text>
+<text class="vt" x="257" y="80">leren gaat traag</text><text class="vs" x="257" y="98">radiologie, coaching</text>
+<text class="vt" x="137" y="170">weinig patroon</text><text class="vs" x="137" y="188">dobbelen</text>
+<text class="vt b" x="257" y="162">schijnexpertise</text><text class="vs" x="257" y="180">beurs, politiek,</text><text class="vs" x="257" y="194">leugens lezen</text></svg>`,
+"3.2":`<svg viewBox="0 0 340 190" role="img" aria-label="Schematisch: IQ-scores stijgen van 1950 tot rond 1995 en dalen daarna in Noorwegen">
+<line class="va" x1="40" y1="150" x2="320" y2="150"/><line class="va" x1="40" y1="20" x2="40" y2="150"/>
+${[1950,1970,1990,2010].map((j,i)=>`<text class="vs" x="${40+i*93}" y="168">${j}</text>`).join("")}
+<path class="vgf" d="M40 140 L 250 52"/><path class="vgc dash" d="M250 52 L 320 74"/>
+<text class="vt l" x="130" y="128">ongeveer +3 punten per 10 jaar</text><text class="vt l gc" x="232" y="40">daling (Noorwegen)</text>
+<text class="vs" x="180" y="186">schematisch, geen echte meetwaarden</text></svg>`,
+"3.6":`<svg viewBox="0 0 340 150" role="img" aria-label="Solomons paradox: over een vriend redeneer je wijzer dan over jezelf, zelfafstand dicht het gat">
+<rect class="vbar2" x="40" y="30" width="270" height="22"/><text class="vt l w" x="48" y="46">probleem van een vriend</text>
+<rect class="vbar1" x="40" y="62" width="165" height="22"/><text class="vt l w" x="48" y="78">eigen probleem, ik-vorm</text>
+<rect class="vbar2" x="40" y="94" width="258" height="22"/><text class="vt l w" x="48" y="110">eigen probleem, derde persoon</text>
+<text class="vs" x="170" y="140">wijs redeneren (schematisch, naar Grossmann en Kross, 2014)</text></svg>`,
+"4.4":`<svg viewBox="0 0 340 180" role="img" aria-label="Drie factoren die samenhangen met collectieve intelligentie: sociale sensitiviteit, gelijke beurten, aandeel vrouwen">
+${["sociale sensitiviteit","gelijke beurten","aandeel vrouwen*"].map((t,i)=>`<rect class="vk2" x="10" y="${20+i*50}" width="150" height="34" rx="6"/><text class="vt" x="85" y="${42+i*50}">${t}</text><line class="vl pijl" x1="160" y1="${37+i*50}" x2="236" y2="87"/>`).join("")}
+<circle class="vn pra" cx="270" cy="87" r="32"/><text class="vt b w" x="270" y="93">c</text>
+<text class="vs" x="170" y="176">* vooral via sociale sensitiviteit (Woolley e.a., 2010)</text></svg>`
+};
+V["3.1"]=V["1.2"];
+
+const KEY="leerweg-intelligentie-klaar";
+let klaar={}; try{klaar=JSON.parse(localStorage.getItem(KEY)||"{}")}catch(e){}
+const bewaar=()=>{try{localStorage.setItem(KEY,JSON.stringify(klaar))}catch(e){}};
+const esc=s=>s.replace(/[&<>"]/g,c=>({"&":"&amp;","<":"&lt;",">":"&gt;",'"':"&quot;"}[c]));
+const doel=document.getElementById("niveaus");
+const yt=q=>"https://www.youtube.com/results?search_query="+encodeURIComponent(q);
+function leerstof(id){const x=L[id];if(!x)return"";const c=C[id],v=V[id],y=Y[id]||[];
+  return `<div class="stof"><span class="eyebrow">Leerstof</span>${x.u.map(t=>`<p>${esc(t)}</p>`).join("")}
+  ${v?`<figure class="schema">${v}</figure>`:""}
+  ${c?`<div class="kader casus"><b>Uit de praktijk</b><p>${esc(c.c)}</p></div>`:""}
+  <h4>Kernbegrippen</h4><dl class="begrip">${x.k.map(([t,d])=>`<div><dt>${esc(t)}</dt><dd>${esc(d)}</dd></div>`).join("")}</dl>
+  <div class="kader onderzoek"><b>Wat het onderzoek zegt</b><p>${esc(x.o)}</p></div>
+  <div class="kader mythe"><b>Veelvoorkomend misverstand</b><p>${esc(x.m)}</p></div>
+  ${y.length?`<h4>Kijken</h4><ul class="kijk">${y.map(([t,q])=>`<li><a href="${yt(q)}" target="_blank" rel="noopener">${esc(t)}</a></li>`).join("")}</ul>`:""}
+</div>`}
+function teken(){
+  doel.innerHTML=N.map(n=>{
+    const af=n.mods.filter((m,i)=>klaar[`${n.nr}.${i+1}`]).length;
+    return `<div class="niveau"><div class="kop"><span class="eyebrow">Niveau ${n.nr} · ${n.naam}</span><h3 style="font-size:1.4rem">${esc(n.titel)}</h3><p class="muted">${esc(n.doel)}</p><span class="voortgang">${af} van ${n.mods.length} modules gelezen</span></div>
+    ${n.mods.map((m,i)=>{const id=`${n.nr}.${i+1}`;return `<details><summary><span class="nr">${id}</span><span class="st"><strong>${esc(m.t)}</strong><span>${esc(m.g)}</span></span>${klaar[id]?'<span class="vink">✓ gelezen</span>':'<span></span>'}</summary>
+      <div class="inhoud"><dl style="margin:0;display:flex;flex-direction:column;gap:8px">
+      <div class="rij"><dt>Waar het over gaat</dt><dd>${esc(m.v)}</dd></div>
+      <div class="rij"><dt>Begrippen</dt><dd>${esc(m.b)}</dd></div>
+      <div class="rij"><dt>In je werk</dt><dd>${esc(m.w)}</dd></div></dl>
+      ${leerstof(id)}
+      ${m.les?'<a href="#les1" style="color:var(--accent);font-weight:600">Lees de volledige les hieronder</a>':''}
+      <label class="klaar"><input type="checkbox" id="k${id.replace('.','-')}" data-id="${id}" ${klaar[id]?'checked':''}> Gelezen</label></div></details>`}).join("")}</div>`}).join("");
+}
+teken();
+doel.addEventListener("change",e=>{const id=e.target.dataset.id;if(!id)return;
+  const open=[...doel.querySelectorAll("details")].map(d=>d.open);
+  klaar[id]=e.target.checked;bewaar();teken();
+  doel.querySelectorAll("details").forEach((d,i)=>d.open=open[i]);
+  document.querySelector(`[data-id="${id}"]`)?.focus();});
+</script>
